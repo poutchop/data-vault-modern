@@ -1,16 +1,20 @@
 interface TabsProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  isAdmin?: boolean;
 }
 
-export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
-  const tabs = [
-    { id: 'feed', label: 'Hardening feed' },
-    { id: 'analytics', label: 'Climate analytics' },
-    { id: 'leaderboard', label: 'Leaderboard' },
-    { id: 'map', label: '🗺️ Map' },
-    { id: 'provost', label: 'Provost portal' },
+export default function Tabs({ activeTab, setActiveTab, isAdmin }: TabsProps) {
+  const allTabs = [
+    { id: 'scanner', label: '📠 Scanner', role: 'field' },
+    { id: 'analytics', label: 'Impact Wall', role: 'field' },
+    { id: 'leaderboard', label: 'Leaderboard', role: 'field' },
+    { id: 'feed', label: 'Hardening feed', role: 'admin' },
+    { id: 'map', label: '🗺️ Map', role: 'admin' },
+    { id: 'main', label: 'Main portal', role: 'admin' },
   ];
+
+  const tabs = allTabs.filter(t => isAdmin || t.role === 'field');
 
   return (
     <div className="bg-surf border-b border-border px-6 flex gap-0.5 overflow-x-auto">

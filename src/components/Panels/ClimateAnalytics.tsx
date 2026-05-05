@@ -28,14 +28,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-export default function ClimateAnalytics() {
+import { SiteSummary } from '@/hooks/useVaultData';
+
+interface ClimateAnalyticsProps {
+  siteSummaries: SiteSummary[];
+}
+
+export default function ClimateAnalytics({ siteSummaries }: ClimateAnalyticsProps) {
   return (
     <div className="flex flex-col gap-[14px]">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-[14px]">
         <div className="lg:col-span-2 bg-surf border border-border rounded-[10px] overflow-hidden">
           <div className="p-3 px-4 border-b border-border text-[12px] font-medium flex items-center gap-2">
             <span className="w-2 h-2 rounded-sm bg-green-custom inline-block"></span>
-            Firewood avoidance — CO₂ saved (kg/week)
+            Impact Wall — CO₂ saved (kg/week)
           </div>
           <div className="p-4 h-[212px]">
             <ResponsiveContainer width="100%" height="100%">
@@ -72,11 +78,13 @@ export default function ClimateAnalytics() {
             <div className="grid grid-cols-2 gap-2 mt-auto">
               <div className="bg-surf2 rounded-lg p-2.5 text-center">
                 <div className="text-[10px] text-muted">Total bundles</div>
-                <div className="text-[18px] font-bold text-amber-custom">172</div>
+                <div className="text-[18px] font-bold text-amber-custom">
+                  {Math.round(siteSummaries.reduce((acc, s) => acc + s.scans, 0) * 0.58)}
+                </div>
               </div>
               <div className="bg-surf2 rounded-lg p-2.5 text-center">
-                <div className="text-[10px] text-muted">Week growth</div>
-                <div className="text-[18px] font-bold text-green-custom">+16.7%</div>
+                <div className="text-[10px] text-muted">Growth</div>
+                <div className="text-[18px] font-bold text-green-custom">Live</div>
               </div>
             </div>
           </div>
@@ -93,37 +101,31 @@ export default function ClimateAnalytics() {
               <tr>
                 <th className="font-medium text-muted p-2 px-3 border-b border-border">Site</th>
                 <th className="font-medium text-muted p-2 px-3 border-b border-border">Participants</th>
-                <th className="font-medium text-muted p-2 px-3 border-b border-border">Scans (wk)</th>
+                <th className="font-medium text-muted p-2 px-3 border-b border-border">Scans (total)</th>
                 <th className="font-medium text-muted p-2 px-3 border-b border-border">CO₂ saved</th>
-                <th className="font-medium text-muted p-2 px-3 border-b border-border">Avg nutrition</th>
                 <th className="font-medium text-muted p-2 px-3 border-b border-border">Payout status</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="hover:bg-[rgba(255,255,255,0.015)] border-b border-[rgba(255,255,255,0.03)] last:border-0">
-                <td className="p-2 px-3 font-medium">Berekuso Farm A</td>
-                <td className="p-2 px-3">7</td>
-                <td className="p-2 px-3">49</td>
-                <td className="p-2 px-3 text-green-custom font-semibold">842 kg</td>
-                <td className="p-2 px-3 text-blue-custom">76.4</td>
-                <td className="p-2 px-3"><span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold tracking-[0.3px] bg-gdim text-green-custom">Paid</span></td>
-              </tr>
-              <tr className="hover:bg-[rgba(255,255,255,0.015)] border-b border-[rgba(255,255,255,0.03)] last:border-0">
-                <td className="p-2 px-3 font-medium">Berekuso Farm B</td>
-                <td className="p-2 px-3">6</td>
-                <td className="p-2 px-3">38</td>
-                <td className="p-2 px-3 text-green-custom font-semibold">684 kg</td>
-                <td className="p-2 px-3 text-blue-custom">71.8</td>
-                <td className="p-2 px-3"><span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold tracking-[0.3px] bg-gdim text-green-custom">Paid</span></td>
-              </tr>
-              <tr className="hover:bg-[rgba(255,255,255,0.015)] border-b border-[rgba(255,255,255,0.03)] last:border-0">
-                <td className="p-2 px-3 font-medium">Tomato Co-op West</td>
-                <td className="p-2 px-3">5</td>
-                <td className="p-2 px-3">31</td>
-                <td className="p-2 px-3 text-amber-custom font-semibold">510 kg</td>
-                <td className="p-2 px-3 text-blue-custom">73.2</td>
-                <td className="p-2 px-3"><span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold tracking-[0.3px] bg-adim text-amber-custom">Pending</span></td>
-              </tr>
+              {siteSummaries.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="p-10 text-center text-muted">No site data available.</td>
+                </tr>
+              ) : (
+                siteSummaries.map((s, i) => (
+                  <tr key={i} className="hover:bg-[rgba(255,255,255,0.015)] border-b border-[rgba(255,255,255,0.03)] last:border-0">
+                    <td className="p-2 px-3 font-medium">{s.site}</td>
+                    <td className="p-2 px-3">{s.participants}</td>
+                    <td className="p-2 px-3">{s.scans}</td>
+                    <td className="p-2 px-3 text-green-custom font-semibold">{s.co2.toLocaleString()} kg</td>
+                    <td className="p-2 px-3">
+                      <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold tracking-[0.3px] ${s.payoutStatus === 'Paid' ? 'bg-gdim text-green-custom' : 'bg-adim text-amber-custom'}`}>
+                        {s.payoutStatus}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -131,3 +133,4 @@ export default function ClimateAnalytics() {
     </div>
   );
 }
+
