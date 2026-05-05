@@ -56,7 +56,7 @@ export default function ScanMap({ scans, sites }: ScanMapProps) {
                   <div className="text-[11px]">
                     <div className="font-bold">{s.participant_name}</div>
                     <div className="text-muted">{s.action_type}</div>
-                    <div className="mt-1 text-[10px]">{new Date(s.scan_time_device).toLocaleString()}</div>
+                    <div className="mt-1 text-[10px]">{new Date(s.created_at).toLocaleString()}</div>
                   </div>
                 </Popup>
               </Marker>
