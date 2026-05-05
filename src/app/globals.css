@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f4f6fa;
+  --surf: #ffffff;
+  --surf2: #eef1f8;
+  --border: rgba(0,0,0,0.08);
+  --text: #111827;
+  --muted: #6b7280;
+  --green: #10d97e;
+  --gdim: rgba(16,140,80,0.09);
+  --amber: #f4a134;
+  --adim: rgba(180,100,10,0.09);
+  --blue: #4d9fff;
+  --bdim: rgba(37,99,235,0.09);
+  --red: #ff5a5a;
+  --purple: #9d7dff;
+  --pdim: rgba(100,80,200,0.09);
+  --gold: #f4c430;
+  --r: 10px;
+  --r-sm: 7px;
+}
+
+.dark {
+  --bg: #0f1117;
+  --surf: #1a1d27;
+  --surf2: #222536;
+  --border: rgba(255,255,255,0.08);
+  --text: #e8eaf0;
+  --muted: #8b8fa8;
+  --green: #10d97e;
+  --gdim: rgba(16,217,126,0.12);
+  --amber: #f4a134;
+  --adim: rgba(244,161,52,0.12);
+  --blue: #4d9fff;
+  --bdim: rgba(77,159,255,0.12);
+  --red: #ff5a5a;
+  --purple: #9d7dff;
+  --pdim: rgba(157,125,255,0.12);
+  --gold: #f4c430;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--bg);
+  --color-surf: var(--surf);
+  --color-surf2: var(--surf2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-green-custom: var(--green);
+  --color-gdim: var(--gdim);
+  --color-amber-custom: var(--amber);
+  --color-adim: var(--adim);
+  --color-blue-custom: var(--blue);
+  --color-bdim: var(--bdim);
+  --color-red-custom: var(--red);
+  --color-purple-custom: var(--purple);
+  --color-pdim: var(--pdim);
+  --color-gold: var(--gold);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  min-height: 100vh;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.3); border-radius: 3px; }
