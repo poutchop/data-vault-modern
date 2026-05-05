@@ -3,9 +3,10 @@ import { LeaderboardEntry } from '@/hooks/useVaultData';
 interface LeaderboardProps {
   entries: LeaderboardEntry[];
   loading: boolean;
+  isAdmin?: boolean;
 }
 
-export default function Leaderboard({ entries, loading }: LeaderboardProps) {
+export default function Leaderboard({ entries, loading, isAdmin }: LeaderboardProps) {
   const medals = ['#f4c430', '#c0c0c0', '#cd7f32'];
   
   const Skeleton = () => (
@@ -98,11 +99,22 @@ export default function Leaderboard({ entries, loading }: LeaderboardProps) {
 
         <div className="bg-surf border border-border rounded-[10px] overflow-hidden p-4">
           <div className="bg-surf2 rounded-lg p-4 text-center">
-            <div className="text-[22px] font-bold text-green-custom leading-tight">100 pts</div>
-            <div className="text-[11px] text-muted mt-1 uppercase tracking-widest">= GHS 5.00 Payout</div>
+            {isAdmin ? (
+              <>
+                <div className="text-[22px] font-bold text-green-custom leading-tight">100 pts</div>
+                <div className="text-[11px] text-muted mt-1 uppercase tracking-widest">= GHS 5.00 Payout</div>
+              </>
+            ) : (
+              <>
+                <div className="text-[18px] font-bold text-blue-custom leading-tight">Community Impact</div>
+                <div className="text-[11px] text-muted mt-1 uppercase tracking-widest">Points = Support</div>
+              </>
+            )}
           </div>
           <p className="text-[11px] text-muted mt-3 leading-relaxed">
-            Payments are processed via MTN MoMo and Telecel once threshold is reached.
+            {isAdmin 
+              ? "Payments are processed via MTN MoMo and Telecel once threshold is reached."
+              : "Every scan you make builds community health and carbon avoidance credits."}
           </p>
         </div>
       </div>

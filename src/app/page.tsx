@@ -85,7 +85,7 @@ export default function Home() {
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} isAdmin={mode === 'admin'} />
       
       <main className="p-5 px-6 flex flex-col gap-4 max-w-[1600px] mx-auto w-full min-h-[calc(100vh-200px)]">
-        <MetricCards metrics={dynamicMetrics} loading={loading} />
+        <MetricCards metrics={dynamicMetrics} loading={loading} isAdmin={mode === 'admin'} />
 
         {activeTab === 'feed' && (
           <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_380px] gap-[14px]">
@@ -98,10 +98,10 @@ export default function Home() {
           <ClimateAnalytics siteSummaries={siteSummaries} />
         )}
 
-        {activeTab === 'leaderboard' && <Leaderboard entries={dynamicLeaderboard} loading={loading} />}
+        {activeTab === 'leaderboard' && <Leaderboard entries={dynamicLeaderboard} loading={loading} isAdmin={mode === 'admin'} />}
         {activeTab === 'map' && <MapPanel scans={feed} sites={siteSummaries} />}
         {activeTab === 'main' && <MainPortal scans={combinedFeed} loading={loading} />}
-        {activeTab === 'scanner' && <Scanner onScanComplete={handleNewScan} />}
+        {activeTab === 'scanner' && <Scanner onScanComplete={handleNewScan} isAdmin={mode === 'admin'} />}
       </main>
 
       <footer className="p-5 px-6 text-center text-[11px] text-muted border-t border-border mt-auto">

@@ -8,9 +8,10 @@ import { useVaultData } from '@/hooks/useVaultData';
 
 interface ScannerProps {
   onScanComplete?: (newScan: any) => void;
+  isAdmin?: boolean;
 }
 
-export default function Scanner({ onScanComplete }: ScannerProps) {
+export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
   const [step, setStep] = useState(1);
   const [accuracy, setAccuracy] = useState(137);
   const [isLocked, setIsLocked] = useState(false);
@@ -20,6 +21,7 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
   
   // Form State
   const [formData, setFormData] = useState({
+    agentName: '',
     personName: '',
     bridgeNumber: '',
     phoneNumber: '',
@@ -96,17 +98,17 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
   };
 
   const resetScanner = () => {
-    setStep(1);
+    setStep(1); // Return to GPS lock
     setAccuracy(137);
     setIsLocked(false);
     setCapturedImage(null);
-    setFormData({
+    setFormData(prev => ({
+      ...prev,
       personName: '',
       bridgeNumber: '',
       phoneNumber: '',
-      siteName: 'Berekuso Farm A',
       actionType: 'firewood_avoidance'
-    });
+    }));
   };
 
   const downloadHistory = () => {
@@ -137,7 +139,7 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
       <div className="bg-surf border border-border rounded-[10px] overflow-hidden flex flex-col min-h-[650px]">
         <div className="p-3 px-4 border-b border-border flex items-center gap-2 text-[12px] font-medium">
           <Camera size={14} className="text-muted" />
-          Data Vault Field Audit — Step {step}
+          Data Vault Field Audit — {step === 0 ? 'Agent Setup' : `Step ${step}`}
           <span className="text-muted text-[10px] ml-auto font-normal">Ready for storage</span>
         </div>
 
@@ -160,8 +162,53 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
 
           <div className="flex-1 flex flex-col items-center justify-center text-center max-w-lg mx-auto w-full">
             
+            {/* STEP 0: AGENT IDENTIFICATION */}
+            {step === 1 && formData.agentName === '' && (
+              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full text-left">
+                <div className="mb-8 text-center">
+                  <div className="w-16 h-16 bg-blue-custom/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-custom/20">
+                    <User className="text-blue-custom" size={32} />
+                  </div>
+                  <h3 className="text-[20px] font-bold">Field Identification</h3>
+                  <p className="text-[13px] text-muted">Identify yourself and your site before auditing.</p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">Your Full Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Enter your name" 
+                      className="w-full bg-surf2 border border-border rounded-xl px-4 py-4 text-[14px] outline-none focus:border-blue-custom transition-all"
+                      onChange={e => setFormData({...formData, agentName: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">Current Site Location</label>
+                    <select 
+                      value={formData.siteName} 
+                      onChange={e => setFormData({...formData, siteName: e.target.value})}
+                      className="w-full bg-surf2 border border-border rounded-xl px-4 py-4 text-[14px] outline-none focus:border-blue-custom transition-all appearance-none"
+                    >
+                      <option>Berekuso Farm A</option>
+                      <option>Berekuso Farm B</option>
+                      <option>Tomato Co-op West</option>
+                      <option>Aburi Highlands</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-adim/30 border border-amber-custom/20 rounded-xl flex gap-3">
+                  <div className="mt-0.5"><Lock size={14} className="text-amber-custom" /></div>
+                  <p className="text-[11px] text-muted leading-relaxed">
+                    Once you start, all scans will be linked to <span className="text-amber-custom font-bold">{formData.siteName}</span>. This cannot be changed during the session.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {/* STEP 1: GPS */}
-            {step === 1 && (
+            {step === 1 && formData.agentName !== '' && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full">
                 <h3 className="text-[20px] font-bold mb-2">Step 1: GPS Lock</h3>
                 <p className="text-[13px] text-muted mb-8">Verifying field location for the dMRV audit...</p>
@@ -246,12 +293,10 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
                       <input required type="tel" value={formData.phoneNumber} onChange={e => setFormData({...formData, phoneNumber: e.target.value})} placeholder="MTN / Telecel number" className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><MapPin size={10} /> Audit Site</label>
-                      <select value={formData.siteName} onChange={e => setFormData({...formData, siteName: e.target.value})} className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all appearance-none">
-                        <option>Berekuso Farm A</option>
-                        <option>Berekuso Farm B</option>
-                        <option>Tomato Co-op West</option>
-                      </select>
+                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><MapPin size={10} /> Audit Site (Locked)</label>
+                      <div className="w-full bg-surf2/50 border border-border rounded-xl px-4 py-3 text-[13px] text-muted">
+                        {formData.siteName}
+                      </div>
                     </div>
                   </div>
 
@@ -295,9 +340,11 @@ export default function Scanner({ onScanComplete }: ScannerProps) {
         <div className="bg-surf border border-border rounded-[10px] overflow-hidden">
           <div className="p-3 px-4 border-b border-border text-[12px] font-medium flex justify-between items-center">
             Database History
-            <button onClick={downloadHistory} disabled={history.length === 0} className="text-green-custom text-[10px] flex items-center gap-1 hover:underline disabled:opacity-30">
-              <FileText size={10} /> Excel/CSV
-            </button>
+            {isAdmin && (
+              <button onClick={downloadHistory} disabled={history.length === 0} className="text-green-custom text-[10px] flex items-center gap-1 hover:underline disabled:opacity-30">
+                <FileText size={10} /> Excel/CSV
+              </button>
+            )}
           </div>
           {history.length === 0 ? (
             <div className="p-10 flex flex-col items-center justify-center text-center opacity-30">
