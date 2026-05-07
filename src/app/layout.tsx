@@ -8,7 +8,15 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Data Vault — Carbon Clarity dMRV Platform",
-  description: "Bridging rural Ghana with global carbon markets",
+  description: "Professional carbon asset registry and field audit platform.",
+  manifest: "/manifest.json",
+  themeColor: "#0a0b14",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Data Vault",
+  },
 };
 
 export default function RootLayout({

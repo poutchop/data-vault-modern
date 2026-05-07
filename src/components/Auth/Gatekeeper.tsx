@@ -11,79 +11,78 @@ export default function Gatekeeper({ children }: GatekeeperProps) {
   const [error, setError] = useState(false);
   const [mode, setMode] = useState<'locked' | 'field' | 'admin'>('locked');
 
-  // Check if session was already unlocked
   useEffect(() => {
-    const unlocked = sessionStorage.getItem('vault_unlocked');
-    if (unlocked === 'admin') {
-      setMode('admin');
-    } else if (unlocked === 'field') {
-      setMode('field');
-    }
+    try {
+      const unlocked = sessionStorage.getItem('vault_unlocked');
+      if (unlocked === 'admin') setMode('admin');
+      else if (unlocked === 'field') setMode('field');
+    } catch (e) {}
   }, []);
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault();
     const ADMIN_PIN = '1234'; 
-    const FIELD_PIN = '0000'; // Default PIN for field users
+    const FIELD_PIN = '0000';
+    const cleanPin = pin.trim();
     
-    if (pin === ADMIN_PIN) {
-      sessionStorage.setItem('vault_unlocked', 'admin');
+    if (cleanPin === ADMIN_PIN) {
+      try { sessionStorage.setItem('vault_unlocked', 'admin'); } catch (e) {}
       setMode('admin');
       setError(false);
-    } else if (pin === FIELD_PIN) {
-      sessionStorage.setItem('vault_unlocked', 'field');
+    } else if (cleanPin === FIELD_PIN) {
+      try { sessionStorage.setItem('vault_unlocked', 'field'); } catch (e) {}
       setMode('field');
       setError(false);
     } else {
       setError(true);
       setPin('');
-      // Shake animation effect
-      setTimeout(() => setError(false), 500);
+      setTimeout(() => setError(false), 800);
     }
   };
 
   if (mode !== 'locked') return <>{children}</>;
 
   return (
-    <div className="fixed inset-0 z-[1000] bg-bg flex items-center justify-center p-6 backdrop-blur-sm bg-opacity-95">
-      <div className="max-w-sm w-full bg-surf border border-border p-8 rounded-2xl shadow-2xl text-center">
-        <div className="w-16 h-16 bg-adim rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f4a134" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <div className="fixed inset-0 z-[1000] bg-[#0a0b14] flex items-center justify-center p-6">
+      <div className="max-w-sm w-full bg-[#141521] border border-[rgba(255,255,255,0.1)] p-10 rounded-[32px] shadow-2xl text-center">
+        <div className="w-16 h-16 bg-[rgba(16,217,126,0.1)] rounded-2xl flex items-center justify-center mx-auto mb-8 border border-[rgba(16,217,126,0.2)]">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10d97e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
         </div>
         
-        <p className="text-muted text-sm mb-8 leading-relaxed">
-          Enter PIN to continue.<br/>
-          <span className="text-[10px] text-blue-custom font-bold">0000 = Field Mode</span> (Scanner/Impact)<br/>
-          <span className="text-[10px] text-amber-custom font-bold">1234 = Admin Mode</span> (All Access)
-        </p>
+        <h2 className="text-2xl font-bold mb-2 text-white">Security Access</h2>
+        <p className="text-muted text-sm mb-10 leading-relaxed">Please enter your 4-digit PIN to unlock the Data Vault.</p>
 
-        <form onSubmit={handleUnlock} className="space-y-4">
+        <form onSubmit={handleUnlock} className="space-y-6">
           <input
             type="password"
             maxLength={4}
             value={pin}
             onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
             placeholder="••••"
-            className={`w-full bg-surf2 border ${error ? 'border-red-custom animate-shake' : 'border-border'} rounded-xl p-4 text-center text-3xl tracking-[1em] font-mono focus:outline-none focus:border-amber-custom transition-all`}
+            className={`w-full bg-[#0a0b14] border ${error ? 'border-red-500 animate-shake' : 'border-[rgba(255,255,255,0.1)]'} rounded-2xl p-5 text-center text-4xl tracking-[0.5em] font-mono text-white focus:outline-none focus:border-green-custom transition-all`}
             autoFocus
           />
           
-          {error && <p className="text-red-custom text-xs font-medium">Incorrect PIN. Please try again.</p>}
-          
           <button
             type="submit"
-            className="w-full bg-amber-custom text-black font-bold py-4 rounded-xl hover:bg-opacity-90 transition-all shadow-lg shadow-amber-custom/20"
+            className="w-full bg-green-custom text-black font-bold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-[0.98] shadow-lg shadow-green-custom/20 text-sm uppercase tracking-widest"
           >
             Unlock Vault
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-border flex items-center justify-center gap-2 text-[10px] text-muted uppercase tracking-widest">
-          <div className="w-1.5 h-1.5 rounded-full bg-green-custom"></div>
-          Secure Pilot Environment
+        <div className="mt-10 pt-8 border-t border-[rgba(255,255,255,0.05)] flex flex-col gap-2 text-[10px] text-muted uppercase tracking-widest font-bold">
+          <div className="flex justify-between items-center px-4">
+             <span>Field Access</span>
+             <span className="text-blue-custom">0000</span>
+          </div>
+          <div className="flex justify-between items-center px-4">
+             <span>Admin Access</span>
+             <span className="text-amber-custom">1234</span>
+          </div>
         </div>
       </div>
 

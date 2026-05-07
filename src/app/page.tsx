@@ -11,6 +11,7 @@ import Leaderboard from '@/components/Panels/Leaderboard';
 import MainPortal from '@/components/Panels/MainPortal';
 import MapPanel from '@/components/Panels/MapPanel';
 import Scanner from '@/components/Panels/Scanner';
+import FloatingAI from '@/components/FloatingAI';
 import Gatekeeper from '@/components/Auth/Gatekeeper';
 import { useVaultData } from '@/hooks/useVaultData';
 import { useEffect } from 'react';
@@ -42,8 +43,10 @@ export default function Home() {
   // Recalculate metrics based on local additions
   const dynamicMetrics = {
     ...metrics,
-    scansToday: metrics.scansToday + localScans.length,
-    co2Avoided: Math.round(metrics.co2Avoided + (localScans.length * 60.5))
+    scansToday: metrics.totalCO2_kg / 60.5 + localScans.length,
+    totalCO2_kg: Math.round(metrics.totalCO2_kg + (localScans.length * 60.5)),
+    certifiedCredits_t: Number((metrics.certifiedCredits_t + (localScans.length * 0.0605)).toFixed(3)),
+    accruedMarketValue_usd: Number((metrics.accruedMarketValue_usd + (localScans.length * 0.0605 * 15)).toFixed(2))
   };
 
   // Recalculate leaderboard
@@ -100,9 +103,11 @@ export default function Home() {
 
         {activeTab === 'leaderboard' && <Leaderboard entries={dynamicLeaderboard} loading={loading} isAdmin={mode === 'admin'} />}
         {activeTab === 'map' && <MapPanel scans={feed} sites={siteSummaries} />}
-        {activeTab === 'main' && <MainPortal scans={combinedFeed} loading={loading} />}
+        {activeTab === 'main' && <MainPortal scans={combinedFeed} metrics={dynamicMetrics} loading={loading} />}
         {activeTab === 'scanner' && <Scanner onScanComplete={handleNewScan} isAdmin={mode === 'admin'} />}
       </main>
+
+      <FloatingAI />
 
       <footer className="p-5 px-6 text-center text-[11px] text-muted border-t border-border mt-auto">
         Carbon Clarity Data Vault · dMRV Platform · Ashesi University Pilot · v1.0.0-mvp<br/>

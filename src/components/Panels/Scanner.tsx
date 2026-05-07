@@ -60,41 +60,99 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
     e.preventDefault();
     setIsSaving(true);
     
-    // TRIGGER INSTANT VERIFICATION DATA
-    const timestamp = new Date().toISOString();
-    const mockLat = 5.7456 + (Math.random() - 0.5) * 0.001;
-    const mockLng = -0.3214 + (Math.random() - 0.5) * 0.001;
-
-    const newRecord = {
-      ...formData,
-      image: capturedImage,
-      timestamp,
-      gps: [mockLat, mockLng],
-      id: Math.random().toString(36).substr(2, 9)
-    };
-
-    // Simulation of Global Impact
-    const globalScanData = {
-      id: newRecord.id,
-      participant_name: formData.personName,
-      board_id: formData.bridgeNumber,
-      action_type: formData.actionType,
-      status: 'hardened' as const,
-      site: formData.siteName,
-      gps_lat: mockLat,
-      gps_lng: mockLng,
-      created_at: timestamp
-    };
-
-    setTimeout(() => {
-      setHistory(prev => [newRecord, ...prev].slice(0, 10));
-      if (onScanComplete) onScanComplete(globalScanData);
-      setIsSaving(false);
-      setStep(4);
+    try {
+      const timestamp = new Date().toISOString();
       
-      // AUTO-EXCEL LOGGING (Simulation)
-      console.log('Record automatically indexed for Excel export');
-    }, 1200);
+      // GET REAL GPS COORDINATES
+      let lat = 5.7456; 
+      let lng = -0.3214;
+      
+      try {
+        const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { 
+            enableHighAccuracy: true,
+            timeout: 5000 
+          });
+        });
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+      } catch (e) {
+        console.warn("GPS failed, using site default", e);
+      }
+
+      // 1. First, find or create the participant
+      let { data: participant, error: pError } = await supabase
+        .from('participants')
+        .select('id')
+        .eq('name', formData.personName)
+        .maybeSingle();
+
+      if (!participant) {
+        const { data: newP, error: createError } = await supabase
+          .from('participants')
+          .insert({ 
+            name: formData.personName, 
+            site: formData.siteName,
+            total_points: 0,
+            total_payout: 0 
+          })
+          .select()
+          .single();
+        
+        if (createError) throw createError;
+        participant = newP;
+      }
+
+      // 2. Insert the real scan data
+      const { data: scanData, error: sError } = await supabase
+        .from('scans')
+        .insert({
+          participant_id: participant.id,
+          board_id: formData.bridgeNumber,
+          action_type: formData.actionType,
+          status: 'hardened',
+          gps_lat: lat,
+          gps_lng: lng,
+          created_at: timestamp
+        })
+        .select()
+        .single();
+
+      if (sError) throw sError;
+
+      // Update local history for the UI
+      const newRecord = {
+        ...formData,
+        image: capturedImage,
+        timestamp,
+        gps: [mockLat, mockLng],
+        id: scanData.id
+      };
+
+      setHistory(prev => [newRecord, ...prev].slice(0, 10));
+      
+      // Notify parent component to update global state
+      if (onScanComplete) {
+        onScanComplete({
+          id: scanData.id,
+          participant_name: formData.personName,
+          board_id: formData.bridgeNumber,
+          action_type: formData.actionType,
+          status: 'hardened',
+          site: formData.siteName,
+          gps_lat: mockLat,
+          gps_lng: mockLng,
+          created_at: timestamp
+        });
+      }
+
+      setStep(4);
+    } catch (error: any) {
+      console.error('Error saving scan:', error);
+      alert('Database error: ' + error.message);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const resetScanner = () => {

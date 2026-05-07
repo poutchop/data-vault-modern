@@ -16,11 +16,12 @@ export interface Scan {
 }
 
 export interface VaultMetrics {
-  scansToday: number;
-  verificationRate: number;
-  co2Avoided: number;
-  payoutsSent: number;
+  totalCO2_kg: number;
+  certifiedCredits_t: number;
+  accruedMarketValue_usd: number;
+  disbursementPool_ghs: number;
   activeParticipants: number;
+  verificationRate: number;
 }
 
 export interface LeaderboardEntry {
@@ -53,11 +54,12 @@ export interface NutritionLog {
 
 export function useVaultData() {
   const [metrics, setMetrics] = useState<VaultMetrics>({
-    scansToday: 0,
-    verificationRate: 0,
-    co2Avoided: 0,
-    payoutsSent: 0,
+    totalCO2_kg: 0,
+    certifiedCredits_t: 0,
+    accruedMarketValue_usd: 0,
+    disbursementPool_ghs: 0,
     activeParticipants: 0,
+    verificationRate: 0,
   });
   const [feed, setFeed] = useState<Scan[]>([]);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
@@ -67,10 +69,14 @@ export function useVaultData() {
 
   const fetchMetrics = async () => {
     try {
-      const { count: scansCount } = await supabase
+      // 1. Fetch all scans for analytics
+      const { data: allScans } = await supabase
         .from('scans')
-        .select('*', { count: 'exact', head: true });
+        .select('id, status, participant_id, participants(site)');
+      
+      const scansCount = allScans?.length || 0;
 
+      // 2. Fetch participant summaries
       const { count: participantCount } = await supabase
         .from('participants')
         .select('*', { count: 'exact', head: true });
@@ -80,10 +86,7 @@ export function useVaultData() {
         .select('total_payout, total_points, name, site')
         .order('total_points', { ascending: false });
 
-      const { data: allScans } = await supabase
-        .from('scans')
-        .select('participant_id, participants(site)');
-
+      // 3. Fetch nutrition logs
       const { data: nutritionData } = await supabase
         .from('nutrition_logs')
         .select(`
@@ -100,14 +103,20 @@ export function useVaultData() {
         .limit(20);
 
       const totalPayout = participantsData?.reduce((acc, p) => acc + (Number(p.total_payout) || 0), 0) || 0;
-      const totalCO2 = (scansCount || 0) * 60.5;
+      const hardenedCount = allScans?.filter((s: any) => s.status === 'hardened').length || 0;
+      const vRate = scansCount ? Math.round((hardenedCount / scansCount) * 100) : 0;
+      
+      const totalCO2_kg = hardenedCount * 60.5; 
+      const certifiedCredits_t = totalCO2_kg / 1000; // 1 credit = 1 tonne
+      const carbonPrice_usd = 15.00; // Est. price per tonne for high-quality dMRV credits
 
       setMetrics({
-        scansToday: scansCount || 0,
-        verificationRate: 94,
-        co2Avoided: Math.round(totalCO2),
-        payoutsSent: totalPayout,
+        totalCO2_kg: Math.round(totalCO2_kg),
+        certifiedCredits_t: Number(certifiedCredits_t.toFixed(3)),
+        accruedMarketValue_usd: Number((certifiedCredits_t * carbonPrice_usd).toFixed(2)),
+        disbursementPool_ghs: totalPayout,
         activeParticipants: participantCount || 0,
+        verificationRate: vRate,
       });
 
       if (participantsData) {
