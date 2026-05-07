@@ -8,8 +8,10 @@ interface GatekeeperProps {
 
 export default function Gatekeeper({ children }: GatekeeperProps) {
   const [pin, setPin] = useState('');
+  const [agentName, setAgentName] = useState('');
   const [error, setError] = useState(false);
   const [mode, setMode] = useState<'locked' | 'field' | 'admin'>('locked');
+  const [showIdentityStep, setShowIdentityStep] = useState(false);
 
   useEffect(() => {
     try {
@@ -30,14 +32,24 @@ export default function Gatekeeper({ children }: GatekeeperProps) {
       setMode('admin');
       setError(false);
     } else if (cleanPin === FIELD_PIN) {
-      try { sessionStorage.setItem('vault_unlocked', 'field'); } catch (e) {}
-      setMode('field');
+      setShowIdentityStep(true);
       setError(false);
     } else {
       setError(true);
       setPin('');
       setTimeout(() => setError(false), 800);
     }
+  };
+
+  const handleIdentitySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (agentName.trim().length < 2) return;
+    
+    try { 
+      sessionStorage.setItem('vault_unlocked', 'field');
+      sessionStorage.setItem('vault_agent_name', agentName.trim());
+    } catch (e) {}
+    setMode('field');
   };
 
   if (mode !== 'locked') return <>{children}</>;
@@ -52,27 +64,63 @@ export default function Gatekeeper({ children }: GatekeeperProps) {
           </svg>
         </div>
         
-        <h2 className="text-2xl font-bold mb-2 text-white">Security Access</h2>
-        <p className="text-muted text-sm mb-10 leading-relaxed">Please enter your 4-digit PIN to unlock the Data Vault.</p>
+        {!showIdentityStep ? (
+          <>
+            <h2 className="text-2xl font-bold mb-2 text-white">Security Access</h2>
+            <p className="text-muted text-sm mb-10 leading-relaxed">Please enter your 4-digit PIN to unlock the Data Vault.</p>
 
-        <form onSubmit={handleUnlock} className="space-y-6">
-          <input
-            type="password"
-            maxLength={4}
-            value={pin}
-            onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
-            placeholder="••••"
-            className={`w-full bg-[#0a0b14] border ${error ? 'border-red-500 animate-shake' : 'border-[rgba(255,255,255,0.1)]'} rounded-2xl p-5 text-center text-4xl tracking-[0.5em] font-mono text-white focus:outline-none focus:border-green-custom transition-all`}
-            autoFocus
-          />
-          
-          <button
-            type="submit"
-            className="w-full bg-green-custom text-black font-bold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-[0.98] shadow-lg shadow-green-custom/20 text-sm uppercase tracking-widest"
-          >
-            Unlock Vault
-          </button>
-        </form>
+            <form onSubmit={handleUnlock} className="space-y-6">
+              <input
+                type="password"
+                maxLength={4}
+                value={pin}
+                onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
+                placeholder="••••"
+                className={`w-full bg-[#0a0b14] border ${error ? 'border-red-500 animate-shake' : 'border-[rgba(255,255,255,0.1)]'} rounded-2xl p-5 text-center text-4xl tracking-[0.5em] font-mono text-white focus:outline-none focus:border-green-custom transition-all`}
+                autoFocus
+              />
+              
+              <button
+                type="submit"
+                className="w-full bg-green-custom text-black font-bold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-[0.98] shadow-lg shadow-green-custom/20 text-sm uppercase tracking-widest"
+              >
+                Unlock Vault
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+            <h2 className="text-2xl font-bold mb-2 text-white">Identity Check</h2>
+            <p className="text-muted text-sm mb-10 leading-relaxed">Please enter your Agent Name to access your personalized dashboard.</p>
+
+            <form onSubmit={handleIdentitySubmit} className="space-y-6">
+              <input
+                type="text"
+                value={agentName}
+                onChange={(e) => setAgentName(e.target.value)}
+                placeholder="Agent Name"
+                className="w-full bg-[#0a0b14] border border-[rgba(255,255,255,0.1)] rounded-2xl p-5 text-center text-xl font-semibold text-white focus:outline-none focus:border-green-custom transition-all"
+                autoFocus
+                required
+              />
+              
+              <button
+                type="submit"
+                className="w-full bg-green-custom text-black font-bold py-4 rounded-2xl hover:bg-opacity-90 transition-all active:scale-[0.98] shadow-lg shadow-green-custom/20 text-sm uppercase tracking-widest"
+              >
+                Access Dashboard
+              </button>
+              
+              <button 
+                type="button" 
+                onClick={() => setShowIdentityStep(false)}
+                className="text-[10px] text-muted uppercase tracking-widest hover:text-white transition-colors"
+              >
+                Back to PIN
+              </button>
+            </form>
+          </>
+        )}
 
         <div className="mt-10 pt-8 border-t border-[rgba(255,255,255,0.05)] flex flex-col gap-2 text-[10px] text-muted uppercase tracking-widest font-bold">
           <div className="flex justify-between items-center px-4">

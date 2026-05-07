@@ -36,14 +36,16 @@ export default function Home() {
   }, [localScans]);
 
   const mode = typeof window !== 'undefined' ? sessionStorage.getItem('vault_unlocked') : null;
+  const agentName = typeof window !== 'undefined' ? sessionStorage.getItem('vault_agent_name') : 'Agent';
 
   // DYNAMIC DATA MERGING: Combine DB with local actions
   const combinedFeed = [...localScans, ...feed];
 
-  // Recalculate metrics based on local additions
+  // Recalculate metrics based on local additions and identity
   const dynamicMetrics = {
     ...metrics,
-    scansToday: metrics.totalCO2_kg / 60.5 + localScans.length,
+    scansToday: localScans.filter(s => s.participant_name === agentName).length,
+    totalPoints: localScans.filter(s => s.participant_name === agentName).length * 3,
     totalCO2_kg: Math.round(metrics.totalCO2_kg + (localScans.length * 60.5)),
     certifiedCredits_t: Number((metrics.certifiedCredits_t + (localScans.length * 0.0605)).toFixed(3)),
     accruedMarketValue_usd: Number((metrics.accruedMarketValue_usd + (localScans.length * 0.0605 * 15)).toFixed(2))
@@ -70,7 +72,12 @@ export default function Home() {
   dynamicLeaderboard.sort((a, b) => b.pts - a.pts).forEach((e, i) => e.rank = i + 1);
   
   const handleNewScan = (newScan: any) => {
-    setLocalScans(prev => [newScan, ...prev]);
+    const scanWithIdentity = {
+      ...newScan,
+      participant_name: agentName,
+      site: 'Berekuso'
+    };
+    setLocalScans(prev => [scanWithIdentity, ...prev]);
   };
 
   const handleDelete = (id: string) => {

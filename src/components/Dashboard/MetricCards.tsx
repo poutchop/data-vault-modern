@@ -6,6 +6,8 @@ interface MetricCardsProps {
     disbursementPool_ghs: number;
     activeParticipants: number;
     verificationRate: number;
+    scansToday?: number;
+    totalPoints?: number;
   };
   loading: boolean;
   isAdmin?: boolean;
