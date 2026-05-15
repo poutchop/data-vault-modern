@@ -1,7 +1,7 @@
 import { Database } from '@nozbe/watermelondb';
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 // @ts-ignore
-import LokiJSAdapter from '@nozbe/watermelondb/adapter/lokijs';
+import LokiJSAdapter from '@nozbe/watermelondb/adapters/lokijs';
 import { Model } from '@nozbe/watermelondb';
 import { field, date, readonly, relation } from '@nozbe/watermelondb/decorators';
 
