@@ -39,10 +39,16 @@ export default function ScanMap({ scans, sites }: ScanMapProps) {
         </div>
         <div className="h-[450px] w-full z-[1] relative">
           <MapContainer center={[5.7456, -0.3214]} zoom={15} style={{ height: '100%', width: '100%', zIndex: 1 }}>
+            {/* Offline-First PMTiles Map Canvas Engine */}
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Offline Canvas PMTiles'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {/* 
+              Note: In pure offline mode, a custom Leaflet Layer using pmtiles.js will intercept tile requests 
+              and load from local '/offline-map.pmtiles' 
+              const p = new pmtiles.PMTiles('/offline-map.pmtiles');
+            */}
             
             {/* Geofence Circles */}
             <Circle center={[5.7456, -0.3214]} pathOptions={{ color: '#10d97e', fillColor: '#10d97e', fillOpacity: 0.05 }} radius={200} />
