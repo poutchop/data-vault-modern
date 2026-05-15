@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Camera, Search, Lock, CheckCircle, XCircle, Zap, RefreshCw, User, Phone, MapPin, Hash, Save, FileText } from 'lucide-react';
 import Webcam from 'react-webcam';
-import { database, SyncQueue, SatFarmMetrics, encryptPayload } from '@/lib/localDatabase';
+import { database, SyncQueue, SatFarmMetrics, encryptPayload, generateSHA256Hash } from '@/lib/localDatabase';
 import { audioGuidance } from '@/lib/audio/AudioGuidanceManager';
 import { t } from '@/lib/i18n';
 import * as piexif from 'piexifjs';
@@ -183,6 +183,8 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
           created_at: timestamp
         };
 
+        const zkHash = generateSHA256Hash({ metadataPayload, exif: { lat, lng } });
+
         await satFarmMetrics.create(record => {
           record.farmId = formData.bridgeNumber;
           record.encryptedPayload = encryptPayload(metadataPayload);
@@ -197,6 +199,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
           record.createdAt = Date.now();
           record.retryCount = 0;
           record.idempotencyKey = recordId + '_meta';
+          record.hash = zkHash;
         });
 
         // Priority 2: Media
@@ -213,6 +216,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
             record.createdAt = Date.now();
             record.retryCount = 0;
             record.idempotencyKey = recordId + '_media';
+            record.hash = zkHash;
           });
         }
       });

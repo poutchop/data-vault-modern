@@ -12,6 +12,10 @@ export function encryptPayload(data: any): string {
   return CryptoJS.AES.encrypt(JSON.stringify(data), ENCRYPTION_KEY).toString();
 }
 
+export function generateSHA256Hash(payload: any): string {
+  return CryptoJS.SHA256(JSON.stringify(payload)).toString(CryptoJS.enc.Hex);
+}
+
 export function decryptPayload(ciphertext: string): any {
   try {
     const bytes = CryptoJS.AES.decrypt(ciphertext, ENCRYPTION_KEY);
@@ -54,6 +58,7 @@ const schema = appSchema({
         { name: 'created_at', type: 'number' },
         { name: 'retry_count', type: 'number' },
         { name: 'idempotency_key', type: 'string' },
+        { name: 'hash', type: 'string', isOptional: true },
       ],
     }),
   ],
@@ -86,6 +91,7 @@ export class SyncQueue extends Model {
   @field('created_at') createdAt!: number;
   @field('retry_count') retryCount!: number;
   @text('idempotency_key') idempotencyKey!: string;
+  @text('hash') hash!: string;
 
   get decryptedPayload() {
     return decryptPayload(this.encryptedPayload);

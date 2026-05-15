@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package dmrv;
+
+message GPSData {
+  double lat = 1;
+  double lng = 2;
+  double alt = 3;
+}
+
+message MetadataPayload {
+  string id = 1;
+  string participant_name = 2;
+  string board_id = 3;
+  string action_type = 4;
+  string status = 5;
+  string site = 6;
+  GPSData gps = 7;
+  string confidence = 8;
+  string created_at = 9;
+  string zk_hash = 10;
+}
