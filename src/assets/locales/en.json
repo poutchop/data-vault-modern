@@ -1,0 +1,33 @@
+{
+  "scanner": {
+    "agent_setup": "Agent Setup",
+    "ready": "Ready for storage",
+    "field_id": "Field Identification",
+    "identify": "Identify yourself and your site before auditing.",
+    "your_name": "Your Full Name",
+    "site": "Current Site Location",
+    "lock_warning": "Once you start, all scans will be linked to this site.",
+    "step1": "Step 1: GPS Lock",
+    "verifying": "Verifying field location for the dMRV audit...",
+    "searching": "Searching...",
+    "gps_verified": "GPS Verified",
+    "proceed_camera": "Proceed to Camera",
+    "step2": "Step 2: Capture Vault",
+    "align": "Align the visual bridge and vault frame.",
+    "cancel": "Cancel audit",
+    "step3": "Step 3: Verification Details",
+    "linking": "Linking scan to database...",
+    "person_name": "Person on Visual Bridge",
+    "bridge_id": "Visual Bridge ID #",
+    "phone": "Phone Number",
+    "audit_site": "Audit Site (Locked)",
+    "storing": "Storing data...",
+    "commit": "Commit to Database",
+    "audit_stored": "Audit Stored!",
+    "record_secured": "Record has been cryptographically secured in the Data Vault.",
+    "vault_status": "Vault Status",
+    "new_audit": "New Audit",
+    "history": "Database History",
+    "no_records": "No records stored yet"
+  }
+}

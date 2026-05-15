@@ -1,0 +1,33 @@
+{
+  "scanner": {
+    "agent_setup": "Usanidi wa Wakala",
+    "ready": "Tayari kwa hifadhi",
+    "field_id": "Utambulisho wa Uwanja",
+    "identify": "Jitambulishe wewe na tovuti yako.",
+    "your_name": "Jina lako kamili",
+    "site": "Tovuti ya sasa",
+    "lock_warning": "Baada ya kuanza, uchunguzi wote utaunganishwa na tovuti hii.",
+    "step1": "Hatua 1: Funga GPS",
+    "verifying": "Inathibitisha eneo...",
+    "searching": "Inatafuta...",
+    "gps_verified": "GPS Imethibitishwa",
+    "proceed_camera": "Endelea kwa Kamera",
+    "step2": "Hatua 2: Piga Picha",
+    "align": "Sawazisha daraja la kuona.",
+    "cancel": "Ghairi",
+    "step3": "Hatua 3: Maelezo",
+    "linking": "Inaunganisha na hifadhidata...",
+    "person_name": "Jina la Mtu",
+    "bridge_id": "Kitambulisho cha Daraja #",
+    "phone": "Nambari ya Simu",
+    "audit_site": "Tovuti (Imefungwa)",
+    "storing": "Inahifadhi...",
+    "commit": "Wasilisha kwenye Hifadhidata",
+    "audit_stored": "Ukaguzi Umehifadhiwa!",
+    "record_secured": "Rekodi imehifadhiwa kwa usalama.",
+    "vault_status": "Hali ya Vault",
+    "new_audit": "Ukaguzi Mpya",
+    "history": "Historia ya Hifadhidata",
+    "no_records": "Hakuna rekodi bado"
+  }
+}

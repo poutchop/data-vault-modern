@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Camera, Search, Lock, CheckCircle, XCircle, Zap, RefreshCw, User, Phone, MapPin, Hash, Save, FileText } from 'lucide-react';
 import Webcam from 'react-webcam';
-import { database, SyncQueue } from '@/lib/localDatabase';
+import { database, SyncQueue, SatFarmMetrics, encryptPayload } from '@/lib/localDatabase';
 import { audioGuidance } from '@/lib/audio/AudioGuidanceManager';
+import { t } from '@/lib/i18n';
 import * as piexif from 'piexifjs';
 import { v4 as uuidv4 } from 'uuid';
-import { useVaultData } from '@/hooks/useVaultData';
 
 function degToDmsRational(deg: number): [[number, number], [number, number], [number, number]] {
   const d = Math.floor(deg);
@@ -30,6 +30,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [history, setHistory] = useState<any[]>([]);
   const [isSaving, setIsSaving] = useState(false);
+  const [cameraKey, setCameraKey] = useState(1);
   
   // Form State
   const [formData, setFormData] = useState({
@@ -38,32 +39,64 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
     bridgeNumber: '',
     phoneNumber: '',
     siteName: 'Berekuso Farm A',
-    actionType: 'firewood_avoidance'
+    actionType: 'firewood_avoidance',
+    confidence: 'high'
   });
 
   const webcamRef = useRef<Webcam>(null);
+  const isLockedRef = useRef(isLocked);
+  
+  useEffect(() => {
+    isLockedRef.current = isLocked;
+  }, [isLocked]);
 
-  // Strict GPS Lock
+  // Strict GPS Lock with 45s Timeout Fallback
   useEffect(() => {
     if (step === 1 && formData.agentName !== '') {
-      const watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          const acc = Math.floor(position.coords.accuracy);
-          setAccuracy(acc);
-          if (acc <= 10) {
-            setIsLocked(true);
-            audioGuidance.play('GPS_LOCKED');
-          } else {
-            setIsLocked(false);
-          }
-        },
-        (error) => {
-          console.error("GPS Error", error);
-          audioGuidance.play('GPS_WARNING');
-        },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-      );
-      return () => navigator.geolocation.clearWatch(watchId);
+      let timeoutRef: NodeJS.Timeout;
+      let useHighAccuracy = true;
+      let isFallback = false;
+
+      const startGPS = () => {
+        return navigator.geolocation.watchPosition(
+          (position) => {
+            const acc = Math.floor(position.coords.accuracy);
+            setAccuracy(acc);
+            
+            if (acc <= 10 || isFallback) {
+              setIsLocked(true);
+              if (isFallback) {
+                setFormData(prev => ({ ...prev, confidence: 'low' }));
+              }
+              audioGuidance.play('GPS_LOCKED');
+            } else {
+              setIsLocked(false);
+            }
+          },
+          (error) => {
+            console.error("GPS Error", error);
+            audioGuidance.play('GPS_WARNING');
+          },
+          { enableHighAccuracy: useHighAccuracy, timeout: 5000, maximumAge: 0 }
+        );
+      };
+
+      let watchId = startGPS();
+
+      // 45-second timeout for low-accuracy cellular triangulation fallback
+      timeoutRef = setTimeout(() => {
+        if (!isLockedRef.current) {
+          navigator.geolocation.clearWatch(watchId);
+          useHighAccuracy = false;
+          isFallback = true;
+          watchId = startGPS();
+        }
+      }, 45000);
+
+      return () => {
+        navigator.geolocation.clearWatch(watchId);
+        clearTimeout(timeoutRef);
+      };
     }
   }, [step, formData.agentName]);
 
@@ -100,7 +133,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
             setCapturedImage(imageSrc);
             setStep(3);
           },
-          { enableHighAccuracy: true }
+          { enableHighAccuracy: formData.confidence === 'high' }
         );
       } catch (e) {
         console.error("Exif injection failed", e);
@@ -108,7 +141,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
         setStep(3);
       }
     }
-  }, [webcamRef]);
+  }, [webcamRef, formData.confidence]);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,15 +149,13 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
     
     try {
       const timestamp = new Date().toISOString();
-      
-      // GET REAL GPS COORDINATES
       let lat = 5.7456; 
       let lng = -0.3214;
       
       try {
         const position = await new Promise<GeolocationPosition>((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject, { 
-            enableHighAccuracy: true,
+            enableHighAccuracy: formData.confidence === 'high',
             timeout: 5000 
           });
         });
@@ -134,40 +165,58 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
         console.warn("GPS failed, using site default", e);
       }
 
-      // WatermelonDB Atomic Transaction
       const recordId = uuidv4();
       
       await database.write(async () => {
         const syncQueueCollection = database.get<SyncQueue>('sync_queue');
+        const satFarmMetrics = database.get<SatFarmMetrics>('sat_farm_metrics');
         
-        const payload = {
-          metadata: {
-            participant_name: formData.personName,
-            board_id: formData.bridgeNumber,
-            action_type: formData.actionType,
-            status: 'hardened',
-            site: formData.siteName,
-            gps_lat: lat,
-            gps_lng: lng,
-            created_at: timestamp
-          },
-          photos: capturedImage ? [{
-            file: capturedImage,
-            filename: `photo_${recordId}.jpg`,
-            metadata: { gps_lat: lat, gps_lng: lng }
-          }] : []
+        const metadataPayload = {
+          participant_name: formData.personName,
+          board_id: formData.bridgeNumber,
+          action_type: formData.actionType,
+          status: 'hardened',
+          site: formData.siteName,
+          gps_lat: lat,
+          gps_lng: lng,
+          confidence: formData.confidence,
+          created_at: timestamp
         };
 
+        await satFarmMetrics.create(record => {
+          record.farmId = formData.bridgeNumber;
+          record.encryptedPayload = encryptPayload(metadataPayload);
+          record.createdAt = Date.now();
+        });
+
+        // Priority 1: Metadata
         await syncQueueCollection.create(record => {
-          record.payload = JSON.stringify(payload);
+          record.encryptedPayload = encryptPayload({ type: 'metadata', data: { ...metadataPayload, id: recordId } });
+          record.priority = 1;
           record.status = 'PENDING';
           record.createdAt = Date.now();
           record.retryCount = 0;
-          record.idempotencyKey = recordId;
+          record.idempotencyKey = recordId + '_meta';
         });
+
+        // Priority 2: Media
+        if (capturedImage) {
+          await syncQueueCollection.create(record => {
+            record.encryptedPayload = encryptPayload({ 
+              type: 'media', 
+              file: capturedImage,
+              filename: `photo_${recordId}.jpg`,
+              metadata: { gps_lat: lat, gps_lng: lng, parent_id: recordId }
+            });
+            record.priority = 2;
+            record.status = 'PENDING';
+            record.createdAt = Date.now();
+            record.retryCount = 0;
+            record.idempotencyKey = recordId + '_media';
+          });
+        }
       });
 
-      // Update local history for the UI
       const newRecord = {
         ...formData,
         image: capturedImage,
@@ -178,19 +227,8 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
 
       setHistory(prev => [newRecord, ...prev].slice(0, 10));
       
-      // Notify parent component to update global state
       if (onScanComplete) {
-        onScanComplete({
-          id: recordId,
-          participant_name: formData.personName,
-          board_id: formData.bridgeNumber,
-          action_type: formData.actionType,
-          status: 'hardened',
-          site: formData.siteName,
-          gps_lat: lat,
-          gps_lng: lng,
-          created_at: timestamp
-        });
+        onScanComplete({ ...newRecord });
       }
 
       setStep(4);
@@ -203,7 +241,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
   };
 
   const resetScanner = () => {
-    setStep(1); // Return to GPS lock
+    setStep(1); 
     setAccuracy(137);
     setIsLocked(false);
     setCapturedImage(null);
@@ -212,44 +250,30 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
       personName: '',
       bridgeNumber: '',
       phoneNumber: '',
-      actionType: 'firewood_avoidance'
+      actionType: 'firewood_avoidance',
+      confidence: 'high'
     }));
   };
 
-  const downloadHistory = () => {
-    const headers = ['ID', 'Name', 'Bridge #', 'Phone', 'Site', 'Action', 'Timestamp', 'GPS'];
-    const rows = history.map(r => [
-      r.id, 
-      r.personName, 
-      r.bridgeNumber, 
-      r.phoneNumber, 
-      r.siteName, 
-      r.actionType, 
-      r.timestamp, 
-      `"${r.gps.join(',')}"`
-    ].join(','));
-    
-    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(','), ...rows].join('\n');
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `vault_scans_${new Date().getTime()}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleCameraError = (err: string | DOMException) => {
+    console.error("Webcam init error", err);
+    audioGuidance.play('CAMERA_ERROR');
+    // Release memory and force remount to gracefully recover
+    setTimeout(() => {
+      setCameraKey(prev => prev + 1);
+    }, 2000);
   };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_380px] gap-[14px]">
       <div className="bg-surf border border-border rounded-[10px] overflow-hidden flex flex-col min-h-[650px]">
         <div className="p-3 px-4 border-b border-border flex items-center gap-2 text-[12px] font-medium">
-          <Camera size={14} className="text-muted" />
-          Data Vault Field Audit — {step === 0 ? 'Agent Setup' : `Step ${step}`}
-          <span className="text-muted text-[10px] ml-auto font-normal">Ready for storage</span>
+          <Camera size={14} strokeWidth={2.5} className="text-muted" />
+          Data Vault Field Audit — {step === 0 ? t('scanner.agent_setup') : `Step ${step}`}
+          <span className="text-muted text-[10px] ml-auto font-normal">{t('scanner.ready')}</span>
         </div>
 
         <div className="p-8 flex-1 flex flex-col">
-          {/* Progress Bar */}
           <div className="flex gap-1.5 mb-8">
             {[1, 2, 3, 4].map((i) => (
               <div 
@@ -259,7 +283,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                 }`}
               >
                 {i === step && (
-                  <div className="h-full bg-green-custom animate-progress-fast shadow-[0_0_8px_rgba(16,217,126,0.5)]"></div>
+                  <div className="h-full bg-green-custom animate-progress-fast shadow-[0_0_8px_rgba(0,135,90,0.5)]"></div>
                 )}
               </div>
             ))}
@@ -267,20 +291,19 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
 
           <div className="flex-1 flex flex-col items-center justify-center text-center max-w-lg mx-auto w-full">
             
-            {/* STEP 0: AGENT IDENTIFICATION */}
             {step === 1 && formData.agentName === '' && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full text-left">
                 <div className="mb-8 text-center">
                   <div className="w-16 h-16 bg-blue-custom/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-custom/20">
-                    <User className="text-blue-custom" size={32} />
+                    <User className="text-blue-custom" size={32} strokeWidth={2.5} />
                   </div>
-                  <h3 className="text-[20px] font-bold">Field Identification</h3>
-                  <p className="text-[13px] text-muted">Identify yourself and your site before auditing.</p>
+                  <h3 className="text-[20px] font-bold">{t('scanner.field_id')}</h3>
+                  <p className="text-[13px] text-muted">{t('scanner.identify')}</p>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">Your Full Name</label>
+                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">{t('scanner.your_name')}</label>
                     <input 
                       type="text" 
                       placeholder="Enter your name" 
@@ -289,7 +312,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">Current Site Location</label>
+                    <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5">{t('scanner.site')}</label>
                     <select 
                       value={formData.siteName} 
                       onChange={e => setFormData({...formData, siteName: e.target.value})}
@@ -304,19 +327,18 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                 </div>
 
                 <div className="mt-8 p-4 bg-adim/30 border border-amber-custom/20 rounded-xl flex gap-3">
-                  <div className="mt-0.5"><Lock size={14} className="text-amber-custom" /></div>
+                  <div className="mt-0.5"><Lock size={14} strokeWidth={2.5} className="text-amber-custom" /></div>
                   <p className="text-[11px] text-muted leading-relaxed">
-                    Once you start, all scans will be linked to <span className="text-amber-custom font-bold">{formData.siteName}</span>. This cannot be changed during the session.
+                    {t('scanner.lock_warning')}
                   </p>
                 </div>
               </div>
             )}
 
-            {/* STEP 1: GPS */}
             {step === 1 && formData.agentName !== '' && (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 w-full">
-                <h3 className="text-[20px] font-bold mb-2">Step 1: GPS Lock</h3>
-                <p className="text-[13px] text-muted mb-8">Verifying field location for the dMRV audit...</p>
+                <h3 className="text-[20px] font-bold mb-2">{t('scanner.step1')}</h3>
+                <p className="text-[13px] text-muted mb-8">{t('scanner.verifying')}</p>
 
                 <div className="w-full bg-surf2 border border-border rounded-2xl p-10 flex flex-col items-center justify-center relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
@@ -324,50 +346,57 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                   </div>
                   <div className={`mb-4 transition-transform duration-500 ${isLocked ? 'scale-110' : 'animate-bounce'}`}>
                     {isLocked ? (
-                      <div className="w-16 h-16 bg-gdim rounded-full flex items-center justify-center border border-green-custom/30 shadow-[0_0_20px_rgba(16,217,126,0.2)]">
-                        <CheckCircle className="text-green-custom" size={32} />
+                      <div className="w-16 h-16 bg-gdim rounded-full flex items-center justify-center border border-green-custom/30 shadow-[0_0_20px_rgba(0,135,90,0.2)]">
+                        <CheckCircle className="text-green-custom" size={32} strokeWidth={2.5} />
                       </div>
                     ) : (
                       <div className="w-16 h-16 bg-surf2 rounded-full flex items-center justify-center border border-border shadow-inner">
-                        <Search className="text-amber-custom animate-pulse" size={32} />
+                        <Search className="text-amber-custom animate-pulse" size={32} strokeWidth={2.5} />
                       </div>
                     )}
                   </div>
                   <div className="text-[14px] font-bold mb-1">
-                    {isLocked ? <span className="text-green-custom">GPS Verified</span> : <span className="text-amber-custom">Searching... ({accuracy}m)</span>}
+                    {isLocked ? <span className="text-green-custom">{t('scanner.gps_verified')} {formData.confidence === 'low' && '(Low Acc)'}</span> : <span className="text-amber-custom">{t('scanner.searching')} ({accuracy}m)</span>}
                   </div>
                 </div>
 
-                <button disabled={!isLocked} onClick={() => setStep(2)} className="w-full mt-6 py-4 min-h-[48px] rounded-xl bg-green-custom text-black font-bold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed">
-                  Proceed to Camera <Zap size={16} strokeWidth={2.5} fill="currentColor" />
+                <button disabled={!isLocked} onClick={() => setStep(2)} className="w-full mt-6 py-4 min-h-[48px] rounded-xl bg-green-custom text-white font-bold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed">
+                  {t('scanner.proceed_camera')} <Zap size={16} strokeWidth={2.5} fill="currentColor" />
                 </button>
               </div>
             )}
 
-            {/* STEP 2: CAMERA */}
             {step === 2 && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500 w-full">
-                <h3 className="text-[20px] font-bold mb-2">Step 2: Capture Vault</h3>
-                <p className="text-[13px] text-muted mb-6">Align the visual bridge and vault frame.</p>
+                <h3 className="text-[20px] font-bold mb-2">{t('scanner.step2')}</h3>
+                <p className="text-[13px] text-muted mb-6">{t('scanner.align')}</p>
 
                 <div className="w-full aspect-video bg-black rounded-2xl border-2 border-green-custom/50 overflow-hidden relative shadow-2xl">
-                  <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" screenshotQuality={0.70} videoConstraints={{ width: 1600, height: 1200, facingMode: "environment" }} className="w-full h-full object-cover" />
+                  <Webcam 
+                    key={cameraKey}
+                    onUserMediaError={handleCameraError}
+                    audio={false} 
+                    ref={webcamRef} 
+                    screenshotFormat="image/jpeg" 
+                    screenshotQuality={0.70} 
+                    videoConstraints={{ width: 1600, height: 1200, facingMode: "environment" }} 
+                    className="w-full h-full object-cover" 
+                  />
                   <div className="absolute inset-0 border-[40px] border-black/20 pointer-events-none flex items-center justify-center">
                     <div className="w-1/2 h-1/2 border-2 border-dashed border-green-custom/40 rounded-xl"></div>
                   </div>
                   <div className="absolute bottom-6 left-0 right-0 flex justify-center">
-                    <button onClick={capture} className="w-16 h-16 bg-white rounded-full border-4 border-green-custom flex items-center justify-center hover:scale-110 active:scale-95 transition-transform">
-                      <div className="w-12 h-12 bg-green-custom rounded-full flex items-center justify-center"><Camera size={24} className="text-black" /></div>
+                    <button onClick={capture} className="w-16 h-16 min-h-[48px] min-w-[48px] bg-white rounded-full border-4 border-green-custom flex items-center justify-center hover:scale-110 active:scale-95 transition-transform">
+                      <div className="w-12 h-12 bg-green-custom rounded-full flex items-center justify-center"><Camera size={24} strokeWidth={2.5} className="text-white" /></div>
                     </button>
                   </div>
                 </div>
-                <button onClick={() => setStep(1)} className="mt-6 text-[11px] text-muted hover:text-red-custom transition-colors flex items-center gap-1 mx-auto">
-                  <XCircle size={12} /> Cancel audit
+                <button onClick={() => setStep(1)} className="mt-6 min-h-[48px] text-[11px] text-muted hover:text-red-custom transition-colors flex items-center gap-1 mx-auto">
+                  <XCircle size={12} strokeWidth={2.5} /> {t('scanner.cancel')}
                 </button>
               </div>
             )}
 
-            {/* STEP 3: DATA ENTRY */}
             {step === 3 && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500 w-full text-left">
                 <div className="flex items-center gap-3 mb-6">
@@ -375,86 +404,77 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                     <img src={capturedImage!} className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h3 className="text-[18px] font-bold">Step 3: Verification Details</h3>
-                    <p className="text-[11px] text-muted uppercase tracking-wider">Linking scan to database...</p>
+                    <h3 className="text-[18px] font-bold">{t('scanner.step3')}</h3>
+                    <p className="text-[11px] text-muted uppercase tracking-wider">{t('scanner.linking')}</p>
                   </div>
                 </div>
 
                 <form onSubmit={handleSave} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><User size={10} /> Person on Visual Bridge</label>
-                      <input required type="text" value={formData.personName} onChange={e => setFormData({...formData, personName: e.target.value})} placeholder="Full name" className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
+                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><User size={10} strokeWidth={2.5} /> {t('scanner.person_name')}</label>
+                      <input required type="text" value={formData.personName} onChange={e => setFormData({...formData, personName: e.target.value})} className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><Hash size={10} /> Visual Bridge ID #</label>
-                      <input required type="text" value={formData.bridgeNumber} onChange={e => setFormData({...formData, bridgeNumber: e.target.value})} placeholder="e.g. VB-014" className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
+                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><Hash size={10} strokeWidth={2.5} /> {t('scanner.bridge_id')}</label>
+                      <input required type="text" value={formData.bridgeNumber} onChange={e => setFormData({...formData, bridgeNumber: e.target.value})} className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><Phone size={10} /> Phone Number</label>
-                      <input required type="tel" value={formData.phoneNumber} onChange={e => setFormData({...formData, phoneNumber: e.target.value})} placeholder="MTN / Telecel number" className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
+                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><Phone size={10} strokeWidth={2.5} /> {t('scanner.phone')}</label>
+                      <input required type="tel" value={formData.phoneNumber} onChange={e => setFormData({...formData, phoneNumber: e.target.value})} className="w-full bg-surf2 border border-border rounded-xl px-4 py-3 text-[13px] outline-none focus:border-green-custom transition-all" />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><MapPin size={10} /> Audit Site (Locked)</label>
+                      <label className="text-[10px] text-muted uppercase font-bold tracking-widest flex items-center gap-1.5"><MapPin size={10} strokeWidth={2.5} /> {t('scanner.audit_site')}</label>
                       <div className="w-full bg-surf2/50 border border-border rounded-xl px-4 py-3 text-[13px] text-muted">
                         {formData.siteName}
                       </div>
                     </div>
                   </div>
 
-                  <button type="submit" disabled={isSaving} className="w-full bg-green-custom text-black font-bold py-4 rounded-xl mt-4 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50">
-                    {isSaving ? <><RefreshCw className="animate-spin" size={18} /> Storing data...</> : <><Save size={18} /> Commit to Database</>}
+                  <button type="submit" disabled={isSaving} className="w-full min-h-[48px] bg-green-custom text-white font-bold py-4 rounded-xl mt-4 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50">
+                    {isSaving ? <><RefreshCw className="animate-spin" size={18} strokeWidth={2.5} /> {t('scanner.storing')}</> : <><Save size={18} strokeWidth={2.5} /> {t('scanner.commit')}</>}
                   </button>
                 </form>
               </div>
             )}
 
-            {/* STEP 4: SUCCESS */}
             {step === 4 && (
               <div className="animate-in fade-in zoom-in duration-500">
                 <div className="w-20 h-20 bg-gdim rounded-full flex items-center justify-center mx-auto mb-6 border border-green-custom/20">
-                  <CheckCircle className="text-green-custom" size={40} />
+                  <CheckCircle className="text-green-custom" size={40} strokeWidth={2.5} />
                 </div>
-                <h3 className="text-[24px] font-bold mb-2">Audit Stored!</h3>
+                <h3 className="text-[24px] font-bold mb-2">{t('scanner.audit_stored')}</h3>
                 <p className="text-[13px] text-muted mb-8 leading-relaxed">
-                  Record for <span className="text-text font-bold">{formData.personName}</span> has been cryptographically secured in the Data Vault.
+                  {t('scanner.record_secured')}
                 </p>
 
                 <div className="bg-surf2 border border-border rounded-2xl p-6 mb-8 text-left space-y-3">
                   <div className="flex justify-between text-[11px]"><span className="text-muted">Bridge ID</span><span className="font-bold">{formData.bridgeNumber}</span></div>
-                  <div className="flex justify-between text-[11px]"><span className="text-muted">GPS Lock</span><span className="text-green-custom font-bold">5.7456°N (MATCH)</span></div>
-                  <div className="flex justify-between text-[11px]"><span className="text-muted">Vault Status</span><span className="text-blue-custom font-bold italic">HARDENED</span></div>
+                  <div className="flex justify-between text-[11px]"><span className="text-muted">GPS Lock</span><span className="text-green-custom font-bold">MATCH</span></div>
+                  <div className="flex justify-between text-[11px]"><span className="text-muted">{t('scanner.vault_status')}</span><span className="text-blue-custom font-bold italic">HARDENED</span></div>
                 </div>
 
-                <button onClick={resetScanner} className="w-full bg-green-custom text-black font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all">
-                  <RefreshCw size={18} /> New Audit
+                <button onClick={resetScanner} className="w-full min-h-[48px] bg-green-custom text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all">
+                  <RefreshCw size={18} strokeWidth={2.5} /> {t('scanner.new_audit')}
                 </button>
               </div>
             )}
-
-            <button className="mt-10 text-[11px] text-muted hover:text-green-custom transition-colors underline underline-offset-4 decoration-border">Troubleshoot scanning issues</button>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-[14px]">
-        {/* RECENT HISTORY CARD */}
         <div className="bg-surf border border-border rounded-[10px] overflow-hidden">
           <div className="p-3 px-4 border-b border-border text-[12px] font-medium flex justify-between items-center">
-            Database History
-            {isAdmin && (
-              <button onClick={downloadHistory} disabled={history.length === 0} className="text-green-custom text-[10px] flex items-center gap-1 hover:underline disabled:opacity-30">
-                <FileText size={10} /> Excel/CSV
-              </button>
-            )}
+            {t('scanner.history')}
           </div>
           {history.length === 0 ? (
             <div className="p-10 flex flex-col items-center justify-center text-center opacity-30">
-              <Camera size={24} className="mb-2" />
-              <p className="text-[11px]">No records stored yet</p>
+              <Camera size={24} strokeWidth={2.5} className="mb-2" />
+              <p className="text-[11px]">{t('scanner.no_records')}</p>
             </div>
           ) : (
             <div className="p-3 space-y-2 max-h-[350px] overflow-y-auto">
@@ -475,18 +495,6 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
               ))}
             </div>
           )}
-        </div>
-
-        {/* QR PROTOCOL CARD */}
-        <div className="bg-surf border border-border rounded-[10px] overflow-hidden flex-1 opacity-60 grayscale hover:grayscale-0 transition-all">
-          <div className="p-3 px-4 border-b border-border text-[12px] font-medium">QR Protocol — CC-v1</div>
-          <div className="p-4 font-mono text-[10px] leading-relaxed">
-            <div className="bg-adim p-3 rounded border border-amber-custom/20 text-amber-custom">
-              Protocol verification active.<br/>
-              Database sync: Real-time.<br/>
-              Retention: Persistent.
-            </div>
-          </div>
         </div>
       </div>
 

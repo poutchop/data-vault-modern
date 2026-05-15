@@ -1,0 +1,33 @@
+{
+  "scanner": {
+    "agent_setup": "Agent Setup (Twi)",
+    "ready": "Ready for storage (Twi)",
+    "field_id": "Field Identification (Twi)",
+    "identify": "Identify yourself and your site before auditing. (Twi)",
+    "your_name": "Your Full Name (Twi)",
+    "site": "Current Site Location (Twi)",
+    "lock_warning": "Once you start, all scans will be linked to this site. (Twi)",
+    "step1": "Step 1: GPS Lock (Twi)",
+    "verifying": "Verifying field location for the dMRV audit... (Twi)",
+    "searching": "Searching... (Twi)",
+    "gps_verified": "GPS Verified (Twi)",
+    "proceed_camera": "Proceed to Camera (Twi)",
+    "step2": "Step 2: Capture Vault (Twi)",
+    "align": "Align the visual bridge and vault frame. (Twi)",
+    "cancel": "Cancel audit (Twi)",
+    "step3": "Step 3: Verification Details (Twi)",
+    "linking": "Linking scan to database... (Twi)",
+    "person_name": "Person on Visual Bridge (Twi)",
+    "bridge_id": "Visual Bridge ID # (Twi)",
+    "phone": "Phone Number (Twi)",
+    "audit_site": "Audit Site (Locked) (Twi)",
+    "storing": "Storing data... (Twi)",
+    "commit": "Commit to Database (Twi)",
+    "audit_stored": "Audit Stored! (Twi)",
+    "record_secured": "Record has been cryptographically secured in the Data Vault. (Twi)",
+    "vault_status": "Vault Status (Twi)",
+    "new_audit": "New Audit (Twi)",
+    "history": "Database History (Twi)",
+    "no_records": "No records stored yet (Twi)"
+  }
+}
