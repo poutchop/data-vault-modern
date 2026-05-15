@@ -3,8 +3,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Camera, Search, Lock, CheckCircle, XCircle, Zap, RefreshCw, User, Phone, MapPin, Hash, Save, FileText } from 'lucide-react';
 import Webcam from 'react-webcam';
-import { supabase } from '@/lib/supabase';
+import { database, SyncQueue } from '@/lib/localDatabase';
+import { audioGuidance } from '@/lib/audio/AudioGuidanceManager';
+import * as piexif from 'piexifjs';
+import { v4 as uuidv4 } from 'uuid';
 import { useVaultData } from '@/hooks/useVaultData';
+
+function degToDmsRational(deg: number): [[number, number], [number, number], [number, number]] {
+  const d = Math.floor(deg);
+  const minFloat = (deg - d) * 60;
+  const m = Math.floor(minFloat);
+  const secFloat = (minFloat - m) * 60;
+  const s = Math.round(secFloat * 10000);
+  return [[d, 1], [m, 1], [s, 10000]];
+}
 
 interface ScannerProps {
   onScanComplete?: (newScan: any) => void;
@@ -31,28 +43,70 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
 
   const webcamRef = useRef<Webcam>(null);
 
-  // GPS Simulation
+  // Strict GPS Lock
   useEffect(() => {
-    if (step === 1 && accuracy > 45) {
-      const timer = setInterval(() => {
-        setAccuracy(prev => {
-          if (prev <= 45) {
-            clearInterval(timer);
+    if (step === 1 && formData.agentName !== '') {
+      const watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          const acc = Math.floor(position.coords.accuracy);
+          setAccuracy(acc);
+          if (acc <= 10) {
             setIsLocked(true);
-            return prev;
+            audioGuidance.play('GPS_LOCKED');
+          } else {
+            setIsLocked(false);
           }
-          return prev - Math.floor(Math.random() * 15);
-        });
-      }, 800);
-      return () => clearInterval(timer);
+        },
+        (error) => {
+          console.error("GPS Error", error);
+          audioGuidance.play('GPS_WARNING');
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+      );
+      return () => navigator.geolocation.clearWatch(watchId);
     }
-  }, [step, accuracy]);
+  }, [step, formData.agentName]);
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
-      setCapturedImage(imageSrc);
-      setStep(3); // Move to Data Entry step
+      try {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const alt = position.coords.altitude || 0;
+            
+            const exifObj = {
+              "0th": {
+                [piexif.ImageIFD.DateTime]: new Date().toISOString()
+              },
+              "GPS": {
+                [piexif.GPSIFD.GPSLatitudeRef]: lat < 0 ? 'S' : 'N',
+                [piexif.GPSIFD.GPSLatitude]: degToDmsRational(Math.abs(lat)),
+                [piexif.GPSIFD.GPSLongitudeRef]: lng < 0 ? 'W' : 'E',
+                [piexif.GPSIFD.GPSLongitude]: degToDmsRational(Math.abs(lng)),
+                [piexif.GPSIFD.GPSAltitudeRef]: alt < 0 ? 1 : 0,
+                [piexif.GPSIFD.GPSAltitude]: [Math.round(Math.abs(alt) * 100), 100]
+              }
+            };
+            const exifbytes = piexif.dump(exifObj);
+            const newImageSrc = piexif.insert(exifbytes, imageSrc);
+            setCapturedImage(newImageSrc);
+            setStep(3);
+          },
+          (err) => {
+            console.error("GPS error on capture", err);
+            setCapturedImage(imageSrc);
+            setStep(3);
+          },
+          { enableHighAccuracy: true }
+        );
+      } catch (e) {
+        console.error("Exif injection failed", e);
+        setCapturedImage(imageSrc);
+        setStep(3);
+      }
     }
   }, [webcamRef]);
 
@@ -80,53 +134,46 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
         console.warn("GPS failed, using site default", e);
       }
 
-      // 1. First, find or create the participant
-      let { data: participant, error: pError } = await supabase
-        .from('participants')
-        .select('id')
-        .eq('name', formData.personName)
-        .maybeSingle();
-
-      if (!participant) {
-        const { data: newP, error: createError } = await supabase
-          .from('participants')
-          .insert({ 
-            name: formData.personName, 
-            site: formData.siteName,
-            total_points: 0,
-            total_payout: 0 
-          })
-          .select()
-          .single();
+      // WatermelonDB Atomic Transaction
+      const recordId = uuidv4();
+      
+      await database.write(async () => {
+        const syncQueueCollection = database.get<SyncQueue>('sync_queue');
         
-        if (createError) throw createError;
-        participant = newP;
-      }
+        const payload = {
+          metadata: {
+            participant_name: formData.personName,
+            board_id: formData.bridgeNumber,
+            action_type: formData.actionType,
+            status: 'hardened',
+            site: formData.siteName,
+            gps_lat: lat,
+            gps_lng: lng,
+            created_at: timestamp
+          },
+          photos: capturedImage ? [{
+            file: capturedImage,
+            filename: `photo_${recordId}.jpg`,
+            metadata: { gps_lat: lat, gps_lng: lng }
+          }] : []
+        };
 
-      // 2. Insert the real scan data
-      const { data: scanData, error: sError } = await supabase
-        .from('scans')
-        .insert({
-          participant_id: participant.id,
-          board_id: formData.bridgeNumber,
-          action_type: formData.actionType,
-          status: 'hardened',
-          gps_lat: lat,
-          gps_lng: lng,
-          created_at: timestamp
-        })
-        .select()
-        .single();
-
-      if (sError) throw sError;
+        await syncQueueCollection.create(record => {
+          record.payload = JSON.stringify(payload);
+          record.status = 'PENDING';
+          record.createdAt = Date.now();
+          record.retryCount = 0;
+          record.idempotencyKey = recordId;
+        });
+      });
 
       // Update local history for the UI
       const newRecord = {
         ...formData,
         image: capturedImage,
         timestamp,
-        gps: [mockLat, mockLng],
-        id: scanData.id
+        gps: [lat, lng],
+        id: recordId
       };
 
       setHistory(prev => [newRecord, ...prev].slice(0, 10));
@@ -134,14 +181,14 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
       // Notify parent component to update global state
       if (onScanComplete) {
         onScanComplete({
-          id: scanData.id,
+          id: recordId,
           participant_name: formData.personName,
           board_id: formData.bridgeNumber,
           action_type: formData.actionType,
           status: 'hardened',
           site: formData.siteName,
-          gps_lat: mockLat,
-          gps_lng: mockLng,
+          gps_lat: lat,
+          gps_lng: lng,
           created_at: timestamp
         });
       }
@@ -291,8 +338,8 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                   </div>
                 </div>
 
-                <button onClick={() => setStep(2)} className="w-full mt-6 py-4 rounded-xl bg-green-custom text-black font-bold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                  Proceed to Camera <Zap size={16} fill="currentColor" />
+                <button disabled={!isLocked} onClick={() => setStep(2)} className="w-full mt-6 py-4 min-h-[48px] rounded-xl bg-green-custom text-black font-bold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed">
+                  Proceed to Camera <Zap size={16} strokeWidth={2.5} fill="currentColor" />
                 </button>
               </div>
             )}
@@ -304,7 +351,7 @@ export default function Scanner({ onScanComplete, isAdmin }: ScannerProps) {
                 <p className="text-[13px] text-muted mb-6">Align the visual bridge and vault frame.</p>
 
                 <div className="w-full aspect-video bg-black rounded-2xl border-2 border-green-custom/50 overflow-hidden relative shadow-2xl">
-                  <Webcam audio={false} ref={webcamRef} screenshotFormat="image/webp" videoConstraints={{ facingMode: "environment" }} className="w-full h-full object-cover" />
+                  <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" screenshotQuality={0.70} videoConstraints={{ width: 1600, height: 1200, facingMode: "environment" }} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 border-[40px] border-black/20 pointer-events-none flex items-center justify-center">
                     <div className="w-1/2 h-1/2 border-2 border-dashed border-green-custom/40 rounded-xl"></div>
                   </div>

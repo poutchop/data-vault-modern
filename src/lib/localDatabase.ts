@@ -1,6 +1,7 @@
 import { Database } from '@nozbe/watermelondb';
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
-import SQLiteAdapter from '@nozbe/watermelondb/adapter/sqlite';
+// @ts-ignore
+import LokiJSAdapter from '@nozbe/watermelondb/adapter/lokijs';
 import { Model } from '@nozbe/watermelondb';
 import { field, date, readonly, relation } from '@nozbe/watermelondb/decorators';
 
@@ -93,11 +94,14 @@ export class SyncQueue extends Model {
 }
 
 // Adapter & Database
-const adapter = new SQLiteAdapter({ schema });
+const adapter = new LokiJSAdapter({
+  schema,
+  useWebWorker: false,
+  useIncrementalIndexedDB: true
+});
 export const database = new Database({
   adapter,
   modelClasses: [User, Cooperative, Polygon, AssetPoint, Photo, SyncQueue],
-  actionsEnabled: true,
 });
 
 // Helper to run a transaction safely

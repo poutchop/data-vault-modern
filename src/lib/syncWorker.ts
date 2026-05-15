@@ -1,7 +1,18 @@
 import { database } from './localDatabase';
 import { SyncQueue } from './localDatabase';
-import { v4 as uuidv4 } from 'uuid';
 import { supabase } from '../lib/supabase'; // assuming you have a supabase client
+
+function dataURLtoBlob(dataurl: string) {
+  const arr = dataurl.split(',');
+  const mime = arr[0].match(/:(.*?);/)?.[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while(n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], {type: mime});
+}
 
 /**
  * Listen for network changes and process pending sync queue items.
@@ -16,21 +27,30 @@ export function startSyncWorker() {
       if (item.status !== 'PENDING') continue;
       try {
         const payload = JSON.parse(item.payload);
-        // First send metadata (assuming supabase RPC or REST endpoint)
-        const { error: metaError } = await supabase.from('dmrv_entries').insert(payload.metadata);
+        
+        // 1. Textual Metadata First (with Idempotency via UPSERT)
+        const { error: metaError } = await supabase
+          .from('scans')
+          .upsert([{ ...payload.metadata, id: item.idempotencyKey }], { onConflict: 'id' });
+          
         if (metaError) throw metaError;
-        // Then upload any attached photos (if any)
+        
+        // 2. Binary Separation: Upload Images only after metadata success
         if (payload.photos && payload.photos.length) {
           const form = new FormData();
           payload.photos.forEach((photo: any, idx: number) => {
-            form.append(`photo_${idx}`, photo.file, photo.filename);
+            const blob = dataURLtoBlob(photo.file);
+            form.append(`photo_${idx}`, blob, photo.filename);
             form.append(`photo_${idx}_metadata`, JSON.stringify(photo.metadata));
           });
+          
           const { error: photoError } = await supabase.storage
             .from('photos')
-            .upload(`sync/${item.idempotencyKey}/bundle`, form);
+            .upload(`sync/${item.idempotencyKey}/bundle`, form, { upsert: true });
+            
           if (photoError) throw photoError;
         }
+        
         await database.write(async () => {
           await item.update((record) => {
             record.status = 'COMPLETED';
