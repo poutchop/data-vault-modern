@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">data-vault</string>
+    <string name="title_activity_main">data-vault</string>
+    <string name="package_name">com.datavault.app</string>
+    <string name="custom_url_scheme">com.datavault.app</string>
+</resources>
