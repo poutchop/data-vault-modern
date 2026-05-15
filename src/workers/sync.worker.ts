@@ -7,23 +7,24 @@ import CryptoJS from 'crypto-js';
 // Pre-load protobuf schema for metadata
 const dmrvProto = `
 syntax = "proto3";
-package dmrv;
-message GPSData {
-  double lat = 1;
-  double lng = 2;
-  double alt = 3;
+package dmrv.v1;
+message Position {
+  double latitude = 1;
+  double longitude = 2;
+  float altitude = 3;
+  int64 timestamp = 4;
 }
-message MetadataPayload {
-  string id = 1;
-  string participant_name = 2;
-  string board_id = 3;
-  string action_type = 4;
-  string status = 5;
-  string site = 6;
-  GPSData gps = 7;
-  string confidence = 8;
-  string created_at = 9;
-  string zk_hash = 10;
+message FarmPolygon {
+  string polygon_uuid = 1;
+  string cooperative_id = 2;
+  repeated Position boundary_points = 3;
+}
+message DmrvPayload {
+  string payload_id = 1;
+  string verifier_did = 2;
+  FarmPolygon farm_data = 3;
+  bytes image_sha256_hash = 4;
+  int64 local_commit_timestamp = 5;
 }
 `;
 
@@ -57,7 +58,7 @@ self.addEventListener('message', async (event: MessageEvent) => {
 
       // 2. Protobuf Serialization
       if (root) {
-        const MetadataMessage = root.lookupType("dmrv.MetadataPayload");
+        const MetadataMessage = root.lookupType("dmrv.v1.DmrvPayload");
         const errMsg = MetadataMessage.verify(payload);
         if (errMsg) throw Error(errMsg);
         
