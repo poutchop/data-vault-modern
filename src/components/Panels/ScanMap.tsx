@@ -3,7 +3,9 @@
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { GeometrySanitizer } from '@/core/geo/GeometrySanitizer';
+import * as turf from '@turf/turf';
 
 // Fix for default marker icons in Leaflet with webpack/vite/next
 const icon = L.icon({
@@ -29,13 +31,37 @@ export default function ScanMap({ scans, sites }: ScanMapProps) {
   const farmBCount = sites.find(s => s.site.includes('Farm B'))?.scans || 0;
   const coopCount = sites.find(s => s.site.includes('Co-op'))?.scans || 0;
 
+  const [geoError, setGeoError] = useState<string | null>(null);
+
+  const simulateDrawBadPolygon = () => {
+    const figure8Polygon = turf.polygon([[[0, 0], [10, 10], [10, 0], [0, 10], [0, 0]]]);
+    const result = GeometrySanitizer.validateFarmPolygon(figure8Polygon, []);
+    if (!result.isValid) {
+      setGeoError(result.errorMessage || "Invalid geometry");
+    } else {
+      setGeoError(null);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-[14px]">
+      {geoError && (
+        <div style={{ backgroundColor: '#D97706' }} className="text-white p-3 rounded-[8px] text-[13px] font-bold shadow-sm">
+          ⚠️ {geoError}
+        </div>
+      )}
+
       <div className="bg-surf border border-border rounded-[10px] overflow-hidden">
         <div className="p-3 px-4 border-b border-border text-[12px] font-medium flex items-center gap-2">
           <span className="text-[16px]">🗺️</span>
           Berekuso Scan Map — GPS Geofence View
-          <span className="text-muted text-[10px] ml-auto font-normal">Live scan locations from Supabase</span>
+          
+          <button 
+            onClick={simulateDrawBadPolygon}
+            className="ml-auto bg-surf border border-border px-3 py-1 rounded-[6px] hover:bg-hover transition-colors"
+          >
+            Draw Farm Boundary
+          </button>
         </div>
         <div className="h-[450px] w-full z-[1] relative">
           <MapContainer center={[5.7456, -0.3214]} zoom={15} style={{ height: '100%', width: '100%', zIndex: 1 }}>
