@@ -27,11 +27,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Sync Capacitor Android Project
+      - name: Build Next.js App
         run: |
-          mkdir -p out
-          touch out/index.html
-          npx cap sync android
+          mv src/app/api src/api_temp || true
+          npm run build
+          mv src/api_temp src/app/api || true
+
+      - name: Sync Capacitor Android Project
+        run: npx cap sync android
 
       - name: Build Android APK (Debug/Sideload)
         working-directory: android
