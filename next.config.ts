@@ -17,6 +17,7 @@ const withPWA = require("next-pwa")({
 
 const config: NextConfig = {
   // Add any Next.js options you need (e.g., reactStrictMode: true)
+  output: "export",
   turbopack: {},
 };
 
