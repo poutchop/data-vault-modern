@@ -1,0 +1,400 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Carbon Clarity Pilot Design</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a field-research design brief. One reading column, two cross-section drawings side by side, a site plan, then protocol and checklist. Carbon Clarity's forest + ember identity. */
+:root{
+  --bg:#F3F6F2; --surface:#FFFFFF; --surface2:#E8EFEA; --fg:#14261F; --muted:#4F6159; --line:#CFDAD3;
+  --forest:#15332B; --on-forest:#FFFFFF; --on-forest-soft:#CFE0D8;
+  --ember:#B8431A; --ember-bg:#F9E3D8; --mint:#0F7C72; --mint-bg:#DDF0EC;
+  --mud:#C49A6C; --mud-dark:#8C6440; --brick:#A9543A; --metal:#7C8A85; --wood:#6B4A2B;
+  --fire:#E2731F; --smoke:#8D9A94; --fish:#D8B27A; --ash:#BFC5C2;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif; --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#A3B9AF; --line:#2B4C42;
+  --forest:#08130F; --on-forest:#FFFFFF; --on-forest-soft:#BFD3CA;
+  --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --mint-bg:#123B36;
+  --mud:#9C7A55; --mud-dark:#C9A27A; --brick:#C46A4D; --metal:#93A29C; --wood:#B08560;
+  --fire:#F28C3A; --smoke:#7E8C86; --fish:#C9A36C; --ash:#56605C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#A3B9AF; --line:#2B4C42;
+  --forest:#08130F; --on-forest:#FFFFFF; --on-forest-soft:#BFD3CA;
+  --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --mint-bg:#123B36;
+  --mud:#9C7A55; --mud-dark:#C9A27A; --brick:#C46A4D; --metal:#93A29C; --wood:#B08560;
+  --fire:#F28C3A; --smoke:#7E8C86; --fish:#C9A36C; --ash:#56605C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--forest)}
+.wrap{max-width:1000px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0;text-wrap:balance;font-weight:700}
+h2{font-size:clamp(24px,3.6vw,32px)}
+h3{font-size:19px}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ember)}
+section{padding-block:48px;border-top:1px solid var(--line)}
+.sechead{display:grid;gap:8px;margin-bottom:26px;max-width:720px}
+.sechead p{color:var(--muted)}
+
+/* header band */
+.top{margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));background:var(--forest);color:var(--on-forest)}
+.top .wrap{padding-block:44px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top .kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--on-forest-soft)}
+.top h1{font-size:clamp(32px,6vw,54px);margin-top:14px}
+.top .lead{margin-top:14px;max-width:62ch;color:var(--on-forest-soft);font-size:18px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.meta span{font-size:13px;padding:5px 11px;border-radius:99px;border:1px solid rgba(255,255,255,.28);color:var(--on-forest)}
+.meta span.draft{background:var(--ember);border-color:var(--ember);color:#fff;font-weight:600}
+
+/* arms */
+.arms{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.arm{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.arm.improved{border-color:var(--mint)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--surface2);color:var(--muted);justify-self:start}
+.arm.improved .tag{background:var(--mint-bg);color:var(--mint)}
+.arm.optional{border-style:dashed}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px}
+dt{color:var(--muted);font-weight:600}
+dd{margin:0;min-width:0}
+
+/* drawings */
+.drawings{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
+figure h3{margin-bottom:8px}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--sans);fill:var(--fg);font-size:13px}
+svg .lbl-muted{fill:var(--muted);font-size:12px}
+svg .lbl-ember{fill:var(--ember);font-weight:700}
+svg .lbl-mint{fill:var(--mint);font-weight:700}
+.mud{fill:var(--mud)} .mud-d{fill:var(--mud-dark)} .brick{fill:var(--brick)} .metal{stroke:var(--metal)}
+.wood{fill:var(--wood)} .fire{fill:var(--fire)} .fishc{fill:var(--fish)} .ash{fill:var(--ash)}
+.tray{fill:none;stroke:var(--metal);stroke-width:2}
+.smoke{fill:none;stroke:var(--smoke);stroke-width:3;stroke-linecap:round;opacity:.85}
+.leader{stroke:var(--muted);stroke-width:1}
+.drip{fill:var(--ember)}
+.air{stroke:var(--mint);stroke-width:2.5;fill:none}
+.airhead{fill:var(--mint)}
+.ground{stroke:var(--muted);stroke-width:2}
+.note{margin-top:14px;font-size:13.5px;color:var(--muted)}
+
+/* plan */
+.planbox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.planbox svg{min-width:660px}
+.plan-shed{fill:var(--surface2);stroke:var(--line);stroke-width:2}
+.plan-kiln-a{fill:var(--mud);stroke:var(--mud-dark);stroke-width:2}
+.plan-kiln-b{fill:var(--mint-bg);stroke:var(--mint);stroke-width:2.5}
+.plan-item{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.plan-mon{fill:var(--ember-bg);stroke:var(--ember);stroke-width:2}
+.plan-arrow{stroke:var(--muted);stroke-width:1.5;fill:none}
+
+/* protocol */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);counter-increment:s}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(s);font-family:var(--serif);font-weight:700;font-size:24px;color:var(--ember);line-height:1.2}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:15px}
+
+/* table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--surface2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.num{font-variant-numeric:tabular-nums}
+
+/* checklist */
+.check{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.check li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.box{width:18px;height:18px;border:2px solid var(--muted);border-radius:4px;margin-top:3px}
+.check b{display:block}
+.check span{color:var(--muted);font-size:15px}
+.who{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint)}
+
+/* next */
+.reqs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.req{padding:18px;border-radius:8px;background:var(--surface2)}
+.req b{font-family:var(--serif);font-size:18px;display:block;margin-bottom:4px}
+.req span{font-size:15px;color:var(--muted)}
+footer{padding-block:28px 44px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+footer ol{margin:8px 0 0;padding-left:18px}
+footer a{color:var(--muted)}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Carbon Clarity · Phase 1 · James Town, Accra</div>
+    <h1>Comparative stove pilot design</h1>
+    <p class="lead">One traditional Chorkor kiln that processors already use, against one modified Ahotor oven bought from CSIR-FRI. Same site, same processor, same fish, same fuel, measured side by side.</p>
+    <div class="meta"><span class="draft">Draft for supervisor review</span><span>November 2026</span><span>Arms: 2 (+1 optional)</span><span>Purchase: 1 improved oven</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="arms" style="border-top:0">
+  <div class="sechead">
+    <div class="eyebrow">What we compare</div>
+    <h2>Two smoking systems, side by side</h2>
+    <p>The traditional kiln is the baseline and is not purchased. The improved oven is the only equipment we buy for the pilot.</p>
+  </div>
+  <div class="arms">
+    <article class="arm">
+      <span class="tag">Arm A · Baseline</span>
+      <h3>Traditional Chorkor kiln</h3>
+      <dl>
+        <dt>Source</dt><dd>Existing kiln at the site, owned or rented by the processor. No purchase.</dd>
+        <dt>Design</dt><dd>Rectangular mud or brick firebox; stacked wire-mesh trays sit directly over the fire.</dd>
+        <dt>Size</dt><dd>Standard about 225 × 112 × 60 cm; 5–10 trays of about 20 kg fresh fish each.</dd>
+        <dt>Fuel</dt><dd>Fuelwood, lit with waste cardboard.</dd>
+        <dt>Fat control</dt><dd>None. Fat drips onto the fire.</dd>
+      </dl>
+    </article>
+    <article class="arm improved">
+      <span class="tag">Arm B · Improved · Buy 1</span>
+      <h3>Modified Ahotor oven (CSIR-FRI)</h3>
+      <dl>
+        <dt>Source</dt><dd>CSIR-Food Research Institute design, built locally by approved artisans.</dd>
+        <dt>Design</dt><dd>Enclosed combustion chamber inside a Chorkor-like shell, with grate and primary and secondary air inlets.</dd>
+        <dt>Fat control</dt><dd>Fat-collecting tray between fire and fish, dusted with ash.</dd>
+        <dt>Fuel</dt><dd>Fuelwood, charcoal or LPG variants.</dd>
+        <dt>Price</dt><dd>Quote requested. Past reports range from GHS 1,768 (2019) to about GHS 10,000 (2024).</dd>
+      </dl>
+    </article>
+    <article class="arm optional">
+      <span class="tag">Arm C · Optional</span>
+      <h3>Retrofitted Chorkor</h3>
+      <dl>
+        <dt>Source</dt><dd>An existing Chorkor fitted with a fat-collector tray (CSIR-FRI design, in trial since 2026).</dd>
+        <dt>Why</dt><dd>Tests whether a low-cost upgrade to a kiln women already rent gets most of the benefit.</dd>
+        <dt>Cost</dt><dd>Low; tray and fitting only. Quote to request together with Arm B.</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="drawings">
+  <div class="sechead">
+    <div class="eyebrow">How they work</div>
+    <h2>Where the smoke and fat go</h2>
+    <p>The main design difference is what happens to the fat. In the Chorkor it lands on the fire; in the Ahotor a tray catches it.</p>
+  </div>
+  <div class="drawings">
+    <figure>
+      <h3>Arm A · Traditional Chorkor</h3>
+      <svg viewBox="0 0 540 380" role="img" aria-labelledby="ta">
+        <title id="ta">Cross-section of a traditional Chorkor kiln: trays sit directly over an open wood fire, fat drips onto the fire and smoke rises through the fish.</title>
+        <!-- smoke -->
+        <path class="smoke" d="M90 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <path class="smoke" d="M160 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <path class="smoke" d="M230 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <!-- cover -->
+        <rect x="30" y="80" width="280" height="10" rx="2" class="mud-d"/>
+        <!-- trays -->
+        <g>
+          <rect x="30" y="96" width="280" height="16" class="tray"/><rect x="30" y="118" width="280" height="16" class="tray"/><rect x="30" y="140" width="280" height="16" class="tray"/><rect x="30" y="162" width="280" height="16" class="tray"/><rect x="30" y="184" width="280" height="16" class="tray"/>
+          <g class="fishc">
+            <ellipse cx="60" cy="192" rx="18" ry="5"/><ellipse cx="105" cy="192" rx="18" ry="5"/><ellipse cx="150" cy="192" rx="18" ry="5"/><ellipse cx="195" cy="192" rx="18" ry="5"/><ellipse cx="240" cy="192" rx="18" ry="5"/><ellipse cx="282" cy="192" rx="18" ry="5"/>
+            <ellipse cx="60" cy="170" rx="18" ry="5"/><ellipse cx="105" cy="170" rx="18" ry="5"/><ellipse cx="150" cy="170" rx="18" ry="5"/><ellipse cx="195" cy="170" rx="18" ry="5"/><ellipse cx="240" cy="170" rx="18" ry="5"/><ellipse cx="282" cy="170" rx="18" ry="5"/>
+            <ellipse cx="60" cy="148" rx="18" ry="5"/><ellipse cx="105" cy="148" rx="18" ry="5"/><ellipse cx="150" cy="148" rx="18" ry="5"/><ellipse cx="195" cy="148" rx="18" ry="5"/><ellipse cx="240" cy="148" rx="18" ry="5"/><ellipse cx="282" cy="148" rx="18" ry="5"/>
+          </g>
+        </g>
+        <!-- walls -->
+        <rect x="30" y="200" width="22" height="90" class="mud"/>
+        <rect x="288" y="200" width="22" height="140" class="mud"/>
+        <!-- fire -->
+        <rect x="80" y="318" width="80" height="12" rx="6" class="wood"/><rect x="150" y="322" width="90" height="12" rx="6" class="wood"/><rect x="110" y="310" width="70" height="11" rx="5" class="wood"/>
+        <path class="fire" d="M95 312 q10 -40 22 -6 q8 -34 20 -4 q10 -46 24 -2 q8 -30 20 2 q10 -38 22 0 z"/>
+        <!-- fat drips -->
+        <g class="drip"><circle cx="120" cy="222" r="3.5"/><circle cx="121" cy="246" r="3.5"/><circle cx="122" cy="270" r="3.5"/><circle cx="190" cy="230" r="3.5"/><circle cx="191" cy="256" r="3.5"/><circle cx="192" cy="282" r="3.5"/></g>
+        <line x1="0" y1="340" x2="540" y2="340" class="ground"/>
+        <!-- labels -->
+        <line x1="310" y1="85" x2="330" y2="85" class="leader"/><text x="336" y="89">Cover (sack or board)</text>
+        <line x1="310" y1="148" x2="330" y2="148" class="leader"/><text x="336" y="146">5–10 mesh trays</text><text x="336" y="162" class="lbl-muted">~20 kg fresh fish each</text>
+        <line x1="200" y1="256" x2="330" y2="236" class="leader"/><text x="336" y="232" class="lbl-ember">Fat drips onto fire</text><text x="336" y="248" class="lbl-muted">flare-ups and black soot</text>
+        <line x1="240" y1="320" x2="330" y2="300" class="leader"/><text x="336" y="300">Open wood fire</text><text x="336" y="316" class="lbl-muted">lit with waste cardboard</text>
+        <line x1="40" y1="315" x2="40" y2="366" class="leader"/><text x="46" y="370" class="lbl-muted">Stoke hole</text>
+        <text x="336" y="40" class="lbl-muted">Smoke rises straight</text><text x="336" y="56" class="lbl-muted">through fish to operator</text>
+      </svg>
+      <figcaption>Schematic cross-section, not to scale. Standard Chorkor dimensions from Nerquaye-Tetteh (1999).</figcaption>
+    </figure>
+
+    <figure>
+      <h3>Arm B · Modified Ahotor</h3>
+      <svg viewBox="0 0 540 380" role="img" aria-labelledby="tb">
+        <title id="tb">Cross-section of a modified Ahotor oven: an enclosed combustion chamber with grate and air inlets sits inside the shell, and a fat-collecting tray between fire and fish catches drippings.</title>
+        <path class="smoke" d="M120 78 q-10 -16 3 -28 q11 -11 0 -24" style="opacity:.45"/>
+        <path class="smoke" d="M210 78 q-10 -16 3 -28 q11 -11 0 -24" style="opacity:.45"/>
+        <rect x="30" y="80" width="280" height="10" rx="2" class="mud-d"/>
+        <g>
+          <rect x="30" y="96" width="280" height="16" class="tray"/><rect x="30" y="118" width="280" height="16" class="tray"/><rect x="30" y="140" width="280" height="16" class="tray"/><rect x="30" y="162" width="280" height="16" class="tray"/><rect x="30" y="184" width="280" height="16" class="tray"/>
+          <g class="fishc">
+            <ellipse cx="60" cy="192" rx="18" ry="5"/><ellipse cx="105" cy="192" rx="18" ry="5"/><ellipse cx="150" cy="192" rx="18" ry="5"/><ellipse cx="195" cy="192" rx="18" ry="5"/><ellipse cx="240" cy="192" rx="18" ry="5"/><ellipse cx="282" cy="192" rx="18" ry="5"/>
+            <ellipse cx="60" cy="170" rx="18" ry="5"/><ellipse cx="105" cy="170" rx="18" ry="5"/><ellipse cx="150" cy="170" rx="18" ry="5"/><ellipse cx="195" cy="170" rx="18" ry="5"/><ellipse cx="240" cy="170" rx="18" ry="5"/><ellipse cx="282" cy="170" rx="18" ry="5"/>
+            <ellipse cx="60" cy="148" rx="18" ry="5"/><ellipse cx="105" cy="148" rx="18" ry="5"/><ellipse cx="150" cy="148" rx="18" ry="5"/><ellipse cx="195" cy="148" rx="18" ry="5"/><ellipse cx="240" cy="148" rx="18" ry="5"/><ellipse cx="282" cy="148" rx="18" ry="5"/>
+          </g>
+        </g>
+        <!-- outer shell -->
+        <rect x="30" y="200" width="22" height="140" class="mud"/>
+        <rect x="288" y="200" width="22" height="140" class="mud"/>
+        <!-- fat collector tray with ash -->
+        <rect x="52" y="214" width="236" height="9" class="metal" style="fill:var(--metal);stroke:none"/>
+        <rect x="56" y="209" width="228" height="5" class="ash"/>
+        <g class="drip"><circle cx="110" cy="203" r="3"/><circle cx="170" cy="204" r="3"/><circle cx="230" cy="203" r="3"/></g>
+        <!-- combustion chamber -->
+        <rect x="110" y="250" width="12" height="90" class="brick"/>
+        <rect x="218" y="250" width="12" height="90" class="brick"/>
+        <rect x="110" y="244" width="40" height="8" class="brick"/>
+        <rect x="190" y="244" width="40" height="8" class="brick"/>
+        <!-- hot gas path -->
+        <path d="M170 248 L170 230" stroke="var(--fire)" stroke-width="3" fill="none"/>
+        <path d="M163 234 L170 226 L177 234 Z" class="fire"/>
+        <!-- grate -->
+        <line x1="122" y1="306" x2="218" y2="306" stroke="var(--metal)" stroke-width="3" stroke-dasharray="6 5"/>
+        <rect x="132" y="294" width="76" height="10" rx="5" class="wood"/>
+        <path class="fire" d="M138 296 q8 -28 16 -4 q8 -26 16 -2 q8 -30 18 0 q6 -22 14 4 z"/>
+        <rect x="124" y="326" width="92" height="12" class="ash"/>
+        <!-- air inlets -->
+        <path class="air" d="M70 322 L118 322"/><path class="airhead" d="M116 316 L126 322 L116 328 Z"/>
+        <path class="air" d="M70 270 L118 270"/><path class="airhead" d="M116 264 L126 270 L116 276 Z"/>
+        <line x1="0" y1="340" x2="540" y2="340" class="ground"/>
+        <!-- labels -->
+        <line x1="310" y1="148" x2="330" y2="148" class="leader"/><text x="336" y="146">Same tray stack</text><text x="336" y="162" class="lbl-muted">as a Chorkor</text>
+        <line x1="284" y1="214" x2="330" y2="200" class="leader"/><text x="336" y="196" class="lbl-mint">Fat-collecting tray</text><text x="336" y="212" class="lbl-muted">ash absorbs drippings</text>
+        <line x1="230" y1="262" x2="330" y2="250" class="leader"/><text x="336" y="250">Enclosed combustion</text><text x="336" y="266">chamber + grate</text>
+        <line x1="208" y1="300" x2="330" y2="296" class="leader"/><text x="336" y="296" class="lbl-muted">wood, charcoal or LPG</text>
+        <text x="20" y="262" class="lbl-mint" style="font-size:12px">Secondary air</text>
+        <text x="20" y="314" class="lbl-mint" style="font-size:12px">Primary air</text>
+        <text x="336" y="40" class="lbl-muted">Less smoke reaches</text><text x="336" y="56" class="lbl-muted">fish and operator</text>
+      </svg>
+      <figcaption>Schematic cross-section, not to scale, drawn from CSIR-FRI's published description (2022). Final dimensions and drawings will come from CSIR-FRI with the quote.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="site">
+  <div class="sechead">
+    <div class="eyebrow">Site set-up</div>
+    <h2>One shed, one processor, two kilns</h2>
+    <p>Placing the new oven next to an existing Chorkor means weather, fish and the processor's skill are the same for both. Any difference comes from the stove.</p>
+  </div>
+  <div class="planbox">
+    <svg viewBox="0 0 760 330" role="img" aria-labelledby="tp">
+      <title id="tp">Plan view of the pilot site: the existing Chorkor and the new Ahotor stand side by side in one shed, with a shared weighing station, a split fish stock and fuel stock, and a CO and PM2.5 monitor beside each kiln.</title>
+      <rect x="20" y="20" width="720" height="290" rx="8" class="plan-shed"/>
+      <text x="36" y="44" class="lbl-muted">Processing shed, James Town (plan view)</text>
+      <!-- kilns -->
+      <rect x="70" y="80" width="200" height="100" rx="4" class="plan-kiln-a"/>
+      <text x="170" y="126" text-anchor="middle" style="font-weight:700">Arm A</text><text x="170" y="144" text-anchor="middle">Existing Chorkor</text>
+      <rect x="490" y="80" width="200" height="100" rx="4" class="plan-kiln-b"/>
+      <text x="590" y="126" text-anchor="middle" style="font-weight:700">Arm B</text><text x="590" y="144" text-anchor="middle">Modified Ahotor</text>
+      <!-- monitors -->
+      <circle cx="285" cy="70" r="14" class="plan-mon"/><text x="285" y="75" text-anchor="middle" style="font-size:11px;font-weight:700">M</text>
+      <circle cx="475" cy="70" r="14" class="plan-mon"/><text x="475" y="75" text-anchor="middle" style="font-size:11px;font-weight:700">M</text>
+      <text x="380" y="62" text-anchor="middle" class="lbl-ember" style="font-size:12px">CO + PM2.5 monitor</text>
+      <text x="380" y="78" text-anchor="middle" class="lbl-muted">at breathing height</text>
+      <!-- sensors -->
+      <rect x="150" y="168" width="40" height="18" rx="3" class="plan-item"/><text x="170" y="181" text-anchor="middle" style="font-size:11px">S</text>
+      <rect x="570" y="168" width="40" height="18" rx="3" class="plan-item"/><text x="590" y="181" text-anchor="middle" style="font-size:11px">S</text>
+      <!-- weighing station -->
+      <rect x="320" y="120" width="120" height="60" rx="6" class="plan-item"/>
+      <text x="380" y="146" text-anchor="middle" style="font-weight:700">Scale</text><text x="380" y="164" text-anchor="middle" class="lbl-muted">fish + fuel</text>
+      <!-- stocks -->
+      <rect x="110" y="230" width="200" height="54" rx="6" class="plan-item"/>
+      <text x="210" y="253" text-anchor="middle" style="font-weight:600">Fish stock</text><text x="210" y="271" text-anchor="middle" class="lbl-muted">one batch, split 50/50</text>
+      <rect x="450" y="230" width="200" height="54" rx="6" class="plan-item"/>
+      <text x="550" y="253" text-anchor="middle" style="font-weight:600">Fuelwood stock</text><text x="550" y="271" text-anchor="middle" class="lbl-muted">same supplier, weighed</text>
+      <!-- arrows -->
+      <path class="plan-arrow" d="M310 245 L340 185"/><path class="plan-arrow" d="M450 245 L420 185"/>
+      <path class="plan-arrow" d="M320 150 L272 140"/><path class="plan-arrow" d="M440 150 L488 140"/>
+      <text x="380" y="214" text-anchor="middle" class="lbl-muted">S = fuel and temperature sensor (Phase 2 kit)</text>
+    </svg>
+  </div>
+</section>
+
+<section id="protocol">
+  <div class="sechead">
+    <div class="eyebrow">Each test day</div>
+    <h2>Paired batch protocol</h2>
+    <p>Both kilns run the same day, in the same order of steps. We propose at least 10 paired batches; the final number is to be agreed with the supervisor.</p>
+  </div>
+  <ol class="steps">
+    <li><div><b>Split the fish</b><span>Weigh one batch of the same species (mainly chub mackerel) and divide it equally between the two kilns.</span></div></li>
+    <li><div><b>Allocate and weigh the fuel</b><span>Give each kiln fuelwood from the same supplier and record its starting weight. Note the ignition material used.</span></div></li>
+    <li><div><b>Start both kilns together</b><span>Record the start time, tray count and who is operating each kiln.</span></div></li>
+    <li><div><b>Monitor during smoking</b><span>Log CO and PM2.5 at breathing height, kiln temperature, tray turns and any flare-ups.</span></div></li>
+    <li><div><b>Finish and weigh</b><span>Record the end time, the weight of smoked fish and the weight of unused fuel and charcoal left.</span></div></li>
+    <li><div><b>Sample and score the fish</b><span>Keep samples for PAH testing, and ask the processor and two buyers to rate colour, texture and taste.</span></div></li>
+  </ol>
+</section>
+
+<section id="measures">
+  <div class="sechead">
+    <div class="eyebrow">What we measure</div>
+    <h2>Indicators and targets</h2>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Indicator</th><th>How</th><th>Reference point</th></tr></thead>
+    <tbody>
+      <tr><td>Fuel per kg of fish</td><td>Fuel used ÷ fresh fish weight</td><td>Ahotor used about one-third less wood than Chorkor in earlier tests</td></tr>
+      <tr><td>Fuel cost per batch</td><td>Fuel used × local price</td><td>Carbon Clarity target: up to 50% saving, to be confirmed</td></tr>
+      <tr><td>Smoking time</td><td>Start to end of batch</td><td>Slow smoking was a main complaint about the original Ahotor</td></tr>
+      <tr><td>Yield</td><td>Smoked weight ÷ fresh weight</td><td>Fish is sold by size, so shrinkage affects income</td></tr>
+      <tr><td>Smoke exposure</td><td>CO (ppm) and PM2.5 (µg/m³) at breathing height</td><td>Coastal fish smokers: 7.7 ppm CO over 24 h vs 2.9 ppm for other women</td></tr>
+      <tr><td>PAH in smoked fish</td><td>Lab test of BaP and PAH4</td><td class="num">EU limits: 2 µg/kg BaP, 12 µg/kg PAH4</td></tr>
+      <tr><td>Fish acceptance</td><td>Processor and buyer ratings</td><td>Buyers expect a golden, smoky look</td></tr>
+      <tr><td>Processor experience</td><td>Short interview after each week</td><td>Eye irritation, burns, ease of use</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="checklist">
+  <div class="sechead">
+    <div class="eyebrow">Before we buy</div>
+    <h2>Procurement and compliance checklist</h2>
+  </div>
+  <ul class="check">
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">Research lead</span><b>Quote from CSIR-FRI</b><span>Price for one modified Ahotor (and the Arm C retrofit), fuel options, test data, approved builder and build time.</span></div></li>
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">Research lead</span><b>Ask the Energy Commission about L.I. 2454</b><span>Confirm whether the cookstove regulation applies to fish-smoking ovens, and what registration is needed.</span></div></li>
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">If L.I. 2454 applies</span><b>Test at CSIR-RTKC under GS ISO 19867-1</b><span>Thermal efficiency at least 25% (wood) or above 35% (charcoal), safety score 85.</span></div></li>
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">Supervisor</span><b>Ethics approval and consent</b><span>Written agreement with the processor and kiln owner, covering monitoring, fish ownership and what they receive.</span></div></li>
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">Team</span><b>Add the oven to the budget</b><span>The current budget covers sensors, calibration and mobile-money payments, but has no line for the oven.</span></div></li>
+    <li><div class="box" aria-hidden="true"></div><div><span class="who">Team</span><b>Record the procurement route</b><span>Locally built, supplier, invoice and test reports. Carbon-credit verification will need this.</span></div></li>
+  </ul>
+</section>
+
+<section id="next">
+  <div class="sechead">
+    <div class="eyebrow">After the pilot</div>
+    <h2>What the results feed into the Carbon Clarity stove</h2>
+    <p>The pilot sets the design requirements for our own stove in Phase 2.</p>
+  </div>
+  <div class="reqs">
+    <div class="req"><b>Fat control</b><span>Keep drippings off the fire, as the Ahotor tray does.</span></div>
+    <div class="req"><b>Capacity and speed</b><span>Match the Chorkor's batch size and time, the main reason women stay with it.</span></div>
+    <div class="req"><b>The smoked look</b><span>Deliver the colour and flavour buyers pay for.</span></div>
+    <div class="req"><b>Affordable to own or retrofit</b><span>Priced for women who rent kilns day to day.</span></div>
+    <div class="req"><b>Sensor-ready</b><span>Built-in points for the fuel and temperature sensors.</span></div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap"><p style="margin-bottom:10px"><a href="index.html">← Carbon Clarity home</a> · <a href="workplan.html">Work plan</a></p>
+  Sources
+  <ol>
+    <li>CSIR-Food Research Institute (2022). Modification of Ahotor and Chorkor smoking ovens. HealthyFoodAfrica report.</li>
+    <li>Ghana News Agency (2024, 2026). Reports on CSIR-FRI's modified Ahotor and retrofitted Chorkor trials.</li>
+    <li>Owusu, D. (2019). Ahotor oven market development and financing report, USAID/SFMP.</li>
+    <li>Nerquaye-Tetteh, G. (1999). The transfer, adoption and commercialization of the Chorkor smoker. CSIR-FRI.</li>
+    <li>Weyant, C. L. et al. (2022). Environmental Health Perspectives 130(1), 017701.</li>
+    <li>Asiedu, P. O. (2024). MyJoyOnline; Ghana News Agency (2023) on L.I. 2454 requirements.</li>
+  </ol>
+</footer>
+
+</body></html>

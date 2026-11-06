@@ -1,0 +1,350 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Carbon Clarity Work Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a field project's working board. Forest header with overall progress, a "next up" strip, then one band per phase with task rows. Carbon Clarity's forest + ember identity. */
+:root{
+  --bg:#F3F6F2; --surface:#FFFFFF; --surface2:#E8EFEA; --fg:#14261F; --muted:#56685F; --line:#D3DDD6;
+  --forest:#15332B; --on-forest:#FFFFFF; --on-forest-soft:#C9DDD3;
+  --ember:#B8431A; --ember-bg:#FBE6DA; --mint:#0F7C72; --mint-bg:#DDF0EC; --gold:#8A6100; --gold-bg:#FBF0D2;
+  --danger:#B42318; --danger-bg:#FDE4E1;
+  --serif:'Fraunces',Georgia,serif; --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#A3B9AF; --line:#2B4C42;
+  --forest:#08130F; --on-forest:#FFFFFF; --on-forest-soft:#B5CCC1;
+  --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --mint-bg:#123B36; --gold:#F2B134; --gold-bg:#3A2F12;
+  --danger:#FF8A7A; --danger-bg:#3D1C18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#A3B9AF; --line:#2B4C42;
+  --forest:#08130F; --on-forest:#FFFFFF; --on-forest-soft:#B5CCC1;
+  --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --mint-bg:#123B36; --gold:#F2B134; --gold-bg:#3A2F12;
+  --danger:#FF8A7A; --danger-bg:#3D1C18; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15.5px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--forest)}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.15;text-wrap:balance}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+
+.top{margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));background:var(--forest);color:var(--on-forest)}
+.top .wrap{padding-block:28px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--on-forest-soft)}
+.top h1{font-size:clamp(28px,5vw,40px)}
+.toprow{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:end;justify-content:space-between}
+.counts{display:flex;flex-wrap:wrap;gap:8px}
+.count{padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.1);font-size:13.5px;font-variant-numeric:tabular-nums}
+.count b{font-weight:700}
+.count.late{background:#B42318;color:#fff}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ember);border-radius:99px;width:0;transition:width .4s}
+.barlabel{font-size:13px;color:var(--on-forest-soft);margin-top:6px;font-variant-numeric:tabular-nums}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-block:18px 6px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;padding:7px 12px;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--forest);color:#fff}
+.tools select,.tools input{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:7px 10px;font-size:14px}
+.tools .grow{flex:1 1 160px;min-width:0}
+.btn{border:1px solid var(--forest);background:var(--forest);color:#fff;border-radius:8px;padding:7px 14px;font-size:14px;font-weight:600}
+.btn.ghost{background:var(--surface);color:var(--fg);border-color:var(--line)}
+.btn.danger{background:var(--surface);color:var(--danger);border-color:var(--danger)}
+.note{font-size:13.5px;color:var(--muted);padding:6px 0}
+.note.warn{color:var(--danger)}
+
+section.band{padding-block:20px}
+.bandhead{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.bandhead h2{font-size:22px}
+.bandhead .sub{font-size:13.5px;color:var(--muted)}
+.minibar{width:140px;height:6px;border-radius:99px;background:var(--surface2);overflow:hidden;display:inline-block;vertical-align:middle;margin-left:8px}
+.minibar i{display:block;height:100%;background:var(--mint)}
+.next{background:var(--ember-bg);border:1px solid var(--ember);border-radius:10px;padding:14px 16px}
+.next h2{font-size:19px;color:var(--fg)}
+.next .list{margin-top:8px}
+
+.list{display:grid;gap:6px}
+.stream{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:12px 0 2px}
+.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.task.done .ttl{color:var(--muted);text-decoration:line-through}
+.status{border:0;border-radius:99px;padding:3px 10px;font-size:12px;font-weight:700;letter-spacing:.04em;white-space:nowrap;min-width:92px}
+.st-todo{background:var(--surface2);color:var(--muted)}
+.st-doing{background:var(--gold-bg);color:var(--gold)}
+.st-done{background:var(--mint-bg);color:var(--mint)}
+.st-blocked{background:var(--danger-bg);color:var(--danger)}
+.ttl{font-weight:600;overflow-wrap:anywhere}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--muted);margin-top:2px}
+.meta .late{color:var(--danger);font-weight:700}
+.meta .soon{color:var(--ember);font-weight:700}
+.notes{font-size:13.5px;color:var(--muted);margin-top:4px;white-space:pre-wrap;overflow-wrap:anywhere}
+.edit{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:3px 9px;font-size:13px;color:var(--muted)}
+.empty{padding:16px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:14px}
+
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);padding:0;width:min(560px,calc(100vw - 32px));max-width:100%}
+dialog::backdrop{background:rgba(8,19,15,.45)}
+dialog form{padding:20px;display:grid;gap:12px}
+dialog h3{font-size:20px}
+dialog label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+dialog input,dialog select,dialog textarea{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px 10px;font-size:15px;font-weight:400;color:var(--fg);width:100%}
+dialog textarea{min-height:80px;resize:vertical}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.actions .right{display:flex;gap:8px;margin-left:auto}
+footer{padding-block:20px 40px;font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Carbon Clarity · Nkabom Research Projects · Accra</div>
+    <div class="toprow">
+      <h1>Work plan</h1>
+      <div class="counts" id="counts" aria-live="polite"></div>
+    </div>
+    <div>
+      <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+      <div class="barlabel" id="barlabel">Loading the plan…</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Show">
+      <button type="button" data-f="open" aria-pressed="true">Open</button>
+      <button type="button" data-f="all" aria-pressed="false">All</button>
+      <button type="button" data-f="late" aria-pressed="false">Overdue</button>
+      <button type="button" data-f="done" aria-pressed="false">Done</button>
+    </div>
+    <select id="owner" aria-label="Filter by owner"><option value="">Everyone</option></select>
+    <input id="q" class="grow" type="search" placeholder="Search tasks" aria-label="Search tasks">
+    <button type="button" class="btn" id="addBtn">Add task</button>
+  </div>
+  <div class="note" id="status" role="status"></div>
+
+  <section class="band" id="nextBand" hidden>
+    <div class="next">
+      <h2>Next two weeks</h2>
+      <div class="list" id="nextList"></div>
+    </div>
+  </section>
+
+  <div id="bands"></div>
+</main>
+
+<footer class="wrap"><p style="margin-bottom:10px"><a href="index.html">← Carbon Clarity home</a> · <a href="pilot.html">Pilot design</a></p>Status: tap a task's pill to move it on (To do → In progress → Done). Dates are working targets; change them as plans move. Everyone with edit access sees the same board.</footer>
+
+<dialog id="dlg">
+  <form method="dialog" id="form">
+    <h3 id="dlgTitle">Add task</h3>
+    <label>Task<input id="f-title" required maxlength="200"></label>
+    <div class="grid2">
+      <label>Phase<select id="f-phase"></select></label>
+      <label>Workstream<input id="f-stream" list="streams" maxlength="60"></label>
+      <label>Owner<input id="f-owner" list="owners" maxlength="60"></label>
+      <label>Due<input id="f-due" type="date"></label>
+      <label>Status<select id="f-status"><option value="todo">To do</option><option value="doing">In progress</option><option value="blocked">Blocked</option><option value="done">Done</option></select></label>
+    </div>
+    <label>Notes<textarea id="f-notes" maxlength="2000"></textarea></label>
+    <datalist id="streams"></datalist><datalist id="owners"></datalist>
+    <div class="actions">
+      <button type="button" class="btn danger" id="delBtn" hidden>Delete</button>
+      <div class="right">
+        <button type="button" class="btn ghost" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn" id="saveBtn">Save</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<script>window.__TASKS__=[{"due": "2026-10-31", "notes": "Field visit, interviews with women processors, video of smoking cycles, stakeholder map.", "order": 1, "owner": "Team", "phase": "p1", "status": "done", "stream": "Research & papers", "title": "James Town baseline fieldwork", "id": "t01"}, {"due": "2026-11-20", "notes": "Priority: Salifu 2024 and Weyant 2022 contradict gaps 4 and 5; add an Ahotor paragraph; add L.I. 2454 to the policy section.", "order": 2, "owner": "You + co-author", "phase": "p1", "status": "doing", "stream": "Research & papers", "title": "Fix the 10 comments in the literature review (Google Doc)", "id": "t02"}, {"due": "2026-11-13", "notes": "Cited in the review but missing from the reference list; check each DOI opens the right paper.", "order": 3, "owner": "Co-author", "phase": "p1", "status": "todo", "stream": "Research & papers", "title": "Add full references and DOIs for Idris (2025) and Erchafo & Ayalew (2026)", "id": "t03"}, {"due": "2026-11-15", "notes": "Needed for the methods section of the working paper.", "order": 4, "owner": "Supervisor", "phase": "p1", "status": "todo", "stream": "Research & papers", "title": "Confirm ethics approval and reference number", "id": "t04"}, {"due": "2026-11-30", "notes": "Daily earnings, batch sizes, fuel spending, symptom frequency, kiln ownership/rental.", "order": 5, "owner": "You", "phase": "p1", "status": "todo", "stream": "Research & papers", "title": "Survey 25–30 women processors in James Town", "id": "t05"}, {"due": "2026-12-05", "notes": "3–5 fuelwood haulers, 3 kiln landlords, local NAFPTA leaders.", "order": 6, "owner": "You", "phase": "p1", "status": "todo", "stream": "Research & papers", "title": "Key informant interviews: fuelwood suppliers, kiln landlords, NAFPTA", "id": "t06"}, {"due": "2026-12-05", "notes": "Number interviewed, dates, quotes, local fish name, fresh vs frozen fish, fuelwood prices, kiln cost check.", "order": 7, "owner": "You", "phase": "p1", "status": "doing", "stream": "Research & papers", "title": "Fill highlighted placeholders in working paper v2", "id": "t07"}, {"due": "2026-12-15", "notes": "", "order": 8, "owner": "You + supervisor", "phase": "p1", "status": "todo", "stream": "Research & papers", "title": "Submit working paper (preprint) and journal manuscript", "id": "t08"}, {"due": "2026-11-03", "notes": "Notes added to the working paper (section 2.5 and discussion).", "order": 9, "owner": "You", "phase": "p1", "status": "done", "stream": "Research & papers", "title": "National Clean Cooking Policy stakeholder dialogue", "id": "t09"}, {"due": "2026-11-13", "notes": "Arm A existing Chorkor vs Arm B modified Ahotor (+ optional retrofitted Chorkor). Agree number of paired batches (proposed at least 10).", "order": 10, "owner": "You", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Get supervisor sign-off on the pilot design", "id": "t10"}, {"due": "2026-11-10", "notes": "Email drafted (to Dr Amy Atter's team): price installed, fuel options, test data, builders, L.I. 2454 status. Also ask about the retrofit tray.", "order": 11, "owner": "You", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Send quote request to CSIR-FRI for the modified Ahotor", "id": "t11"}, {"due": "2026-11-10", "notes": "Decides whether the oven needs GS ISO 19867-1 testing and registration before use.", "order": 12, "owner": "You", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Ask the Energy Commission whether L.I. 2454 applies to fish-smoking kilns", "id": "t12"}, {"due": "2026-11-20", "notes": "info@niomr.gov.ng. Only if the supervisor wants an imported comparison.", "order": 13, "owner": "You", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Optional: get a NIOMR kiln quote with delivery to Accra", "id": "t13"}, {"due": "2026-11-20", "notes": "Budget currently covers sensors, calibration and mobile money, but no oven.", "order": 14, "owner": "Team", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Add the improved oven to the project budget", "id": "t14"}, {"due": "2026-12-15", "notes": "Monitoring of her existing Chorkor, fish ownership, what she receives for taking part.", "order": 15, "owner": "You + supervisor", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Written agreement with the processor and kiln owner", "id": "t15"}, {"due": "2027-01-31", "notes": "", "order": 16, "owner": "CSIR-FRI builder", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Build and install the modified Ahotor at the site", "id": "t16"}, {"due": "2027-02-15", "notes": "Depends on the Energy Commission's answer.", "order": 17, "owner": "Team", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Test at CSIR-RTKC under GS ISO 19867-1 (if required)", "id": "t17"}, {"due": "2027-04-30", "notes": "Same fish split 50/50, same fuel, weigh fuel and fish, log CO/PM2.5, smoking time, yield, buyer ratings.", "order": 18, "owner": "Team", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "Run paired batches: Chorkor vs modified Ahotor", "id": "t18"}, {"due": "2027-05-31", "notes": "BaP and PAH4 vs EU limits (2 and 12 µg/kg).", "order": 19, "owner": "Team", "phase": "p1", "status": "todo", "stream": "Comparative pilot", "title": "PAH lab tests on smoked fish samples", "id": "t19"}, {"due": "2027-03-31", "notes": "US$145 each; 10 active, 2 spare.", "order": 20, "owner": "Team", "phase": "p2", "status": "todo", "stream": "Sensors & data", "title": "Procure 12 clean-cooking monitoring units", "id": "t20"}, {"due": "2027-04-30", "notes": "US$1,800.", "order": 21, "owner": "Lab technician", "phase": "p2", "status": "todo", "stream": "Sensors & data", "title": "Lab calibration and emissions-monitoring kit", "id": "t21"}, {"due": "2027-05-31", "notes": "github.com/poutchop/data-vault-modern", "order": 22, "owner": "Product developer", "phase": "p2", "status": "todo", "stream": "Sensors & data", "title": "Connect sensor data to the Data Vault app", "id": "t22"}, {"due": "2027-08-31", "notes": "From pilot results: fat control, Chorkor capacity, smoked look, affordable to own or retrofit, sensor-ready. Concepts: side firebox, briquette hopper, solar fan.", "order": 23, "owner": "Team", "phase": "p2", "status": "todo", "stream": "Stove design", "title": "Co-design the Carbon Clarity stove v1 with the women", "id": "t23"}, {"due": "2027-06-30", "notes": "Check over-crediting risks (Gill-Wiehl, Kammen & Haya, 2024) and what monitoring data the method needs.", "order": 24, "owner": "Team", "phase": "p3", "status": "todo", "stream": "Carbon credits", "title": "Choose the carbon standard and methodology", "id": "t24"}, {"due": "2027-07-31", "notes": "Share size and rules set with them and sponsors.", "order": 25, "owner": "Team", "phase": "p3", "status": "todo", "stream": "Benefit sharing", "title": "Co-design payout rules with the women", "id": "t25"}, {"due": "2027-09-30", "notes": "US$500 paid directly to participating women.", "order": 26, "owner": "Team", "phase": "p3", "status": "todo", "stream": "Benefit sharing", "title": "Trial mobile-money micro-incentives", "id": "t26"}, {"due": "2028-02-28", "notes": "", "order": 27, "owner": "Team", "phase": "p3", "status": "todo", "stream": "Research & papers", "title": "Pilot results and two open-access papers", "id": "t27"}, {"due": "2026-11-06", "notes": "Includes the comparative pilot design.", "order": 28, "owner": "You", "phase": "x", "status": "done", "stream": "Website & outreach", "title": "Website live at carbon-clarity.vercel.app", "id": "t28"}, {"due": "2026-11-15", "notes": "Vercel → carbon-clarity → Settings → Git; repo data-vault-modern, root directory public/site.", "order": 29, "owner": "You", "phase": "x", "status": "todo", "stream": "Website & outreach", "title": "Connect the Vercel project to GitHub for automatic updates", "id": "t29"}, {"due": "2026-11-12", "notes": "Point the QR code at carbon-clarity.vercel.app.", "order": 30, "owner": "You", "phase": "x", "status": "todo", "stream": "Website & outreach", "title": "Fill flyer placeholders: logo, presenter names, QR code", "id": "t30"}, {"due": "2026-11-03", "notes": "", "order": 31, "owner": "Friend presenting", "phase": "x", "status": "done", "stream": "Website & outreach", "title": "Poster presented at the Ashesi–McGill event", "id": "t31"}, {"due": "2026-12-31", "notes": "Use the website's funding section and the costed 18-month plan.", "order": 32, "owner": "You + supervisor", "phase": "x", "status": "todo", "stream": "Funding", "title": "Shortlist three funders and draft the first application", "id": "t32"}];window.__SNAP__="6 November 2026";</script>
+<script>
+(function(){
+  const PHASES = [
+    {id:"p1", name:"Phase 1 · Understand & compare", sub:"Baseline, working paper, comparative stove pilot"},
+    {id:"p2", name:"Phase 2 · Design & measure", sub:"Sensors, data platform, our own stove design"},
+    {id:"p3", name:"Phase 3 · Reward & scale", sub:"Carbon credits and benefit-sharing with the women"},
+    {id:"x",  name:"Across the project", sub:"Outreach, funding, website and admin"}
+  ];
+  const ST = {todo:"To do", doing:"In progress", blocked:"Blocked", done:"Done"};
+  const NEXT = {todo:"doing", doing:"done", done:"todo", blocked:"doing"};
+  let tasks = [], db = null, canWrite = true, filter = "open", ownerF = "", q = "", editing = null;
+  const $ = id => document.getElementById(id);
+  const today = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+  const parse = s => { if(!s) return null; const [y,m,d] = s.split("-").map(Number); const t = new Date(y,m-1,d); return isNaN(t) ? null : t; };
+  const fmt = s => { const d = parse(s); return d ? d.toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"}) : ""; };
+  const daysTo = s => { const d = parse(s); return d ? Math.round((d - today())/86400000) : null; };
+  const isLate = t => t.status !== "done" && daysTo(t.due) !== null && daysTo(t.due) < 0;
+  const say = (msg, warn) => { const el = $("status"); el.textContent = msg || ""; el.classList.toggle("warn", !!warn); };
+
+  $("f-phase").innerHTML = PHASES.map(p => `<option value="${p.id}">${p.name}</option>`).join("");
+
+  function matches(t){
+    if (ownerF && (t.owner||"") !== ownerF) return false;
+    if (q && !((t.title||"")+" "+(t.notes||"")+" "+(t.stream||"")).toLowerCase().includes(q)) return false;
+    if (filter === "open") return t.status !== "done";
+    if (filter === "late") return isLate(t);
+    if (filter === "done") return t.status === "done";
+    return true;
+  }
+  const sortT = (a,b) => (a.due||"9999") < (b.due||"9999") ? -1 : (a.due||"9999") > (b.due||"9999") ? 1 : (a.order||0)-(b.order||0);
+
+  function row(t){
+    const el = document.createElement("div");
+    el.className = "task" + (t.status === "done" ? " done" : "");
+    const pill = document.createElement("button");
+    pill.type = "button"; pill.className = "status st-" + (t.status||"todo");
+    pill.textContent = ST[t.status] || "To do";
+    pill.title = canWrite ? "Change status" : "Read-only";
+    pill.setAttribute("aria-label", "Status: " + (ST[t.status]||"To do") + ". Change status");
+    pill.disabled = !canWrite;
+    pill.addEventListener("click", () => setStatus(t, NEXT[t.status] || "doing"));
+    const body = document.createElement("div");
+    const ttl = document.createElement("div"); ttl.className = "ttl"; ttl.textContent = t.title || "(untitled)";
+    const meta = document.createElement("div"); meta.className = "meta";
+    if (t.owner) { const s = document.createElement("span"); s.textContent = t.owner; meta.appendChild(s); }
+    if (t.due) {
+      const s = document.createElement("span"); const n = daysTo(t.due);
+      s.textContent = "Due " + fmt(t.due);
+      if (t.status !== "done" && n !== null) {
+        if (n < 0) { s.className = "late"; s.textContent += " · " + (-n) + (n === -1 ? " day" : " days") + " late"; }
+        else if (n <= 7) { s.className = "soon"; s.textContent += n === 0 ? " · today" : " · in " + n + (n === 1 ? " day" : " days"); }
+      }
+      meta.appendChild(s);
+    }
+    if (t.stream) { const s = document.createElement("span"); s.textContent = t.stream; meta.appendChild(s); }
+    body.append(ttl, meta);
+    if (t.notes) { const n = document.createElement("div"); n.className = "notes"; n.textContent = t.notes; body.appendChild(n); }
+    const ed = document.createElement("button"); ed.type = "button"; ed.className = "edit"; ed.textContent = "Edit";
+    ed.setAttribute("aria-label", "Edit " + (t.title||"task")); ed.hidden = !canWrite;
+    ed.addEventListener("click", () => openDlg(t));
+    el.append(pill, body, ed);
+    return el;
+  }
+
+  function render(){
+    const total = tasks.length, done = tasks.filter(t => t.status === "done").length;
+    const doing = tasks.filter(t => t.status === "doing").length, late = tasks.filter(isLate).length, blocked = tasks.filter(t => t.status === "blocked").length;
+    const pct = total ? Math.round(done/total*100) : 0;
+    $("bar").style.width = pct + "%";
+    $("barlabel").textContent = total ? `${done} of ${total} tasks done (${pct}%)` : "No tasks yet";
+    $("counts").innerHTML = "";
+    [["In progress",doing,""],["Blocked",blocked,""],["Overdue",late,late?"late":""],["To do",total-done-doing-blocked,""]].forEach(([l,n,c]) => {
+      const s = document.createElement("span"); s.className = "count " + c; s.innerHTML = `<b>${n}</b> ${l}`; $("counts").appendChild(s);
+    });
+    const owners = [...new Set(tasks.map(t => t.owner).filter(Boolean))].sort();
+    const os = $("owner"), cur = os.value;
+    os.innerHTML = `<option value="">Everyone</option>` + owners.map(o => `<option></option>`).join("");
+    owners.forEach((o,i) => { os.options[i+1].value = o; os.options[i+1].textContent = o; });
+    os.value = owners.includes(cur) ? cur : "";
+    $("owners").innerHTML = ""; owners.forEach(o => { const op = document.createElement("option"); op.value = o; $("owners").appendChild(op); });
+    const streams = [...new Set(tasks.map(t => t.stream).filter(Boolean))].sort();
+    $("streams").innerHTML = ""; streams.forEach(o => { const op = document.createElement("option"); op.value = o; $("streams").appendChild(op); });
+
+    const soon = tasks.filter(t => t.status !== "done" && daysTo(t.due) !== null && daysTo(t.due) <= 14 && (!ownerF || t.owner === ownerF)).sort(sortT);
+    $("nextBand").hidden = !soon.length || filter === "done";
+    $("nextList").innerHTML = ""; soon.forEach(t => $("nextList").appendChild(row(t)));
+
+    const bands = $("bands"); bands.innerHTML = "";
+    PHASES.forEach(p => {
+      const all = tasks.filter(t => (t.phase||"x") === p.id);
+      const shown = all.filter(matches).sort(sortT);
+      const pd = all.filter(t => t.status === "done").length;
+      const sec = document.createElement("section"); sec.className = "band";
+      const head = document.createElement("div"); head.className = "bandhead";
+      const h = document.createElement("h2"); h.textContent = p.name;
+      const sub = document.createElement("div"); sub.className = "sub";
+      sub.textContent = `${p.sub} · ${pd}/${all.length} done`;
+      const mb = document.createElement("span"); mb.className = "minibar"; mb.innerHTML = `<i style="width:${all.length?Math.round(pd/all.length*100):0}%"></i>`; sub.appendChild(mb);
+      head.append(h, sub); sec.appendChild(head);
+      if (!shown.length) {
+        const e = document.createElement("div"); e.className = "empty";
+        e.textContent = all.length ? "Nothing matches this view." : "No tasks in this phase yet. Use Add task to create one.";
+        sec.appendChild(e);
+      } else {
+        const groups = {};
+        shown.forEach(t => { const k = t.stream || "General"; (groups[k] = groups[k] || []).push(t); });
+        Object.keys(groups).sort().forEach(k => {
+          const sh = document.createElement("div"); sh.className = "stream"; sh.textContent = k; sec.appendChild(sh);
+          const l = document.createElement("div"); l.className = "list"; groups[k].forEach(t => l.appendChild(row(t))); sec.appendChild(l);
+        });
+      }
+      bands.appendChild(sec);
+    });
+  }
+
+  async function setStatus(t, s){
+    if (!db) return;
+    try { await db.collection("tasks").doc(t.id).update({status:s, updatedAt:new Date().toISOString()}); say(""); }
+    catch(e){ handleWriteErr(e); }
+  }
+  function handleWriteErr(e){
+    if (e && e.code === "invalid_argument") { canWrite = false; render(); say("You can view this plan but not change it. Ask the owner for edit access.", true); }
+    else if (e && e.code === "quota_exceeded") say("The plan is full. Delete some finished tasks, then try again.", true);
+    else say("That change didn't save. Check your connection and try again.", true);
+  }
+
+  function openDlg(t){
+    editing = t || null;
+    $("dlgTitle").textContent = t ? "Edit task" : "Add task";
+    $("f-title").value = t ? t.title||"" : "";
+    $("f-phase").value = t ? t.phase||"x" : "p1";
+    $("f-stream").value = t ? t.stream||"" : "";
+    $("f-owner").value = t ? t.owner||"" : "";
+    $("f-due").value = t ? t.due||"" : "";
+    $("f-status").value = t ? t.status||"todo" : "todo";
+    $("f-notes").value = t ? t.notes||"" : "";
+    $("delBtn").hidden = !t;
+    $("dlg").showModal(); $("f-title").focus();
+  }
+  $("cancelBtn").addEventListener("click", () => $("dlg").close());
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    if (!db) return;
+    const data = {title:$("f-title").value.trim(), phase:$("f-phase").value, stream:$("f-stream").value.trim(), owner:$("f-owner").value.trim(), due:$("f-due").value, status:$("f-status").value, notes:$("f-notes").value.trim(), updatedAt:new Date().toISOString()};
+    if (!data.title) return;
+    $("saveBtn").disabled = true;
+    try {
+      if (editing) await db.collection("tasks").doc(editing.id).update(data);
+      else { data.order = Date.now(); await db.collection("tasks").doc().set(data); }
+      $("dlg").close(); say(editing ? "Task updated." : "Task added.");
+    } catch(e){ handleWriteErr(e); }
+    finally { $("saveBtn").disabled = false; }
+  });
+  $("delBtn").addEventListener("click", async () => {
+    if (!db || !editing) return;
+    if ($("delBtn").dataset.armed !== "1") { $("delBtn").dataset.armed = "1"; $("delBtn").textContent = "Tap again to delete"; return; }
+    try { await db.collection("tasks").doc(editing.id).delete(); $("dlg").close(); say("Task deleted."); }
+    catch(e){ handleWriteErr(e); }
+  });
+  $("dlg").addEventListener("close", () => { $("delBtn").dataset.armed = ""; $("delBtn").textContent = "Delete"; });
+
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.f; document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); render();
+  }));
+  $("owner").addEventListener("change", e => { ownerF = e.target.value; render(); });
+  $("q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); render(); });
+  $("addBtn").addEventListener("click", () => openDlg(null));
+
+  render();
+  (async () => {
+    await null;
+    const api = window.claude && window.claude.use ? window.claude : null;
+    db = api ? await api.use("db") : null;
+    if (!db) { canWrite = false; $("addBtn").hidden = true; tasks = (window.__TASKS__||[]).slice(); render(); say("Read-only snapshot, " + window.__SNAP__ + ". The live, editable plan is on claude.ai."); return; }
+    try { const user = await api.use("user"); const w = user && user.can ? await user.can("data.write") : null; if (w === false) { canWrite = false; $("addBtn").hidden = true; } } catch(e){}
+    let timer = setTimeout(() => say("The plan is taking a while to load. It may be out of date until it connects.", true), 10000);
+    db.collection("tasks").onSnapshot(snap => {
+      tasks = snap.docs.map(d => Object.assign({id:d.id}, d.data()));
+      if (!snap.metadata.fromCache) { clearTimeout(timer); if ($("status").classList.contains("warn")) say(""); }
+      render();
+    }, err => { clearTimeout(timer); say("The plan stopped updating. Reload the page to reconnect.", true); });
+  })();
+})();
+</script>
+
+</body></html>
