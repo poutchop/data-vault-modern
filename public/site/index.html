@@ -1,0 +1,488 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Carbon Clarity</title>
+<meta name="description" content="Carbon Clarity: a cleaner fish-smoking stove, audit-ready field data and carbon-credit income that reaches the women who smoke Ghana’s fish.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+</head><body>
+<style>
+/* Concept: an investor briefing for a field project. Dark forest hero over a real James Town photo, then clean reading sections; ember marks the money and the women. */
+:root{
+  --bg:#F3F6F2; --surface:#FFFFFF; --surface2:#E8EFEA; --fg:#14261F; --muted:#4F6159; --line:#CFDAD3;
+  --forest:#15332B; --ember:#B8431A; --ember-bg:#F9E3D8; --mint:#0F7C72; --gold:#8A6100;
+  --mud:#C49A6C; --mud-dark:#8C6440; --brick:#A9543A; --metal:#7C8A85; --wood:#6B4A2B; --fire:#E2731F; --smoke:#8D9A94; --fish:#D8B27A; --ash:#BFC5C2; --mint-bg:#DDF0EC;
+  --on-photo:#FFFFFF; --on-photo-soft:#D9E8E1; --photo-ember:#F08A57;
+  --serif:'Fraunces',Georgia,serif; --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#9FB6AC; --line:#2B4C42;
+  --forest:#08130F; --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --gold:#F2B134; --mud:#9C7A55; --mud-dark:#C9A27A; --brick:#C46A4D; --metal:#93A29C; --wood:#B08560; --fire:#F28C3A; --smoke:#7E8C86; --fish:#C9A36C; --ash:#56605C; --mint-bg:#123B36; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1C17; --surface:#143028; --surface2:#1A3A31; --fg:#EAF2EE; --muted:#9FB6AC; --line:#2B4C42;
+  --forest:#08130F; --ember:#F08A57; --ember-bg:#3A2418; --mint:#4FD6C8; --gold:#F2B134; --mud:#9C7A55; --mud-dark:#C9A27A; --brick:#C46A4D; --metal:#93A29C; --wood:#B08560; --fire:#F28C3A; --smoke:#7E8C86; --fish:#C9A36C; --ash:#56605C; --mint-bg:#123B36; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--forest)}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4.6vw,42px)}
+h3{font-size:22px}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ember)}
+section{padding-block:72px}
+.lead{font-size:clamp(18px,2.4vw,21px);max-width:62ch;color:var(--muted);margin-top:16px}
+.sechead{display:grid;gap:10px;margin-bottom:36px;max-width:760px}
+
+/* hero (full-bleed band inside the body gutters) */
+.hero{margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  position:relative;color:var(--on-photo);background:var(--forest);overflow:hidden}
+.hero img,.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;max-width:none}
+.hero video{object-position:50% 45%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,19,15,.78),rgba(8,19,15,.35));pointer-events:none}
+.hero .wrap{z-index:1}
+@media (prefers-reduced-motion:reduce){.hero video{display:none}}
+.hero .wrap{position:relative;padding:max(56px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-left,0px)) 56px max(16px,env(safe-area-inset-left,0px))}
+.kicker{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--on-photo-soft)}
+.hero h1{font-size:clamp(44px,9vw,92px);margin-top:20px;letter-spacing:-.01em}
+.hero .tag{font-family:var(--serif);font-size:clamp(20px,3.4vw,30px);margin-top:20px;max-width:30ch;color:var(--photo-ember);line-height:1.25}
+.hero .sub{margin-top:20px;max-width:58ch;color:var(--on-photo-soft);font-size:18px}
+.nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:36px;font-size:14px;font-weight:600}
+.nav a{text-decoration:none;color:var(--on-photo);border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px}
+.nav a:hover,.nav a:focus-visible{border-color:var(--photo-ember);outline:none}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:28px 24px 28px 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:clamp(36px,5vw,52px);color:var(--ember);line-height:1}
+.stat span{display:block;margin-top:10px;color:var(--muted);font-size:15px}
+@media (max-width:620px){.stat,.stat+.stat{padding:20px 0;border-left:0}.stat+.stat{border-top:1px solid var(--line)}}
+
+/* photo trio */
+.photos{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-top:40px}
+.photos figure{margin:0}
+.photos img{width:100%;height:100%;min-height:260px;object-fit:cover;display:block;border-radius:6px;aspect-ratio:4/3}
+.photos figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+@media (max-width:760px){.photos{grid-template-columns:1fr}.photos img{min-height:0}}
+.callout{margin-top:32px;padding:22px 24px;background:var(--surface2);border-radius:8px;max-width:820px}
+.callout b{color:var(--ember)}
+
+/* split rows */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px}
+.list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+.list li{padding-left:22px;position:relative}
+.list li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--ember)}
+
+/* three projects */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.proj img{width:100%;height:170px;object-fit:cover;display:block}
+.proj .body{padding:22px;display:grid;gap:10px;align-content:start}
+.proj .label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mint)}
+.proj ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:15.5px}
+.proj li+li{margin-top:6px}
+.proj.noimg .art{height:170px;background:var(--forest);display:grid;place-items:center}
+
+/* loop */
+.loop{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:8px}
+.node{flex:1 1 150px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;position:relative}
+.node small{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:6px}
+.node b{font-family:var(--serif);font-size:18px;line-height:1.2;display:block}
+.node.hot{background:var(--ember-bg);border-color:var(--ember)}
+.node.hot small{color:var(--ember)}
+.loopnote{margin-top:16px;color:var(--muted);font-size:15px;max-width:70ch}
+
+/* study table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--surface2)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+
+/* timeline */
+.tl{display:grid;gap:0;margin:0;padding:0;list-style:none;border-left:2px solid var(--line);margin-left:6px}
+.tl li{padding:0 0 30px 28px;position:relative}
+.tl li::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--mint)}
+.tl li.done::before{background:var(--mint)}
+.tl li.now::before{border-color:var(--ember);background:var(--ember)}
+.tl .when{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.tl h3{margin:4px 0 6px;font-size:21px}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px;margin-left:8px;vertical-align:middle;background:var(--surface2);color:var(--muted)}
+.pill.done{background:var(--mint);color:var(--forest)}
+.pill.now{background:var(--ember);color:var(--forest)}
+
+/* funding */
+.fund{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.fcard{padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.fcard b{font-family:var(--serif);font-size:30px;color:var(--ember);display:block;line-height:1.1}
+.fcard span{display:block;margin-top:8px;color:var(--muted);font-size:15px}
+
+/* honesty */
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.col{padding:24px;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
+.col h3{font-size:20px;margin-bottom:12px}
+.col.todo{border-color:var(--ember)}
+
+/* team */
+.team{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.team img{width:100%;border-radius:8px;display:block}
+@media (max-width:760px){.team{grid-template-columns:1fr}}
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.roles span{padding:7px 12px;border:1px solid var(--line);border-radius:99px;font-size:14px;background:var(--surface)}
+
+/* join */
+.join{background:var(--forest);color:var(--on-photo);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)))}
+.join .wrap{padding:72px max(16px,env(safe-area-inset-left,0px))}
+.join h2{color:var(--on-photo)}
+.join p{color:var(--on-photo-soft)}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+.way{padding:20px;border:1px solid rgba(255,255,255,.22);border-radius:8px}
+.way b{font-family:var(--serif);font-size:20px;color:var(--photo-ember);display:block;margin-bottom:6px}
+.way span{font-size:15px;color:var(--on-photo-soft)}
+.contact{margin-top:32px;padding:20px;border-radius:8px;background:rgba(255,255,255,.08);display:grid;gap:6px;font-size:16px}
+.mark{background:#FFF2CC;color:#3b2f00;padding:1px 6px;border-radius:3px}
+footer{padding:28px 0 40px;font-size:13px;color:var(--muted)}
+.join+footer{margin-top:0}
+
+/* pilot design */
+.arms{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:28px}
+.arm{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;gap:10px;align-content:start;min-width:0}
+.arm.improved{border-color:var(--mint)}
+.arm.optional{border-style:dashed}
+.arm .atag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px;background:var(--surface2);color:var(--muted);justify-self:start}
+.arm.improved .atag{background:var(--mint-bg);color:var(--mint)}
+.arm p{font-size:15.5px;color:var(--muted)}
+.drawings{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:28px}
+.drawings figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.drawings figure h3{font-size:18px;margin-bottom:8px}
+.drawings figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+.drawings svg{display:block;width:100%;height:auto}
+.drawings svg text{font-family:var(--sans);fill:var(--fg);font-size:13px}
+.drawings svg .lbl-muted{fill:var(--muted);font-size:12px}
+.drawings svg .lbl-ember{fill:var(--ember);font-weight:700}
+.drawings svg .lbl-mint{fill:var(--mint);font-weight:700}
+.mud{fill:var(--mud)} .mud-d{fill:var(--mud-dark)} .brick{fill:var(--brick)}
+.wood{fill:var(--wood)} .fire{fill:var(--fire)} .fishc{fill:var(--fish)} .ash{fill:var(--ash)}
+.tray{fill:none;stroke:var(--metal);stroke-width:2}
+.smoke{fill:none;stroke:var(--smoke);stroke-width:3;stroke-linecap:round;opacity:.85}
+.leader{stroke:var(--muted);stroke-width:1}
+.drip{fill:var(--ember)} .air{stroke:var(--mint);stroke-width:2.5;fill:none} .airhead{fill:var(--mint)}
+.ground{stroke:var(--muted);stroke-width:2}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+</style>
+
+<header class="hero">
+  <img src="img/hero.jpg" alt="">
+  <video class="bgvid" autoplay muted loop playsinline preload="auto" poster="img/hero.jpg" aria-hidden="true"><source src="img/bg.mp4" type="video/mp4"></video>
+  <div class="wrap">
+    <div class="kicker">Nkabom Research Projects · Accra, Ghana</div>
+    <h1>Carbon Clarity</h1>
+    <p class="tag">Carbon-credit income that reaches the women who smoke Ghana’s fish.</p>
+    <p class="sub">Three connected projects: a cleaner smoking stove, field sensors that produce audit-ready data, and a benefit-sharing model that pays the women directly.</p>
+    <nav class="nav" aria-label="Sections">
+      <a href="#problem">The problem</a><a href="#solution">Three projects</a><a href="#study">Comparative study</a><a href="#baseline">Evidence so far</a><a href="#roadmap">Roadmap</a><a href="#funding">Funding</a><a href="#join">Join us</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="problem">
+  <div class="sechead">
+    <div class="eyebrow">The problem</div>
+    <h2>Behind every smoked fish in Ghana is a woman working inside the smoke.</h2>
+    <p class="lead">Smoked fish is a staple, and the women who produce it carry the cost in their health, their fuel bills and their forests.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>≈80%</b><span>of the fish landed in Ghana is smoked (SNV)</span></div>
+    <div class="stat"><b>GHS 700</b><span>for one crate of raw fish, paid up front</span></div>
+    <div class="stat"><b>GHS 10</b><span>per day to rent a smoker; a new one costs GHS 300</span></div>
+  </div>
+  <div class="photos">
+    <figure><img src="img/hero.jpg" alt="Fish on an open smoking grill" loading="lazy"><figcaption>Fish smoking on open grills beside mud ovens and drum kilns, James Town.</figcaption></figure>
+    <figure><img src="img/kiln.jpg" alt="Smoke rising from a half-drum kiln" loading="lazy"><figcaption>Smoke pours from a half-drum kiln as wood burns at the base.</figcaption></figure>
+    <figure><img src="img/fuel.jpg" alt="Coconut shells and cardboard in a firebox" loading="lazy"><figcaption>Coconut shells and cardboard scraps in the firebox.</figcaption></figure>
+  </div>
+  <div class="two" style="margin-top:44px">
+    <div>
+      <h3>The cost to her health</h3>
+      <ul class="list">
+        <li>Burning eyes and chronic conjunctivitis</li>
+        <li>Persistent coughing and dizziness</li>
+        <li>Burns on fingers and forearms</li>
+        <li>Clinics tell her to stop smoking fish. It is her only livelihood.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>The cost to her income</h3>
+      <ul class="list">
+        <li>Many women smoke on commission, with no capital of their own.</li>
+        <li>Landlords collect daily rent on the smokers.</li>
+        <li>Firewood is a large part of what she spends every day.</li>
+        <li>Oily mackerel drips fat onto the embers, which flares into black soot, yet buyers want the golden, smoky result.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><b>The gap.</b> Carbon programmes reward cleaner cooking, but they often pay the project developer, not the woman standing at the fire. Carbon Clarity is built so the credit income reaches her.</div>
+</section>
+
+<section id="solution" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">The solution</div>
+    <h2>Three projects under one umbrella</h2>
+    <p class="lead">Each one solves a different part of the problem. Together they turn cleaner smoking into verified credits, and credits into income for the women.</p>
+  </div>
+  <div class="projects">
+    <article class="proj">
+      <img src="img/kiln.jpg" alt="Traditional half-drum kiln" loading="lazy">
+      <div class="body"><div class="label">Project 1 · The stove</div>
+        <h3>An improved smoked-fish cookstove</h3>
+        <p>Designed for the women who use it, and tested head to head against the traditional kiln.</p>
+        <ul><li>Comparative study of traditional and improved stoves</li><li>Results become the blueprint for the next-phase design</li><li>Less firewood, less smoke, same golden fish</li></ul></div>
+    </article>
+    <article class="proj noimg">
+      <div class="art"><svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true"><rect x="34" y="34" width="52" height="52" rx="6" stroke="#4FD6C8" stroke-width="4"/><rect x="48" y="48" width="24" height="24" rx="3" fill="#4FD6C8"/><path d="M46 34V18M60 34V18M74 34V18M46 102V86M60 102V86M74 102V86M34 46H18M34 60H18M34 74H18M102 46H86M102 60H86M102 74H86" stroke="#4FD6C8" stroke-width="4" stroke-linecap="round"/></svg></div>
+      <div class="body"><div class="label">Project 2 · The data</div>
+        <h3>IoT sensors that auditors can trust</h3>
+        <p>Field sensors capture cooking and fuel data automatically, so the claims behind each credit are measured, not estimated.</p>
+        <ul><li>12-unit sensor pilot (10 active, 2 spare)</li><li>Data collected to meet the evidence requirements of international carbon standards and auditors</li><li>Cloud storage and cellular connectivity built in</li></ul></div>
+    </article>
+    <article class="proj">
+      <img src="img/fish.jpg" alt="Finished smoked fish" loading="lazy">
+      <div class="body"><div class="label">Project 3 · The money</div>
+        <h3>A women-first benefit-sharing model</h3>
+        <p>Carbon-credit income is designed to flow to the women directly, by mobile money, so it covers the things she decides it should.</p>
+        <ul><li>Share size and payout rules co-designed with the women</li><li>Paid direct to her phone, no middlemen</li><li>Model in development</li></ul></div>
+    </article>
+  </div>
+
+  <div style="margin-top:56px" class="sechead"><div class="eyebrow">How they connect</div><h2 style="font-size:clamp(24px,3.6vw,32px)">From a better stove to money in her hand</h2></div>
+  <div class="loop" role="list">
+    <div class="node" role="listitem"><small>Step 1</small><b>Improved stove</b></div>
+    <div class="node" role="listitem"><small>Step 2</small><b>Less firewood burned</b></div>
+    <div class="node" role="listitem"><small>Step 3</small><b>Sensors verify the saving</b></div>
+    <div class="node" role="listitem"><small>Step 4</small><b>Credits are issued and sold</b></div>
+    <div class="node hot" role="listitem"><small>Step 5</small><b>Her share is paid to her phone</b></div>
+  </div>
+  <p class="loopnote">Less firewood also means less pressure on trees and lower carbon emissions. Our target is for women to spend up to 50% less on firewood, to be confirmed by the comparative study. That money stays with her.</p>
+</section>
+
+<section id="study" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">Next milestone</div>
+    <h2>The comparative study</h2>
+    <p class="lead">We have not run it yet. A traditional Chorkor kiln that processors already use will be tested side by side with a modified Ahotor oven from CSIR-FRI: same site, same processor, same fish, same fuel. It is the evidence everything else depends on.</p>
+  </div>
+  <div class="arms">
+    <article class="arm"><span class="atag">Arm A · Baseline</span><h3>Traditional Chorkor kiln</h3><p>The existing kiln at the site, owned or rented by the processor, so nothing is bought. Stacked mesh trays sit directly over an open wood fire, and fat drips onto the flames.</p></article>
+    <article class="arm improved"><span class="atag">Arm B · Improved</span><h3>Modified Ahotor oven</h3><p>Designed by the CSIR-Food Research Institute and built in Ghana. An enclosed combustion chamber and a fat-collecting tray keep drippings off the fire. Runs on wood, charcoal or LPG. This is the one oven we buy for the pilot.</p></article>
+    <article class="arm optional"><span class="atag">Arm C · Optional</span><h3>Retrofitted Chorkor</h3><p>An existing Chorkor fitted with a fat-collector tray. It tests whether a low-cost upgrade to a kiln women already rent gets most of the benefit.</p></article>
+  </div>
+  <div class="drawings">
+<figure>
+      <h3>Arm A · Traditional Chorkor</h3>
+      <svg viewBox="0 0 540 380" role="img" aria-labelledby="ta">
+        <title id="ta">Cross-section of a traditional Chorkor kiln: trays sit directly over an open wood fire, fat drips onto the fire and smoke rises through the fish.</title>
+        <!-- smoke -->
+        <path class="smoke" d="M90 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <path class="smoke" d="M160 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <path class="smoke" d="M230 78 q-12 -18 4 -34 q14 -14 0 -30"/>
+        <!-- cover -->
+        <rect x="30" y="80" width="280" height="10" rx="2" class="mud-d"/>
+        <!-- trays -->
+        <g>
+          <rect x="30" y="96" width="280" height="16" class="tray"/><rect x="30" y="118" width="280" height="16" class="tray"/><rect x="30" y="140" width="280" height="16" class="tray"/><rect x="30" y="162" width="280" height="16" class="tray"/><rect x="30" y="184" width="280" height="16" class="tray"/>
+          <g class="fishc">
+            <ellipse cx="60" cy="192" rx="18" ry="5"/><ellipse cx="105" cy="192" rx="18" ry="5"/><ellipse cx="150" cy="192" rx="18" ry="5"/><ellipse cx="195" cy="192" rx="18" ry="5"/><ellipse cx="240" cy="192" rx="18" ry="5"/><ellipse cx="282" cy="192" rx="18" ry="5"/>
+            <ellipse cx="60" cy="170" rx="18" ry="5"/><ellipse cx="105" cy="170" rx="18" ry="5"/><ellipse cx="150" cy="170" rx="18" ry="5"/><ellipse cx="195" cy="170" rx="18" ry="5"/><ellipse cx="240" cy="170" rx="18" ry="5"/><ellipse cx="282" cy="170" rx="18" ry="5"/>
+            <ellipse cx="60" cy="148" rx="18" ry="5"/><ellipse cx="105" cy="148" rx="18" ry="5"/><ellipse cx="150" cy="148" rx="18" ry="5"/><ellipse cx="195" cy="148" rx="18" ry="5"/><ellipse cx="240" cy="148" rx="18" ry="5"/><ellipse cx="282" cy="148" rx="18" ry="5"/>
+          </g>
+        </g>
+        <!-- walls -->
+        <rect x="30" y="200" width="22" height="90" class="mud"/>
+        <rect x="288" y="200" width="22" height="140" class="mud"/>
+        <!-- fire -->
+        <rect x="80" y="318" width="80" height="12" rx="6" class="wood"/><rect x="150" y="322" width="90" height="12" rx="6" class="wood"/><rect x="110" y="310" width="70" height="11" rx="5" class="wood"/>
+        <path class="fire" d="M95 312 q10 -40 22 -6 q8 -34 20 -4 q10 -46 24 -2 q8 -30 20 2 q10 -38 22 0 z"/>
+        <!-- fat drips -->
+        <g class="drip"><circle cx="120" cy="222" r="3.5"/><circle cx="121" cy="246" r="3.5"/><circle cx="122" cy="270" r="3.5"/><circle cx="190" cy="230" r="3.5"/><circle cx="191" cy="256" r="3.5"/><circle cx="192" cy="282" r="3.5"/></g>
+        <line x1="0" y1="340" x2="540" y2="340" class="ground"/>
+        <!-- labels -->
+        <line x1="310" y1="85" x2="330" y2="85" class="leader"/><text x="336" y="89">Cover (sack or board)</text>
+        <line x1="310" y1="148" x2="330" y2="148" class="leader"/><text x="336" y="146">5–10 mesh trays</text><text x="336" y="162" class="lbl-muted">~20 kg fresh fish each</text>
+        <line x1="200" y1="256" x2="330" y2="236" class="leader"/><text x="336" y="232" class="lbl-ember">Fat drips onto fire</text><text x="336" y="248" class="lbl-muted">flare-ups and black soot</text>
+        <line x1="240" y1="320" x2="330" y2="300" class="leader"/><text x="336" y="300">Open wood fire</text><text x="336" y="316" class="lbl-muted">lit with waste cardboard</text>
+        <line x1="40" y1="315" x2="40" y2="366" class="leader"/><text x="46" y="370" class="lbl-muted">Stoke hole</text>
+        <text x="336" y="40" class="lbl-muted">Smoke rises straight</text><text x="336" y="56" class="lbl-muted">through fish to operator</text>
+      </svg>
+      <figcaption>Schematic cross-section, not to scale. Standard Chorkor dimensions from Nerquaye-Tetteh (1999).</figcaption>
+    </figure>
+
+    <figure>
+      <h3>Arm B · Modified Ahotor</h3>
+      <svg viewBox="0 0 540 380" role="img" aria-labelledby="tb">
+        <title id="tb">Cross-section of a modified Ahotor oven: an enclosed combustion chamber with grate and air inlets sits inside the shell, and a fat-collecting tray between fire and fish catches drippings.</title>
+        <path class="smoke" d="M120 78 q-10 -16 3 -28 q11 -11 0 -24" style="opacity:.45"/>
+        <path class="smoke" d="M210 78 q-10 -16 3 -28 q11 -11 0 -24" style="opacity:.45"/>
+        <rect x="30" y="80" width="280" height="10" rx="2" class="mud-d"/>
+        <g>
+          <rect x="30" y="96" width="280" height="16" class="tray"/><rect x="30" y="118" width="280" height="16" class="tray"/><rect x="30" y="140" width="280" height="16" class="tray"/><rect x="30" y="162" width="280" height="16" class="tray"/><rect x="30" y="184" width="280" height="16" class="tray"/>
+          <g class="fishc">
+            <ellipse cx="60" cy="192" rx="18" ry="5"/><ellipse cx="105" cy="192" rx="18" ry="5"/><ellipse cx="150" cy="192" rx="18" ry="5"/><ellipse cx="195" cy="192" rx="18" ry="5"/><ellipse cx="240" cy="192" rx="18" ry="5"/><ellipse cx="282" cy="192" rx="18" ry="5"/>
+            <ellipse cx="60" cy="170" rx="18" ry="5"/><ellipse cx="105" cy="170" rx="18" ry="5"/><ellipse cx="150" cy="170" rx="18" ry="5"/><ellipse cx="195" cy="170" rx="18" ry="5"/><ellipse cx="240" cy="170" rx="18" ry="5"/><ellipse cx="282" cy="170" rx="18" ry="5"/>
+            <ellipse cx="60" cy="148" rx="18" ry="5"/><ellipse cx="105" cy="148" rx="18" ry="5"/><ellipse cx="150" cy="148" rx="18" ry="5"/><ellipse cx="195" cy="148" rx="18" ry="5"/><ellipse cx="240" cy="148" rx="18" ry="5"/><ellipse cx="282" cy="148" rx="18" ry="5"/>
+          </g>
+        </g>
+        <!-- outer shell -->
+        <rect x="30" y="200" width="22" height="140" class="mud"/>
+        <rect x="288" y="200" width="22" height="140" class="mud"/>
+        <!-- fat collector tray with ash -->
+        <rect x="52" y="214" width="236" height="9" class="metal" style="fill:var(--metal);stroke:none"/>
+        <rect x="56" y="209" width="228" height="5" class="ash"/>
+        <g class="drip"><circle cx="110" cy="203" r="3"/><circle cx="170" cy="204" r="3"/><circle cx="230" cy="203" r="3"/></g>
+        <!-- combustion chamber -->
+        <rect x="110" y="250" width="12" height="90" class="brick"/>
+        <rect x="218" y="250" width="12" height="90" class="brick"/>
+        <rect x="110" y="244" width="40" height="8" class="brick"/>
+        <rect x="190" y="244" width="40" height="8" class="brick"/>
+        <!-- hot gas path -->
+        <path d="M170 248 L170 230" stroke="var(--fire)" stroke-width="3" fill="none"/>
+        <path d="M163 234 L170 226 L177 234 Z" class="fire"/>
+        <!-- grate -->
+        <line x1="122" y1="306" x2="218" y2="306" stroke="var(--metal)" stroke-width="3" stroke-dasharray="6 5"/>
+        <rect x="132" y="294" width="76" height="10" rx="5" class="wood"/>
+        <path class="fire" d="M138 296 q8 -28 16 -4 q8 -26 16 -2 q8 -30 18 0 q6 -22 14 4 z"/>
+        <rect x="124" y="326" width="92" height="12" class="ash"/>
+        <!-- air inlets -->
+        <path class="air" d="M70 322 L118 322"/><path class="airhead" d="M116 316 L126 322 L116 328 Z"/>
+        <path class="air" d="M70 270 L118 270"/><path class="airhead" d="M116 264 L126 270 L116 276 Z"/>
+        <line x1="0" y1="340" x2="540" y2="340" class="ground"/>
+        <!-- labels -->
+        <line x1="310" y1="148" x2="330" y2="148" class="leader"/><text x="336" y="146">Same tray stack</text><text x="336" y="162" class="lbl-muted">as a Chorkor</text>
+        <line x1="284" y1="214" x2="330" y2="200" class="leader"/><text x="336" y="196" class="lbl-mint">Fat-collecting tray</text><text x="336" y="212" class="lbl-muted">ash absorbs drippings</text>
+        <line x1="230" y1="262" x2="330" y2="250" class="leader"/><text x="336" y="250">Enclosed combustion</text><text x="336" y="266">chamber + grate</text>
+        <line x1="208" y1="300" x2="330" y2="296" class="leader"/><text x="336" y="296" class="lbl-muted">wood, charcoal or LPG</text>
+        <text x="20" y="262" class="lbl-mint" style="font-size:12px">Secondary air</text>
+        <text x="20" y="314" class="lbl-mint" style="font-size:12px">Primary air</text>
+        <text x="336" y="40" class="lbl-muted">Less smoke reaches</text><text x="336" y="56" class="lbl-muted">fish and operator</text>
+      </svg>
+      <figcaption>Schematic cross-section, not to scale, drawn from CSIR-FRI's published description (2022). Final dimensions and drawings will come from CSIR-FRI with the quote.</figcaption>
+    </figure>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>What we compare</th><th>How we plan to measure it</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Firewood used per batch</td><td>Fuel weighed at the stove, logged by sensors</td><td>The basis for any carbon claim</td></tr>
+      <tr><td>Fuel spending</td><td>Daily cost records from the women who smoke</td><td>Tests the 50% savings target</td></tr>
+      <tr><td>Smoke and emissions</td><td>Portable CO and PM2.5 monitoring, with lab calibration</td><td>Health benefit and verification</td></tr>
+      <tr><td>Fish quality and colour</td><td>Buyer and processor feedback</td><td>If the fish does not sell, the stove will not be used</td></tr>
+      <tr><td>Traditional kiln vs improved stove</td><td>Sensors on both, side by side, same conditions</td><td>A fair, auditable baseline</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="baseline" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">Evidence so far</div>
+    <h2>We started on the ground, in James Town</h2>
+    <p class="lead">In October 2026 the team visited the James Town fish landing site in Accra and spoke with artisanal women fish processors. The baseline work is done; it comes before any stove is built.</p>
+  </div>
+  <div class="two">
+    <div>
+      <h3>What the October fieldwork produced</h3>
+      <ul class="list">
+        <li>Field visit and interviews with women fish processors</li>
+        <li>A map of the five tiers of the smoking value chain</li>
+        <li>A working paper draft on artisanal fish smoking in James Town</li>
+        <li>Observations of how kilns burn, what fuels they use and why soot forms</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Who is in the system</h3>
+      <ul class="list">
+        <li><b>The women smokers:</b> commission and independent processors, plus adolescent assistants</li>
+        <li><b>Enablers:</b> smoker landlords, fuelwood haulers, fish financiers</li>
+        <li><b>Informal inputs:</b> cardboard scavengers, kiln masons, urban consumers</li>
+        <li><b>Governance and research:</b> clinics, NAFPTA, Fisheries Commission, CSIR-FRI, FDA Ghana</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">Roadmap</div>
+    <h2>18 months, from baseline to a working pilot</h2>
+    <p class="lead">September 2026 to February 2028, in six quarters. Timing is indicative and will follow what the study finds.</p>
+  </div>
+  <ol class="tl">
+    <li class="done"><div class="when">October 2026</div><h3>Listen first <span class="pill done">Done</span></h3><p>James Town field visit, interviews with women processors and the stakeholder map.</p></li>
+    <li class="now"><div class="when">November – December 2026</div><h3>Survey and working paper <span class="pill now">Now</span></h3><p>Surveys of 25–30 women processors, plus interviews with fuelwood suppliers and landlords. A working paper on fish smoking in James Town.</p></li>
+    <li><div class="when">2027</div><h3>Comparative study and sensor build <span class="pill">Planned</span></h3><p>Traditional kiln versus improved stove, with sensors on both. Co-design of the next-phase stove with the women. Lab calibration of the sensing kit.</p></li>
+    <li><div class="when">Mid 2027 onward</div><h3>Benefit-sharing model tested <span class="pill">Planned</span></h3><p>Mobile-money micro-incentives trialled with women taking part, and the payout rules refined with them.</p></li>
+    <li><div class="when">Late 2027 – February 2028</div><h3>Pilot results and publications <span class="pill">Planned</span></h3><p>Verified data from the 12-unit sensor pilot, two open-access journal papers and a model other programmes can reuse.</p></li>
+  </ol>
+</section>
+
+<section id="funding" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">Funding</div>
+    <h2>What a contribution pays for</h2>
+    <p class="lead">The project budget runs over six quarters. These are the lines that go straight to the women and the evidence. The full line-by-line budget is available on request.</p>
+  </div>
+  <div class="fund">
+    <div class="fcard"><b>12 units</b><span>Clean-cooking monitoring units at US$145 each, for the sensor pilot.</span></div>
+    <div class="fcard"><b>US$1,800</b><span>Lab calibration and emissions-monitoring kit, so the data holds up to audit.</span></div>
+    <div class="fcard"><b>US$500</b><span>Mobile-money micro-incentives paid directly to participating women.</span></div>
+    <div class="fcard"><b>5 interns</b><span>Undergraduate and graduate students working alongside 3 research assistants and a lab technician.</span></div>
+  </div>
+</section>
+
+<section id="honest" style="padding-top:0">
+  <div class="sechead">
+    <div class="eyebrow">Straight answers</div>
+    <h2>What is proven, and what is still to prove</h2>
+  </div>
+  <div class="proof">
+    <div class="col"><h3>Established</h3>
+      <ul class="list"><li>The conditions at James Town: smoke exposure, fuel costs and who is involved</li><li>The research team and a costed 18-month plan</li><li>Strong buyer demand for golden, well-smoked fish</li></ul></div>
+    <div class="col todo"><h3>Still to prove</h3>
+      <ul class="list"><li>How much firewood and money the improved stove actually saves</li><li>Whether sensor data meets a given carbon standard’s method</li><li>The size of the women’s share, which we will set with them and sponsors</li></ul></div>
+  </div>
+</section>
+
+<section id="team" style="padding-top:0">
+  <div class="team">
+    <img src="img/team.jpg" alt="The Carbon Clarity team smiling at the James Town fish smoking site" loading="lazy">
+    <div>
+      <div class="eyebrow">The team</div>
+      <h2 style="margin-top:10px;font-size:clamp(26px,4vw,36px)">Engineers, researchers and students, working next to the women</h2>
+      <p class="lead" style="margin-top:14px">An interdisciplinary team from the Nkabom Research Projects, led by two research co-leads, with research assistants, a lab technician, a product developer and a student intern programme.</p>
+      <div class="roles"><span>Research co-leads</span><span>Research assistants</span><span>Lab and workshop</span><span>Product development</span><span>Student interns</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--photo-ember)">Join us</div>
+    <h2 style="margin-top:10px">Put your energy where the smoke is</h2>
+    <p style="margin-top:16px;max-width:60ch;font-size:18px">Clean-cooking projects work when the people at the fire benefit. Back the evidence that makes that possible.</p>
+    <div class="ways">
+      <div class="way"><b>Fund the study</b><span>Pay for the comparative study, sensors and calibration.</span></div>
+      <div class="way"><b>Partner with us</b><span>Carbon-standards experts, NGOs, processors’ associations and stove makers.</span></div>
+      <div class="way"><b>Open doors</b><span>Introductions to buyers, regulators and women’s processor groups.</span></div>
+      <div class="way"><b>Join as an intern</b><span>Third-year students are welcome.</span></div>
+    </div>
+    <div class="contact">
+      <div><strong>Carbon Clarity</strong></div>
+      <div>Email: <a href="mailto:carbonclarity71@gmail.com">carbonclarity71@gmail.com</a></div>
+      <div>Phone / WhatsApp: <a href="tel:+233594303507">+233 59 430 3507</a></div>
+    </div>
+  </div>
+</section>
+<footer class="wrap">Photos: Carbon Clarity team, James Town, Accra, October 2026. The stove, sensors and benefit-sharing model are planned and not yet deployed. ≈80% figure: SNV, “The invisible fishers”. Cost figures from the October 2026 field report.</footer>
+
+</body></html>
