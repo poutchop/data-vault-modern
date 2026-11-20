@@ -71,14 +71,14 @@
     s.refl = Object.keys(S.reflect).filter(function (k) { return (S.reflect[k].wins || "").trim(); }).length;
     s.outsDone = D.outputs.filter(function (x, i) { return outStatus(i) === "Done"; }).length;
     s.sdone = 0; Object.keys(S.done || {}).forEach(function (k) { Object.keys(S.done[k]).forEach(function (j) { if (S.done[k][j]) s.sdone++; }); });
-    s.perfect = LIT ? perfectDays() : 0;
+    s.perfect = LIT ? perfectDays() : 0; s.chal = Object.keys(S.chal || {}).length; s.mis = 0; Object.keys(S.mis || {}).forEach(function (k) { s.mis += Object.keys(S.mis[k]).length; });
     s.vids = Object.keys(S.vids).filter(function (k) { return S.vids[k]; }).length;
     var st = streaks(); s.streak = st.current; s.best = st.best; s.hours = hours(); s.week = hours(monday(today()));
     s.ms = milestones(s); s.msDone = s.ms.filter(function (m) { return m.done; }).length;
     s.xpRows = [["Research steps completed", s.stepsDone, PTS.steps], ["Papers read", s.read, PTS.read], ["Core papers read (bonus)", s.coreRead, PTS.core],
       ["Evidence items fully verified", s.evYes, PTS.ev], ["Gaps closed", s.gapsClosed, PTS.gaps], ["Focus sessions (25 min)", s.sess, PTS.sess],
       ["Skill levels gained", s.lvls, PTS.lvl], ["Learning resources completed", s.resDone, PTS.res], ["Weekly reflections written", s.refl, PTS.refl],
-      ["Career outputs completed", s.outsDone, PTS.outs], ["Growth videos watched", s.vids, 5], ["Sessions done (timetable)", s.sdone, 3], ["Perfect days (all goals met)", s.perfect, 20], ["Milestones unlocked", s.msDone, PTS.ms]];
+      ["Career outputs completed", s.outsDone, PTS.outs], ["Growth videos watched", s.vids, 5], ["Sessions done (timetable)", s.sdone, 3], ["Perfect days (all goals met)", s.perfect, 20], ["Practical challenges done", s.chal, 10], ["Research missions completed", s.mis, 10], ["Milestones unlocked", s.msDone, PTS.ms]];
     s.xp = s.xpRows.reduce(function (a, r) { return a + r[1] * r[2]; }, 0);
     var L = D.levels, li = 0; L.forEach(function (l, i) { if (s.xp >= l[2]) li = i; });
     s.level = L[li][0]; s.title = L[li][1]; s.nextXp = L[li + 1] ? L[li + 1][2] : null;
@@ -123,7 +123,7 @@
     var h = '<div class="card"><div class="lvl"><div class="num">' + s.level + '</div><div><p class="eyebrow">Level ' + s.level + " · " + esc(s.title) + "</p><b>" + s.xp.toLocaleString() + " XP</b>" + (s.nextXp ? " · next level at " + s.nextXp.toLocaleString() : "") + bar(s.toNext) +
       '<p class="small" style="margin-top:6px">Streak ' + s.streak + " day" + (s.streak === 1 ? "" : "s") + " · " + s.week + " of " + S.goal + " focus hours this week</p></div></div><p class=\"msg\">" + esc(msg) + "</p>" +
       '<div class="row"><a class="btn pri" href="#tracker-focus">Log today\'s focus</a><a class="btn" href="#tracker-reflect">Weekly reflection</a><a class="btn" href="' + XLSX + '">Download Excel version</a></div></div>';
-    h += '<div class="card"><p class="eyebrow">Your day · <a href="#tracker-time">full timetable</a></p>' + nnHtml() + "</div>" + digest(today()) + videoCard(today(), true);
+    h += miniToday(today());
     h += '<div class="card"><h2>Research progress</h2><div class="kpis" style="margin-top:12px">' +
       kpi(Math.round(s.progress * 100) + "%", "overall progress") + kpi(s.stepsDone + " of " + D.steps.length, "steps completed") +
       kpi(s.overdue, "overdue steps", s.overdue > 0) + kpi(s.soon, "due in next 3 days", s.soon > 0) +
@@ -709,6 +709,7 @@
     L.push("Current block: " + (nn.now.length ? nn.now.map(function (b) { return b.s + "–" + b.e + " " + brief(b, d).title; }).join("; ") : "free time") + ". Next: " + (nn.next ? nn.next.s + " " + brief(nn.next, d).title : "nothing else today") + ".");
     L.push("\nTODAY'S TIMETABLE:"); plan(d).filter(function (b) { return majorIds().concat(["tasks", "wrap"]).indexOf(b.id) >= 0; }).forEach(function (b) { var x = brief(b, d); L.push("- " + x.time + " " + x.title + (isDone(d, b.id) ? " [DONE]" : "") + ". Goal: " + x.goal + (x.out ? " Output: " + x.out : "") + (note(d, b.id) ? " My notes: " + note(d, b.id).slice(0, 300) : "")); });
     var pq = (S.pomo || {})[dk(d)]; L.push("Pomodoro today: " + (pq ? pq.n + " focus blocks, " + pq.mins + " min, " + (pq.dist || 0) + " distractions" : "none yet") + (P && P.mode === "focus" ? ". Currently in a focus block on: " + P.label : P && (P.mode === "short" || P.mode === "long") ? ". Currently on a break" : "") + ".");
+    try { L.push("\nTODAY'S MISSIONS (from his Today page):"); missions(d).forEach(function (m) { L.push("- [" + (m.done ? "x" : " ") + "] " + m.time + " " + m.kind + ": " + m.t + (m.how ? " — " + m.how : "") + (m.fin ? " Done when: " + m.fin : "")); }); var chx = challengeFor(d); L.push("Practical challenge: " + chx[0] + " — " + chx[1] + ((S.chal || {})[dk(d)] ? " [done]" : "")); } catch (e) {}
     L.push("\nTODAY'S GOALS:"); goals(d).forEach(function (g) { L.push("- [" + (g.done ? "x" : " ") + "] " + g.t); });
     if (LIT) { L.push("\nTODAY'S PAPERS:"); todaysPapers(d).forEach(function (i) { var r = LIT.rows[i]; L.push("- " + (litRead(i) === "Read" ? "[read] " : "") + r[4] + " — " + r[5] + ", " + r[6] + " " + r[3] + " (" + r[1] + ")"); }); }
     if (st) { L.push("\nRESEARCH (Ghana carbon market trends, due 15 Jan 2027): current step " + st.n + " '" + st.task + "', due " + fd(st.due) + ", status " + stepStatus(st) + ". Deliverable: " + st.deliv + ". Covers: " + st.info + ". Sources: " + st.src + (st.notes ? ". Note: " + st.notes : "") + ".");
@@ -923,6 +924,142 @@
   }
   function pomoInit() { pload(); ensurePomo(); ptick(); pdraw(); }
 
+  /* ---------- TODAY: one simple page with just what you need to do ---------- */
+  function M(t, how, done, src) { return { t: t, how: how, done: done, src: src || "" }; }
+  var MISSIONS = {
+    1: [M("Write your research question in one sentence", "Make it specific: what, where, when.", "One sentence you could say to a funder."), M("List 5 sub-questions", "One for each part of the market: rules, deals, projects, people, money.", "5 sub-questions in your Steps notes.")],
+    2: [M("Map who's who in Ghana's carbon market", "EPA, Carbon Market Office, Ministry of Finance, Forestry Commission, COCOBOD. One line on each one's role.", "A 5-row who-does-what table.", "Ghana Carbon Market Office website; EPA Ghana"), M("Check the status of the Carbon Market Regulations", "Draft, laid, passed or gazetted? Find the newest official mention.", "Gap G01 updated with a date and source.", "Parliament of Ghana; EPA/CMO news")],
+    3: [M("List every Article 6 partner country", "Find all bilateral agreements Ghana has signed and the signing dates.", "Country + date filled in for each row of your agreement table.", "Ghana Carbon Market Office; UNEP-CCC Article 6 Pipeline"),
+      M("Ghana–Switzerland: the first transfers", "Which projects were authorised, how many credits moved, when? Check the 34,705 vs 11,733 figures in your notes.", "One verified number with its source in the Evidence log.", "KliK Foundation; Swiss FOEN; CMO reports"),
+      M("Ghana–Singapore and Ghana–Sweden", "What's agreed so far? Any projects authorised?", "Two table rows filled in with sources.", "Singapore NCCS; Swedish Energy Agency; CMO"),
+      M("Other talks: South Korea, Liechtenstein and others", "Note the status (signed, negotiating, announced) and date of each.", "Status column complete.", "UNEP-CCC Article 6 Pipeline; news from official sources"),
+      M("How Ghana applies corresponding adjustments", "Find one official statement on how adjustments work and the share Ghana keeps for its own NDC.", "Gap G02 or G05 updated with a quote and link.", "CMO framework documents; Ghana's Article 6 guidance"),
+      M("Write 150 words on the pattern", "Look at your table: who buys, which sectors, how much? What surprises you?", "150-word summary saved in Step 3 notes.")],
+    4: [M("Count Ghana projects on the Verra registry", "Filter by country = Ghana. Count projects by type.", "A small table: sector and number of projects.", "registry.verra.org"),
+      M("Count Ghana projects on the Gold Standard registry", "Same filter, same table.", "Table updated with Gold Standard numbers.", "registry.goldstandard.org"),
+      M("Credits issued versus retired", "For your top 3 projects, note credits issued and retired, and the year.", "3 rows with numbers, dates and sources.", "Verra and Gold Standard registries"),
+      M("Who runs Ghana's cookstove projects?", "List the top 5 developers and their project names.", "A 5-row developer list.", "Registries; Clean Cooking Alliance"),
+      M("Cocoa and forests: Ghana's REDD+ payments", "What has the Ghana Cocoa Forest REDD+ Programme been paid, and when?", "One verified payment figure with source.", "World Bank FCPF; Forestry Commission"),
+      M("Make one chart: projects by sector", "Use tonight's data skills: a simple bar chart in Excel.", "A chart you can drop into the report.")],
+    5: [M("Find Ghana's benefit-sharing rule", "What share of carbon revenue must go to communities, by law or policy?", "Rule, percentage and source in the Evidence log.", "CMO framework; EPA"),
+      M("REDD+ benefit-sharing plan", "Who gets what: farmers, chiefs, government? Note the split.", "A 'who gets what' list.", "Forestry Commission; World Bank FCPF"),
+      M("One cookstove project: how do households benefit?", "Cheaper stoves, cash, or something else? Pick one project and find out.", "3 bullet points with a source."),
+      M("Is there a grievance mechanism?", "How can a community complain about a carbon project in Ghana?", "Gap G11 or G16 updated."),
+      M("Women and carbon money", "Find one finding on women receiving carbon revenue (Ghana or West Africa).", "One evidence row with the paper."),
+      M("3 recommendations for Carbon Clarity", "How should your mobile-money benefit sharing work, based on what you found?", "3 recommendations in your notes.")],
+    6: [M("List 10 developers and buyers active in Ghana", "Who builds projects, who buys credits?", "A 10-row actor list.", "Registries; company websites"),
+      M("Quality labels: ICVCM Core Carbon Principles", "Which cookstove methodologies are approved or rejected?", "One-paragraph note with date.", "icvcm.org"),
+      M("What do cookstove credits sell for?", "Find 2 price points with source and date. Prices change, so date them.", "2 dated prices in the Evidence log."),
+      M("The over-crediting critique", "What does Gill-Wiehl et al. (2024) mean for Ghana's cookstove credits?", "5-sentence summary."),
+      M("Who buys Ghana's credits?", "Name 3 corporate or government buyers.", "3 buyers with sources."),
+      M("One-page memo: the opportunity for Carbon Clarity", "Where do you fit in this market?", "One page, saved in Docs.")],
+    7: [M("Draft your interview guide", "8 open questions. Start easy, finish with 'what did I miss?'", "Interview guide v1."),
+      M("List 10 people to interview", "CMO, developers, NGOs, processors' groups. How will you reach each one?", "10 names and contact routes."),
+      M("Send 3 interview requests", "Ask the coach to help draft a short, polite request.", "3 requests sent."),
+      M("Practise one interview", "Try your guide on a colleague and fix the confusing questions.", "Interview guide v2."),
+      M("Do interview 1", "Record (with consent) or take careful notes.", "Notes typed up the same day."),
+      M("Code your notes into themes", "Use what you learned in the thematic analysis lesson.", "5 themes with quotes.")],
+    8: [M("Outline the report", "Headings only: intro, rules, deals, projects, benefits, market, recommendations.", "An outline doc."), M("Write the 'rules and institutions' section", "Use your Step 2 notes.", "A first draft of the section."), M("Write the 'Article 6 deals' section", "Use your agreement table.", "A first draft of the section."), M("Write the 'projects and volumes' section", "Use your chart.", "A first draft of the section."), M("Make 3 clear charts", "One message per chart.", "3 charts in the report."), M("Write the executive summary", "5 bullet points a minister could read in 1 minute.", "Executive summary.")],
+    9: [M("Fact-check 10 numbers", "Each number gets a source and date.", "10 ticks in the Evidence log."), M("Check every citation", "APA 7 format, working links.", "A clean reference list."), M("Ask someone to read it", "One colleague, one question: what's unclear?", "Feedback received."), M("Final formatting and share", "Headings, page numbers, PDF.", "Report sent.")]
+  };
+  var CHALLENGES = [
+    ["Teach it at home", "Explain this morning's lesson to someone at home in 2 minutes. If they get it, you've got it."],
+    ["One paper, one tweet", "Turn one of today's papers into a single 280-character insight. Save it in your notes."],
+    ["Ask a real expert", "Ask one processor, colleague or partner one question about what you learned today."],
+    ["Draw the flow", "On paper, draw how a carbon credit moves: James Town stove → verifier → registry → buyer → money back to the women."],
+    ["Double-check a number", "Take one number from today's reading and check it in a second source. Do they match?"],
+    ["Teach the coach", "Write what you learned today in 5 lines and ask the coach to find the gaps."],
+    ["One-slide summary", "Make one slide that sums up yesterday's work. Good practice for Friday's speaking session."],
+    ["Do the maths", "If one processor saves one bundle of wood a week at your local price, what does she save in a year? Use a real price you know."],
+    ["Voice note pitch", "Record a 60-second voice note: what Carbon Clarity does and why it matters. Listen back once."],
+    ["Find the Ghana angle", "For today's lesson, find one way it applies specifically in Ghana, and note the source."],
+    ["Spot the gap", "Read one of your research gaps. Write the single email or search that would close it."],
+    ["Explain like a funder", "Write 3 sentences on today's research mission as if a funder asked 'so what?'"],
+    ["Clean one dataset", "Open one messy sheet (pilot or literature) and fix 10 rows: dates, units, names."],
+    ["Vocabulary sprint", "Pick 3 terms from the glossary and use each in a sentence about James Town."],
+    ["Future headline", "Write the newspaper headline you want about Carbon Clarity in 2028. Then one step towards it."],
+    ["Swap a scroll", "Next time you reach for your phone, open one free PDF from today's papers instead."],
+    ["Process map in 5 minutes", "Sketch how a processor smokes one batch of fish today. Circle where smoke and wood are wasted."],
+    ["Three whys", "Ask 'why?' three times about today's biggest problem. Write down the root cause."],
+    ["Thank someone", "Send a short thank-you to someone who helped your research or project this week."],
+    ["Predict and check", "Before reading a paper, guess its main finding. After reading, were you right?"]
+  ];
+  var WP = null, WPLOAD = false;
+  function workplanTask() {
+    if (!WPLOAD) { WPLOAD = true; fetch("/api/tasks", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var T = j && j.tasks || []; T = T.filter(function (t) { return t.status !== "done" && t.title; }).sort(function (a, b) { return (a.status === "doing" ? -1 : 0) - (b.status === "doing" ? -1 : 0) || String(a.due || "9").localeCompare(String(b.due || "9")); }); WP = T[0] || null; if (WP && location.hash === "#today") todayView(); }).catch(function () {}); }
+    return WP;
+  }
+  function missionFor(st) {
+    if (!st) return null; var L = MISSIONS[st.n] || [], dn = (S.mis || {})[st.n] || {}, t = dk(today());
+    for (var i = 0; i < L.length; i++) { if (!dn[i] || dn[i] === t) return { i: i, m: L[i], done: dn[i] === t, total: L.length, left: L.filter(function (x, j) { return !dn[j]; }).length }; }
+    return null;
+  }
+  function challengeFor(d) { var n = Math.floor((d - new Date(2026, 0, 1)) / 864e5); return CHALLENGES[((n % CHALLENGES.length) + CHALLENGES.length) % CHALLENGES.length]; }
+  function missions(d) {
+    var dow = d.getDay(), bl = plan(d), k = dk(d), out = [];
+    function blk(id) { return bl.filter(function (b) { return b.id === id; })[0]; }
+    var lb = blk("learn") || blk("learn-sun");
+    if (lb) { var x = brief(lb, d), lid = (x.links[0] || [])[1] || "#home"; out.push({ id: "learn", time: lb.s, ico: "📚", kind: "Learn", t: x.title.replace(/^📚 |^🌱 /, ""), how: lb.id === "learn-sun" ? "Watch the Sunday talk, then write your weekly reflection." : "Watch, read, take the 3-question quiz.", fin: x.out, open: lid, done: isDone(d, lb.id), blk: lb.id, ask: askPrompt(x, d) }); }
+    var rb = blk("research"), db = blk("deep");
+    if (rb) { var st = curStep(d), mi = missionFor(st);
+      out.push({ id: "research", time: rb.s, ico: "🌍", kind: "Research mission" + (st ? " · Step " + st.n : ""), t: mi ? mi.m.t : st ? st.task : "Research", how: mi ? mi.m.how + (mi.m.src ? " Where to look: " + mi.m.src + "." : "") : "", fin: mi ? mi.m.done : "", open: "#tracker-steps", done: isDone(d, "research"), blk: "research", mis: mi && st ? st.n + "|" + mi.i : "", prog: mi ? "Mission " + (mi.total - mi.left + (mi.done ? 0 : 1)) + " of " + mi.total + " for this step" : "", ask: "Help me do this research mission in my 2-hour block: \"" + (mi ? mi.m.t + ". " + mi.m.how + " Done when: " + mi.m.done : "") + "\". Give me a step-by-step plan, the exact searches to run, what to record, and how to check the source is reliable." }); }
+    else if (db) { var w = workplanTask(), dx = brief(db, d);
+      out.push({ id: "deep", time: db.s, ico: "🎯", kind: "Main work", t: w ? w.title : "Your most important Carbon Clarity task", how: w ? "From your work plan" + (w.due ? ", due " + fd(w.due) : "") + (w.owner ? " · " + w.owner : "") + ". Phone away, 4 focus blocks." : "Pick the top task from your work plan. Phone away, 4 focus blocks.", fin: dx.out, open: "workplan.html", done: isDone(d, "deep"), blk: "deep", ask: askPrompt(dx, d) + (w ? " The task is: " + w.title : "") }); }
+    var n = quota(d);
+    if (n && LIT) { var tp = todaysPapers(d), first = tp.filter(function (i) { return litRead(i) !== "Read"; })[0]; out.push({ id: "read", time: "Any time", ico: "📄", kind: "Read", t: "Read " + n + " paper" + (n === 1 ? "" : "s") + " (" + papersRead(d) + "/" + n + " done)", how: first != null ? "Next: " + LIT.rows[first][4] : "All done for today. 🎉", fin: "Log one useful fact from each paper in the Evidence log.", open: "#tracker-lit", done: papersRead(d) >= n, paper: first, ask: first != null ? paperPrompt(LIT.rows[first]) : "" }); }
+    var sb = blk("skill");
+    if (sb) { var sx = brief(sb, d); out.push({ id: "skill", time: sb.s, ico: dow === 6 ? "🎤" : SKILLDAY[dow] ? SKILLDAY[dow][0] : "⭐", kind: dow === 6 ? "Practice" : "Tonight's skill", t: sx.title.replace(/^\S+ /, ""), how: sx.todo[1] ? sx.todo[1].replace(/^25 min: /, "") : sx.goal, fin: sx.out, open: "#tracker-time", done: isDone(d, "skill"), blk: "skill", ask: askPrompt(sx, d) }); }
+    var vb = blk("video"), v = videoFor(d);
+    if (vb && v && dow !== 6) out.push({ id: "video", time: vb.s, ico: "🎬", kind: "Bonus · 15 min", t: v.t, how: v.ch + ". Watch for one idea to use tonight.", fin: "One idea written down.", open: "https://www.youtube.com/watch?v=" + v.id + (v.st ? "&t=" + v.st + "s" : ""), done: !!S.vids[k], vid: k, ask: "" });
+    if (dow === 0) out.push({ id: "reflect", time: "Evening", ico: "🪞", kind: "Reflect", t: "Weekly reflection", how: "Wins, lessons, next week's one big goal.", fin: "Reflection saved.", open: "#tracker-reflect", done: !!(S.reflect[iso(monday(d))] && (S.reflect[iso(monday(d))].wins || "").trim()), ask: "Help me write my weekly reflection: ask me 4 short questions one at a time." });
+    return out;
+  }
+  function greet() { var h = new Date().getHours(); return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening"; }
+  function todayView() {
+    if (!LIT) { ensureLit(todayView); return; }
+    var d = today(), s = stats(), M2 = missions(d), dn = M2.filter(function (m) { return m.done; }).length, nn = nowNext(), cur = nn.now.filter(function (b) { return b.id !== "prayer"; })[0] || null, k = dk(d), ch = challengeFor(d), chDone = !!(S.chal || {})[k];
+    var curM = cur ? M2.filter(function (m) { return m.blk === cur.id || (cur.id === "learn-pm" && false); })[0] : null;
+    var h = CSS + BCSS + CCSS + TCSS + '<div class="card thero"><p class="eyebrow">' + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</p><h1>' + greet() + ', Pout Chop</h1>' +
+      '<p class="sub">' + (dn === M2.length && M2.length ? "Every mission done today. That's a perfect day. 🏆" : "Today you have <b>" + M2.length + " missions</b>. " + dn + " done so far.") + "</p>" + bar(M2.length ? dn / M2.length : 0) +
+      '<p class="small" style="margin-top:8px">Level ' + s.level + " · " + esc(s.title) + " · " + s.xp.toLocaleString() + " XP · 🔥 " + s.streak + "-day streak" + (s.nextXp ? " · " + (s.nextXp - s.xp) + " XP to level " + (s.level + 1) : "") + "</p></div>";
+    h += '<div class="card tnow"><p class="eyebrow">Right now · ' + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) + "</p>" +
+      (cur ? "<h2>" + esc(brief(cur, d).title) + '</h2><p class="small">until ' + cur.e + "</p>" + (curM && !curM.done ? '<p>' + esc(curM.how) + '</p><div class="row"><button class="btn pri" data-pomo="' + esc(curM.t) + '">⏱ Start focus</button><button class="btn" data-coach="' + esc(curM.ask) + '">✨ Help me</button></div>' : "") :
+        "<h2>Free time</h2><p class=\"small\">Rest, family or catch-up." + (nn.next ? " Next: <b>" + esc(brief(nn.next, d).title) + "</b> at " + nn.next.s + "." : " Nothing else today.") + "</p>") + "</div>";
+    h += '<h2 class="tsec">Today\'s missions</h2><div class="tmis">' + M2.map(function (m) {
+      var ext = /^https?:/.test(m.open);
+      return '<div class="mcard' + (m.done ? " done" : "") + '"><div class="mtop"><span class="mico">' + m.ico + '</span><div><p class="eyebrow">' + esc(m.time) + " · " + esc(m.kind) + "</p><h3>" + esc(m.t) + "</h3></div>" +
+        '<label class="mchk" title="Mark done"><input type="checkbox" ' + (m.done ? "checked " : "") + (m.id === "read" ? "disabled " : "") + 'data-mdone="' + esc(m.id) + '"' + (m.blk ? ' data-mblk="' + m.blk + '"' : "") + (m.mis ? ' data-mmis="' + m.mis + '"' : "") + (m.vid ? ' data-mvid="' + m.vid + '"' : "") + "><span>" + (m.done ? "✓" : "") + "</span></label></div>" +
+        (m.how ? '<p class="mhow">' + esc(m.how) + "</p>" : "") + (m.fin ? '<p class="mfin"><b>Done when:</b> ' + esc(m.fin) + "</p>" : "") + (m.prog ? '<p class="small">' + esc(m.prog) + "</p>" : "") +
+        (m.done ? "" : '<div class="row">' + (m.id !== "video" ? '<button class="btn small pri" data-pomo="' + esc(m.t) + '">⏱ Start</button>' : "") + (m.id === "read" && m.paper != null ? '<a class="btn small" href="' + esc(LIT.rows[m.paper][10] || LIT.rows[m.paper][9]) + '" target="_blank" rel="noopener">Open paper ↗</a><button class="btn small" data-rdone="' + m.paper + '">Mark read</button>' : '<a class="btn small" href="' + esc(m.open) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">Open" + (ext ? " ↗" : "") + "</a>") + (m.ask ? '<button class="btn small" data-coach="' + esc(m.ask) + '">✨ Help</button>' : "") + "</div>") + "</div>";
+    }).join("") + "</div>";
+    h += '<div class="card tchal' + (chDone ? " done" : "") + '"><p class="eyebrow">🎲 Today\'s practical challenge · +10 XP</p><h3>' + esc(ch[0]) + "</h3><p>" + esc(ch[1]) + '</p><div class="row">' + (chDone ? pill("✓ Done") : '<button class="btn pri small" data-chal="' + k + '">I did it (+10 XP)</button>') + '<button class="btn small" data-coach="Help me with today\'s practical challenge: ' + esc(ch[0]) + ". " + esc(ch[1]) + ' Keep it short and fun.">✨ Help</button></div></div>';
+    h += '<div id="papers" class="card"><h2>Today\'s papers</h2>' + papersHtml(d) + "</div>";
+    var tm = new Date(d); tm.setDate(tm.getDate() + 1); var tM = missions(tm);
+    h += '<div class="card"><p class="eyebrow">Tomorrow</p><p>' + tM.map(function (m) { return m.ico + " " + esc(m.t); }).join(" · ") + "</p></div>";
+    h += '<h2 class="tsec">Your toolbox</h2><div class="tbox">' + [["🗓️", "Full timetable", "Every block with its brief", "#tracker-time"], ["⏱", "Time locker", "Pomodoro focus timer", "#tracker-pomo"], ["✨", "AI coach", "Knows your day and research", "#tracker-ai"], ["📊", "Research tracker", "Steps, XP and progress", "#tracker"], ["🧾", "Evidence log", "Facts you've verified", "#tracker-evidence"], ["🕳️", "Gaps", "What's still unknown", "#tracker-gaps"], ["📚", "Literature", "All 1,499 papers", "#tracker-lit"], ["🔁", "Revision", "What to review today", "#revise"], ["🌱", "My growth", "Skills, levels, rewards", "#tracker-growth"], ["📝", "Focus log", "Hours and streak", "#tracker-focus"], ["📋", "Work plan", "Carbon Clarity tasks", "workplan.html"], ["🌍", "Research page", "Summary for others", "research.html"]].map(function (t) { return '<a class="tool" href="' + t[3] + '"><span>' + t[0] + "</span><b>" + t[1] + "</b><small>" + t[2] + "</small></a>"; }).join("") + "</div>";
+    h += '<details class="card"><summary><b>What\'s new</b> <span class="small">(everything added recently, all on this site)</span></summary><ul style="margin-top:8px"><li><b>Today page</b> (this page): your missions, a practical challenge and today\'s papers in one place.</li><li><b>Research missions:</b> each research block now has one small, concrete task with where to look and when it\'s done.</li><li><b>Time locker:</b> Pomodoro timer with a lock screen; breaks come with a joke and a quick move.</li><li><b>AI coach</b> (✨ bottom right): knows your day, goals, papers and progress. Switches on once a card is added in Vercel → AI Gateway.</li><li><b>Daily papers:</b> named papers picked for your current research step, with a daily target you can change.</li><li><b>Session briefs:</b> tap any block in the Timetable for goal, steps and output.</li><li><b>Daily and weekly summaries</b> built from your notes (Timetable page).</li><li><b>Growth videos</b> every evening, linked to your skill for the night.</li><li><b>Research tracker</b> with XP, levels, streaks, milestones and the Excel download.</li></ul></details>';
+    render(h, "today");
+    var root = document.getElementById("view");
+    wireGoals(root, todayView);
+    Array.prototype.forEach.call(root.querySelectorAll("[data-mdone]"), function (el) { el.onchange = function () {
+      var on = el.checked; if (el.dataset.mblk) { S.done[k] = S.done[k] || {}; S.done[k][el.dataset.mblk] = on ? 1 : 0; }
+      if (el.dataset.mmis) { var p = el.dataset.mmis.split("|"); S.mis = S.mis || {}; S.mis[p[0]] = S.mis[p[0]] || {}; if (on) S.mis[p[0]][p[1]] = k; else delete S.mis[p[0]][p[1]]; }
+      if (el.dataset.mvid) S.vids[el.dataset.mvid] = on ? 1 : 0;
+      if (el.dataset.mdone === "reflect" && on) { location.hash = "#tracker-reflect"; return; }
+      save(on ? "Mission done! 🎉" : "Saved"); todayView(); }; });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-chal]"), function (el) { el.onclick = function () { S.chal = S.chal || {}; S.chal[el.dataset.chal] = 1; save("Challenge done: +10 XP 🎲"); todayView(); }; });
+    clearInterval(TT_TIMER); TT_TIMER = setInterval(function () { if (location.hash !== "#today" && location.hash !== "") { clearInterval(TT_TIMER); return; } if (window.scrollY < 60 && !document.activeElement.matches("input,textarea,select")) todayView(); }, 120000);
+  }
+  function miniToday(d) {
+    if (!LIT) return "";
+    d = d || today(); var M2 = missions(d), dn = M2.filter(function (m) { return m.done; }).length, nx = M2.filter(function (m) { return !m.done; })[0];
+    return '<div class="card"><p class="eyebrow">Today · ' + dn + " of " + M2.length + " missions done</p>" + bar(M2.length ? dn / M2.length : 0) + (nx ? '<p style="margin-top:10px">' + nx.ico + " <b>Next:</b> " + esc(nx.t) + ' <span class="small">(' + esc(nx.time) + ")</span></p>" : '<p style="margin-top:10px">🏆 All missions done. Rest well.</p>') + '<div class="row"><a class="btn pri" href="#today">Open Today</a>' + (nx && nx.id !== "video" ? '<button class="btn" data-pomo="' + esc(nx.t) + '">⏱ Start focus</button>' : "") + "</div></div>";
+  }
+  var TCSS = '<style id="todaycss">.thero h1{margin:2px 0 6px}.tnow{border-left:6px solid var(--accent)}.tnow h2{margin:2px 0}.tsec{margin:22px 0 10px;font-size:20px}' +
+    '.tmis{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:16px}.mcard{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);display:grid;gap:6px;align-content:start}.mcard.done{opacity:.6;background:var(--soft)}.mcard h3{margin:2px 0 0;font-size:17px;line-height:1.3}.mtop{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start}.mico{font-size:26px;line-height:1}' +
+    '.mchk input{position:absolute;opacity:0;width:1px;height:1px}.mchk span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--accent);color:#fff;font-weight:800;cursor:pointer}.mchk input:checked+span{background:var(--accent)}.mchk input:focus-visible+span{outline:3px solid var(--ember);outline-offset:2px}.mchk input:disabled+span{border-style:dashed;cursor:default}.mhow{margin:0;font-size:15px}.mfin{margin:0;font-size:14px;color:var(--muted)}' +
+    '.tchal{background:var(--ember-soft);border-color:transparent}.tchal.done{opacity:.7}.tchal h3{margin:4px 0}.tbox{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}.tool{display:grid;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink)}.tool span{font-size:22px}.tool small{color:var(--muted);font-size:12.5px}.tool:hover{border-color:var(--accent)}@media(max-width:600px){.tmis{grid-template-columns:1fr}}</style>';
+
   /* ---------- Revision page panel ---------- */
   function panel(el) {
     load();
@@ -941,13 +1078,13 @@
       "<h3 style=\"margin-top:16px\">Close a gap today</h3>" + (gs.length ? '<ul class="clean">' + gs.map(function (g) { return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)"><b>' + esc(g.gap) + '</b> ' + pill(g.pri, g.pri === "High") + '<div class="small">' + esc(g.how || "") + (g.where ? " · " + esc(g.where) : "") + '</div><div class="row" style="margin-top:6px"><button class="btn" data-pclose="' + esc(g.id) + '">Mark closed (+20 XP)</button></div></li>'; }).join("") + "</ul>" : '<p class="empty">No open gaps. Excellent.</p>') +
       (evs.length ? "<h3 style=\"margin-top:16px\">Verify a fact</h3><ul class=\"clean\">" + evs.map(function (e) { return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)">' + esc(e.claim) + ' <span class="pill">' + esc(evVer(e)) + '</span><div class="small">' + esc(e.check || "") + "</div></li>"; }).join("") + "</ul>" : "") +
       '<div class="row"><a class="btn pri" href="#tracker">Open research tracker</a><a class="btn" href="#tracker-focus">Log today\'s focus</a><a class="btn" href="#tracker-evidence">Evidence log</a></div></div>';
-    h = css() + '<div class="card"><p class="eyebrow">Your day</p>' + nnHtml() + '</div>' + digest(today()) + h.slice(css().length) + videoCard(today(), true);
+    h = css() + miniToday(today()) + h.slice(css().length);
     el.innerHTML = h; wireDigest(el, function () { panel(el); });
     wireVid(el, function () { panel(el); });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pclose]"), function (b) { b.onclick = function () { S.gaps[b.dataset.pclose] = { status: "Closed" }; save("Gap closed: +20 XP"); panel(el); }; });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pread]"), function (b) { b.onclick = function () { var i = b.dataset.pread; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = 1; save("Paper read: +10 XP"); panel(el); }; });
   }
-  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage, "tracker-pomo": pomoPage };
+  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage, "tracker-pomo": pomoPage, "today": todayView };
   function show(id) {
     load();
     if (!D) { render('<div class="card"><p>Loading your research tracker…</p></div>', "tracker"); fetch(BASE + "data/tracker.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { D = j; show(id); }).catch(function () { render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh the page.</p></div>', "tracker"); }); return; }
@@ -957,7 +1094,7 @@
     load();
     if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; todayCard(el); }).catch(function () {}); return; }
     if (!LIT) { el.innerHTML = '<div class="card"><p class="hint">Loading your day…</p></div>'; ensureLit(function () { todayCard(el); }); return; }
-    el.innerHTML = css() + '<div class="card"><p class="eyebrow">Your day · <a href="#tracker-time">timetable & session briefs</a></p>' + nnHtml() + "</div>" + digest(today());
+    el.innerHTML = css() + miniToday(today());
     wireDigest(el, function () { todayCard(el); });
   }
   if (!window.__ccCoachClick) { window.__ccCoachClick = 1; document.addEventListener("click", function (e) { var t = e.target.closest && e.target.closest("[data-coach]"); if (t) { e.preventDefault(); openCoach(t.dataset.coach); return; } var pm = e.target.closest && e.target.closest("[data-pomo]"); if (pm) { e.preventDefault(); pstart(pm.dataset.pomo); var dr = document.querySelector("#ccPomo .pdraw"); if (dr) dr.hidden = false; pdraw(); toast("Focus started: " + pm.dataset.pomo.slice(0, 40)); } }); }
