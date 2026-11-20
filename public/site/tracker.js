@@ -14,12 +14,12 @@
   var OSTAT = ["Not started", "In progress", "Done"];
   var SSTAT = ["Not started", "Learning", "Done"];
   var PTS = { steps: 100, read: 5, core: 5, ev: 10, gaps: 20, sess: 2, lvl: 25, res: 30, refl: 15, outs: 75, ms: 50 };
-  var TABS = [["tracker", "Dashboard"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
+  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
     ["tracker-lit", "Literature"], ["tracker-sites", "Sites"], ["tracker-dirs", "Directions"], ["tracker-focus", "Focus log"],
     ["tracker-reflect", "Reflection"], ["tracker-growth", "My growth"], ["tracker-backup", "Backup"]];
 
   /* ---------- state ---------- */
-  function load() { S = lj(KEY, null) || {}; ["steps", "ev", "gaps", "lit", "sites", "dirs", "skills", "outs", "rewards", "reflect"].forEach(function (k) { S[k] = S[k] || {}; }); S.focus = S.focus || []; S.addEv = S.addEv || []; S.addGaps = S.addGaps || []; S.goal = S.goal || 10; }
+  function load() { S = lj(KEY, null) || {}; ["steps", "ev", "gaps", "lit", "sites", "dirs", "skills", "outs", "rewards", "reflect", "vids"].forEach(function (k) { S[k] = S[k] || {}; }); S.focus = S.focus || []; S.addEv = S.addEv || []; S.addGaps = S.addGaps || []; S.goal = S.goal || 10; }
   function save(msg) { S.saved = new Date().toISOString(); sj(KEY, S); if (msg) toast(msg); }
   function today() { var d = new Date(); d.setHours(0, 0, 0, 0); return d; }
   function pd(s) { if (!s) return null; var p = String(s).slice(0, 10).split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
@@ -69,12 +69,13 @@
     s.lvls = 0; s.skillsAt = 0; s.resDone = 0; D.skills.forEach(function (x, i) { var k = skill(i); s.lvls += Math.max(0, k.cur - k.start); if (k.cur >= k.target) s.skillsAt++; if (k.status === "Done") s.resDone++; });
     s.refl = Object.keys(S.reflect).filter(function (k) { return (S.reflect[k].wins || "").trim(); }).length;
     s.outsDone = D.outputs.filter(function (x, i) { return outStatus(i) === "Done"; }).length;
+    s.vids = Object.keys(S.vids).filter(function (k) { return S.vids[k]; }).length;
     var st = streaks(); s.streak = st.current; s.best = st.best; s.hours = hours(); s.week = hours(monday(today()));
     s.ms = milestones(s); s.msDone = s.ms.filter(function (m) { return m.done; }).length;
     s.xpRows = [["Research steps completed", s.stepsDone, PTS.steps], ["Papers read", s.read, PTS.read], ["Core papers read (bonus)", s.coreRead, PTS.core],
       ["Evidence items fully verified", s.evYes, PTS.ev], ["Gaps closed", s.gapsClosed, PTS.gaps], ["Focus sessions (25 min)", s.sess, PTS.sess],
       ["Skill levels gained", s.lvls, PTS.lvl], ["Learning resources completed", s.resDone, PTS.res], ["Weekly reflections written", s.refl, PTS.refl],
-      ["Career outputs completed", s.outsDone, PTS.outs], ["Milestones unlocked", s.msDone, PTS.ms]];
+      ["Career outputs completed", s.outsDone, PTS.outs], ["Growth videos watched", s.vids, 5], ["Milestones unlocked", s.msDone, PTS.ms]];
     s.xp = s.xpRows.reduce(function (a, r) { return a + r[1] * r[2]; }, 0);
     var L = D.levels, li = 0; L.forEach(function (l, i) { if (s.xp >= l[2]) li = i; });
     s.level = L[li][0]; s.title = L[li][1]; s.nextXp = L[li + 1] ? L[li + 1][2] : null;
@@ -86,7 +87,7 @@
       ["Reading habit started (10 papers)", s.read, 10], ["Core knowledge (25 core papers)", s.coreRead, 25], ["Well read (100 papers)", s.read, 100],
       ["Fact checker (30 verified)", s.evYes, 30], ["Gap closer (5 gaps)", s.gapsClosed, 5], ["No loose ends (all high-priority gaps)", s.highClosed, s.high],
       ["7-day focus streak", s.best, 7], ["25 hours of deep work", s.hours, 25], ["100 hours of deep work", s.hours, 100],
-      ["First skill mastered", s.skillsAt, 1], ["Multi-skilled (3 skills)", s.skillsAt, 3], ["Reflective researcher (4 reflections)", s.refl, 4], ["Public voice (3 outputs)", s.outsDone, 3]];
+      ["First skill mastered", s.skillsAt, 1], ["Multi-skilled (3 skills)", s.skillsAt, 3], ["Reflective researcher (4 reflections)", s.refl, 4], ["Daily learner (20 growth videos)", s.vids, 20], ["Public voice (3 outputs)", s.outsDone, 3]];
     return M.map(function (m, i) { return { i: i, name: m[0], cur: m[1], target: m[2], done: m[2] > 0 && m[1] >= m[2] }; });
   }
 
@@ -100,7 +101,10 @@
     '.tf{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}.tf label{display:grid;gap:4px;font-size:13px;color:var(--muted)}.tf .wide{grid-column:1/-1}.tf textarea{min-height:64px}' +
     '.f-Done,.f-Closed,.f-Yes,.f-Completed,.f-Read,.f-Pursue{background:var(--ok-soft);color:var(--ok)}.f-Overdue,.f-Blocked,.f-No,.f-Open{background:var(--bad-soft);color:var(--bad)}.f-Due-soon,.f-Partially,.f-In-progress,.f-Reading,.f-Learning{background:var(--ember-soft);color:var(--ember)}' +
     '.lit li{padding:10px 0;border-bottom:1px solid var(--line);list-style:none}.lit{margin:0;padding:0}.lit .m{color:var(--muted);font-size:13.5px}.lit .a{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}' +
-    '.prog2{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.prog2 i{display:block;height:100%;background:var(--accent)}.small{font-size:13px;color:var(--muted)}</style>';
+    '.prog2{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.prog2 i{display:block;height:100%;background:var(--accent)}.small{font-size:13px;color:var(--muted)}' +
+    '.nn{display:grid;grid-template-columns:1fr 1fr;gap:14px}.nn>div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--soft)}@media(max-width:600px){.nn{grid-template-columns:1fr}}' +
+    '.vwrap{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;margin-top:10px}.vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}' +
+    '.agenda{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}.agenda li{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:8px 12px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;background:var(--card)}.agenda .tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}.agenda li.research{border-left-color:#0F7C72}.agenda li.skill{border-left-color:#B4561D}.agenda li.video{border-left-color:#D9A441}.agenda li.learn{border-left-color:#6A3D9A}.agenda li.deep{border-left-color:#1E5AA8}.agenda li.on{outline:2px solid var(--accent);background:var(--soft)}.agenda li.past{opacity:.55}</style>';
   function tabs(cur) { return '<nav class="ttabs" aria-label="Tracker sections">' + TABS.map(function (t) { return '<a href="#' + t[0] + '" class="' + (t[0] === cur ? "on" : "") + '">' + t[1] + "</a>"; }).join("") + "</nav>"; }
   function page(cur, inner, title, sub) {
     var h = CSS + '<div class="card"><p class="eyebrow">Ghana carbon market research</p><h1>' + esc(title) + "</h1>" + (sub ? '<p class="sub">' + sub + "</p>" : "") + "</div>" + tabs(cur) + inner;
@@ -116,6 +120,7 @@
     var h = '<div class="card"><div class="lvl"><div class="num">' + s.level + '</div><div><p class="eyebrow">Level ' + s.level + " · " + esc(s.title) + "</p><b>" + s.xp.toLocaleString() + " XP</b>" + (s.nextXp ? " · next level at " + s.nextXp.toLocaleString() : "") + bar(s.toNext) +
       '<p class="small" style="margin-top:6px">Streak ' + s.streak + " day" + (s.streak === 1 ? "" : "s") + " · " + s.week + " of " + S.goal + " focus hours this week</p></div></div><p class=\"msg\">" + esc(msg) + "</p>" +
       '<div class="row"><a class="btn pri" href="#tracker-focus">Log today\'s focus</a><a class="btn" href="#tracker-reflect">Weekly reflection</a><a class="btn" href="' + XLSX + '">Download Excel version</a></div></div>';
+    h += '<div class="card"><p class="eyebrow">Your day · <a href="#tracker-time">full timetable</a></p>' + nnHtml() + "</div>" + videoCard(today(), true);
     h += '<div class="card"><h2>Research progress</h2><div class="kpis" style="margin-top:12px">' +
       kpi(Math.round(s.progress * 100) + "%", "overall progress") + kpi(s.stepsDone + " of " + D.steps.length, "steps completed") +
       kpi(s.overdue, "overdue steps", s.overdue > 0) + kpi(s.soon, "due in next 3 days", s.soon > 0) +
@@ -128,6 +133,7 @@
     h += '<div class="card"><h2>Milestones</h2><p class="hint">' + s.msDone + " of " + s.ms.length + ' unlocked. Set your rewards in <a href="#tracker-growth">My growth</a>.</p><div class="badges" style="margin-top:10px">' +
       s.ms.map(function (m) { return '<div class="badge' + (m.done ? " got" : "") + '" title="' + esc(m.cur + " / " + m.target) + '">' + (m.done ? "🏆" : "🔒") + '<div class="small">' + esc(m.name) + "</div></div>"; }).join("") + "</div></div>";
     page("tracker", h, "Research tracker", "Your live tracker for the Ghana carbon market research and your growth. Everything updates as you work and is saved in this browser.");
+    wireVid(document, dashboard);
   }
   function kpi(v, l, alert) { return '<div class="kpi' + (alert ? " alert" : "") + '"><b>' + v + "</b><span>" + esc(l) + "</span></div>"; }
 
@@ -290,6 +296,115 @@
   function each(sel, ev, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) { el.addEventListener(ev, function () { fn(el); }); }); }
 
 
+
+  /* ---------- Timetable and daily growth videos (mirrors Google Calendar) ---------- */
+  var PLAN_START = new Date(2026, 10, 23), RES_END = new Date(2027, 0, 14), SKILL_END = new Date(2027, 4, 7);
+  var MORNING = { 1: "Carbon markets & MRV", 2: "Research methods & data", 3: "Stove technology & measurement", 4: "Funding & running the venture", 5: "Carbon markets & policy" };
+  var SKILLDAY = { 1: ["📊", "Skill: Data analysis"], 2: ["💰", "Skill: Financial analysis"], 3: ["📈", "Skill: Financial modelling"], 4: ["🧩", "Skill: Business analysis"], 5: ["🎤", "Skill: Public speaking & communication"] };
+  function V(id, t, ch, st) { return { id: id, t: t, ch: ch, st: st || 0 }; }
+  var VID = {
+    1: [[V("Jx89DRlKe7E", "How to create Excel pivot tables and pivot charts", "Teacher's Tech"), V("PdJzy956wo4", "How to create a pivot table in Excel", "Kevin Stratvert"), V("81qvxqG0CuA", "Excel pivot tables: 5 easy steps", "GoSkills"), V("a_yrUypZP7U", "PivotTables for beginners", "Computergaga")],
+        [V("c7LrqSxjJQQ", "From zero to your first dashboard", "Leila Gharani"), V("Jx89DRlKe7E", "Pivot charts for dashboards", "Teacher's Tech")],
+        [V("zpAGbu9mSL4", "SQL for data analysts (first 20 minutes)", "Absent Data"), V("7S_tz1z_5bA", "SQL course for beginners (part 1)", "Programming with Mosh"), V("7S_tz1z_5bA", "SQL course for beginners (part 2)", "Programming with Mosh", 1200)],
+        [V("aPyKAve54hw", "Pandas for beginners in 10 minutes", "The Data Mentor"), V("nvitKcp_AVg", "Analyse data using Python: a pandas project", "Data Geek is my name"), V("gtjxAH8uaP0", "Pandas and Python for data analysis (part 1)", "freeCodeCamp")],
+        [V("c7LrqSxjJQQ", "Power BI: first dashboard in 20 minutes", "Leila Gharani"), V("wM0Vpq5Vu_I", "Power BI Desktop in 4 steps", "Teacher's Tech"), V("AuYzsfXKkbM", "Power BI basics and beyond", "Technocraft")],
+        [V("c7LrqSxjJQQ", "Rewatch: build your portfolio dashboard", "Leila Gharani"), V("nvitKcp_AVg", "Rewatch: a full analysis project", "Data Geek is my name")]],
+    2: [[V("CE9HnV3b_jY", "The 3 financial statements: how they connect", "Ryan O'Connell, CFA"), V("c9bIcAeZBsE", "How financial statements work together", "Accounting with Professor Lamptey"), V("OGJBapKV1oE", "Connecting income statement, balance sheet and cash flow", "Bull Investor")],
+        [V("3W_LwpeG8c8", "Financial ratios: how to analyse statements", "Accounting Stuff"), V("qDQGc-bj5As", "Five categories of financial ratios", "Management Study Guide"), V("XdZugHc9qH8", "Financial ratio analysis", "Learn Finance Institute")],
+        [V("OGJBapKV1oE", "Cash flow: connecting the statements", "Bull Investor"), V("c9bIcAeZBsE", "Statements and cash flows together", "Accounting with Professor Lamptey")],
+        [V("Fw5-wccViOM", "NPV and IRR explained", "The Finance Storyteller"), V("3N6Anu3WXoA", "NPV and IRR explained", "Kountin Koins"), V("56pjqu470Vo", "Net present value and internal rate of return", "Sunny Sensei")],
+        [V("Fw5-wccViOM", "Appraising projects with NPV and IRR", "The Finance Storyteller"), V("3W_LwpeG8c8", "Ratios for judging a business", "Accounting Stuff")],
+        [V("3W_LwpeG8c8", "Rewatch: analysing a real company", "Accounting Stuff"), V("CE9HnV3b_jY", "Rewatch: the three statements", "Ryan O'Connell, CFA")]],
+    3: [[V("gVfvWQ-dvOk", "Introduction to financial modelling", "The Excel Pro"), V("4CW0eE85woI", "How to build a financial model step by step", "Yash Chandorkar")],
+        [V("1KvrQOQPCDI", "Build a 3-statement financial model", "Kenji Explains"), V("2VWaLP8-XJo", "Build a 3-statement model in Excel", "Finally Learn")],
+        [V("4CW0eE85woI", "Revenue and cost drivers in a model", "Yash Chandorkar"), V("gVfvWQ-dvOk", "Modelling structure revisited", "The Excel Pro")],
+        [V("W6pNN5YQ8WI", "How carbon markets work", "Carbon Credit Capital"), V("Fw5-wccViOM", "NPV and IRR for your carbon model", "The Finance Storyteller"), V("91Ss1ZhS7zE", "What carbon credits are and are not", "Pearce Sustainability Consulting")],
+        [V("1KvrQOQPCDI", "Scenarios and checks in a full model", "Kenji Explains")],
+        [V("2VWaLP8-XJo", "Rewatch: complete model walkthrough", "Finally Learn")]],
+    4: [[V("xFsrdEtOqzg", "What is business analysis?", "Mike Clayton"), V("j-5jnrNKoqc", "What is a business analyst? Simple explanation", "TheBATutor"), V("Dg3lPLGAxVs", "What does a business analyst do?", "The Career Force")],
+        [V("e76DUmWu5rw", "Introduction to stakeholder analysis", "JanBask Training"), V("xFsrdEtOqzg", "Business analysis and stakeholders", "Mike Clayton")],
+        [V("ancKD_YFYwU", "Introduction to business process modelling", "ABC Consult"), V("BFeHAONDDtw", "BPMN process map tutorial and example", "The Business Analysis Doctor"), V("7_OWoVRUXXo", "BPMN 2.0 in a nutshell", "ProcessMaker")],
+        [V("q26147zlcMU", "User stories and acceptance criteria example", "The Business Analysis Doctor"), V("NLkcduSPHoI", "User stories and acceptance criteria explained", "Management Bliss")],
+        [V("xFsrdEtOqzg", "From analysis to a business case", "Mike Clayton"), V("ancKD_YFYwU", "Process thinking for your business case", "ABC Consult")],
+        [V("Dg3lPLGAxVs", "Rewatch: the business analyst's role", "The Career Force")]],
+    5: [[V("eIho2S0ZahI", "How to speak so that people want to listen", "TED · Julian Treasure"), V("Unzc731iCUY", "How to Speak (part 1)", "MIT OpenCourseWare · Patrick Winston")],
+        [V("1nYFpuc2Umk", "The common structure of great talks", "TEDx · Nancy Duarte"), V("Unzc731iCUY", "How to Speak (part 2)", "MIT OpenCourseWare · Patrick Winston", 1200)],
+        [V("Unzc731iCUY", "How to Speak: slides and props (part 3)", "MIT OpenCourseWare · Patrick Winston", 2400), V("c7LrqSxjJQQ", "Presenting data clearly", "Leila Gharani")],
+        [V("eIho2S0ZahI", "Rewatch: voice and presence", "TED · Julian Treasure"), V("Unzc731iCUY", "How to Speak (part 1, rewatch)", "MIT OpenCourseWare")],
+        [V("1nYFpuc2Umk", "Persuasion: the structure of great talks", "TEDx · Nancy Duarte")],
+        [V("eIho2S0ZahI", "Before your 10-minute talk", "TED · Julian Treasure")]],
+    6: [[V("eIho2S0ZahI", "How to speak so that people want to listen", "TED · Julian Treasure"), V("1nYFpuc2Umk", "The common structure of great talks", "TEDx · Nancy Duarte"), V("Unzc731iCUY", "How to Speak (part 1)", "MIT OpenCourseWare")]],
+    0: [[V("Yp_G-5T86SA", "Article 6 of the Paris Agreement explained", "myclimate"), V("W6pNN5YQ8WI", "How carbon markets work", "Carbon Credit Capital"), V("RdxDcI6P24Q", "Demystifying the Article 6 deal: five experts", "Carbon Market Watch"), V("91Ss1ZhS7zE", "What carbon credits are and are not", "Pearce Sustainability Consulting"), V("zlGsFpsZvT0", "Carbon credits and markets explained", "Tasneem Bakri")]]
+  };
+  function weekIdx(d) { return Math.max(0, Math.floor((monday(d) - PLAN_START) / 6048e5)); }
+  function videoFor(d) {
+    var dow = d.getDay(), sets = VID[dow]; if (!sets) return null;
+    var w = weekIdx(d), ph = Math.min(sets.length - 1, Math.floor(w / 4)), list = sets[ph];
+    return list[w % list.length];
+  }
+  function ymdKey(d) { return iso(d); }
+  function plan(d) {
+    var dow = d.getDay(), b = [], t0 = new Date(d); t0.setHours(0, 0, 0, 0);
+    function add(s, e, t, k) { b.push({ s: s, e: e, t: t, k: k || "" }); }
+    var skills = t0 >= PLAN_START && t0 <= SKILL_END && !(t0.getMonth() === 11 && t0.getDate() === 25) && !(t0.getMonth() === 0 && t0.getDate() === 1);
+    var research = t0 <= RES_END && t0 >= new Date(2026, 10, 24);
+    add("06:00", "06:30", "🙏 Morning prayer");
+    if (dow >= 1 && dow <= 5) {
+      add("07:00", "07:45", "📚 Learn: " + MORNING[dow], "learn");
+      if (dow === 1) add("08:00", "08:30", "Weekly planning: check the Carbon Clarity work plan");
+      if ((dow === 2 || dow === 4) && research) add("08:30", "10:30", "🌍 Ghana carbon market research (deep work)", "research");
+      else add("08:30", "10:30", "Deep work: Carbon Clarity research and writing", "deep");
+      add("10:30", "12:30", "Project tasks, emails and meetings");
+      add("12:30", "13:30", "Lunch break");
+      add("13:30", "16:30", "Fieldwork, pilot and admin");
+      if (dow === 2) add("16:15", "16:45", "📚 Learn (afternoon): Stove design & development", "learn");
+      if (dow === 4) add("16:15", "16:45", "📚 Learn (afternoon): Sensors, IoT & data", "learn");
+      add("16:30", "17:00", dow === 5 ? "Weekly review: what moved, what's next" : "Wrap up the day: update the work plan");
+      if (skills) { add("18:45", "19:00", "🎬 Growth video", "video"); add("19:00", "19:45", SKILLDAY[dow][0] + " " + SKILLDAY[dow][1], "skill"); }
+    } else if (dow === 6) {
+      add("08:45", "09:00", "🎬 Growth video", "video");
+      add("09:00", "10:00", "🎤 Practice: explain this week's learning out loud", "skill");
+    } else {
+      add("09:00", "12:00", "⛪ Church"); add("16:45", "17:00", "🎬 Growth video (light)", "video"); add("17:00", "17:30", "🌱 Learn: Leadership & reflection (light)", "learn");
+    }
+    add("21:30", "22:00", "🙏 Evening prayer");
+    b.sort(function (x, y) { return x.s < y.s ? -1 : 1; });
+    return b;
+  }
+  function mins(hm) { var p = hm.split(":"); return +p[0] * 60 + +p[1]; }
+  function nowNext() {
+    var n = new Date(), m = n.getHours() * 60 + n.getMinutes(), b = plan(n), now = b.filter(function (x) { return mins(x.s) <= m && m < mins(x.e); }), next = b.filter(function (x) { return mins(x.s) > m; })[0];
+    return { now: now, next: next, m: m };
+  }
+  function nnHtml() {
+    var x = nowNext(), cur = x.now.length ? x.now.map(function (b) { return "<b>" + esc(b.t) + '</b> <span class="small">until ' + b.e + "</span>"; }).join("<br>") : '<b>Free time</b> <span class="small">rest, family or catch-up</span>';
+    var nx = x.next ? esc(x.next.t) + " at " + x.next.s + ' <span class="small">(in ' + (mins(x.next.s) - x.m) + " min)</span>" : "Nothing else today. Rest well.";
+    return '<div class="nn"><div><p class="eyebrow">Now</p>' + cur + '</div><div><p class="eyebrow">Next</p>' + nx + "</div></div>";
+  }
+  function videoCard(d, compact) {
+    var v = videoFor(d); if (!v) return "";
+    var k = ymdKey(d), seen = !!S.vids[k], slot = plan(d).filter(function (b) { return b.k === "video"; })[0];
+    return '<div class="card"><p class="eyebrow">Today\'s growth video' + (slot ? " · " + slot.s + "–" + slot.e : "") + "</p><h2>" + esc(v.t) + '</h2><p class="small">' + esc(v.ch) + (v.st ? " · starts at " + Math.round(v.st / 60) + " min" : "") + "</p>" +
+      (compact ? "" : '<div class="vwrap"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/' + v.id + "?rel=0" + (v.st ? "&start=" + v.st : "") + '" title="' + esc(v.t) + '" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>') +
+      '<div class="row"><a class="btn" href="https://www.youtube.com/watch?v=' + v.id + (v.st ? "&t=" + v.st + "s" : "") + '" target="_blank" rel="noopener">Open on YouTube ↗</a><label class="btn' + (seen ? " pri" : "") + '"><input type="checkbox" data-vid="' + k + '"' + (seen ? " checked" : "") + ' hidden>' + (seen ? "✓ Watched" : "Mark watched (+5 XP)") + "</label>" + (compact ? '<a class="btn" href="#tracker-time">Watch here</a>' : "") + "</div></div>";
+  }
+  function wireVid(root, again) { Array.prototype.forEach.call((root || document).querySelectorAll("[data-vid]"), function (el) { el.onchange = function () { S.vids[el.dataset.vid] = el.checked ? 1 : 0; save(el.checked ? "Video watched: +5 XP" : "Saved"); again(); }; }); }
+  var TT_TIMER = null;
+  function timetable(dayOff) {
+    dayOff = dayOff || 0; var d = today(); d.setDate(d.getDate() + dayOff);
+    var names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], wk = monday(today());
+    var pick = '<div class="weekpick">' + [0, 1, 2, 3, 4, 5, 6].map(function (i) { var x = new Date(wk); x.setDate(x.getDate() + i); var off = Math.round((x - today()) / 864e5); return '<button class="btn' + (off === dayOff ? " pri" : "") + '" data-day="' + off + '">' + names[x.getDay()] + " " + x.getDate() + "</button>"; }).join("") + "</div>";
+    var cur = dayOff === 0 ? nowNext() : null, blocks = plan(d);
+    var h = (dayOff === 0 ? '<div class="card">' + nnHtml() + "</div>" : "") + videoCard(d) +
+      '<div class="card"><h2>' + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + "</h2>" + pick +
+      '<ul class="agenda">' + blocks.map(function (b) { var on = cur && cur.now.indexOf(b) >= 0, past = dayOff < 0 || (cur && mins(b.e) <= cur.m); return '<li class="' + b.k + (on ? " on" : "") + (past ? " past" : "") + '"><span class="tm">' + b.s + "–" + b.e + "</span><span>" + esc(b.t) + (b.k === "video" && videoFor(d) ? '<span class="small"> · ' + esc(videoFor(d).t) + "</span>" : "") + "</span></li>"; }).join("") + "</ul>" +
+      '<p class="hint" style="margin-top:12px">This timetable matches your Google Calendar, which sends a reminder 10 minutes before each block.</p></div>';
+    var wkv = '<div class="card tw"><h2>This week\'s videos</h2><table class="tt"><tr><th>Day</th><th>Time</th><th>Video</th><th>Watched</th></tr>' + [1, 2, 3, 4, 5, 6, 0].map(function (i) { var x = new Date(wk); x.setDate(x.getDate() + ((i + 6) % 7)); var v = videoFor(x), sl = plan(x).filter(function (b) { return b.k === "video"; })[0]; if (!v || !sl) return ""; return "<tr><td>" + names[x.getDay()] + " " + x.getDate() + "</td><td>" + sl.s + '</td><td><a href="https://www.youtube.com/watch?v=' + v.id + (v.st ? "&t=" + v.st + "s" : "") + '" target="_blank" rel="noopener">' + esc(v.t) + '</a><div class="small">' + esc(v.ch) + "</div></td><td>" + (S.vids[ymdKey(x)] ? pill("✓") : "") + "</td></tr>"; }).join("") + "</table></div>";
+    page("tracker-time", h + wkv, "Timetable", "Your day, in time: prayer, learning, deep work, research, fieldwork, your evening skill and a daily growth video.");
+    each("[data-day]", "click", function (el) { timetable(+el.dataset.day); });
+    wireVid(document, function () { timetable(dayOff); });
+    clearInterval(TT_TIMER); TT_TIMER = setInterval(function () { if (location.hash !== "#tracker-time") { clearInterval(TT_TIMER); return; } var n = document.querySelector(".nn"); if (n && dayOff === 0) n.outerHTML = nnHtml(); }, 30000);
+  }
   /* ---------- Revision page panel ---------- */
   function panel(el) {
     load();
@@ -309,11 +424,13 @@
       "<h3 style=\"margin-top:16px\">Read next</h3>" + (papers.length ? '<ul class="clean">' + papers.map(function (i) { var r = LIT.rows[i]; return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)"><a href="' + esc(r[10] || r[9]) + '" target="_blank" rel="noopener"><b>' + esc(r[4]) + '</b></a><div class="small">' + esc(r[5]) + " · " + r[3] + (r[2] === "G" ? " · Ghana" : "") + '</div><div class="row" style="margin-top:6px"><button class="btn" data-pread="' + i + '">Mark read (+10 XP)</button></div></li>'; }).join("") + "</ul>" : '<p class="empty">You have read every core paper.</p>') +
       (evs.length ? "<h3 style=\"margin-top:16px\">Verify a fact</h3><ul class=\"clean\">" + evs.map(function (e) { return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)">' + esc(e.claim) + ' <span class="pill">' + esc(evVer(e)) + '</span><div class="small">' + esc(e.check || "") + "</div></li>"; }).join("") + "</ul>" : "") +
       '<div class="row"><a class="btn pri" href="#tracker">Open research tracker</a><a class="btn" href="#tracker-focus">Log today\'s focus</a><a class="btn" href="#tracker-evidence">Evidence log</a></div></div>';
+    h += '<div class="card"><p class="eyebrow">Your day</p>' + nnHtml() + '</div>' + videoCard(today(), true);
     el.innerHTML = h;
+    wireVid(el, function () { panel(el); });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pclose]"), function (b) { b.onclick = function () { S.gaps[b.dataset.pclose] = { status: "Closed" }; save("Gap closed: +20 XP"); panel(el); }; });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pread]"), function (b) { b.onclick = function () { var i = b.dataset.pread; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = 1; save("Paper read: +10 XP"); panel(el); }; });
   }
-  var VIEWS = { "tracker": dashboard, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup };
+  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup };
   function show(id) {
     load();
     if (!D) { render('<div class="card"><p>Loading your research tracker…</p></div>', "tracker"); fetch(BASE + "data/tracker.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { D = j; show(id); }).catch(function () { render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh the page.</p></div>', "tracker"); }); return; }
