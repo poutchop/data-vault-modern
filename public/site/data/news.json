@@ -198,5 +198,40 @@
    "url": "https://carbon-clarity.vercel.app/research.html"
   }
  ],
- "futureUpdated": "2026-11-20"
+ "futureUpdated": "2026-11-20",
+ "quiz": [
+  {
+   "q": "Which city is hosting the COP31 UN climate talks?",
+   "options": [
+    "Antalya",
+    "Belém",
+    "Dubai",
+    "Baku"
+   ],
+   "a": "Antalya",
+   "why": "COP31 is in Antalya, Turkey (Belém hosted COP30, Dubai COP28, Baku COP29)."
+  },
+  {
+   "q": "Where are Trump, Xi and Putin meeting this week, alongside APEC?",
+   "options": [
+    "Shenzhen",
+    "Beijing",
+    "Moscow",
+    "Shanghai"
+   ],
+   "a": "Shenzhen",
+   "why": "Trump arrived in Shenzhen for APEC and a first three-way meeting with Xi and Putin."
+  },
+  {
+   "q": "Roughly how many hectares are being restored worldwide, according to UNEP's latest report?",
+   "options": [
+    "About 252 million",
+    "About 25 million",
+    "About 2.5 billion",
+    "About 5 million"
+   ],
+   "a": "About 252 million",
+   "why": "UNEP reports around 252 million hectares under restoration across 149 countries."
+  }
+ ]
 }
