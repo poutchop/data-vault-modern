@@ -351,26 +351,39 @@
     function add(s, e, t, k, id) { b.push({ s: s, e: e, t: t, k: k || "", id: id || k || "" }); }
     var skills = t0 >= PLAN_START && t0 <= SKILL_END && !(t0.getMonth() === 11 && t0.getDate() === 25) && !(t0.getMonth() === 0 && t0.getDate() === 1);
     var research = t0 <= RES_END && t0 >= new Date(2026, 10, 24);
-    add("06:00", "06:30", "🙏 Morning prayer", "", "prayer");
+    add("06:30", "06:50", "🙏 Morning prayer", "", "prayer");
     if (dow >= 1 && dow <= 5) {
       add("07:00", "07:45", "📚 Learn: " + MORNING[dow], "learn");
-      if (dow === 1) add("08:00", "08:30", "Weekly planning: check the Carbon Clarity work plan", "", "plan");
       if ((dow === 2 || dow === 4) && research) add("08:30", "10:30", "🌍 Ghana carbon market research (deep work)", "research");
       else add("08:30", "10:30", "Deep work: Carbon Clarity research and writing", "deep");
-      add("10:30", "12:30", "Project tasks, emails and meetings", "", "tasks");
-      add("12:30", "13:30", "Lunch break", "", "lunch");
-      add("13:30", "16:30", "Fieldwork, pilot and admin", "", "field");
-      if (dow === 2) add("16:15", "16:45", "📚 Learn (afternoon): Stove design & development", "learn", "learn-pm");
-      if (dow === 4) add("16:15", "16:45", "📚 Learn (afternoon): Sensors, IoT & data", "learn", "learn-pm");
+      if (dow === 2) { add("10:30", "11:30", "Project tasks and emails (before check-in)", "", "tasks"); add("11:30", "13:30", "🤝 Check-in meeting", "meet", "meeting"); add("13:30", "14:15", "Lunch break", "", "lunch"); add("14:15", "16:00", "Fieldwork, pilot and admin", "", "field"); add("16:00", "16:30", "📚 Learn (afternoon): Stove design & development", "learn", "learn-pm"); }
+      else if (dow === 3) { add("10:30", "12:30", "Project tasks, emails and meetings", "", "tasks"); add("12:30", "13:30", "Lunch break", "", "lunch"); add("13:30", "15:15", "Fieldwork, pilot and admin", "", "field"); add("15:15", "16:00", "🤝 Check-in meeting", "meet", "meeting"); add("16:00", "16:30", "Follow-ups from the check-in", "", "followup"); }
+      else if (dow === 4) { add("10:30", "12:30", "Project tasks, emails and meetings", "", "tasks"); add("12:30", "13:30", "Lunch break", "", "lunch"); add("13:30", "16:00", "Fieldwork, pilot and admin", "", "field"); add("16:00", "16:30", "📚 Learn (afternoon): Sensors, IoT & data", "learn", "learn-pm"); }
+      else { add("10:30", "12:30", "Project tasks, emails and meetings", "", "tasks"); add("12:30", "13:30", "Lunch break", "", "lunch"); add("13:30", "16:30", "Fieldwork, pilot and admin", "", "field"); }
       add("16:30", "17:00", dow === 5 ? "Weekly review: what moved, what's next" : "Wrap up the day: update the work plan", "", dow === 5 ? "review" : "wrap");
-      if (skills) { add("18:45", "19:00", "🎬 Growth video", "video"); add("19:00", "19:45", SKILLDAY[dow][0] + " " + SKILLDAY[dow][1], "skill"); }
+      if (skills) { add("19:00", "19:15", "🎬 Growth video", "video"); add("19:15", "20:00", SKILLDAY[dow][0] + " " + SKILLDAY[dow][1], "skill"); }
+      add("20:15", "21:45", "🌙 Evening deep work: " + (dow % 2 && research ? "write up your research" : dow % 2 ? "Carbon Clarity writing" : "Carbon Clarity project work"), "deep", "evening");
+      if (dow % 2) add("21:45", "22:45", "📣 Yamale LinkedIn content", "yam", "yamale"); else add("21:45", "22:45", "🎓 Graduate applications", "grad", "grad");
+      add("22:45", "23:30", "📄 Read today's papers", "", "papers");
+      add("23:30", "23:45", "📝 Wrap up and plan tomorrow", "", "plantom");
     } else if (dow === 6) {
-      add("08:45", "09:00", "🎬 Growth video", "video");
-      add("09:00", "10:00", "🎤 Practice: explain this week's learning out loud", "skill");
+      add("10:00", "10:15", "🎬 Growth video", "video");
+      add("10:15", "11:15", "🎤 Practice: explain this week's learning out loud", "skill");
+      add("11:15", "13:00", "📚 Saturday learning: skill project and catch-up", "learn", "satlearn");
+      add("13:00", "14:00", "Lunch break", "", "lunch");
+      add("14:00", "15:30", "🌍 Saturday research: read and write up", "research", "satres");
+      add("15:45", "17:00", "🎓 Graduate applications", "grad", "grad");
+      add("20:00", "22:00", "🌙 Saturday evening deep work", "deep", "evening");
+      add("22:00", "23:30", "🔁 Revision and catch-up", "", "revision");
+      add("23:30", "23:45", "📝 Wrap up and plan tomorrow", "", "plantom");
     } else {
-      add("09:00", "12:00", "⛪ Church", "", "church"); add("16:45", "17:00", "🎬 Growth video (light)", "video"); add("17:00", "17:30", "🌱 Learn: Leadership & reflection (light)", "learn", "learn-sun");
+      add("08:00", "09:00", "🪞 Weekly reflection and plan the week", "", "sunplan");
+      add("09:00", "09:45", "🌱 Learn: Leadership & reflection", "learn", "learn-sun");
+      add("09:45", "10:00", "🎬 Growth video (light)", "video");
+      add("10:00", "11:00", "📄 Sunday reading", "", "papers");
+      add("11:30", "14:00", "⛪ Sunday prayers", "", "church");
     }
-    add("21:30", "22:00", "🙏 Evening prayer", "", "prayer");
+    add("23:45", "24:00", "🙏 Evening prayer, then sleep", "", "prayer");
     b.sort(function (x, y) { return x.s < y.s ? -1 : 1; });
     return b;
   }
@@ -488,7 +501,7 @@
         x.todo = ["Watch with a notebook open.", "Write the one idea you'll use tonight.", "Tick 'Mark watched' for +5 XP."]; x.out = "One idea written down."; x.q = "What will I do differently because of this video?";
         if (vv) x.links.push(["Open on YouTube", "https://www.youtube.com/watch?v=" + vv.id + (vv.st ? "&t=" + vv.st + "s" : "")]); break;
       }
-      case "research": {
+      case "satres": case "research": {
         var st = curStep(d);
         if (!st) { x.goal = "All research steps are done: polish and share the report."; x.todo = ["Read the report once, start to finish.", "Fix the three weakest sentences."]; x.out = "A cleaner final report."; x.q = "What is the single most important finding?"; break; }
         var gs = gapsAll().filter(function (g) { return g.step === st.n && gapStatus(g) !== "Closed"; }).sort(function (a, c) { var pr = { High: 0, Medium: 1, Low: 2 }; return pr[a.pri] - pr[c.pri]; }).slice(0, 2);
@@ -508,6 +521,21 @@
         x.out = lid === "sun" ? "A written weekly reflection." : "Quiz done and 3 sentences saved."; x.q = lid === "sun" ? "What am I most grateful for this week, and what will I change?" : "How would I explain \u201c" + lt + "\u201d to a fish processor in two sentences?";
         x.links = [["Open the lesson", "#" + lid]].concat(lid === "sun" ? [["Weekly reflection", "#tracker-reflect"]] : [["Notes Google Doc", NOTES_DOC]]); break;
       }
+      case "meeting": x.goal = "A short, useful check-in: report, decide, unblock."; x.pts = ["Bring three things: done, next, blocked.", "Your daily summary (Timetable page) is a ready-made report.", "Write down every decision and who owns it."]; x.todo = ["Before: copy yesterday's and today's summary.", "During: note decisions and owners.", "After: add new tasks to the work plan."]; x.out = "Decisions and owners noted."; x.q = "What did we decide, and what do I own?"; x.links = [["Work plan", "workplan.html"], ["Timetable summary", "#tracker-time"]]; break;
+      case "followup": x.goal = "Turn the check-in into action."; x.pts = ["Every decision becomes a task with an owner and a date.", "Send any promised follow-up today."]; x.todo = ["Add tasks to the work plan.", "Send follow-up messages."]; x.out = "Work plan updated."; x.q = "Did anything from the check-in change this week's priorities?"; x.links = [["Work plan", "workplan.html"]]; break;
+      case "evening": { var res = d.getDay() % 2 && d <= RES_END && d.getDay() !== 6;
+        x.goal = res ? "Write up today's research while it's fresh." : "Push one Carbon Clarity deliverable forward."; x.pts = res ? ["Turn notes into sentences for the report.", "Log every fact with its source in the Evidence log.", "Update or close a gap."] : ["Pick one deliverable: literature review fixes, pilot design, a proposal.", "Take the 15-minute break at 20:00 first.", "Use the Time locker: 3 focus blocks."];
+        x.todo = ["3 focus blocks of 25 minutes.", res ? "Write one paragraph of findings." : "Finish one section or task.", "Note what's next in your session notes."]; x.out = res ? "One paragraph of findings, sources logged." : "One finished section or task."; x.q = "What did I finish tonight?"; x.links = res ? [["Evidence log", "#tracker-evidence"], ["Gaps", "#tracker-gaps"]] : [["Work plan", "workplan.html"], ["Time locker", "#tracker-pomo"]]; break; }
+      case "yamale": { var yd = d.getDay(); x.goal = yd === 1 ? "Plan this week's Yamale LinkedIn posts." : yd === 3 ? "Write and design this week's posts." : "Polish, schedule and review results."; x.pts = ["Write for Yamale's audience: what problem do they have, what can Yamale do about it?", "One clear message per post, with a call to action.", "Use what worked last week: check reach, comments and clicks."];
+        x.todo = yd === 1 ? ["Check last week's analytics.", "Pick 2–3 post ideas and the goal of each.", "Gather photos, facts and quotes."] : yd === 3 ? ["Draft the posts.", "Create the visuals.", "Ask the coach to tighten the copy."] : ["Final edit and proofread.", "Schedule the posts.", "Note one lesson for next week."];
+        x.out = yd === 1 ? "A content plan for the week." : yd === 3 ? "Drafts and visuals ready." : "Posts scheduled."; x.q = "Who is this post for, and what should they do next?"; break; }
+      case "grad": x.goal = "Move your graduate applications forward by one concrete step."; x.pts = ["Keep a simple tracker: programme, deadline, requirements, status.", "Your Carbon Clarity work and Ghana carbon market research are your story: use them in your statement.", "Ask referees early and give them a short brief."];
+        x.todo = ["Pick one: shortlist programmes, draft a statement paragraph, update your CV, contact a referee, or research a scholarship.", "Do it in 2 focus blocks.", "Update your application tracker."]; x.out = "One application task finished and logged."; x.q = "What is the next deadline, and am I on track?"; break;
+      case "papers": x.goal = "Read today's papers and log what matters."; x.pts = ["Read the abstract, conclusion, then the methods.", "One useful fact per paper goes into the Evidence log.", "Unread papers roll over to tomorrow."]; x.todo = ["Open the first paper from the Today page.", "Mark each one read (+XP).", "Log one fact per paper."]; x.out = "Today's papers read and logged."; x.q = "Which paper changed what I think?"; x.links = [["Today's papers", "#today"], ["Evidence log", "#tracker-evidence"]]; break;
+      case "plantom": x.goal = "Close the day and set up tomorrow."; x.pts = ["Tick today's missions.", "Look at tomorrow's first block.", "Screens off by midnight."]; x.todo = ["Tick missions on the Today page.", "Write tomorrow's top 3."]; x.out = "Tomorrow's top 3 written."; x.q = "What's the first thing I'll do tomorrow?"; x.links = [["Today page", "#today"]]; break;
+      case "satlearn": x.goal = "Finish this week's skill output and catch up."; x.pts = ["Finish the phase output from your weekday skill sessions.", "Catch up on any lesson you missed.", "Do your Revision quizzes."]; x.todo = ["45 min: finish one skill output.", "30 min: one missed lesson.", "20 min: Revision quizzes."]; x.out = "One skill output finished."; x.q = "Which skill moved most this week?"; x.links = [["Revision", "#revise"], ["My growth", "#tracker-growth"]]; break;
+      case "sunplan": x.goal = "Reflect on the week and plan the next."; x.pts = ["Wins, lessons, what slipped and why.", "Check research and work-plan deadlines.", "Choose next week's top 3."]; x.todo = ["Write your weekly reflection.", "Check deadlines.", "Pick next week's top 3."]; x.out = "Reflection written and top 3 chosen."; x.q = "What's the one thing that would make next week a success?"; x.links = [["Weekly reflection", "#tracker-reflect"], ["Weekly summary", "#tracker-time"]]; break;
+      case "revision": x.goal = "Lock in this week's learning."; x.pts = ["Revision quizzes first.", "Then unread papers that rolled over.", "Tidy your notes."]; x.todo = ["Do the Revision quizzes.", "Read one rolled-over paper.", "Tidy notes."]; x.out = "Quizzes done."; x.q = "What do I still find confusing?"; x.links = [["Revision", "#revise"]]; break;
       case "deep": x.goal = "One piece of meaningful Carbon Clarity work finished, not just started."; x.pts = ["Choose the single most important task from the work plan before you begin.", "Phone away, notifications off, door closed.", "Write first, edit later."]; x.todo = ["Pick one task from the work plan.", "4 focus blocks of 25 minutes with 5-minute breaks.", "Log the sessions in the Focus log."]; x.out = "A finished section, analysis or draft."; x.q = "What did I finish today that moves Carbon Clarity forward?"; x.links = [["Work plan", "workplan.html"], ["Focus timer", "focus.html"], ["Focus log", "#tracker-focus"]]; break;
       case "plan": x.goal = "Start the week knowing your three priorities."; x.pts = ["Check deadlines in the work plan and the research tracker.", "Pick three outcomes for the week, not ten tasks.", "Block time for each in the calendar."]; x.todo = ["Open the work plan and review last week.", "Write this week's top 3.", "Check the research step due this week."]; x.out = "Three weekly priorities written down."; x.q = "If I only finish three things this week, which three matter most?"; x.links = [["Work plan", "workplan.html"], ["Research steps", "#tracker-steps"]]; break;
       case "tasks": x.goal = "Clear communication and admin without losing the day."; x.pts = ["Batch emails and messages; don't keep the inbox open.", "Every meeting should end with a decision or next step.", "Reply to partners and the team first."]; x.todo = ["Process the inbox to zero or to a short list.", "Note decisions and owners from any meeting.", "Send one follow-up that moves a partnership forward."]; x.out = "Inbox handled and decisions noted."; x.q = "Which conversation today mattered most?"; x.links = [["Work plan", "workplan.html"]]; break;
@@ -520,7 +548,7 @@
     }
     return x;
   }
-  function majorIds() { return ["research", "skill", "learn", "learn-pm", "learn-sun", "deep", "plan", "field", "review", "video"]; }
+  function majorIds() { return ["research", "satres", "skill", "learn", "learn-pm", "learn-sun", "satlearn", "deep", "evening", "yamale", "grad", "plan", "sunplan", "field", "review", "video"]; }
   function dk(d) { return iso(d); }
   function note(d, id) { return (S.notes[dk(d)] || {})[id] || ""; }
   function isDone(d, id) { return !!(S.done[dk(d)] || {})[id]; }
@@ -665,8 +693,8 @@
   function goals(d) {
     var k = dk(d), dow = d.getDay(), G = [], bl = plan(d), n = quota(d);
     if (n) G.push({ k: "read", t: "Read " + n + " paper" + (n === 1 ? "" : "s") + " (" + papersRead(d) + "/" + n + ")", auto: 1, done: papersRead(d) >= n });
-    bl.forEach(function (b) { if (["research", "skill", "learn", "learn-pm", "deep", "field", "plan", "review"].indexOf(b.id) < 0) return; var x = brief(b, d);
-      var t = b.id === "research" ? "Research: " + x.out : b.id === "skill" ? (dow === 6 ? "Practice: " : "Skill: ") + x.out : b.id === "learn" || b.id === "learn-pm" ? "Lesson: " + (x.title.split(" · ")[1] || "today's lesson") + ", quiz and 3 sentences" : b.id === "deep" ? "Deep work: " + x.out : b.id === "field" ? "Field: " + x.out : b.id === "plan" ? "Write this week's top 3" : "Write the weekly review";
+    bl.forEach(function (b) { if (["research", "satres", "skill", "learn", "learn-pm", "satlearn", "deep", "field", "plan", "review", "grad", "yamale", "sunplan"].indexOf(b.id) < 0) return; var x = brief(b, d);
+      var t = b.id === "research" ? "Research: " + x.out : b.id === "skill" ? (dow === 6 ? "Practice: " : "Skill: ") + x.out : b.id === "learn" || b.id === "learn-pm" ? "Lesson: " + (x.title.split(" · ")[1] || "today's lesson") + ", quiz and 3 sentences" : b.id === "deep" ? "Deep work: " + x.out : b.id === "field" ? "Field: " + x.out : b.id === "plan" ? "Write this week's top 3" : b.id === "review" ? "Write the weekly review" : b.id === "satres" ? "Research: " + x.out : x.title.replace(/^\S+ /, "").split(":")[0] + ": " + x.out;
       G.push({ k: "blk:" + b.id, t: t, done: isDone(d, b.id), blk: b.id }); });
     if (bl.some(function (b) { return b.id === "research"; })) G.push({ k: "gap", t: "Close one research gap or verify one fact" });
     if (dow >= 1 && dow <= 5) G.push({ k: "focus", t: "4 focus sessions logged (" + focusSess(d) + "/4)", auto: 1, done: focusSess(d) >= 4 });
@@ -998,20 +1026,23 @@
   function missions(d) {
     var dow = d.getDay(), bl = plan(d), k = dk(d), out = [];
     function blk(id) { return bl.filter(function (b) { return b.id === id; })[0]; }
-    var lb = blk("learn") || blk("learn-sun");
-    if (lb) { var x = brief(lb, d), lid = (x.links[0] || [])[1] || "#home"; out.push({ id: "learn", time: lb.s, ico: "📚", kind: "Learn", t: x.title.replace(/^📚 |^🌱 /, ""), how: lb.id === "learn-sun" ? "Watch the Sunday talk, then write your weekly reflection." : "Watch, read, take the 3-question quiz.", fin: x.out, open: lid, done: isDone(d, lb.id), blk: lb.id, ask: askPrompt(x, d) }); }
-    var rb = blk("research"), db = blk("deep");
+    var lb = blk("learn") || blk("learn-sun") || blk("satlearn");
+    if (lb) { var x = brief(lb, d), lid = (x.links[0] || [])[1] || "#home"; out.push({ id: "learn", time: lb.s, ico: "📚", kind: "Learn", t: x.title.replace(/^📚 |^🌱 /, ""), how: lb.id === "learn-sun" ? "Read or watch something on leadership, then note one thing to try this week." : lb.id === "satlearn" ? x.todo.join(" ") : "Watch, read, take the 3-question quiz.", fin: x.out, open: lid, done: isDone(d, lb.id), blk: lb.id, ask: askPrompt(x, d) }); }
+    var rb = blk("research") || blk("satres"), db = blk("deep");
     if (rb) { var st = curStep(d), mi = missionFor(st);
-      out.push({ id: "research", time: rb.s, ico: "🌍", kind: "Research mission" + (st ? " · Step " + st.n : ""), t: mi ? mi.m.t : st ? st.task : "Research", how: mi ? mi.m.how + (mi.m.src ? " Where to look: " + mi.m.src + "." : "") : "", fin: mi ? mi.m.done : "", open: "#tracker-steps", done: isDone(d, "research"), blk: "research", mis: mi && st ? st.n + "|" + mi.i : "", prog: mi ? "Mission " + (mi.total - mi.left + (mi.done ? 0 : 1)) + " of " + mi.total + " for this step" : "", ask: "Help me do this research mission in my 2-hour block: \"" + (mi ? mi.m.t + ". " + mi.m.how + " Done when: " + mi.m.done : "") + "\". Give me a step-by-step plan, the exact searches to run, what to record, and how to check the source is reliable." }); }
+      out.push({ id: "research", time: rb.s, ico: "🌍", kind: "Research mission" + (st ? " · Step " + st.n : ""), t: mi ? mi.m.t : st ? st.task : "Research", how: mi ? mi.m.how + (mi.m.src ? " Where to look: " + mi.m.src + "." : "") : "", fin: mi ? mi.m.done : "", open: "#tracker-steps", done: isDone(d, rb.id), blk: rb.id, mis: mi && st ? st.n + "|" + mi.i : "", prog: mi ? "Mission " + (mi.total - mi.left + (mi.done ? 0 : 1)) + " of " + mi.total + " for this step" : "", ask: "Help me do this research mission in my 2-hour block: \"" + (mi ? mi.m.t + ". " + mi.m.how + " Done when: " + mi.m.done : "") + "\". Give me a step-by-step plan, the exact searches to run, what to record, and how to check the source is reliable." }); }
     else if (db) { var w = workplanTask(), dx = brief(db, d);
       out.push({ id: "deep", time: db.s, ico: "🎯", kind: "Main work", t: w ? w.title : "Your most important Carbon Clarity task", how: w ? "From your work plan" + (w.due ? ", due " + fd(w.due) : "") + (w.owner ? " · " + w.owner : "") + ". Phone away, 4 focus blocks." : "Pick the top task from your work plan. Phone away, 4 focus blocks.", fin: dx.out, open: "workplan.html", done: isDone(d, "deep"), blk: "deep", ask: askPrompt(dx, d) + (w ? " The task is: " + w.title : "") }); }
     var n = quota(d);
     if (n && LIT) { var tp = todaysPapers(d), first = tp.filter(function (i) { return litRead(i) !== "Read"; })[0]; out.push({ id: "read", time: "Any time", ico: "📄", kind: "Read", t: "Read " + n + " paper" + (n === 1 ? "" : "s") + " (" + papersRead(d) + "/" + n + " done)", how: first != null ? "Next: " + LIT.rows[first][4] : "All done for today. 🎉", fin: "Log one useful fact from each paper in the Evidence log.", open: "#tracker-lit", done: papersRead(d) >= n, paper: first, ask: first != null ? paperPrompt(LIT.rows[first]) : "" }); }
     var sb = blk("skill");
     if (sb) { var sx = brief(sb, d); out.push({ id: "skill", time: sb.s, ico: dow === 6 ? "🎤" : SKILLDAY[dow] ? SKILLDAY[dow][0] : "⭐", kind: dow === 6 ? "Practice" : "Tonight's skill", t: sx.title.replace(/^\S+ /, ""), how: sx.todo[1] ? sx.todo[1].replace(/^25 min: /, "") : sx.goal, fin: sx.out, open: "#tracker-time", done: isDone(d, "skill"), blk: "skill", ask: askPrompt(sx, d) }); }
+    var yb = blk("yamale") || blk("grad");
+    if (yb) { var yx = brief(yb, d); out.push({ id: yb.id, time: yb.s, ico: yb.id === "grad" ? "🎓" : "📣", kind: yb.id === "grad" ? "Graduate applications" : "Yamale LinkedIn", t: yx.goal.replace(/\.$/, ""), how: yx.todo.join(" "), fin: yx.out, open: yb.id === "grad" ? "#tracker-time" : "https://www.linkedin.com/", done: isDone(d, yb.id), blk: yb.id, ask: askPrompt(yx, d) }); }
     var vb = blk("video"), v = videoFor(d);
-    if (vb && v && dow !== 6) out.push({ id: "video", time: vb.s, ico: "🎬", kind: "Bonus · 15 min", t: v.t, how: v.ch + ". Watch for one idea to use tonight.", fin: "One idea written down.", open: "https://www.youtube.com/watch?v=" + v.id + (v.st ? "&t=" + v.st + "s" : ""), done: !!S.vids[k], vid: k, ask: "" });
-    if (dow === 0) out.push({ id: "reflect", time: "Evening", ico: "🪞", kind: "Reflect", t: "Weekly reflection", how: "Wins, lessons, next week's one big goal.", fin: "Reflection saved.", open: "#tracker-reflect", done: !!(S.reflect[iso(monday(d))] && (S.reflect[iso(monday(d))].wins || "").trim()), ask: "Help me write my weekly reflection: ask me 4 short questions one at a time." });
+    if (vb && v && dow !== 6 && out.length < 5) out.push({ id: "video", time: vb.s, ico: "🎬", kind: "Bonus · 15 min", t: v.t, how: v.ch + ". Watch for one idea to use tonight.", fin: "One idea written down.", open: "https://www.youtube.com/watch?v=" + v.id + (v.st ? "&t=" + v.st + "s" : ""), done: !!S.vids[k], vid: k, ask: "" });
+    if (dow === 0) out.push({ id: "reflect", time: "08:00", ico: "🪞", kind: "Reflect", t: "Weekly reflection", how: "Wins, lessons, next week's one big goal.", fin: "Reflection saved.", open: "#tracker-reflect", done: !!(S.reflect[iso(monday(d))] && (S.reflect[iso(monday(d))].wins || "").trim()), ask: "Help me write my weekly reflection: ask me 4 short questions one at a time." });
+    out.sort(function (a, b) { return (/^\d/.test(a.time) ? a.time : "99") < (/^\d/.test(b.time) ? b.time : "99") ? -1 : 1; });
     return out;
   }
   function greet() { var h = new Date().getHours(); return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening"; }
