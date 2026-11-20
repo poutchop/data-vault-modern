@@ -547,9 +547,42 @@
    "added": "2026-11-20",
    "status": "Check",
    "priority": 2
+  },
+  {
+   "id": "rotary-peace",
+   "country": "Global",
+   "region": "UK, Sweden, USA, Japan, Australia",
+   "type": "Fellowship",
+   "funded": "Fully funded",
+   "title": "Rotary Peace Fellowship: fully funded master's (2028–29 intake)",
+   "provider": "The Rotary Foundation",
+   "city": "Bradford (UK), Uppsala, Duke/UNC, ICU Tokyo, Queensland",
+   "grade": "No GPA or grade minimum stated; Rotary looks for 'academically strong' candidates with a record of achievement in peace or development work.",
+   "req": "Bachelor's degree; at least three years of full-time relevant experience in peace or development work; at least 3 years since your last degree; proficient in English; not currently enrolled. Cannot study at a Peace Center in your home country.",
+   "start": "2028/29",
+   "deadline": null,
+   "deadlineNote": "Official page: the 2027-28 application is closed; the 2028-29 application 'will be available online in February 2027'. Deadline not yet published.",
+   "remindOn": "2027-02-01",
+   "cost": "Fully funded",
+   "funding": "Tuition and fees, room and board, round-trip travel, internship and field-study expenses (15–24 month master's)",
+   "fit": "Possible: frame Carbon Clarity's work with James Town women processors (livelihoods, clean air, climate) as development work. University of Bradford's Peace Studies and International Development is in the UK. Rotary clubs in Accra can advise on endorsement.",
+   "link": "https://www.rotary.org/get-involved/our-programs/peace-fellowships",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Upcoming",
+   "priority": 2
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-20-rotary",
+   "date": "2026-11-20",
+   "level": "new",
+   "title": "New: Rotary Peace Fellowship (fully funded master's)",
+   "body": "No grade minimum stated; needs 3 years of development work. Applications for 2028-29 open February 2027 — includes University of Bradford in the UK.",
+   "link": "https://www.rotary.org/get-involved/our-programs/peace-fellowships",
+   "opp": "rotary-peace"
+  },
   {
    "id": "a-2026-11-20-funders",
    "date": "2026-11-20",
@@ -852,6 +885,15 @@
    "rule": "Paused: \"restructuring its scholarship program and is not accepting applications.\"",
    "when": "No current window.",
    "link": "https://opecfund.org/what-we-do/special-initiatives/scholarship"
+  },
+  {
+   "name": "Rotary Peace Fellowships (The Rotary Foundation)",
+   "fit": "maybe",
+   "where": "UK (Bradford), Sweden (Uppsala), USA (Duke/UNC), Japan (ICU), Australia (Queensland)",
+   "what": "Up to 50 fully funded master's fellowships a year in peace and development.",
+   "rule": "Bachelor's + 3 years full-time peace or development experience; no GPA minimum stated.",
+   "when": "2028-29 application opens February 2027.",
+   "link": "https://www.rotary.org/get-involved/our-programs/peace-fellowships"
   }
  ]
 }
