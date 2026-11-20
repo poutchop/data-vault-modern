@@ -15,13 +15,13 @@
   var OSTAT = ["Not started", "In progress", "Done"];
   var SSTAT = ["Not started", "Learning", "Done"];
   var PTS = { steps: 100, read: 5, core: 5, ev: 10, gaps: 20, sess: 2, lvl: 25, res: 30, refl: 15, outs: 75, ms: 50 };
-  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-ai", "AI coach"], ["tracker-pomo", "Time locker"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
+  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-ai", "AI coach"], ["tracker-pomo", "Time locker"], ["tracker-opps", "🎓 Opportunities"], ["tracker-alerts", "🔔 Notifications"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
     ["tracker-lit", "Literature"], ["tracker-sites", "Sites"], ["tracker-dirs", "Directions"], ["tracker-focus", "Focus log"],
     ["tracker-reflect", "Reflection"], ["tracker-growth", "My growth"], ["tracker-backup", "Backup"]];
 
   /* ---------- state ---------- */
   function load() { S = lj(KEY, null) || {}; ["steps", "ev", "gaps", "lit", "sites", "dirs", "skills", "outs", "rewards", "reflect", "vids"].forEach(function (k) { S[k] = S[k] || {}; }); S.focus = S.focus || []; S.notes = S.notes || {}; S.done = S.done || {}; S.addEv = S.addEv || []; S.addGaps = S.addGaps || []; S.goal = S.goal || 10; }
-  function save(msg) { S.saved = new Date().toISOString(); sj(KEY, S); if (msg) toast(msg); }
+  function save(msg) { S.saved = new Date().toISOString(); sj(KEY, S); if (msg) toast(msg); try { if (D) bellUpdate(); } catch (e) {} }
   function today() { var d = new Date(); d.setHours(0, 0, 0, 0); return d; }
   function pd(s) { if (!s) return null; var p = String(s).slice(0, 10).split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
@@ -110,7 +110,7 @@
     '.agenda{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}.agenda li{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:8px 12px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;background:var(--card)}.agenda .tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}.agenda li.research{border-left-color:#0F7C72}.agenda li.skill{border-left-color:#B4561D}.agenda li.video{border-left-color:#D9A441}.agenda li.learn{border-left-color:#6A3D9A}.agenda li.deep{border-left-color:#1E5AA8}.agenda li.on{outline:2px solid var(--accent);background:var(--soft)}.agenda li.past{opacity:.55}</style>';
   function tabs(cur) { return '<nav class="ttabs" aria-label="Tracker sections">' + TABS.map(function (t) { return '<a href="#' + t[0] + '" class="' + (t[0] === cur ? "on" : "") + '">' + t[1] + "</a>"; }).join("") + "</nav>"; }
   function page(cur, inner, title, sub) {
-    var h = CSS + BCSS + CCSS + '<div class="card"><p class="eyebrow">Ghana carbon market research</p><h1>' + esc(title) + "</h1>" + (sub ? '<p class="sub">' + sub + "</p>" : "") + "</div>" + tabs(cur) + inner;
+    var h = CSS + BCSS + CCSS + OCSS + '<div class="card"><p class="eyebrow">Ghana carbon market research</p><h1>' + esc(title) + "</h1>" + (sub ? '<p class="sub">' + sub + "</p>" : "") + "</div>" + tabs(cur) + inner;
     render(h, "tracker");
   }
   function flagPill(f) { return '<span class="pill f-' + f.replace(/ /g, "-") + '">' + esc(f) + "</span>"; }
@@ -530,7 +530,7 @@
         x.todo = yd === 1 ? ["Check last week's analytics.", "Pick 2–3 post ideas and the goal of each.", "Gather photos, facts and quotes."] : yd === 3 ? ["Draft the posts.", "Create the visuals.", "Ask the coach to tighten the copy."] : ["Final edit and proofread.", "Schedule the posts.", "Note one lesson for next week."];
         x.out = yd === 1 ? "A content plan for the week." : yd === 3 ? "Drafts and visuals ready." : "Posts scheduled."; x.q = "Who is this post for, and what should they do next?"; break; }
       case "grad": x.goal = "Move your graduate applications forward by one concrete step."; x.pts = ["Keep a simple tracker: programme, deadline, requirements, status.", "Your Carbon Clarity work and Ghana carbon market research are your story: use them in your statement.", "Ask referees early and give them a short brief."];
-        x.todo = ["Pick one: shortlist programmes, draft a statement paragraph, update your CV, contact a referee, or research a scholarship.", "Do it in 2 focus blocks.", "Update your application tracker."]; x.out = "One application task finished and logged."; x.q = "What is the next deadline, and am I on track?"; break;
+        x.todo = ["Pick one: shortlist programmes, draft a statement paragraph, update your CV, contact a referee, or research a scholarship.", "Do it in 2 focus blocks.", "Update your application tracker."]; x.out = "One application task finished and logged."; x.q = "What is the next deadline, and am I on track?"; x.links = [["My opportunities", "#tracker-opps"], ["Notifications", "#tracker-alerts"]]; break;
       case "papers": x.goal = "Read today's papers and log what matters."; x.pts = ["Read the abstract, conclusion, then the methods.", "One useful fact per paper goes into the Evidence log.", "Unread papers roll over to tomorrow."]; x.todo = ["Open the first paper from the Today page.", "Mark each one read (+XP).", "Log one fact per paper."]; x.out = "Today's papers read and logged."; x.q = "Which paper changed what I think?"; x.links = [["Today's papers", "#today"], ["Evidence log", "#tracker-evidence"]]; break;
       case "plantom": x.goal = "Close the day and set up tomorrow."; x.pts = ["Tick today's missions.", "Look at tomorrow's first block.", "Screens off by midnight."]; x.todo = ["Tick missions on the Today page.", "Write tomorrow's top 3."]; x.out = "Tomorrow's top 3 written."; x.q = "What's the first thing I'll do tomorrow?"; x.links = [["Today page", "#today"]]; break;
       case "satlearn": x.goal = "Finish this week's skill output and catch up."; x.pts = ["Finish the phase output from your weekday skill sessions.", "Catch up on any lesson you missed.", "Do your Revision quizzes."]; x.todo = ["45 min: finish one skill output.", "30 min: one missed lesson.", "20 min: Revision quizzes."]; x.out = "One skill output finished."; x.q = "Which skill moved most this week?"; x.links = [["Revision", "#revise"], ["My growth", "#tracker-growth"]]; break;
@@ -639,7 +639,7 @@
     '.agenda li.blk{display:block;padding:0}.agenda details>summary{display:grid;grid-template-columns:110px 1fr auto;gap:10px;padding:8px 12px;cursor:pointer;list-style:none;align-items:center}.agenda details>summary::-webkit-details-marker{display:none}.agenda details>summary::after{content:"▾";color:var(--muted)}.agenda details[open]>summary::after{content:"▴"}.agenda details .brief{margin:0 12px 12px}.agenda li.dn summary>span:nth-child(2)::after{content:" ✓";color:var(--ok);font-weight:700}' +
     '.snote{display:grid;gap:4px;margin-top:10px;font-size:13px;color:var(--muted)}.snote textarea,.sumbox{font:inherit;font-size:14px;width:100%;min-height:70px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}.sumbox{min-height:170px;margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}.sdone{display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:600;font-size:14px}' +
     '.dg{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}.dg li{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:8px 12px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;background:var(--card)}.dg .tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);font-size:14px}.dg li.research{border-left-color:#0F7C72}.dg li.skill{border-left-color:#B4561D}.dg li.video{border-left-color:#D9A441}.dg li.learn{border-left-color:#6A3D9A}.dg li.deep{border-left-color:#1E5AA8}.dg li.on{outline:2px solid var(--accent)}.dg li.dn{opacity:.65}.dg a{text-decoration:none;color:var(--ink)}.nnb{margin-top:8px;font-size:14px}@media(max-width:600px){.dg li{grid-template-columns:1fr}.agenda details>summary{grid-template-columns:1fr auto;gap:2px 10px}.agenda details>summary .tm{grid-column:1/-1}}</style>';
-  function css() { return (document.getElementById("trkcss") ? "" : CSS) + (document.getElementById("briefcss") ? "" : BCSS) + (document.getElementById("coachcss") ? "" : CCSS); }
+  function css() { return (document.getElementById("trkcss") ? "" : CSS) + (document.getElementById("briefcss") ? "" : BCSS) + (document.getElementById("coachcss") ? "" : CCSS) + (document.getElementById("oppcss") ? "" : OCSS); }
 
   /* ---------- Daily reading quota: specific papers assigned to each day ---------- */
   var STEPTHEMES = { 1: ["Ghana carbon market", "Climate policy and NDC"], 2: ["Ghana carbon market", "Climate policy and NDC", "Carbon pricing and ETS"], 3: ["Article 6 and Paris mechanisms", "African carbon markets", "Ghana carbon market"],
@@ -744,6 +744,7 @@
       gapsAll().filter(function (g) { return gapStatus(g) !== "Closed" && g.pri === "High"; }).slice(0, 5).forEach(function (g) { L.push("- Open high-priority gap " + g.id + ": " + g.gap + " (how: " + (g.how || "") + ")"); }); }
     L.push("Steps: " + D.steps.map(function (x) { return x.n + ". " + x.task + " (" + stepStatus(x) + ", due " + x.due + ")"; }).join("; "));
     var dow = d.getDay(); if (SK[dow]) L.push("\nSKILLS PLAN (Mon data analysis, Tue financial analysis, Wed financial modelling, Thu business analysis, Fri public speaking; 19:00–19:45 until May 2027). Tonight: " + SK[dow].name + ", phase " + (phase(d) + 1) + " of 6: " + SK[dow].ph[phase(d)].t + ".");
+    if (OPP && OPP.items) { L.push("\nGRADUATE OPPORTUNITIES (CGPA 2.3/4.0; looking at Canada, Germany, London):"); OPP.items.forEach(function (o) { L.push("- " + o.provider + ": " + o.title + " (" + o.city + "). Status: " + oppSt(o) + ". Deadline: " + (oppDl(o) || "none fixed") + ". Grade: " + o.grade); }); }
     L.push("\nPROGRESS: level " + s.level + " (" + s.title + "), " + s.xp + " XP, streak " + s.streak + " days, research " + Math.round(s.progress * 100) + "%, " + s.overdue + " overdue steps, " + s.read + " papers read, " + s.gapsOpen + " gaps open, " + s.week + " focus hours this week (goal " + S.goal + ").");
     return L.join("\n").slice(0, 11000);
   }
@@ -799,7 +800,9 @@
     '.pjoke{margin:10px 0;padding:12px 14px;border-radius:12px;background:var(--ember-soft)}.pjoke .jk{font-size:18px;font-weight:600;margin:4px 0 8px;line-height:1.4}' +
     '#ccPomo .plock{position:fixed;inset:0;z-index:80;background:var(--bg);display:grid;place-items:center;padding:24px 16px;overflow:auto}.plin{max-width:640px;width:100%;text-align:center;display:grid;gap:12px}.plab{font-size:20px;font-weight:700;margin:0}.plin .msg{text-align:left}' +
     '.punlock{justify-self:center;position:relative;overflow:hidden}.punlock.holding{background:var(--ember);color:#fff;border-color:var(--ember);transition:background 3s}@media(max-width:600px){#ccPomo .pfab{right:auto;left:16px}}.dpap select{font:inherit;font-size:13px;padding:2px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}</style>';
-  function fab() { if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS); load(); if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; ensureCoach(); pomoInit(); }).catch(function () {}); return; } ensureCoach(); if (!document.getElementById("ccPomo")) pomoInit(); }
+  function fab() { if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS); load(); if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; ensureCoach(); pomoInit(); bellInit(); }).catch(function () {}); return; } ensureCoach(); if (!document.getElementById("ccPomo")) pomoInit(); bellInit(); }
+  var BELLT = null;
+  function bellInit() { if (!document.getElementById("oppcss")) document.head.insertAdjacentHTML("beforeend", OCSS); ensureBell(); ensureOpps(bellUpdate); if (!BELLT) BELLT = setInterval(function () { try { bellUpdate(); } catch (e) {} }, 60000); }
   function ensureLit(cb) { if (LIT) return cb(); fetch(BASE + "data/literature.json").then(function (r) { return r.json(); }).then(function (j) { LIT = j; cb(); }).catch(function () { LIT = { rows: [] }; cb(); }); }
 
   /* ---------- Pomodoro time locker with break-time laughs ---------- */
@@ -1038,7 +1041,7 @@
     var sb = blk("skill");
     if (sb) { var sx = brief(sb, d); out.push({ id: "skill", time: sb.s, ico: dow === 6 ? "🎤" : SKILLDAY[dow] ? SKILLDAY[dow][0] : "⭐", kind: dow === 6 ? "Practice" : "Tonight's skill", t: sx.title.replace(/^\S+ /, ""), how: sx.todo[1] ? sx.todo[1].replace(/^25 min: /, "") : sx.goal, fin: sx.out, open: "#tracker-time", done: isDone(d, "skill"), blk: "skill", ask: askPrompt(sx, d) }); }
     var yb = blk("yamale") || blk("grad");
-    if (yb) { var yx = brief(yb, d); out.push({ id: yb.id, time: yb.s, ico: yb.id === "grad" ? "🎓" : "📣", kind: yb.id === "grad" ? "Graduate applications" : "Yamale LinkedIn", t: yx.goal.replace(/\.$/, ""), how: yx.todo.join(" "), fin: yx.out, open: yb.id === "grad" ? "#tracker-time" : "https://www.linkedin.com/", done: isDone(d, yb.id), blk: yb.id, ask: askPrompt(yx, d) }); }
+    if (yb) { var yx = brief(yb, d); out.push({ id: yb.id, time: yb.s, ico: yb.id === "grad" ? "🎓" : "📣", kind: yb.id === "grad" ? "Graduate applications" : "Yamale LinkedIn", t: yx.goal.replace(/\.$/, ""), how: yx.todo.join(" "), fin: yx.out, open: yb.id === "grad" ? "#tracker-opps" : "https://www.linkedin.com/", done: isDone(d, yb.id), blk: yb.id, ask: askPrompt(yx, d) }); }
     var vb = blk("video"), v = videoFor(d);
     if (vb && v && dow !== 6 && out.length < 5) out.push({ id: "video", time: vb.s, ico: "🎬", kind: "Bonus · 15 min", t: v.t, how: v.ch + ". Watch for one idea to use tonight.", fin: "One idea written down.", open: "https://www.youtube.com/watch?v=" + v.id + (v.st ? "&t=" + v.st + "s" : ""), done: !!S.vids[k], vid: k, ask: "" });
     if (dow === 0) out.push({ id: "reflect", time: "08:00", ico: "🪞", kind: "Reflect", t: "Weekly reflection", how: "Wins, lessons, next week's one big goal.", fin: "Reflection saved.", open: "#tracker-reflect", done: !!(S.reflect[iso(monday(d))] && (S.reflect[iso(monday(d))].wins || "").trim()), ask: "Help me write my weekly reflection: ask me 4 short questions one at a time." });
@@ -1048,9 +1051,10 @@
   function greet() { var h = new Date().getHours(); return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening"; }
   function todayView() {
     if (!LIT) { ensureLit(todayView); return; }
+    if (!OPP) { ensureOpps(todayView); return; }
     var d = today(), s = stats(), M2 = missions(d), dn = M2.filter(function (m) { return m.done; }).length, nn = nowNext(), cur = nn.now.filter(function (b) { return b.id !== "prayer"; })[0] || null, k = dk(d), ch = challengeFor(d), chDone = !!(S.chal || {})[k];
     var curM = cur ? M2.filter(function (m) { return m.blk === cur.id || (cur.id === "learn-pm" && false); })[0] : null;
-    var h = CSS + BCSS + CCSS + TCSS + '<div class="card thero"><p class="eyebrow">' + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</p><h1>' + greet() + ', Pout Chop</h1>' +
+    var h = CSS + BCSS + CCSS + OCSS + TCSS + alertBanner() + '<div class="card thero"><p class="eyebrow">' + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + '</p><h1>' + greet() + ', Pout Chop</h1>' +
       '<p class="sub">' + (dn === M2.length && M2.length ? "Every mission done today. That's a perfect day. 🏆" : "Today you have <b>" + M2.length + " missions</b>. " + dn + " done so far.") + "</p>" + bar(M2.length ? dn / M2.length : 0) +
       '<p class="small" style="margin-top:8px">Level ' + s.level + " · " + esc(s.title) + " · " + s.xp.toLocaleString() + " XP · 🔥 " + s.streak + "-day streak" + (s.nextXp ? " · " + (s.nextXp - s.xp) + " XP to level " + (s.level + 1) : "") + "</p></div>";
     h += '<div class="card tnow"><p class="eyebrow">Right now · ' + new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) + "</p>" +
@@ -1064,11 +1068,12 @@
         (m.done ? "" : '<div class="row">' + (m.id !== "video" ? '<button class="btn small pri" data-pomo="' + esc(m.t) + '">⏱ Start</button>' : "") + (m.id === "read" && m.paper != null ? '<a class="btn small" href="' + esc(LIT.rows[m.paper][10] || LIT.rows[m.paper][9]) + '" target="_blank" rel="noopener">Open paper ↗</a><button class="btn small" data-rdone="' + m.paper + '">Mark read</button>' : '<a class="btn small" href="' + esc(m.open) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">Open" + (ext ? " ↗" : "") + "</a>") + (m.ask ? '<button class="btn small" data-coach="' + esc(m.ask) + '">✨ Help</button>' : "") + "</div>") + "</div>";
     }).join("") + "</div>";
     h += '<div class="card tchal' + (chDone ? " done" : "") + '"><p class="eyebrow">🎲 Today\'s practical challenge · +10 XP</p><h3>' + esc(ch[0]) + "</h3><p>" + esc(ch[1]) + '</p><div class="row">' + (chDone ? pill("✓ Done") : '<button class="btn pri small" data-chal="' + k + '">I did it (+10 XP)</button>') + '<button class="btn small" data-coach="Help me with today\'s practical challenge: ' + esc(ch[0]) + ". " + esc(ch[1]) + ' Keep it short and fun.">✨ Help</button></div></div>';
+    h += oppsMini();
     h += '<div id="papers" class="card"><h2>Today\'s papers</h2>' + papersHtml(d) + "</div>";
     var tm = new Date(d); tm.setDate(tm.getDate() + 1); var tM = missions(tm);
     h += '<div class="card"><p class="eyebrow">Tomorrow</p><p>' + tM.map(function (m) { return m.ico + " " + esc(m.t); }).join(" · ") + "</p></div>";
-    h += '<h2 class="tsec">Your toolbox</h2><div class="tbox">' + [["🗓️", "Full timetable", "Every block with its brief", "#tracker-time"], ["⏱", "Time locker", "Pomodoro focus timer", "#tracker-pomo"], ["✨", "AI coach", "Knows your day and research", "#tracker-ai"], ["📊", "Research tracker", "Steps, XP and progress", "#tracker"], ["🧾", "Evidence log", "Facts you've verified", "#tracker-evidence"], ["🕳️", "Gaps", "What's still unknown", "#tracker-gaps"], ["📚", "Literature", "All 1,499 papers", "#tracker-lit"], ["🔁", "Revision", "What to review today", "#revise"], ["🌱", "My growth", "Skills, levels, rewards", "#tracker-growth"], ["📝", "Focus log", "Hours and streak", "#tracker-focus"], ["📋", "Work plan", "Carbon Clarity tasks", "workplan.html"], ["🌍", "Research page", "Summary for others", "research.html"]].map(function (t) { return '<a class="tool" href="' + t[3] + '"><span>' + t[0] + "</span><b>" + t[1] + "</b><small>" + t[2] + "</small></a>"; }).join("") + "</div>";
-    h += '<details class="card"><summary><b>What\'s new</b> <span class="small">(everything added recently, all on this site)</span></summary><ul style="margin-top:8px"><li><b>Today page</b> (this page): your missions, a practical challenge and today\'s papers in one place.</li><li><b>Research missions:</b> each research block now has one small, concrete task with where to look and when it\'s done.</li><li><b>Time locker:</b> Pomodoro timer with a lock screen; breaks come with a joke and a quick move.</li><li><b>AI coach</b> (✨ bottom right): knows your day, goals, papers and progress. Switches on once a card is added in Vercel → AI Gateway.</li><li><b>Daily papers:</b> named papers picked for your current research step, with a daily target you can change.</li><li><b>Session briefs:</b> tap any block in the Timetable for goal, steps and output.</li><li><b>Daily and weekly summaries</b> built from your notes (Timetable page).</li><li><b>Growth videos</b> every evening, linked to your skill for the night.</li><li><b>Research tracker</b> with XP, levels, streaks, milestones and the Excel download.</li></ul></details>';
+    h += '<h2 class="tsec">Your toolbox</h2><div class="tbox">' + [["🔔", "Notifications", "Deadlines and new opportunities", "#tracker-alerts"], ["🎓", "Opportunities", "Programmes that accept your 2.3", "#tracker-opps"], ["🗓️", "Full timetable", "Every block with its brief", "#tracker-time"], ["⏱", "Time locker", "Pomodoro focus timer", "#tracker-pomo"], ["✨", "AI coach", "Knows your day and research", "#tracker-ai"], ["📊", "Research tracker", "Steps, XP and progress", "#tracker"], ["🧾", "Evidence log", "Facts you've verified", "#tracker-evidence"], ["🕳️", "Gaps", "What's still unknown", "#tracker-gaps"], ["📚", "Literature", "All 1,499 papers", "#tracker-lit"], ["🔁", "Revision", "What to review today", "#revise"], ["🌱", "My growth", "Skills, levels, rewards", "#tracker-growth"], ["📝", "Focus log", "Hours and streak", "#tracker-focus"], ["📋", "Work plan", "Carbon Clarity tasks", "workplan.html"], ["🌍", "Research page", "Summary for others", "research.html"]].map(function (t) { return '<a class="tool" href="' + t[3] + '"><span>' + t[0] + "</span><b>" + t[1] + "</b><small>" + t[2] + "</small></a>"; }).join("") + "</div>";
+    h += '<details class="card"><summary><b>What\'s new</b> <span class="small">(everything added recently, all on this site)</span></summary><ul style="margin-top:8px"><li><b>🎓 Opportunities</b> that accept your 2.3 GPA (London, Canada, Germany), checked every day, with status tracking and your own deadlines.</li><li><b>🔔 Notifications</b>: new opportunities, deadlines 100/30/14/7/1 days ahead, and missed deadlines, with pop-up alerts.</li><li><b>Today page</b> (this page): your missions, a practical challenge and today\'s papers in one place.</li><li><b>Research missions:</b> each research block now has one small, concrete task with where to look and when it\'s done.</li><li><b>Time locker:</b> Pomodoro timer with a lock screen; breaks come with a joke and a quick move.</li><li><b>AI coach</b> (✨ bottom right): knows your day, goals, papers and progress. Switches on once a card is added in Vercel → AI Gateway.</li><li><b>Daily papers:</b> named papers picked for your current research step, with a daily target you can change.</li><li><b>Session briefs:</b> tap any block in the Timetable for goal, steps and output.</li><li><b>Daily and weekly summaries</b> built from your notes (Timetable page).</li><li><b>Growth videos</b> every evening, linked to your skill for the night.</li><li><b>Research tracker</b> with XP, levels, streaks, milestones and the Excel download.</li></ul></details>';
     render(h, "today");
     var root = document.getElementById("view");
     wireGoals(root, todayView);
@@ -1084,12 +1089,119 @@
   function miniToday(d) {
     if (!LIT) return "";
     d = d || today(); var M2 = missions(d), dn = M2.filter(function (m) { return m.done; }).length, nx = M2.filter(function (m) { return !m.done; })[0];
-    return '<div class="card"><p class="eyebrow">Today · ' + dn + " of " + M2.length + " missions done</p>" + bar(M2.length ? dn / M2.length : 0) + (nx ? '<p style="margin-top:10px">' + nx.ico + " <b>Next:</b> " + esc(nx.t) + ' <span class="small">(' + esc(nx.time) + ")</span></p>" : '<p style="margin-top:10px">🏆 All missions done. Rest well.</p>') + '<div class="row"><a class="btn pri" href="#today">Open Today</a>' + (nx && nx.id !== "video" ? '<button class="btn" data-pomo="' + esc(nx.t) + '">⏱ Start focus</button>' : "") + "</div></div>";
+    return alertBanner() + '<div class="card"><p class="eyebrow">Today · ' + dn + " of " + M2.length + " missions done</p>" + bar(M2.length ? dn / M2.length : 0) + (nx ? '<p style="margin-top:10px">' + nx.ico + " <b>Next:</b> " + esc(nx.t) + ' <span class="small">(' + esc(nx.time) + ")</span></p>" : '<p style="margin-top:10px">🏆 All missions done. Rest well.</p>') + '<div class="row"><a class="btn pri" href="#today">Open Today</a>' + (nx && nx.id !== "video" ? '<button class="btn" data-pomo="' + esc(nx.t) + '">⏱ Start focus</button>' : "") + "</div></div>";
   }
   var TCSS = '<style id="todaycss">.thero h1{margin:2px 0 6px}.tnow{border-left:6px solid var(--accent)}.tnow h2{margin:2px 0}.tsec{margin:22px 0 10px;font-size:20px}' +
     '.tmis{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:16px}.mcard{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);display:grid;gap:6px;align-content:start}.mcard.done{opacity:.6;background:var(--soft)}.mcard h3{margin:2px 0 0;font-size:17px;line-height:1.3}.mtop{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start}.mico{font-size:26px;line-height:1}' +
     '.mchk input{position:absolute;opacity:0;width:1px;height:1px}.mchk span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:2px solid var(--accent);color:#fff;font-weight:800;cursor:pointer}.mchk input:checked+span{background:var(--accent)}.mchk input:focus-visible+span{outline:3px solid var(--ember);outline-offset:2px}.mchk input:disabled+span{border-style:dashed;cursor:default}.mhow{margin:0;font-size:15px}.mfin{margin:0;font-size:14px;color:var(--muted)}' +
     '.tchal{background:var(--ember-soft);border-color:transparent}.tchal.done{opacity:.7}.tchal h3{margin:4px 0}.tbox{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}.tool{display:grid;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--ink)}.tool span{font-size:22px}.tool small{color:var(--muted);font-size:12.5px}.tool:hover{border-color:var(--accent)}@media(max-width:600px){.tmis{grid-template-columns:1fr}}</style>';
+
+  /* ---------- Opportunities (graduate study) and the notification centre ---------- */
+  var OPP = null, OSTAT2 = ["New", "Interested", "Applying", "Submitted", "Offer", "Not for me"], OF = { c: "", st: "" };
+  function ensureOpps(cb) {
+    if (OPP) { if (cb) cb(); return; }
+    fetch(BASE + "data/opps.json?t=" + Math.floor(Date.now() / 3e5), { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (j) { OPP = j; if (S && !S.oppSeen) { S.oppSeen = j.updated; sj(KEY, S); } if (cb) cb(); })
+      .catch(function () { OPP = { items: [], alerts: [] }; if (cb) cb(); });
+  }
+  function oppS(o) { return (S.opp && S.opp[o.id]) || {}; }
+  function oppSt(o) { return oppS(o).s || "New"; }
+  function oppDl(o) { return oppS(o).dl || o.deadline || null; }
+  function daysTo(s) { return Math.round((pd(s) - today()) / 864e5); }
+  function alerts() {
+    var A = [], k = dk(today());
+    if (OPP) {
+      (OPP.alerts || []).forEach(function (a) { var o = a.opp && OPP.items.filter(function (x) { return x.id === a.opp; })[0]; if (o && ["Not for me", "Submitted", "Offer"].indexOf(oppSt(o)) >= 0) return;
+        A.push({ key: "n:" + a.id, level: a.level || "info", ico: a.level === "urgent" ? "⏰" : a.level === "new" ? "🆕" : "📣", title: a.title, body: a.body || "", date: a.date, link: a.link || "#tracker-opps" }); });
+      OPP.items.forEach(function (o) {
+        var st = oppSt(o); if (["Not for me", "Submitted", "Offer"].indexOf(st) >= 0) return;
+        if (S.oppSeen && o.added > S.oppSeen) A.push({ key: "new:" + o.id, level: "new", ico: "🆕", title: "New opportunity: " + o.provider, body: o.title + " (" + o.city + ")", date: o.added, link: "#tracker-opps" });
+        var dl = oppDl(o);
+        if (dl) { var n = daysTo(dl);
+          if (n < 0 && n >= -45) A.push({ key: "miss:" + o.id + ":" + dl, level: "missed", ico: "⚠️", title: "Missed deadline: " + o.provider, body: o.title + " closed on " + fd(dl) + ". Check the next intake or mark it 'Not for me'.", date: dl, link: "#tracker-opps" });
+          else if (n >= 0) { var stg = n <= 1 ? 1 : n <= 7 ? 7 : n <= 14 ? 14 : n <= 30 ? 30 : n <= 100 ? 100 : 0;
+            if (stg) A.push({ key: "dl:" + o.id + ":" + dl + ":" + stg, level: n <= 14 ? "urgent" : "soon", ico: "⏰", title: (n === 0 ? "Today" : n === 1 ? "Tomorrow" : "In " + n + " days") + ": " + o.provider + " deadline", body: o.title + " · " + fd(dl) + (st === "Applying" ? " · you're applying" : ""), date: k, link: "#tracker-opps" }); } }
+        if (o.remindOn && k >= o.remindOn) A.push({ key: "rem:" + o.id + ":" + o.remindOn, level: "soon", ico: "🔔", title: "Get ready: " + o.provider, body: o.deadlineNote || o.title, date: o.remindOn, link: "#tracker-opps" });
+      });
+    }
+    if (D) D.steps.forEach(function (x) { var f = stepFlag(x);
+      if (f === "Overdue") A.push({ key: "step:" + x.n + ":" + x.due, level: "missed", ico: "⚠️", title: "Missed deadline: research Step " + x.n, body: x.task + " was due " + fd(x.due) + ". Finish it or set a new date.", date: x.due, link: "#tracker-steps" });
+      else if (f === "Due soon") A.push({ key: "stepsoon:" + x.n + ":" + x.due, level: "soon", ico: "⏰", title: "Due soon: research Step " + x.n, body: x.task + " · due " + fd(x.due), date: k, link: "#tracker-steps" }); });
+    var order = { missed: 0, urgent: 1, new: 2, soon: 3, info: 4 };
+    A.sort(function (a, b) { return (order[a.level] - order[b.level]) || (a.date < b.date ? 1 : -1); });
+    return A;
+  }
+  function unread() { S.alertRead = S.alertRead || {}; return alerts().filter(function (a) { return !S.alertRead[a.key]; }); }
+  function ensureBell() {
+    if (document.getElementById("ccBell")) return;
+    var b = document.createElement("a"); b.id = "ccBell"; b.href = "#tracker-alerts"; b.setAttribute("aria-label", "Notifications"); b.innerHTML = '🔔<span class="bn"></span>';
+    document.body.appendChild(b);
+  }
+  function bellUpdate() {
+    if (!S || !D) return; ensureBell(); var U = unread(), el = document.querySelector("#ccBell .bn");
+    if (el) { el.textContent = U.length ? (U.length > 9 ? "9+" : U.length) : ""; el.style.display = U.length ? "" : "none"; }
+    document.getElementById("ccBell").classList.toggle("hot", U.some(function (a) { return a.level === "missed" || a.level === "urgent"; }));
+    S.alertPushed = S.alertPushed || {}; var sent = 0, ch = false;
+    U.forEach(function (a) { if (sent < 3 && !S.alertPushed[a.key] && (a.level === "missed" || a.level === "urgent" || a.level === "new")) { notify(a.ico + " " + a.title, a.body); S.alertPushed[a.key] = 1; sent++; ch = true; } });
+    if (ch) sj(KEY, S);
+  }
+  function alertsPage() {
+    var A = alerts(); S.alertRead = S.alertRead || {};
+    var groups = [["Needs attention", ["missed", "urgent"]], ["New", ["new"]], ["Coming up", ["soon"]], ["Updates", ["info"]]];
+    var perm = window.Notification ? Notification.permission : "unsupported";
+    var h = '<div class="card"><div class="row" style="justify-content:space-between;align-items:center"><p class="sub" style="margin:0">' + unread().length + " unread · " + A.length + ' in total</p><div class="row" style="margin:0"><button class="btn small" data-aall>Mark all read</button>' + (perm === "default" ? '<button class="btn small pri" data-aperm>Turn on pop-up alerts</button>' : "") + "</div></div>" +
+      (perm === "denied" ? '<p class="small">Pop-up alerts are blocked in this browser. Alerts still collect here and on the 🔔 button.</p>' : "") + "</div>";
+    groups.forEach(function (g) { var L = A.filter(function (a) { return g[1].indexOf(a.level) >= 0; }); if (!L.length) return;
+      h += '<h2 class="tsec">' + g[0] + '</h2><div class="alist">' + L.map(function (a) { var rd = !!S.alertRead[a.key];
+        return '<div class="al ' + a.level + (rd ? " rd" : "") + '"><span class="aico">' + a.ico + '</span><div><b>' + esc(a.title) + "</b>" + (rd ? "" : ' <span class="pill warn">new</span>') + '<div class="small">' + esc(a.body) + (a.date ? " · " + fd(a.date) : "") + '</div><div class="row" style="margin-top:6px"><a class="btn small pri" href="' + esc(a.link) + '" data-aread="' + esc(a.key) + '">Open</a>' + (rd ? "" : '<button class="btn small" data-aread="' + esc(a.key) + '">Mark read</button>') + "</div></div></div>"; }).join("") + "</div>"; });
+    if (!A.length) h += '<div class="card"><p>🎉 Nothing needs your attention right now.</p></div>';
+    h += '<p class="hint" style="margin-top:12px">Alerts come from: new graduate opportunities (checked every day), deadlines 100, 30, 14, 7 and 1 days ahead, missed deadlines (opportunities and research steps), and important news. Opportunities you mark "Not for me" or "Submitted" stop alerting.</p>';
+    page("tracker-alerts", h, "Notifications", "Everything that needs your attention, in one place.");
+    var root = document.getElementById("view");
+    Array.prototype.forEach.call(root.querySelectorAll("[data-aread]"), function (el) { el.addEventListener("click", function () { S.alertRead[el.dataset.aread] = 1; save(); if (el.tagName === "BUTTON") alertsPage(); bellUpdate(); }); });
+    var all = root.querySelector("[data-aall]"); if (all) all.onclick = function () { alerts().forEach(function (a) { S.alertRead[a.key] = 1; }); save("All marked read"); alertsPage(); bellUpdate(); };
+    var pm = root.querySelector("[data-aperm]"); if (pm) pm.onclick = function () { try { Notification.requestPermission().then(function () { alertsPage(); }); } catch (e) {} };
+  }
+  function oppsPage() {
+    var I = OPP.items.slice(), cs = ["UK", "Canada", "Germany"];
+    if (OPP.updated) { S.oppSeen = OPP.updated > (S.oppSeen || "") ? OPP.updated : S.oppSeen; sj(KEY, S); }
+    var L = I.filter(function (o) { return (!OF.c || o.country === OF.c) && (!OF.st || oppSt(o) === OF.st); });
+    L.sort(function (a, b) { var da = oppDl(a) || "9999", db2 = oppDl(b) || "9999"; return (oppSt(a) === "Not for me") - (oppSt(b) === "Not for me") || (a.priority - b.priority) || (da < db2 ? -1 : 1); });
+    var nx = I.filter(function (o) { var d = oppDl(o); return d && daysTo(d) >= 0 && oppSt(o) !== "Not for me"; }).sort(function (a, b) { return oppDl(a) < oppDl(b) ? -1 : 1; })[0];
+    var cnt = {}; OSTAT2.forEach(function (s2) { cnt[s2] = I.filter(function (o) { return oppSt(o) === s2; }).length; });
+    var h = '<div class="card"><p class="eyebrow">Your grade and your routes</p><p>' + esc(OPP.profile || "") + '</p><div class="kpis" style="margin-top:10px">' + kpi(I.length, "opportunities") + kpi(cnt.Interested + cnt.Applying, "you're interested in or applying to") + kpi(cnt.Submitted + cnt.Offer, "submitted or offers") + kpi(nx ? daysTo(oppDl(nx)) + " days" : "–", nx ? "to the next deadline (" + nx.provider + ")" : "no upcoming deadline") + '</div><p class="small" style="margin-top:8px">Checked daily for new options. Last update: ' + fd(OPP.updated) + '. Always confirm details on the official page before applying.</p></div>';
+    h += '<div class="row" style="margin:8px 0 12px"><label class="small">Country <select id="ofc"><option value="">All</option>' + cs.map(function (c) { return "<option" + (OF.c === c ? " selected" : "") + ">" + c + "</option>"; }).join("") + '</select></label><label class="small">Status <select id="ofs"><option value="">All</option>' + OSTAT2.map(function (c) { return "<option" + (OF.st === c ? " selected" : "") + ">" + c + "</option>"; }).join("") + "</select></label></div>";
+    h += '<div class="olist">' + L.map(function (o) { var st = oppSt(o), dl = oppDl(o), n = dl ? daysTo(dl) : null, my = oppS(o);
+      var flag = o.country === "UK" ? "🇬🇧" : o.country === "Canada" ? "🇨🇦" : "🇩🇪";
+      return '<div class="ocard' + (st === "Not for me" ? " off" : "") + '"><p class="eyebrow">' + flag + " " + esc(o.city) + " · " + esc(o.type) + (S.oppSeen && o.added > S.oppSeen ? " · 🆕" : "") + "</p><h3>" + esc(o.provider) + '</h3><p class="otitle">' + esc(o.title) + "</p>" +
+        '<p class="small"><b>Your grade:</b> ' + esc(o.grade) + "</p>" + '<p class="small"><b>Also needs:</b> ' + esc(o.req) + "</p>" +
+        '<p class="small"><b>Starts:</b> ' + esc(o.start) + " · <b>Cost:</b> " + esc(o.cost) + "</p>" + (o.funding ? '<p class="small"><b>Funding:</b> ' + esc(o.funding) + "</p>" : "") +
+        '<p class="small"><b>Deadline:</b> ' + (dl ? fd(dl) + (n >= 0 ? " (" + (n === 0 ? "today" : "in " + n + " days") + ")" : " (passed)") + (my.dl ? " · your date" : "") : "none fixed") + (o.deadlineNote ? " · " + esc(o.deadlineNote) : "") + "</p>" +
+        '<p class="ofit">💡 ' + esc(o.fit) + "</p>" +
+        '<div class="row"><a class="btn small pri" href="' + esc(o.link) + '" target="_blank" rel="noopener">Official page ↗</a><label class="small">Status <select data-ost="' + o.id + '">' + OSTAT2.map(function (x) { return "<option" + (x === st ? " selected" : "") + ">" + x + "</option>"; }).join("") + '</select></label><label class="small">My deadline <input type="date" data-odl="' + o.id + '" value="' + esc(my.dl || "") + '"></label>' +
+        '<button class="btn small" data-coach="' + esc("Help me apply to this: " + o.provider + ", " + o.title + " (" + o.city + "). Entry: " + o.grade + " " + o.req + " Starts: " + o.start + ". My CGPA is 2.3/4.0 from Ghana and I have work experience (Carbon Clarity founder and researcher, marketing and sales for Yamale). Give me a step-by-step application checklist, what to say about my grade, and a 4-week timeline. Remind me to confirm details on the official page.") + '">✨ Plan my application</button></div>' +
+        '<label class="small" style="display:grid;gap:4px;margin-top:6px">Notes<textarea class="gin" data-onote="' + o.id + '" rows="2" placeholder="Contacts, documents, what you asked…">' + esc(my.n || "") + "</textarea></label></div>"; }).join("") + "</div>";
+    page("tracker-opps", h, "Graduate opportunities", "Master's routes in London, Canada and Germany that work with a 2.3 GPA. New ones are added every day and announced in 🔔 Notifications.");
+    var root = document.getElementById("view");
+    $("ofc").onchange = function () { OF.c = this.value; oppsPage(); }; $("ofs").onchange = function () { OF.st = this.value; oppsPage(); };
+    function setO(id, f, v) { S.opp = S.opp || {}; S.opp[id] = S.opp[id] || {}; S.opp[id][f] = v; }
+    Array.prototype.forEach.call(root.querySelectorAll("[data-ost]"), function (el) { el.onchange = function () { setO(el.dataset.ost, "s", el.value); save(el.value === "Submitted" ? "Application submitted! 🎉" : "Saved"); oppsPage(); bellUpdate(); }; });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-odl]"), function (el) { el.onchange = function () { setO(el.dataset.odl, "dl", el.value); save("Your deadline saved: you'll get reminders"); oppsPage(); bellUpdate(); }; });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-onote]"), function (el) { var t; el.oninput = function () { clearTimeout(t); t = setTimeout(function () { setO(el.dataset.onote, "n", el.value); save(); }, 500); }; });
+  }
+  function oppsMini() {
+    if (!OPP || !OPP.items.length) return "";
+    var I = OPP.items.filter(function (o) { return oppSt(o) !== "Not for me"; }), nx = I.filter(function (o) { var d = oppDl(o); return d && daysTo(d) >= 0; }).sort(function (a, b) { return oppDl(a) < oppDl(b) ? -1 : 1; })[0], ap = I.filter(function (o) { return oppSt(o) === "Applying"; }).length;
+    return '<div class="card"><p class="eyebrow">🎓 Graduate opportunities</p><p>' + I.length + " routes that work with your 2.3" + (ap ? " · applying to " + ap : "") + (nx ? " · next deadline: <b>" + esc(nx.provider) + "</b> on " + fd(oppDl(nx)) + " (in " + daysTo(oppDl(nx)) + " days)" : "") + '</p><div class="row"><a class="btn pri" href="#tracker-opps">See opportunities</a></div></div>';
+  }
+  function alertBanner() {
+    if (!D) return ""; var U = unread(); if (!U.length) return "";
+    return '<a class="card abanner" href="#tracker-alerts"><b>🔔 ' + U.length + " thing" + (U.length === 1 ? "" : "s") + " need" + (U.length === 1 ? "s" : "") + " your attention</b>" + U.slice(0, 3).map(function (a) { return '<div class="small">' + a.ico + " " + esc(a.title) + "</div>"; }).join("") + "</a>";
+  }
+  var OCSS = '<style id="oppcss">#ccBell{position:fixed;right:258px;bottom:16px;z-index:60;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);box-shadow:0 6px 20px rgba(0,0,0,.15);text-decoration:none;font-size:20px}#ccBell.hot{border-color:var(--ember)}#ccBell .bn{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:var(--ember);color:#fff;font:700 12px/20px inherit;font-family:inherit;text-align:center}' +
+    '@media(max-width:600px){#ccBell{right:auto;left:130px}}.alist{display:grid;gap:8px}.al{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px 14px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:12px;background:var(--card)}.al.missed{border-left-color:var(--bad)}.al.urgent{border-left-color:var(--ember)}.al.new{border-left-color:var(--accent)}.al.soon{border-left-color:#D9A441}.al.rd{opacity:.65}.aico{font-size:22px}' +
+    '.olist{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}.ocard{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--card);display:grid;gap:4px;align-content:start}.ocard.off{opacity:.55}.ocard h3{margin:2px 0 0;font-size:17px}.ocard p{margin:2px 0}.otitle{font-weight:600}.ofit{background:var(--soft);border-radius:10px;padding:8px 10px;font-size:14.5px}.ocard select,.ocard input[type=date]{font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}' +
+    '.abanner{display:block;text-decoration:none;color:var(--ink);border-left:6px solid var(--ember)}@media(max-width:600px){.olist{grid-template-columns:1fr}}</style>';
 
   /* ---------- Revision page panel ---------- */
   function panel(el) {
@@ -1115,11 +1227,11 @@
     Array.prototype.forEach.call(el.querySelectorAll("[data-pclose]"), function (b) { b.onclick = function () { S.gaps[b.dataset.pclose] = { status: "Closed" }; save("Gap closed: +20 XP"); panel(el); }; });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pread]"), function (b) { b.onclick = function () { var i = b.dataset.pread; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = 1; save("Paper read: +10 XP"); panel(el); }; });
   }
-  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage, "tracker-pomo": pomoPage, "today": todayView };
+  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage, "tracker-pomo": pomoPage, "today": todayView, "tracker-opps": oppsPage, "tracker-alerts": alertsPage };
   function show(id) {
     load();
     if (!D) { render('<div class="card"><p>Loading your research tracker…</p></div>', "tracker"); fetch(BASE + "data/tracker.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { D = j; show(id); }).catch(function () { render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh the page.</p></div>', "tracker"); }); return; }
-    ensureLit(function () { (VIEWS[id] || dashboard)(); });
+    ensureLit(function () { ensureOpps(function () { (VIEWS[id] || dashboard)(); bellUpdate(); }); });
   }
   function todayCard(el) {
     load();
