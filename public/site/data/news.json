@@ -1,45 +1,202 @@
 {
-  "updated": "2026-11-20",
-  "headline": "Climate talks run into overtime, three leaders meet in China, and the AI boom hits a wobble.",
-  "sections": [
+ "updated": "2026-11-20",
+ "headline": "Climate talks run into overtime, three leaders meet in China, and the AI boom hits a wobble.",
+ "sections": [
+  {
+   "id": "world",
+   "title": "World",
+   "icon": "🌐",
+   "items": [
     {
-      "id": "world", "title": "World", "icon": "🌐",
-      "items": [
-        { "title": "Trump in Shenzhen for APEC and a first three-way meeting with Xi and Putin", "summary": "US President Donald Trump arrived in Shenzhen for the APEC summit and a planned meeting with Xi Jinping and Vladimir Putin. The agenda includes Russia's war in Ukraine, the US war with Iran, trade, AI and nuclear weapons; Xi used his opening speech to back the WTO-centred trading system.", "source": "The National", "url": "https://www.thenationalnews.com/news/mena/2026/11/18/trump-begins-china-visit-marked-by-high-stakes-talks-on-war-and-trade/", "date": "2026-11-18" },
-        { "title": "SpaceX catches Starship's upper stage after an orbital flight", "summary": "For the first time, SpaceX caught the Starship upper stage with its launch-tower arms after a trip to orbit, a step towards fully reusable rockets. The Super Heavy booster was lost in the same flight.", "source": "Al Jazeera", "url": "https://www.aljazeera.com/news/2026/11/15/spacexs-starship-captured-by-launchpad-arms-in-dramatic-first", "date": "2026-11-15" }
-      ]
+     "title": "Trump in Shenzhen for APEC and a first three-way meeting with Xi and Putin",
+     "summary": "US President Donald Trump arrived in Shenzhen for the APEC summit and a planned meeting with Xi Jinping and Vladimir Putin. The agenda includes Russia's war in Ukraine, the US war with Iran, trade, AI and nuclear weapons; Xi used his opening speech to back the WTO-centred trading system.",
+     "source": "The National",
+     "url": "https://www.thenationalnews.com/news/mena/2026/11/18/trump-begins-china-visit-marked-by-high-stakes-talks-on-war-and-trade/",
+     "date": "2026-11-18"
     },
     {
-      "id": "climate", "title": "Climate and carbon markets", "icon": "🌍",
-      "items": [
-        { "title": "COP31 in Antalya runs into overtime over fossil fuels", "summary": "The UN climate talks in Turkey were due to end on 20 November but countries remain divided. The draft cover decision calls for faster action to phase out fossil fuels and for wealthy nations to reach net zero sooner, which the EU and oil-producing countries have pushed back on from different sides.", "source": "Al Jazeera", "url": "https://www.aljazeera.com/news/2026/11/17/tensions-rise-over-draft-climate-deal-at-cop31", "date": "2026-11-17", "why": "Whatever COP31 agrees on carbon markets and finance shapes demand for Ghana's Article 6 credits: a live input for your research." },
-        { "title": "The second Global Stocktake begins", "summary": "Negotiators in Antalya launched the second five-yearly review of progress under the Paris Agreement, while finance, fossil fuels and a just transition remain unresolved.", "source": "allAfrica", "url": "https://allafrica.com/stories/202611190133.html", "date": "2026-11-19" },
-        { "title": "African and island states press for faster IPCC science", "summary": "Dozens of countries, including African ones, want the IPCC's next big assessment published before COP33 in 2028, saying delays are unjustifiable.", "source": "Al Jazeera", "url": "https://www.aljazeera.com/news/2026/11/17/tensions-rise-over-draft-climate-deal-at-cop31", "date": "2026-11-17" }
-      ]
-    },
-    {
-      "id": "africa", "title": "Ghana and Africa", "icon": "🇬🇭",
-      "items": [
-        { "title": "Health service warns of El Niño risks this harmattan", "summary": "The Ghana Health Service warned of higher risks of meningitis and dehydration as El Niño is expected to affect Ghana during the harmattan season.", "source": "The Informer, via GhanaWeb", "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162", "date": "2026-11-20", "why": "Plan fieldwork with the James Town processors around the heat and dust: water, breaks and shade." },
-        { "title": "MTN marks 30 years in Ghana with a $1.1bn investment pledge", "summary": "MTN is marking its 30th anniversary in Ghana and has committed $1.1 billion in new investment.", "source": "Daily Graphic, via GhanaWeb", "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162", "date": "2026-11-20", "why": "Mobile money is how Carbon Clarity plans to pay benefit shares to the women." },
-        { "title": "University of Ghana trims its hostel fee rise", "summary": "The University of Ghana cut its proposed hostel fee increase from 26% to 15%, and the government asked the tertiary education regulator to engage the Rent Commission on student hostel fees.", "source": "Daily Guide and Daily Graphic, via GhanaWeb", "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162", "date": "2026-11-20" },
-        { "title": "Nigeria moves closer to state police", "summary": "All 36 Nigerian state assemblies approved a constitutional amendment allowing states to form their own police forces; it still needs presidential assent and further laws.", "source": "allAfrica", "url": "https://allafrica.com/stories/202611190133.html", "date": "2026-11-19" }
-      ]
-    },
-    {
-      "id": "business", "title": "Business and tech", "icon": "📈",
-      "items": [
-        { "title": "AI worries drive the biggest tech sell-off in years", "summary": "Tech shares fell sharply through November as investors questioned whether spending on AI data centres will pay off; early in the month saw the largest tech sell-off since the Covid crash.", "source": "Fortune; Honolulu Star-Advertiser (AP)", "url": "https://fortune.com/2026/11/05/tech-stocks-are-suffering-the-biggest-selloff-since-covid-as-investors-see-premature-end-to-ai-datacenter-boom/", "date": "2026-11-16" }
-      ]
+     "title": "SpaceX catches Starship's upper stage after an orbital flight",
+     "summary": "For the first time, SpaceX caught the Starship upper stage with its launch-tower arms after a trip to orbit, a step towards fully reusable rockets. The Super Heavy booster was lost in the same flight.",
+     "source": "Al Jazeera",
+     "url": "https://www.aljazeera.com/news/2026/11/15/spacexs-starship-captured-by-launchpad-arms-in-dramatic-first",
+     "date": "2026-11-15"
     }
-  ],
-  "good": [
-    { "title": "Nature restoration at record pace", "summary": "A UN Environment Programme report says about 252 million hectares of land, sea and freshwater habitat are being restored across 149 countries, the fastest pace on record.", "source": "Positive News", "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/" },
-    { "title": "Malaria deaths nearly halved since 2000", "summary": "The global malaria death rate has almost halved since 2000, though most remaining deaths are in Africa.", "source": "Good Good Good", "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026" },
-    { "title": "Record year for the Green Climate Fund", "summary": "The fund committed $3.3 billion to climate adaptation and mitigation projects in developing countries in its biggest year yet.", "source": "Positive News", "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/" },
-    { "title": "Kenya secures $160m to protect 17.3 million hectares", "summary": "Kenya secured a $160 million conservation investment to protect 17.3 million hectares of natural land.", "source": "Good Good Good", "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026" },
-    { "title": "China's emissions fall for a quarter", "summary": "China's CO₂ emissions fell 3.1% in the third quarter of 2026, the steepest quarterly drop since the 2022 lockdowns, and electric trucks reached about half of heavy-truck sales in September.", "source": "Good Good Good", "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026" },
-    { "title": "Barbados ends mother-to-child HIV transmission", "summary": "The WHO recognised Barbados for eliminating mother-to-child transmission of HIV, after testing and treating 98% of pregnant women.", "source": "Positive News", "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/" }
-  ],
-  "watch": ["COP31 final deal and what it says on carbon markets", "AI stocks: correction or bubble bursting?", "US–China–Russia talks in Shenzhen", "El Niño and the harmattan in Ghana"]
+   ]
+  },
+  {
+   "id": "climate",
+   "title": "Climate and carbon markets",
+   "icon": "🌍",
+   "items": [
+    {
+     "title": "COP31 in Antalya runs into overtime over fossil fuels",
+     "summary": "The UN climate talks in Turkey were due to end on 20 November but countries remain divided. The draft cover decision calls for faster action to phase out fossil fuels and for wealthy nations to reach net zero sooner, which the EU and oil-producing countries have pushed back on from different sides.",
+     "source": "Al Jazeera",
+     "url": "https://www.aljazeera.com/news/2026/11/17/tensions-rise-over-draft-climate-deal-at-cop31",
+     "date": "2026-11-17",
+     "why": "Whatever COP31 agrees on carbon markets and finance shapes demand for Ghana's Article 6 credits: a live input for your research."
+    },
+    {
+     "title": "The second Global Stocktake begins",
+     "summary": "Negotiators in Antalya launched the second five-yearly review of progress under the Paris Agreement, while finance, fossil fuels and a just transition remain unresolved.",
+     "source": "allAfrica",
+     "url": "https://allafrica.com/stories/202611190133.html",
+     "date": "2026-11-19"
+    },
+    {
+     "title": "African and island states press for faster IPCC science",
+     "summary": "Dozens of countries, including African ones, want the IPCC's next big assessment published before COP33 in 2028, saying delays are unjustifiable.",
+     "source": "Al Jazeera",
+     "url": "https://www.aljazeera.com/news/2026/11/17/tensions-rise-over-draft-climate-deal-at-cop31",
+     "date": "2026-11-17"
+    }
+   ]
+  },
+  {
+   "id": "africa",
+   "title": "Ghana and Africa",
+   "icon": "🇬🇭",
+   "items": [
+    {
+     "title": "Health service warns of El Niño risks this harmattan",
+     "summary": "The Ghana Health Service warned of higher risks of meningitis and dehydration as El Niño is expected to affect Ghana during the harmattan season.",
+     "source": "The Informer, via GhanaWeb",
+     "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162",
+     "date": "2026-11-20",
+     "why": "Plan fieldwork with the James Town processors around the heat and dust: water, breaks and shade."
+    },
+    {
+     "title": "MTN marks 30 years in Ghana with a $1.1bn investment pledge",
+     "summary": "MTN is marking its 30th anniversary in Ghana and has committed $1.1 billion in new investment.",
+     "source": "Daily Graphic, via GhanaWeb",
+     "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162",
+     "date": "2026-11-20",
+     "why": "Mobile money is how Carbon Clarity plans to pay benefit shares to the women."
+    },
+    {
+     "title": "University of Ghana trims its hostel fee rise",
+     "summary": "The University of Ghana cut its proposed hostel fee increase from 26% to 15%, and the government asked the tertiary education regulator to engage the Rent Commission on student hostel fees.",
+     "source": "Daily Guide and Daily Graphic, via GhanaWeb",
+     "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/Today-at-the-newsstand-November-20-2026-2062162",
+     "date": "2026-11-20"
+    },
+    {
+     "title": "Nigeria moves closer to state police",
+     "summary": "All 36 Nigerian state assemblies approved a constitutional amendment allowing states to form their own police forces; it still needs presidential assent and further laws.",
+     "source": "allAfrica",
+     "url": "https://allafrica.com/stories/202611190133.html",
+     "date": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "id": "business",
+   "title": "Business and tech",
+   "icon": "📈",
+   "items": [
+    {
+     "title": "AI worries drive the biggest tech sell-off in years",
+     "summary": "Tech shares fell sharply through November as investors questioned whether spending on AI data centres will pay off; early in the month saw the largest tech sell-off since the Covid crash.",
+     "source": "Fortune; Honolulu Star-Advertiser (AP)",
+     "url": "https://fortune.com/2026/11/05/tech-stocks-are-suffering-the-biggest-selloff-since-covid-as-investors-see-premature-end-to-ai-datacenter-boom/",
+     "date": "2026-11-16"
+    }
+   ]
+  }
+ ],
+ "good": [
+  {
+   "title": "Nature restoration at record pace",
+   "summary": "A UN Environment Programme report says about 252 million hectares of land, sea and freshwater habitat are being restored across 149 countries, the fastest pace on record.",
+   "source": "Positive News",
+   "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/"
+  },
+  {
+   "title": "Malaria deaths nearly halved since 2000",
+   "summary": "The global malaria death rate has almost halved since 2000, though most remaining deaths are in Africa.",
+   "source": "Good Good Good",
+   "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026"
+  },
+  {
+   "title": "Record year for the Green Climate Fund",
+   "summary": "The fund committed $3.3 billion to climate adaptation and mitigation projects in developing countries in its biggest year yet.",
+   "source": "Positive News",
+   "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/"
+  },
+  {
+   "title": "Kenya secures $160m to protect 17.3 million hectares",
+   "summary": "Kenya secured a $160 million conservation investment to protect 17.3 million hectares of natural land.",
+   "source": "Good Good Good",
+   "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026"
+  },
+  {
+   "title": "China's emissions fall for a quarter",
+   "summary": "China's CO₂ emissions fell 3.1% in the third quarter of 2026, the steepest quarterly drop since the 2022 lockdowns, and electric trucks reached about half of heavy-truck sales in September.",
+   "source": "Good Good Good",
+   "url": "https://www.goodgoodgood.co/articles/good-news-this-week-november-14-2026"
+  },
+  {
+   "title": "Barbados ends mother-to-child HIV transmission",
+   "summary": "The WHO recognised Barbados for eliminating mother-to-child transmission of HIV, after testing and treating 98% of pregnant women.",
+   "source": "Positive News",
+   "url": "https://www.positive.news/society/good-news-stories-from-week-45-of-2026/"
+  }
+ ],
+ "watch": [
+  "COP31 final deal and what it says on carbon markets",
+  "AI stocks: correction or bubble bursting?",
+  "US–China–Russia talks in Shenzhen",
+  "El Niño and the harmattan in Ghana"
+ ],
+ "future": [
+  {
+   "title": "Clean cooking financed by carbon credits",
+   "why": "New government policies across Africa have helped secure about $900 million in new clean-cooking finance, with carbon credits as the main engine. The catch: it only lasts if buyers trust the credits.",
+   "fit": "This is Carbon Clarity's core. The winners will be projects with measured, audit-ready data.",
+   "step": "This month: map which Gold Standard metered-method requirements your pilot data already meets.",
+   "source": "AP via Mongabay",
+   "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
+  },
+  {
+   "title": "Digital MRV and high-integrity credit data",
+   "why": "Credit buyers increasingly pay only for credits they can verify. Sensor-based monitoring and clean data trails are becoming the difference between credits that sell and credits that don't.",
+   "fit": "Your Data Vault idea could become a service for other cookstove and agriculture projects in Ghana.",
+   "step": "Write a one-page description of the Data Vault as a service: who pays, what it proves.",
+   "source": "AP via Mongabay",
+   "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
+  },
+  {
+   "title": "Clean heat for small industries",
+   "why": "RMI lists clean industrial heat among Africa's six emerging climate-tech opportunities. Fish smoking is exactly this: small-scale process heat.",
+   "fit": "Improved ovens for fish processors are a clean-heat business with income for women, not just a stove programme.",
+   "step": "Estimate the market: how many processors in Greater Accra and coastal Ghana, and how much wood they burn.",
+   "source": "RMI",
+   "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
+  },
+  {
+   "title": "Carbon removal from biomass: biochar",
+   "why": "RMI also highlights carbon dioxide removal that uses Africa's biomass and soils, a market where removal credits sell for far more than avoidance credits.",
+   "fit": "Waste biomass from smoking (husks, offcuts) could be turned into biochar: a second revenue stream.",
+   "step": "Read one biochar removal methodology and list what you'd need to measure.",
+   "source": "RMI",
+   "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
+  },
+  {
+   "title": "Energy-led climate tech is where African investment goes",
+   "why": "Africa's climate-tech startups raised $6.35bn from 2016 to 2025, now the continent's biggest venture sector, with energy taking about 65% of the money.",
+   "fit": "Pitch Carbon Clarity as energy plus livelihoods: efficient heat, solar drying or cold storage for fish.",
+   "step": "Add one slide to your pitch: 'Why energy investors should care about fish smoking'.",
+   "source": "Briter Intelligence via Tech Economy",
+   "url": "https://techeconomy.ng/africa-climatetech-funding-hits-6-35bn-as-sector-overtakes-fintech-in-venture-investment"
+  },
+  {
+   "title": "Article 6 advisory for Ghanaian projects",
+   "why": "Ghana is one of the first countries trading credits between governments under Article 6. Developers need people who understand authorisation, corresponding adjustments and the Carbon Market Office process.",
+   "fit": "Your Ghana carbon market research makes you one of those people: it can become consulting work or a job.",
+   "step": "Turn your Step 3 agreement table into a two-page brief you can share on LinkedIn.",
+   "source": "Your research page",
+   "url": "https://carbon-clarity.vercel.app/research.html"
+  }
+ ],
+ "futureUpdated": "2026-11-20"
 }
