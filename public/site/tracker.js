@@ -2,6 +2,7 @@
    Loaded on demand by learning.html. Uses the page's helpers: render, esc, ls, lj, sj, toast, $.
    Everything you change is saved in this browser (localStorage key cc_trk_v1). Use Backup to move it between devices. */
 (function () {
+  if (window.CCTracker) return;
   var BASE = window.CC_TRK_BASE || "https://raw.githubusercontent.com/poutchop/data-vault-modern/main/public/site/";
   var XLSX = BASE + "files/Ghana_Carbon_Market_Research_Tracker.xlsx";
   var KEY = "cc_trk_v1";
@@ -14,7 +15,7 @@
   var OSTAT = ["Not started", "In progress", "Done"];
   var SSTAT = ["Not started", "Learning", "Done"];
   var PTS = { steps: 100, read: 5, core: 5, ev: 10, gaps: 20, sess: 2, lvl: 25, res: 30, refl: 15, outs: 75, ms: 50 };
-  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-ai", "AI coach"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
+  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-ai", "AI coach"], ["tracker-pomo", "Time locker"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
     ["tracker-lit", "Literature"], ["tracker-sites", "Sites"], ["tracker-dirs", "Directions"], ["tracker-focus", "Focus log"],
     ["tracker-reflect", "Reflection"], ["tracker-growth", "My growth"], ["tracker-backup", "Backup"]];
 
@@ -130,7 +131,7 @@
       kpi(s.evN ? Math.round(s.evYes / s.evN * 100) + "%" : "0%", "evidence fully verified (" + s.evYes + "/" + s.evN + ")") +
       kpi(s.read, "papers read of " + (LIT ? LIT.rows.length.toLocaleString() : "1,499")) + kpi(s.gapsOpen, "gaps still open", s.gapsOpen > 0) +
       '</div><p style="margin-top:14px"><b>Next:</b> ' + next + "</p></div>";
-    h += '<div class="card"><h2>Steps</h2><table class="tt"><tr><th>#</th><th>Task</th><th>Due</th><th>Status</th><th>Flag</th></tr>' +
+    h += '<div class="card tw"><h2>Steps</h2><table class="tt"><tr><th>#</th><th>Task</th><th>Due</th><th>Status</th><th>Flag</th></tr>' +
       D.steps.map(function (x) { return "<tr><td>" + x.n + "</td><td>" + esc(x.task) + "</td><td>" + fd(x.due) + "</td><td>" + esc(stepStatus(x)) + "</td><td>" + flagPill(stepFlag(x)) + "</td></tr>"; }).join("") + "</table></div>";
     h += '<div class="card"><h2>Milestones</h2><p class="hint">' + s.msDone + " of " + s.ms.length + ' unlocked. Set your rewards in <a href="#tracker-growth">My growth</a>.</p><div class="badges" style="margin-top:10px">' +
       s.ms.map(function (m) { return '<div class="badge' + (m.done ? " got" : "") + '" title="' + esc(m.cur + " / " + m.target) + '">' + (m.done ? "🏆" : "🔒") + '<div class="small">' + esc(m.name) + "</div></div>"; }).join("") + "</div></div>";
@@ -541,7 +542,7 @@
       (x.todo.length ? '<p class="eyebrow">What to do</p><ol>' + x.todo.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + "</ol>" : "") +
       (x.out ? '<p><b>Output:</b> ' + esc(x.out) + "</p>" : "") + (x.q ? '<p><b>Check yourself:</b> <i>' + esc(x.q) + "</i></p>" : "");
     if (x.links.length) h += '<div class="row">' + x.links.map(function (l) { var ext = /^https?:/.test(l[1]); return '<a class="btn small" href="' + esc(l[1]) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + esc(l[0]) + (ext ? " ↗" : "") + "</a>"; }).join("") + "</div>";
-    if (majorIds().indexOf(x.id) >= 0 && !opts.noAi) h += '<div class="row">' + aiBtns(askPrompt(x, d), true) + "</div>";
+    if (majorIds().indexOf(x.id) >= 0 && !opts.noAi) h += '<div class="row">' + (x.id !== "video" ? '<button class="btn small" data-pomo="' + esc(x.title) + '">⏱ Start a focus block</button>' : "") + aiBtns(askPrompt(x, d), true) + "</div>";
     if (!opts.noNotes && x.id && majorIds().concat(["tasks", "wrap"]).indexOf(x.id) >= 0) h += '<label class="snote"><span>Session notes (what you did, learned, still need)</span><textarea data-note="' + key + '" placeholder="Type as you go. It saves itself and goes into today\'s summary.">' + esc(note(d, x.id)) + '</textarea></label><label class="sdone"><input type="checkbox" data-done="' + key + '"' + (isDone(d, x.id) ? " checked" : "") + "> Session done (+3 XP)</label>";
     return h + "</div>";
   }
@@ -578,6 +579,7 @@
     var k = dk(d), bl = plan(d).filter(function (b) { return majorIds().concat(["tasks", "wrap"]).indexOf(b.id) >= 0; }), lines = [];
     lines.push("Carbon Clarity daily summary: " + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }));
     var done = bl.filter(function (b) { return isDone(d, b.id); }), fl = S.focus.filter(function (f) { return f.date === k; }), fs = fl.reduce(function (a, f) { return a + (+f.sess || 0); }, 0);
+    var pr = (S.pomo || {})[k]; if (pr && pr.n) lines.push("Pomodoro: " + pr.n + " focus block" + (pr.n === 1 ? "" : "s") + " (" + pr.mins + " min)" + (pr.dist ? ", " + pr.dist + " distraction" + (pr.dist === 1 ? "" : "s") + " noted" : ""));
     lines.push("Sessions done: " + done.length + " of " + bl.length + (fs ? " · focus: " + fs + " x 25 min" : "") + (S.vids[k] ? " · growth video watched" : ""));
     var G = goals(d); lines.push("Goals met: " + G.filter(function (g) { return g.done; }).length + " of " + G.length + (G.every(function (g) { return g.done; }) && G.length ? " (perfect day)" : "")); G.forEach(function (g) { lines.push("  " + (g.done ? "✓ " : "☐ ") + g.t); });
     if (LIT) { var tp = todaysPapers(d); if (tp.length) { lines.push("Papers (" + papersRead(d) + " of " + tp.length + " read):"); tp.forEach(function (i) { lines.push("  " + (litRead(i) === "Read" ? "✓ " : "☐ ") + LIT.rows[i][4] + " (" + LIT.rows[i][5] + ", " + LIT.rows[i][3] + ")"); }); } }
@@ -706,6 +708,7 @@
     L.push("Now: " + n.toLocaleString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) + " (Accra).");
     L.push("Current block: " + (nn.now.length ? nn.now.map(function (b) { return b.s + "–" + b.e + " " + brief(b, d).title; }).join("; ") : "free time") + ". Next: " + (nn.next ? nn.next.s + " " + brief(nn.next, d).title : "nothing else today") + ".");
     L.push("\nTODAY'S TIMETABLE:"); plan(d).filter(function (b) { return majorIds().concat(["tasks", "wrap"]).indexOf(b.id) >= 0; }).forEach(function (b) { var x = brief(b, d); L.push("- " + x.time + " " + x.title + (isDone(d, b.id) ? " [DONE]" : "") + ". Goal: " + x.goal + (x.out ? " Output: " + x.out : "") + (note(d, b.id) ? " My notes: " + note(d, b.id).slice(0, 300) : "")); });
+    var pq = (S.pomo || {})[dk(d)]; L.push("Pomodoro today: " + (pq ? pq.n + " focus blocks, " + pq.mins + " min, " + (pq.dist || 0) + " distractions" : "none yet") + (P && P.mode === "focus" ? ". Currently in a focus block on: " + P.label : P && (P.mode === "short" || P.mode === "long") ? ". Currently on a break" : "") + ".");
     L.push("\nTODAY'S GOALS:"); goals(d).forEach(function (g) { L.push("- [" + (g.done ? "x" : " ") + "] " + g.t); });
     if (LIT) { L.push("\nTODAY'S PAPERS:"); todaysPapers(d).forEach(function (i) { var r = LIT.rows[i]; L.push("- " + (litRead(i) === "Read" ? "[read] " : "") + r[4] + " — " + r[5] + ", " + r[6] + " " + r[3] + " (" + r[1] + ")"); }); }
     if (st) { L.push("\nRESEARCH (Ghana carbon market trends, due 15 Jan 2027): current step " + st.n + " '" + st.task + "', due " + fd(st.due) + ", status " + stepStatus(st) + ". Deliverable: " + st.deliv + ". Covers: " + st.info + ". Sources: " + st.src + (st.notes ? ". Note: " + st.notes : "") + ".");
@@ -724,7 +727,7 @@
       '<div class="cchips"></div><form class="cform"><textarea rows="2" placeholder="Ask anything: brief me, explain a concept, quiz me, plan my evening…" maxlength="3000"></textarea><button class="btn pri">Send</button></form><div class="cfoot small"><button class="lnk cnew">New chat</button> · <a class="cext" target="_blank" rel="noopener" href="https://claude.ai/new">Open in Claude ↗</a></div></div>';
     document.body.appendChild(w);
     var fab = w.querySelector(".cfab"), dr = w.querySelector(".cdraw"), f = w.querySelector(".cform"), ta = f.querySelector("textarea");
-    fab.onclick = function () { dr.hidden = !dr.hidden; if (!dr.hidden) { drawLog(); ta.focus(); } };
+    fab.onclick = function () { dr.hidden = !dr.hidden; var pd2 = document.querySelector("#ccPomo .pdraw"); if (pd2 && !dr.hidden) pd2.hidden = true; if (!dr.hidden) { drawLog(); ta.focus(); } };
     w.querySelector(".cclose").onclick = function () { dr.hidden = true; };
     w.querySelector(".cnew").onclick = function () { S.chat = []; save(); drawLog(); };
     f.onsubmit = function (e) { e.preventDefault(); var t = ta.value.trim(); if (t) { ta.value = ""; sendCoach(t); } };
@@ -761,9 +764,164 @@
     '#ccCoach .cchips{display:flex;gap:6px;overflow-x:auto;padding:8px 12px 0}#ccCoach .chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 10px;font-size:13px;font-weight:600;cursor:pointer}' +
     '#ccCoach .cform{display:flex;gap:8px;padding:10px 12px}#ccCoach textarea{flex:1;font:inherit;font-size:14.5px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);resize:none}#ccCoach .cfoot{padding:0 14px 10px}' +
     '.lnk{border:0;background:none;color:var(--muted);cursor:pointer;font:inherit;padding:0 4px}.glist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px}.glist li{display:flex;align-items:flex-start;gap:6px;font-size:14.5px}.glist label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}.glist input{margin-top:4px}.glist li.ok span:first-of-type{text-decoration:line-through;color:var(--muted)}' +
-    '.gin{flex:1;min-width:180px;font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}.dgoals,.dpap{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}.dpap select{font:inherit;font-size:13px;padding:2px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}</style>';
-  function fab() { if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS); load(); if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; ensureCoach(); }).catch(function () {}); return; } ensureCoach(); }
+    '.gin{flex:1;min-width:180px;font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}.dgoals,.dpap{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}#ccPomo .pfab{position:fixed;right:140px;bottom:16px;z-index:60;border:1px solid var(--line);border-radius:99px;padding:12px 16px;font-weight:700;font-size:15px;font-family:inherit;background:var(--card);color:var(--ink);box-shadow:0 6px 20px rgba(0,0,0,.15);cursor:pointer;font-variant-numeric:tabular-nums}#ccPomo .pfab.on{background:var(--ember);color:#fff;border-color:var(--ember)}' +
+    '#ccPomo .pdraw{position:fixed;right:16px;bottom:72px;z-index:61;width:min(400px,calc(100vw - 32px));max-height:calc(100vh - 100px);overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.22)}#ccPomo .pdraw[hidden],#ccPomo .plock[hidden]{display:none}#ccPomo .chead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--soft)}#ccPomo .pclose{margin-left:auto}#ccPomo .pbody{padding:12px 14px}' +
+    '.ptime{font-size:52px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--accent);margin:4px 0 8px}.ptime.big{font-size:min(26vw,120px)}.pdot{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);margin-right:4px;vertical-align:-1px}.pdot.got{background:var(--accent)}' +
+    '.pjoke{margin:10px 0;padding:12px 14px;border-radius:12px;background:var(--ember-soft)}.pjoke .jk{font-size:18px;font-weight:600;margin:4px 0 8px;line-height:1.4}' +
+    '#ccPomo .plock{position:fixed;inset:0;z-index:80;background:var(--bg);display:grid;place-items:center;padding:24px 16px;overflow:auto}.plin{max-width:640px;width:100%;text-align:center;display:grid;gap:12px}.plab{font-size:20px;font-weight:700;margin:0}.plin .msg{text-align:left}' +
+    '.punlock{justify-self:center;position:relative;overflow:hidden}.punlock.holding{background:var(--ember);color:#fff;border-color:var(--ember);transition:background 3s}@media(max-width:600px){#ccPomo .pfab{right:auto;left:16px}}.dpap select{font:inherit;font-size:13px;padding:2px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}</style>';
+  function fab() { if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS); load(); if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; ensureCoach(); pomoInit(); }).catch(function () {}); return; } ensureCoach(); if (!document.getElementById("ccPomo")) pomoInit(); }
   function ensureLit(cb) { if (LIT) return cb(); fetch(BASE + "data/literature.json").then(function (r) { return r.json(); }).then(function (j) { LIT = j; cb(); }).catch(function () { LIT = { rows: [] }; cb(); }); }
+
+  /* ---------- Pomodoro time locker with break-time laughs ---------- */
+  var JOKES = [
+    "Why did the carbon credit go to therapy? It had too many unresolved emissions.",
+    "I told my Excel sheet a joke. It didn't laugh. It just returned #VALUE!",
+    "A pivot table walks into a bar. The bartender says, \"We don't serve your kind.\" The pivot table says, \"Fine. Let me summarise the situation.\"",
+    "Why was the thermocouple so calm in the meeting? It knows how to handle the heat.",
+    "I asked the load cell how its day was. It said, \"Heavy.\"",
+    "My research has three stages: \"This is easy.\" \"This is impossible.\" \"Why did nobody tell me about corresponding adjustments?\"",
+    "Why did the SQL query leave the table? It said there was no relationship.",
+    "A statistician on a diet: \"I'm not overeating. I'm increasing my sample size.\"",
+    "Why did the PM2.5 particle get promoted? It always gets deep into the details.",
+    "The Chorkor smoker told the Ahotor oven, \"Stop showing off, you're just hot air.\" The Ahotor replied, \"Yes, but I use it efficiently.\"",
+    "Why are carbon markets so dramatic? Every relationship needs a corresponding adjustment.",
+    "I tried to tell a joke about NPV. It's funnier if you wait, but it's worth less.",
+    "Me: \"I'll check my phone for one minute.\" Also me, 45 minutes later: an expert on a goat that can open gates in Kumasi.",
+    "Why did the business analyst bring a ladder to work? To reach the high-level requirements.",
+    "I would tell you a joke about deadlines, but it's due tomorrow.",
+    "Why did the balance sheet join a gym? To build up its assets.",
+    "Why do ITMOs never travel alone? They always need a corresponding partner.",
+    "My sensor broke up with the Wi-Fi. Too many dropped connections. Now it's seeing LoRaWAN: long range, low drama.",
+    "My focus is like a trotro: it leaves when it's full, not when it's scheduled.",
+    "What did the improved cookstove say on its first date? \"I think we have chemistry. Also very efficient combustion.\"",
+    "Why did the dataset refuse to be cleaned? \"I'm not dirty. I'm just raw.\"",
+    "Me reading papers: abstract, conclusion, done. My conscience: \"…and the methods, please.\"",
+    "Why did the R script go back to school? To improve its class.",
+    "I asked Google Scholar for one paper. It gave me 1,499. So now I have a tracker.",
+    "Why did the pitch deck fail its driving test? It kept skipping slides.",
+    "Why do smoked fish make great friends? They're well seasoned and never get cold feet.",
+    "Why did the auditor fall in love with the Data Vault? Finally, someone with a clean record.",
+    "If procrastination were an Olympic sport, I'd definitely compete… tomorrow.",
+    "My brain after 25 focused minutes: \"Achievement unlocked.\" My brain after 25 minutes of scrolling: \"Where am I? Who am I?\"",
+    "Why did the financial model go to the doctor? It had circular references and couldn't stop going round in circles.",
+    "Why was the survey so popular? It always asked the right questions.",
+    "Why don't trees ever lose arguments about carbon? They have deep roots in the evidence.",
+    "What's a researcher's favourite music? Heavy metadata.",
+    "Why did the public speaker bring a mirror? To practise reflection.",
+    "A fish processor, an engineer and a carbon auditor walk into a kitchen. The fish gets smoked, the stove gets measured, and the auditor asks for the raw data.",
+    "Why did the growth video feel proud? It finally got watched to the end.",
+    "Jollof debate rules in our office: Ghana wins, Nigeria appeals, and the researcher asks for a larger sample.",
+    "Why was the emission factor always invited to parties? It made everything add up.",
+    "My to-do list and I have an agreement: I write it, and it judges me silently.",
+    "Why did the PowerPoint go to therapy? Too many unresolved bullet points."
+  ];
+  var MOVES = ["Stand up and stretch your arms to the ceiling for 10 seconds. Reach for those carbon credits.", "Drink a full glass of water. Hydrated brains think faster.", "Walk to the window and look at something far away for 20 seconds. Your eyes will thank you.",
+    "Do 10 slow shoulder rolls, then 10 the other way.", "Announce your last 25 minutes like a football commentator. Out loud. Yes, really.", "Text someone a kind word. It boosts your mood too.",
+    "Dance to one song like nobody is watching (somebody might be, that's fine).", "Do 10 jumping jacks while whispering \"additionality\".", "Close your eyes and take 5 slow breaths: in for 4, out for 6.", "Tidy one thing on your desk. Small wins count."];
+  var PK = "cc_pomo", P = null, PT = null, BEEPCTX = null;
+  function pload() { P = lj(PK, null) || {}; P.cfg = P.cfg || { f: 25, s: 5, l: 15 }; P.mode = P.mode || "idle"; P.n = P.n || 0; return P; }
+  function psave() { sj(PK, P); }
+  function plen(m) { return (m === "focus" ? P.cfg.f : m === "short" ? P.cfg.s : m === "long" ? P.cfg.l : P.cfg.f) * 6e4; }
+  function pleft() { if (P.mode === "idle" || P.mode === "ready") return plen("focus"); return P.paused ? P.left : Math.max(0, P.end - Date.now()); }
+  function fmt(ms) { var s = Math.ceil(ms / 1000), m = Math.floor(s / 60); return String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }
+  function defLabel() { try { var nn = nowNext(), b = nn.now.filter(function (x) { return majorIds().indexOf(x.id) >= 0 || x.id === "tasks"; })[0] || nn.next; return b ? brief(b, today()).title : "Deep work"; } catch (e) { return "Deep work"; } }
+  function beep(n) { try { BEEPCTX = BEEPCTX || new (window.AudioContext || window.webkitAudioContext)(); var t = BEEPCTX.currentTime; for (var i = 0; i < (n || 3); i++) { var o = BEEPCTX.createOscillator(), g = BEEPCTX.createGain(); o.frequency.value = i % 2 ? 660 : 880; o.connect(g); g.connect(BEEPCTX.destination); g.gain.setValueAtTime(.0001, t + i * .35); g.gain.exponentialRampToValueAtTime(.25, t + i * .35 + .03); g.gain.exponentialRampToValueAtTime(.0001, t + i * .35 + .3); o.start(t + i * .35); o.stop(t + i * .35 + .32); } } catch (e) {} }
+  function notify(t, b) { try { if (window.Notification && Notification.permission === "granted") new Notification(t, { body: b }); } catch (e) {} }
+  function joke() { return JOKES[Math.floor(Math.random() * JOKES.length)]; }
+  function move() { return MOVES[Math.floor(Math.random() * MOVES.length)]; }
+  function pstart(label) {
+    pload(); if (label) P.label = label; P.label = P.label || defLabel();
+    try { if (window.Notification && Notification.permission === "default") Notification.requestPermission(); } catch (e) {}
+    P.mode = "focus"; P.end = Date.now() + plen("focus"); P.paused = false; P.dist = 0; psave(); ptick(); pdraw();
+  }
+  function pbreak(kind) { P.mode = kind; P.end = Date.now() + plen(kind); P.paused = false; P.joke = joke(); P.move = move(); psave(); }
+  function pcomplete() {
+    var k = dk(today());
+    if (P.mode === "focus") {
+      load(); S.pomo = S.pomo || {}; var r = S.pomo[k] = S.pomo[k] || { n: 0, mins: 0, dist: 0 }; r.n++; r.mins += P.cfg.f; r.dist += P.dist || 0;
+      var e = S.focus.filter(function (f) { return f.date === k && f.auto === "pomo"; })[0]; if (!e) { e = { date: k, task: "Pomodoro time locker", step: "", sess: 0, win: "", auto: "pomo" }; S.focus.push(e); }
+      e.sess = Math.round((+e.sess || 0) + P.cfg.f / 25); e.win = (e.win ? e.win + "; " : "") + (P.label || "").slice(0, 80); if (e.win.length > 400) e.win = e.win.slice(-400);
+      save("Focus session logged: +" + Math.round(P.cfg.f / 25) * PTS.sess + " XP 🎉");
+      P.n = (P.n + 1) % 4; pbreak(P.n === 0 ? "long" : "short"); beep(3); notify("Focus done! Break time 😄", P.joke);
+    } else { P.mode = "ready"; psave(); beep(2); notify("Break over", "Ready to lock in again?"); }
+    pdraw();
+    if (location.hash === "#tracker-pomo") pomoPage(); else if (/^#tracker/.test(location.hash) && document.querySelector(".dgoals")) { try { show(location.hash.slice(1)); } catch (e2) {} }
+  }
+  function ptick() { clearInterval(PT); PT = setInterval(function () { if (!P) pload(); if ((P.mode === "focus" || P.mode === "short" || P.mode === "long") && !P.paused && Date.now() >= P.end) pcomplete(); pdrawTime(); }, 1000); }
+  function modeName(m) { return m === "focus" ? "Focus" : m === "short" ? "Short break" : m === "long" ? "Long break" : m === "ready" ? "Ready for the next focus" : "Ready"; }
+  function pdrawTime() {
+    var t = fmt(pleft()), m = P.mode, run = (m === "focus" || m === "short" || m === "long") && !P.paused;
+    var fb = document.querySelector("#ccPomo .pfab"); if (fb) { fb.textContent = (m === "focus" ? "🔒 " : m === "short" || m === "long" ? "😄 " : "⏱ ") + (m === "idle" || m === "ready" ? "Focus" : t); fb.classList.toggle("on", run); }
+    Array.prototype.forEach.call(document.querySelectorAll("[data-ptime]"), function (el) { el.textContent = t; });
+    var tot = plen(m === "idle" || m === "ready" ? "focus" : m); Array.prototype.forEach.call(document.querySelectorAll("[data-pbar]"), function (el) { el.style.width = Math.round((1 - pleft() / tot) * 100) + "%"; });
+    if (run) document.title = t + " · " + (m === "focus" ? "Focus" : "Break") + " · Carbon Clarity"; else if (/· Carbon Clarity$/.test(document.title)) document.title = "Carbon Clarity Learning";
+  }
+  function pcontrols() {
+    var m = P.mode, run = m === "focus" || m === "short" || m === "long", k = dk(today()), r = (S && S.pomo && S.pomo[k]) || { n: 0, mins: 0 };
+    var dots = [0, 1, 2, 3].map(function (i) { return '<span class="pdot' + (i < P.n ? " got" : "") + '"></span>'; }).join("");
+    var h = '<p class="eyebrow">' + modeName(m) + (P.paused ? " · paused" : "") + "</p>" + '<div class="ptime" data-ptime>' + fmt(pleft()) + '</div><div class="prog2"><i data-pbar style="width:0"></i></div>' +
+      '<p class="small" style="margin:8px 0">' + dots + " &nbsp;Today: " + r.n + " focus session" + (r.n === 1 ? "" : "s") + " · " + r.mins + " min</p>";
+    if (m === "focus") h += '<p><b>Locked in on:</b> ' + esc(P.label || "") + "</p>";
+    if (m === "short" || m === "long") h += '<div class="pjoke"><p class="eyebrow">Break-time laugh 😂</p><p class="jk">' + esc(P.joke || joke()) + '</p><p class="small"><b>Move:</b> ' + esc(P.move || move()) + '</p><div class="row"><button class="btn small" data-pact="joke">Another joke 😆</button><button class="btn small" data-coach="Make me laugh for my break: tell me 3 short, clean, original jokes about carbon markets, fish smoking, data or startup life in Ghana. Then one line of motivation for my next focus block.">✨ Coach, make me laugh</button></div></div>';
+    if (m === "idle" || m === "ready") h += '<label class="small" style="display:grid;gap:4px">What are you locking in on?<input class="gin" data-plabel value="' + esc(P.label && m === "ready" ? P.label : defLabel()) + '" maxlength="120"></label>';
+    h += '<div class="row">' + (m === "idle" || m === "ready" ? '<button class="btn pri" data-pact="start">▶ Start ' + P.cfg.f + "-min focus</button>" + (m === "ready" ? "" : "") :
+      (P.paused ? '<button class="btn pri" data-pact="resume">▶ Resume</button>' : '<button class="btn" data-pact="pause">❚❚ Pause</button>') + (m === "focus" ? '<button class="btn pri" data-pact="lock">🔒 Lock screen</button><button class="btn" data-pact="dist">I got distracted (' + (P.dist || 0) + ")</button>" : '<button class="btn" data-pact="skip">Skip break</button>') + '<button class="btn" data-pact="stop">■ Stop</button>') + "</div>";
+    if (m === "idle" || m === "ready") h += '<div class="row small" style="align-items:center">Focus <select data-pcfg="f">' + [15, 20, 25, 30, 45, 50].map(function (v) { return "<option" + (v === P.cfg.f ? " selected" : "") + ">" + v + "</option>"; }).join("") + '</select> min · break <select data-pcfg="s">' + [3, 5, 10].map(function (v) { return "<option" + (v === P.cfg.s ? " selected" : "") + ">" + v + "</option>"; }).join("") + '</select> · long break <select data-pcfg="l">' + [10, 15, 20, 30].map(function (v) { return "<option" + (v === P.cfg.l ? " selected" : "") + ">" + v + "</option>"; }).join("") + "</select></div>";
+    return h;
+  }
+  function pwire(root) {
+    Array.prototype.forEach.call(root.querySelectorAll("[data-pact]"), function (b) { b.onclick = function () { var a = b.dataset.pact, li = root.querySelector("[data-plabel]");
+      if (a === "start") pstart(li ? li.value.trim() : "");
+      else if (a === "pause") { P.paused = true; P.left = Math.max(0, P.end - Date.now()); psave(); }
+      else if (a === "resume") { P.paused = false; P.end = Date.now() + P.left; psave(); }
+      else if (a === "stop") { P.mode = "idle"; P.lock = false; psave(); }
+      else if (a === "skip") { P.mode = "ready"; psave(); }
+      else if (a === "dist") { P.dist = (P.dist || 0) + 1; psave(); toast("Noted. Breathe, then back to it 💪"); }
+      else if (a === "joke") { P.joke = joke(); P.move = move(); psave(); }
+      else if (a === "lock") { P.lock = true; psave(); }
+      pdraw(); if (location.hash === "#tracker-pomo") pomoPage(); }; });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-pcfg]"), function (s) { s.onchange = function () { P.cfg[s.dataset.pcfg] = +s.value; psave(); pdraw(); if (location.hash === "#tracker-pomo") pomoPage(); }; });
+  }
+  function ensurePomo() {
+    if (document.getElementById("ccPomo")) return;
+    if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS);
+    var w = document.createElement("div"); w.id = "ccPomo";
+    w.innerHTML = '<button class="pfab" aria-label="Pomodoro time locker">⏱ Focus</button><div class="pdraw" role="dialog" aria-label="Pomodoro time locker" hidden><div class="chead"><b>⏱ Time locker</b><span class="small">Pomodoro: focus, break, repeat</span><button class="lnk pclose" aria-label="Close">✕</button></div><div class="pbody"></div></div><div class="plock" hidden></div>';
+    document.body.appendChild(w);
+    w.querySelector(".pfab").onclick = function () { var d = w.querySelector(".pdraw"); d.hidden = !d.hidden; var c = document.querySelector("#ccCoach .cdraw"); if (c && !d.hidden) c.hidden = true; pdraw(); };
+    w.querySelector(".pclose").onclick = function () { w.querySelector(".pdraw").hidden = true; };
+    window.addEventListener("beforeunload", function (e) { if (P && P.lock && P.mode === "focus" && !P.paused) { e.preventDefault(); e.returnValue = ""; } });
+  }
+  var HOLD = null;
+  function pdraw() {
+    if (!P) pload(); ensurePomo();
+    var w = document.getElementById("ccPomo"), body = w.querySelector(".pbody"); body.innerHTML = pcontrols(); pwire(body);
+    var lk = w.querySelector(".plock"), on = P.lock && P.mode === "focus";
+    if (!on && P.lock && P.mode !== "focus") { P.lock = false; psave(); }
+    lk.hidden = !on;
+    if (on) {
+      var msg = D && D.messages ? D.messages[Math.floor(Date.now() / 3e5) % D.messages.length] : "One block at a time.";
+      lk.innerHTML = '<div class="plin"><p class="eyebrow">🔒 Locked in</p><div class="ptime big" data-ptime>' + fmt(pleft()) + '</div><div class="prog2"><i data-pbar style="width:0"></i></div><p class="plab">' + esc(P.label || "") + '</p><p class="msg">' + esc(msg) + '</p>' +
+        '<div class="row" style="justify-content:center"><button class="btn" data-pact="dist">I got distracted (' + (P.dist || 0) + ')</button>' + (P.paused ? '<button class="btn pri" data-pact="resume">▶ Resume</button>' : '<button class="btn" data-pact="pause">❚❚ Pause</button>') + '</div><button class="btn punlock">Hold 3 seconds to unlock early</button><p class="small">Phone in another room. You\'ve got this.</p></div>';
+      pwire(lk);
+      var ub = lk.querySelector(".punlock"), startH = function (e) { e.preventDefault(); ub.classList.add("holding"); HOLD = setTimeout(function () { P.lock = false; psave(); pdraw(); toast("Unlocked. The timer is still running."); }, 3000); }, endH = function () { clearTimeout(HOLD); ub.classList.remove("holding"); };
+      ub.addEventListener("mousedown", startH); ub.addEventListener("touchstart", startH); ["mouseup", "mouseleave", "touchend", "touchcancel"].forEach(function (ev) { ub.addEventListener(ev, endH); });
+    }
+    pdrawTime();
+  }
+  function pomoPage() {
+    pload(); var k = dk(today()), r = (S.pomo || {})[k] || { n: 0, mins: 0, dist: 0 }, wk = monday(today()), tot = 0, days = [];
+    for (var i = 0; i < 7; i++) { var x = new Date(wk); x.setDate(x.getDate() + i); var q = (S.pomo || {})[dk(x)] || { n: 0 }; tot += q.n; days.push([x, q.n]); }
+    var h = '<div class="card ppage">' + pcontrols() + "</div>" +
+      '<div class="card"><h2>This week</h2><div class="kpis" style="margin-top:10px">' + kpi(r.n, "focus sessions today") + kpi(r.mins, "focus minutes today") + kpi(r.dist || 0, "distractions noted today") + kpi(tot, "sessions this week") + "</div>" +
+      '<table class="tt" style="margin-top:12px"><tr>' + days.map(function (d) { return "<th>" + d[0].toLocaleDateString("en-GB", { weekday: "short" }) + "</th>"; }).join("") + "</tr><tr>" + days.map(function (d) { return "<td>" + (d[1] ? "🍅".repeat(Math.min(d[1], 8)) + (d[1] > 8 ? " " + d[1] : "") : '<span class="small">–</span>') + "</td>"; }).join("") + "</tr></table>" +
+      '<p class="hint" style="margin-top:10px">Every finished focus block is logged in your Focus log automatically, earns XP, ticks your "4 focus sessions" goal and keeps your streak alive. After every 4th block you get a long break.</p></div>' +
+      '<div class="card"><h2>How the time locker works</h2><ol><li>Pick what you\'re locking in on (it suggests the session you\'re in now).</li><li>Start. Tap <b>🔒 Lock screen</b> to hide everything else; unlocking early needs a 3-second hold.</li><li>When the timer ends you hear a chime, the block is logged, and your break starts with a joke and a quick move.</li><li>Break over, chime again, start the next block.</li></ol></div>';
+    page("tracker-pomo", h, "Time locker", "Pomodoro focus timer. Lock in for 25 minutes, laugh on your break, repeat.");
+    pwire(document.querySelector(".ppage")); pdrawTime();
+  }
+  function pomoInit() { pload(); ensurePomo(); ptick(); pdraw(); }
 
   /* ---------- Revision page panel ---------- */
   function panel(el) {
@@ -789,7 +947,7 @@
     Array.prototype.forEach.call(el.querySelectorAll("[data-pclose]"), function (b) { b.onclick = function () { S.gaps[b.dataset.pclose] = { status: "Closed" }; save("Gap closed: +20 XP"); panel(el); }; });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pread]"), function (b) { b.onclick = function () { var i = b.dataset.pread; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = 1; save("Paper read: +10 XP"); panel(el); }; });
   }
-  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage };
+  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage, "tracker-pomo": pomoPage };
   function show(id) {
     load();
     if (!D) { render('<div class="card"><p>Loading your research tracker…</p></div>', "tracker"); fetch(BASE + "data/tracker.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { D = j; show(id); }).catch(function () { render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh the page.</p></div>', "tracker"); }); return; }
@@ -802,7 +960,7 @@
     el.innerHTML = css() + '<div class="card"><p class="eyebrow">Your day · <a href="#tracker-time">timetable & session briefs</a></p>' + nnHtml() + "</div>" + digest(today());
     wireDigest(el, function () { todayCard(el); });
   }
-  if (!window.__ccCoachClick) { window.__ccCoachClick = 1; document.addEventListener("click", function (e) { var t = e.target.closest && e.target.closest("[data-coach]"); if (t) { e.preventDefault(); openCoach(t.dataset.coach); } }); }
-  window.CCTracker = { show: show, panel: panel, today: todayCard, fab: fab, coach: openCoach };
+  if (!window.__ccCoachClick) { window.__ccCoachClick = 1; document.addEventListener("click", function (e) { var t = e.target.closest && e.target.closest("[data-coach]"); if (t) { e.preventDefault(); openCoach(t.dataset.coach); return; } var pm = e.target.closest && e.target.closest("[data-pomo]"); if (pm) { e.preventDefault(); pstart(pm.dataset.pomo); var dr = document.querySelector("#ccPomo .pdraw"); if (dr) dr.hidden = false; pdraw(); toast("Focus started: " + pm.dataset.pomo.slice(0, 40)); } }); }
+  window.CCTracker = { show: show, panel: panel, today: todayCard, fab: fab, coach: openCoach, _p: function () { return P; } };
   try { fab(); } catch (e) {}
 })();
