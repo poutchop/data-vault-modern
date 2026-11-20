@@ -173,7 +173,7 @@ function revise(){var dl=due(),wk=weak().filter(function(x){return dl.indexOf(x)
  if(wk.length)h+='<div class="card"><h2>Weak topics</h2><ul class="clean">'+wk.map(li).join("")+"</ul></div>";
  var sch=ids().filter(function(id){return quiz(id)&&dl.indexOf(id)<0}).sort(function(a,b){return quiz(a).due<quiz(b).due?-1:1});
  if(sch.length)h+='<div class="card"><h2>Scheduled</h2><ul class="clean">'+sch.map(function(id){return '<li><a href="#rev-'+id+'">'+esc(title(id))+'</a><span class="hint">'+fmtDate(quiz(id).due)+"</span></li>"}).join("")+"</ul></div>";
- render(h,"revise");function li(id){return '<li><a href="#rev-'+id+'">'+esc(dayOf(id)[1]+" W"+id.split("-")[1]+": "+title(id))+'</a><span class="pill">'+(quiz(id).last)+"/3 last time</span></li>"}}
+ render(h,"revise");researchPanel();function li(id){return '<li><a href="#rev-'+id+'">'+esc(dayOf(id)[1]+" W"+id.split("-")[1]+": "+title(id))+'</a><span class="pill">'+(quiz(id).last)+"/3 last time</span></li>"}}
 function revOne(id){var h='<div class="card"><p class="crumb">Revision · '+dayOf(id)[1]+" Week "+id.split("-")[1]+'</p><h1>'+esc(title(id))+'</h1><div id="quizBox"></div><div class="row"><a class="btn" href="#'+id+'">Re-read the lesson</a><a class="btn" href="#revise">Back to revision</a></div></div>';render(h,"revise");quizUI(id,$("quizBox"),true)}
 
 /* ---------- SIMULATION LAB ---------- */
@@ -240,6 +240,8 @@ function route(){try{speechSynthesis.cancel()}catch(e){}var id=(location.hash||"
  else if(id==="readings")render('<div class="card"><h1>Readings</h1><p class="hint">Every reading in the programme. All open in a new tab.</p>'+D.sources+"</div>","readings");
  else if(id==="glossary")render('<div class="card"><h1>Glossary</h1><div class="tw">'+D.gloss+"</div></div>","glossary");else if(id==="notes")notes();else if(/^tracker(-[a-z]+)?$/.test(id))loadTracker(id);else home()}
 var TRK=window.CC_TRK_BASE||"https://raw.githubusercontent.com/poutchop/data-vault-modern/main/public/site/";
+function researchPanel(){var v=$("view"),d=document.createElement("div");d.id="trkPanel";var c=v.querySelector(".card");if(c&&c.nextSibling)v.insertBefore(d,c.nextSibling);else v.appendChild(d);ensureTracker(function(){if(document.body.contains(d))CCTracker.panel(d)})}
+function ensureTracker(cb){if(window.CCTracker)return cb();fetch(TRK+"tracker.js?t="+Math.floor(Date.now()/300000),{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){var s=document.createElement("script");s.textContent=t;document.head.appendChild(s);cb()}).catch(function(){})}
 function loadTracker(id){if(window.CCTracker)return CCTracker.show(id);render('<div class="card"><p>Loading your research tracker…</p></div>',"tracker");fetch(TRK+"tracker.js?t="+Math.floor(Date.now()/300000),{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){var s=document.createElement("script");s.textContent=t;document.head.appendChild(s);CCTracker.show(id)}).catch(function(){render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh.</p></div>',"tracker")})}
 /* migrate old completions so the week count works */
 ids().forEach(function(id){if(done(id)&&!ls("cc_doneat_"+id))ls("cc_doneat_"+id,ymd())});
