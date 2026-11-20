@@ -14,7 +14,7 @@
   var OSTAT = ["Not started", "In progress", "Done"];
   var SSTAT = ["Not started", "Learning", "Done"];
   var PTS = { steps: 100, read: 5, core: 5, ev: 10, gaps: 20, sess: 2, lvl: 25, res: 30, refl: 15, outs: 75, ms: 50 };
-  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
+  var TABS = [["tracker", "Dashboard"], ["tracker-time", "Timetable"], ["tracker-ai", "AI coach"], ["tracker-steps", "Steps"], ["tracker-evidence", "Evidence"], ["tracker-gaps", "Gaps"],
     ["tracker-lit", "Literature"], ["tracker-sites", "Sites"], ["tracker-dirs", "Directions"], ["tracker-focus", "Focus log"],
     ["tracker-reflect", "Reflection"], ["tracker-growth", "My growth"], ["tracker-backup", "Backup"]];
 
@@ -70,13 +70,14 @@
     s.refl = Object.keys(S.reflect).filter(function (k) { return (S.reflect[k].wins || "").trim(); }).length;
     s.outsDone = D.outputs.filter(function (x, i) { return outStatus(i) === "Done"; }).length;
     s.sdone = 0; Object.keys(S.done || {}).forEach(function (k) { Object.keys(S.done[k]).forEach(function (j) { if (S.done[k][j]) s.sdone++; }); });
+    s.perfect = LIT ? perfectDays() : 0;
     s.vids = Object.keys(S.vids).filter(function (k) { return S.vids[k]; }).length;
     var st = streaks(); s.streak = st.current; s.best = st.best; s.hours = hours(); s.week = hours(monday(today()));
     s.ms = milestones(s); s.msDone = s.ms.filter(function (m) { return m.done; }).length;
     s.xpRows = [["Research steps completed", s.stepsDone, PTS.steps], ["Papers read", s.read, PTS.read], ["Core papers read (bonus)", s.coreRead, PTS.core],
       ["Evidence items fully verified", s.evYes, PTS.ev], ["Gaps closed", s.gapsClosed, PTS.gaps], ["Focus sessions (25 min)", s.sess, PTS.sess],
       ["Skill levels gained", s.lvls, PTS.lvl], ["Learning resources completed", s.resDone, PTS.res], ["Weekly reflections written", s.refl, PTS.refl],
-      ["Career outputs completed", s.outsDone, PTS.outs], ["Growth videos watched", s.vids, 5], ["Sessions done (timetable)", s.sdone, 3], ["Milestones unlocked", s.msDone, PTS.ms]];
+      ["Career outputs completed", s.outsDone, PTS.outs], ["Growth videos watched", s.vids, 5], ["Sessions done (timetable)", s.sdone, 3], ["Perfect days (all goals met)", s.perfect, 20], ["Milestones unlocked", s.msDone, PTS.ms]];
     s.xp = s.xpRows.reduce(function (a, r) { return a + r[1] * r[2]; }, 0);
     var L = D.levels, li = 0; L.forEach(function (l, i) { if (s.xp >= l[2]) li = i; });
     s.level = L[li][0]; s.title = L[li][1]; s.nextXp = L[li + 1] ? L[li + 1][2] : null;
@@ -88,7 +89,7 @@
       ["Reading habit started (10 papers)", s.read, 10], ["Core knowledge (25 core papers)", s.coreRead, 25], ["Well read (100 papers)", s.read, 100],
       ["Fact checker (30 verified)", s.evYes, 30], ["Gap closer (5 gaps)", s.gapsClosed, 5], ["No loose ends (all high-priority gaps)", s.highClosed, s.high],
       ["7-day focus streak", s.best, 7], ["25 hours of deep work", s.hours, 25], ["100 hours of deep work", s.hours, 100],
-      ["First skill mastered", s.skillsAt, 1], ["Multi-skilled (3 skills)", s.skillsAt, 3], ["Reflective researcher (4 reflections)", s.refl, 4], ["Daily learner (20 growth videos)", s.vids, 20], ["Showing up (50 sessions done)", s.sdone, 50], ["Public voice (3 outputs)", s.outsDone, 3]];
+      ["First skill mastered", s.skillsAt, 1], ["Multi-skilled (3 skills)", s.skillsAt, 3], ["Reflective researcher (4 reflections)", s.refl, 4], ["Daily learner (20 growth videos)", s.vids, 20], ["Showing up (50 sessions done)", s.sdone, 50], ["Perfect week (5 perfect days)", s.perfect, 5], ["Public voice (3 outputs)", s.outsDone, 3]];
     return M.map(function (m, i) { return { i: i, name: m[0], cur: m[1], target: m[2], done: m[2] > 0 && m[1] >= m[2] }; });
   }
 
@@ -108,7 +109,7 @@
     '.agenda{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}.agenda li{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:8px 12px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;background:var(--card)}.agenda .tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}.agenda li.research{border-left-color:#0F7C72}.agenda li.skill{border-left-color:#B4561D}.agenda li.video{border-left-color:#D9A441}.agenda li.learn{border-left-color:#6A3D9A}.agenda li.deep{border-left-color:#1E5AA8}.agenda li.on{outline:2px solid var(--accent);background:var(--soft)}.agenda li.past{opacity:.55}</style>';
   function tabs(cur) { return '<nav class="ttabs" aria-label="Tracker sections">' + TABS.map(function (t) { return '<a href="#' + t[0] + '" class="' + (t[0] === cur ? "on" : "") + '">' + t[1] + "</a>"; }).join("") + "</nav>"; }
   function page(cur, inner, title, sub) {
-    var h = CSS + BCSS + '<div class="card"><p class="eyebrow">Ghana carbon market research</p><h1>' + esc(title) + "</h1>" + (sub ? '<p class="sub">' + sub + "</p>" : "") + "</div>" + tabs(cur) + inner;
+    var h = CSS + BCSS + CCSS + '<div class="card"><p class="eyebrow">Ghana carbon market research</p><h1>' + esc(title) + "</h1>" + (sub ? '<p class="sub">' + sub + "</p>" : "") + "</div>" + tabs(cur) + inner;
     render(h, "tracker");
   }
   function flagPill(f) { return '<span class="pill f-' + f.replace(/ /g, "-") + '">' + esc(f) + "</span>"; }
@@ -381,7 +382,7 @@
     var x = nowNext(), cur = x.now.length ? x.now.map(function (b) { return "<b>" + esc(b.t) + '</b> <span class="small">until ' + b.e + "</span>"; }).join("<br>") : '<b>Free time</b> <span class="small">rest, family or catch-up</span>';
     var nx = x.next ? esc(x.next.t) + " at " + x.next.s + ' <span class="small">(in ' + (mins(x.next.s) - x.m) + " min)</span>" : "Nothing else today. Rest well.";
     var d0 = today(), nb = x.now.filter(function (b) { return majorIds().indexOf(b.id) >= 0; })[0], xb = nb ? brief(nb, d0) : null, nxb = x.next ? brief(x.next, d0) : null;
-    if (xb) cur += '<div class="nnb"><b>You need:</b> ' + esc(xb.goal) + (xb.out ? " <b>Output:</b> " + esc(xb.out) : "") + '<div class="row" style="margin-top:6px"><a class="btn small" href="#tracker-time" data-open="' + xb.id + '">Open session brief</a><a class="btn pri small" target="_blank" rel="noopener" href="' + claudeUrl(askPrompt(xb, d0)) + '">✨ Ask AI</a></div></div>';
+    if (xb) cur += '<div class="nnb"><b>You need:</b> ' + esc(xb.goal) + (xb.out ? " <b>Output:</b> " + esc(xb.out) : "") + '<div class="row" style="margin-top:6px"><a class="btn small" href="#tracker-time" data-open="' + xb.id + '">Open session brief</a><button class="btn pri small" data-coach="' + esc(askPrompt(xb, d0)) + '">✨ Ask the coach</button></div></div>';
     if (nxb && nxb.goal) nx += '<div class="nnb"><b>Prepare:</b> ' + esc(nxb.goal) + "</div>";
     return '<div class="nn"><div><p class="eyebrow">Now</p>' + cur + '</div><div><p class="eyebrow">Next</p>' + nx + "</div></div>";
   }
@@ -531,7 +532,7 @@
   function claudeUrl(p) { return "https://claude.ai/new?q=" + encodeURIComponent(p.slice(0, 1800)); }
   function aiBtns(p, small) {
     var c = small ? " small" : "";
-    return '<a class="btn pri' + c + '" target="_blank" rel="noopener" href="' + claudeUrl(p) + '">✨ Ask AI to brief me</a><button class="btn' + c + '" data-copy="' + esc(p) + '">Copy prompt</button><a class="btn' + c + '" target="_blank" rel="noopener" href="' + TUTOR + '">AI tutor ↗</a>';
+    return '<button class="btn pri' + c + '" data-coach="' + esc(p) + '">✨ Ask the coach</button><a class="btn' + c + '" target="_blank" rel="noopener" href="' + claudeUrl(p) + '">Open in Claude ↗</a>';
   }
   function briefHtml(x, d, opts) {
     opts = opts || {}; var key = dk(d) + "|" + x.id;
@@ -563,14 +564,14 @@
     var dayP = WHO + "\n\nHere is my plan for " + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }) + ":\n" + bl.map(function (x) { return "- " + x.time + " " + x.title + ". Goal: " + x.goal + (x.out ? " Output: " + x.out : ""); }).join("\n") +
       "\n\nGive me a short briefing for the day: what matters most, what I need to prepare, how the sessions connect, and the one thing I must not skip. Under 300 words.";
     var h = '<div class="card digest"><p class="eyebrow">' + (live ? "Today you need" : "On " + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "short" }) + " you need") + "</p>" +
-      (bl.length ? '<ul class="dg">' + bl.map(function (x) {
+      goalsHtml(d) + papersHtml(d) + '<p class="eyebrow" style="margin-top:12px">Sessions</p>' + (bl.length ? '<ul class="dg">' + bl.map(function (x) {
         var on = live && cur.now.some(function (b) { return b.id === x.id; }), dn = isDone(d, x.id);
         return '<li class="' + x.k + (on ? " on" : "") + (dn ? " dn" : "") + '"><span class="tm">' + x.time + '</span><div><a href="#tracker-time" data-open="' + x.id + '"><b>' + esc(x.title) + "</b></a>" + (dn ? " " + pill("✓ done") : on ? " " + pill("now") : "") + '<div class="small">' + esc(x.goal) + (x.out ? " <b>Output:</b> " + esc(x.out) : "") + "</div></div></li>";
       }).join("") + "</ul>" : '<p class="small">A rest day. Nothing scheduled beyond prayer.</p>') +
       '<div class="row">' + aiBtns(dayP) + (opts.full ? "" : '<a class="btn" href="#tracker-time">Full timetable & session briefs</a>') + "</div></div>";
     return h;
   }
-  function wireDigest(root, again) { Array.prototype.forEach.call((root || document).querySelectorAll("[data-open]"), function (el) { el.addEventListener("click", function () { OPEN = el.dataset.open; }); }); wireBriefs(root, again); }
+  function wireDigest(root, again) { root = root || document; Array.prototype.forEach.call(root.querySelectorAll("[data-open]"), function (el) { el.addEventListener("click", function () { OPEN = el.dataset.open; }); }); wireBriefs(root, again); wireGoals(root, again || function () {}); }
   var OPEN = null;
   /* Daily and weekly summaries built from your notes, ticks, videos and focus log */
   function daySummary(d) {
@@ -578,6 +579,8 @@
     lines.push("Carbon Clarity daily summary: " + d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }));
     var done = bl.filter(function (b) { return isDone(d, b.id); }), fl = S.focus.filter(function (f) { return f.date === k; }), fs = fl.reduce(function (a, f) { return a + (+f.sess || 0); }, 0);
     lines.push("Sessions done: " + done.length + " of " + bl.length + (fs ? " · focus: " + fs + " x 25 min" : "") + (S.vids[k] ? " · growth video watched" : ""));
+    var G = goals(d); lines.push("Goals met: " + G.filter(function (g) { return g.done; }).length + " of " + G.length + (G.every(function (g) { return g.done; }) && G.length ? " (perfect day)" : "")); G.forEach(function (g) { lines.push("  " + (g.done ? "✓ " : "☐ ") + g.t); });
+    if (LIT) { var tp = todaysPapers(d); if (tp.length) { lines.push("Papers (" + papersRead(d) + " of " + tp.length + " read):"); tp.forEach(function (i) { lines.push("  " + (litRead(i) === "Read" ? "✓ " : "☐ ") + LIT.rows[i][4] + " (" + LIT.rows[i][5] + ", " + LIT.rows[i][3] + ")"); }); } }
     bl.forEach(function (b) { var x = brief(b, d), n = note(d, b.id).trim(); if (n || isDone(d, b.id)) lines.push("\n" + (isDone(d, b.id) ? "✓ " : "• ") + x.time + " " + x.title + (n ? "\n  " + n.replace(/\n/g, "\n  ") : "")); });
     fl.forEach(function (f) { if (f.task || f.notes) lines.push("\nFocus log: " + (f.task || "") + (f.notes ? " — " + f.notes : "")); });
     var nx = D && curStep(d); if (nx) lines.push("\nResearch next: Step " + nx.n + " " + nx.task + " (due " + fd(nx.due) + ")");
@@ -606,7 +609,154 @@
     '.agenda li.blk{display:block;padding:0}.agenda details>summary{display:grid;grid-template-columns:110px 1fr auto;gap:10px;padding:8px 12px;cursor:pointer;list-style:none;align-items:center}.agenda details>summary::-webkit-details-marker{display:none}.agenda details>summary::after{content:"▾";color:var(--muted)}.agenda details[open]>summary::after{content:"▴"}.agenda details .brief{margin:0 12px 12px}.agenda li.dn summary>span:nth-child(2)::after{content:" ✓";color:var(--ok);font-weight:700}' +
     '.snote{display:grid;gap:4px;margin-top:10px;font-size:13px;color:var(--muted)}.snote textarea,.sumbox{font:inherit;font-size:14px;width:100%;min-height:70px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}.sumbox{min-height:170px;margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}.sdone{display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:600;font-size:14px}' +
     '.dg{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}.dg li{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:8px 12px;border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;background:var(--card)}.dg .tm{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted);font-size:14px}.dg li.research{border-left-color:#0F7C72}.dg li.skill{border-left-color:#B4561D}.dg li.video{border-left-color:#D9A441}.dg li.learn{border-left-color:#6A3D9A}.dg li.deep{border-left-color:#1E5AA8}.dg li.on{outline:2px solid var(--accent)}.dg li.dn{opacity:.65}.dg a{text-decoration:none;color:var(--ink)}.nnb{margin-top:8px;font-size:14px}@media(max-width:600px){.dg li{grid-template-columns:1fr}.agenda details>summary{grid-template-columns:1fr auto;gap:2px 10px}.agenda details>summary .tm{grid-column:1/-1}}</style>';
-  function css() { return (document.getElementById("trkcss") ? "" : CSS) + (document.getElementById("briefcss") ? "" : BCSS); }
+  function css() { return (document.getElementById("trkcss") ? "" : CSS) + (document.getElementById("briefcss") ? "" : BCSS) + (document.getElementById("coachcss") ? "" : CCSS); }
+
+  /* ---------- Daily reading quota: specific papers assigned to each day ---------- */
+  var STEPTHEMES = { 1: ["Ghana carbon market", "Climate policy and NDC"], 2: ["Ghana carbon market", "Climate policy and NDC", "Carbon pricing and ETS"], 3: ["Article 6 and Paris mechanisms", "African carbon markets", "Ghana carbon market"],
+    4: ["Ghana carbon market", "Clean cooking", "Forest, REDD+ and cocoa"], 5: ["Benefit sharing, equity and gender", "Clean cooking"], 6: ["Voluntary carbon market and integrity", "Climate finance"],
+    7: ["Benefit sharing, equity and gender", "Clean cooking", "Forest, REDD+ and cocoa"], 8: [], 9: ["Voluntary carbon market and integrity"] };
+  var TIERN = { C: "Core", S: "Supporting", H: "Background" };
+  function quota(d) { var o = S.daily || {}, we = d.getDay() === 0 || d.getDay() === 6; return we ? (o.we != null ? +o.we : 1) : (o.wk != null ? +o.wk : 3); }
+  function assigned() { var a = {}; Object.keys(S.rd || {}).forEach(function (k) { (S.rd[k] || []).forEach(function (i) { a[i] = k; }); }); return a; }
+  function rankPapers(d, skip) {
+    var st = curStep(d), th = STEPTHEMES[st ? st.n : 8] || [], tr = { C: 0, S: 1, H: 2 }, idx = [];
+    LIT.rows.forEach(function (r, i) { if (!skip[i] && (litRead(i) === "To read" || litRead(i) === "Reading")) idx.push(i); });
+    idx.sort(function (a, b) { var A = LIT.rows[a], B = LIT.rows[b]; return (tr[A[0]] - tr[B[0]]) || ((th.indexOf(B[1]) >= 0) - (th.indexOf(A[1]) >= 0)) || ((B[2] === "G") - (A[2] === "G")) || (B[7] - A[7]); });
+    return idx;
+  }
+  function todaysPapers(d) {
+    if (!LIT || !LIT.rows.length) return [];
+    var k = dk(d), t = dk(today()), n = quota(d); S.rd = S.rd || {};
+    if (k < t) return S.rd[k] || [];
+    var cur = (S.rd[k] || []).slice(), a = assigned();
+    if (k > t) { if (cur.length) return cur; var sk = {}; Object.keys(a).forEach(function (i) { sk[i] = 1; }); return rankPapers(d, sk).slice(0, n); }
+    var keep = cur.filter(function (i) { return litRead(i) === "Read"; }), rest = cur.filter(function (i) { return litRead(i) !== "Read" && litRead(i) !== "Not relevant"; });
+    var list = keep.concat(rest).slice(0, Math.max(n, keep.length));
+    if (list.length < n) { var sk2 = {}; Object.keys(a).forEach(function (i) { if (a[i] !== k || list.indexOf(+i) >= 0) sk2[i] = 1; }); list.forEach(function (i) { sk2[i] = 1; }); list = list.concat(rankPapers(d, sk2).slice(0, n - list.length)); }
+    if (JSON.stringify(list) !== JSON.stringify(cur)) { S.rd[k] = list; sj(KEY, S); }
+    return list;
+  }
+  function papersRead(d) { return todaysPapers(d).filter(function (i) { return litRead(i) === "Read"; }).length; }
+  function paperPrompt(r) { return "Help me read this paper efficiently. I only have its details, not the text: \"" + r[4] + "\" by " + r[5] + " (" + r[6] + ", " + r[3] + "), theme: " + r[1] + ". Based only on the title and details (don't invent findings), tell me: what it is probably about, why it matters for my Ghana carbon market research and Carbon Clarity, 3 questions to answer while reading it, and which sections to read first. Then remind me to log one sentence of evidence."; }
+  function papersHtml(d) {
+    if (!LIT) return '<p class="small">Loading today\'s papers…</p>';
+    var L = todaysPapers(d), rd = papersRead(d), n = quota(d), live = dk(d) === dk(today()), past = dk(d) < dk(today());
+    var core = 0, coreLeft = 0; LIT.rows.forEach(function (r, i) { if (r[0] === "C") { core++; if (litRead(i) !== "Read" && litRead(i) !== "Not relevant") coreLeft++; } });
+    var wk = quota(new Date(2026, 10, 23)) * 5 + quota(new Date(2026, 10, 28)) * 2, days = coreLeft ? Math.ceil(coreLeft / Math.max(1, wk) * 7) : 0, fin = new Date(today()); fin.setDate(fin.getDate() + days);
+    var h = '<div class="dpap"><p class="eyebrow">' + (live ? "Today's papers" : past ? "Papers that day" : "Papers planned") + " · " + rd + " of " + L.length + " read</p>" + bar(L.length ? rd / L.length : 0);
+    h += L.length ? '<ul class="clean">' + L.map(function (i) { var r = LIT.rows[i], rr = litRead(i) === "Read";
+      return '<li style="display:block;padding:9px 0;border-bottom:1px solid var(--line)"><a href="' + esc(r[10] || r[9]) + '" target="_blank" rel="noopener"><b>' + esc(r[4]) + "</b></a> " + pill(TIERN[r[0]] || r[0], r[0] === "C") + (r[2] === "G" ? " " + pill("Ghana") : "") + '<div class="small">' + esc(r[5]) + " · " + esc(r[6] || "") + " · " + r[3] + " · " + esc(r[1]) + (r[9] ? ' · <a href="' + esc(r[9]) + '" target="_blank" rel="noopener">free PDF</a>' : "") + "</div>" +
+        '<div class="row" style="margin-top:6px">' + (rr ? pill("✓ Read") : '<button class="btn small" data-rdone="' + i + '">Mark read (+' + (PTS.read + (r[0] === "C" ? PTS.core : 0)) + " XP)</button>") + '<button class="btn small" data-coach="' + esc(paperPrompt(r)) + '">✨ AI reading guide</button></div></li>'; }).join("") + "</ul>" : '<p class="small">No papers set for this day.</p>';
+    if (live) h += '<div class="row" style="margin-top:8px;align-items:center"><label class="small">Papers per weekday <select data-quota="wk">' + [1, 2, 3, 4, 5, 6, 8, 10].map(function (v) { return "<option" + (v === quota(new Date(2026, 10, 23)) ? " selected" : "") + ">" + v + "</option>"; }).join("") + '</select></label><label class="small">per weekend day <select data-quota="we">' + [0, 1, 2, 3, 4, 5].map(function (v) { return "<option" + (v === quota(new Date(2026, 10, 28)) ? " selected" : "") + ">" + v + "</option>"; }).join("") + "</select></label>" +
+      '<span class="small">' + coreLeft + " of " + core + " core papers left" + (coreLeft ? " · at " + wk + " a week you finish them by " + fin.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "") + "</span></div>";
+    return h + "</div>";
+  }
+  /* ---------- Daily goals ---------- */
+  function focusSess(d) { var k = dk(d); return S.focus.reduce(function (a, f) { return a + (f.date === k ? +f.sess || 0 : 0); }, 0); }
+  function goals(d) {
+    var k = dk(d), dow = d.getDay(), G = [], bl = plan(d), n = quota(d);
+    if (n) G.push({ k: "read", t: "Read " + n + " paper" + (n === 1 ? "" : "s") + " (" + papersRead(d) + "/" + n + ")", auto: 1, done: papersRead(d) >= n });
+    bl.forEach(function (b) { if (["research", "skill", "learn", "learn-pm", "deep", "field", "plan", "review"].indexOf(b.id) < 0) return; var x = brief(b, d);
+      var t = b.id === "research" ? "Research: " + x.out : b.id === "skill" ? (dow === 6 ? "Practice: " : "Skill: ") + x.out : b.id === "learn" || b.id === "learn-pm" ? "Lesson: " + (x.title.split(" · ")[1] || "today's lesson") + ", quiz and 3 sentences" : b.id === "deep" ? "Deep work: " + x.out : b.id === "field" ? "Field: " + x.out : b.id === "plan" ? "Write this week's top 3" : "Write the weekly review";
+      G.push({ k: "blk:" + b.id, t: t, done: isDone(d, b.id), blk: b.id }); });
+    if (bl.some(function (b) { return b.id === "research"; })) G.push({ k: "gap", t: "Close one research gap or verify one fact" });
+    if (dow >= 1 && dow <= 5) G.push({ k: "focus", t: "4 focus sessions logged (" + focusSess(d) + "/4)", auto: 1, done: focusSess(d) >= 4 });
+    if (videoFor(d) && bl.some(function (b) { return b.id === "video"; })) G.push({ k: "video", t: "Watch today's growth video", auto: 1, done: !!S.vids[k] });
+    if (dow === 0) G.push({ k: "reflect", t: "Write this week's reflection", auto: 1, done: !!(S.reflect[iso(monday(d))] && (S.reflect[iso(monday(d))].wins || "").trim()) });
+    var gd = (S.gdone || {})[k] || {};
+    G.forEach(function (g) { if (!g.auto && !g.blk) g.done = !!gd[g.k]; });
+    ((S.cgoals || {})[k] || []).forEach(function (c, i) { G.push({ k: "c" + i, t: c.t, done: !!c.done, custom: i }); });
+    return G;
+  }
+  function goalsHtml(d) {
+    var G = goals(d), dn = G.filter(function (g) { return g.done; }).length, k = dk(d), live = k === dk(today());
+    return '<div class="dgoals"><p class="eyebrow">' + (live ? "Today's goals" : "Goals") + " · " + dn + " of " + G.length + (dn === G.length && G.length ? " · 🏆 perfect day (+20 XP)" : "") + "</p>" + bar(G.length ? dn / G.length : 0) +
+      '<ul class="glist">' + G.map(function (g) { return '<li class="' + (g.done ? "ok" : "") + '"><label><input type="checkbox" data-goal="' + k + "|" + esc(g.k) + '"' + (g.done ? " checked" : "") + (g.auto ? " disabled" : "") + "> <span>" + esc(g.t) + "</span>" + (g.auto ? ' <span class="small">(updates itself)</span>' : "") + "</label>" + (g.custom != null ? ' <button class="lnk" data-gdel="' + k + "|" + g.custom + '" aria-label="Remove goal">✕</button>' : "") + "</li>"; }).join("") + "</ul>" +
+      '<div class="row" style="margin-top:6px"><input class="gin" data-gnew="' + k + '" placeholder="Add your own goal for ' + (live ? "today" : "this day") + '…" maxlength="140"><button class="btn small" data-gadd="' + k + '">Add</button><button class="btn small pri" data-coach="Look at my goals for today and my timetable. Which order should I tackle them in, what is the one goal I must not skip, and is anything unrealistic? Be brief.">✨ Coach my goals</button></div></div>';
+  }
+  function perfectDays() { var c = 0; Object.keys(S.done || {}).concat(Object.keys(S.gdone || {}), Object.keys(S.rd || {})).filter(function (k, i, a) { return a.indexOf(k) === i && k < dk(today()) + "~"; }).forEach(function (k) { var G = goals(pd(k)); if (G.length && G.every(function (g) { return g.done; })) c++; }); return c; }
+  function wireGoals(root, again) {
+    function q(s, f) { Array.prototype.forEach.call(root.querySelectorAll(s), f); }
+    q("[data-goal]", function (el) { el.onchange = function () { var p = el.dataset.goal.split("|"), k = p[0], g = p[1];
+      if (g.indexOf("blk:") === 0) { S.done[k] = S.done[k] || {}; S.done[k][g.slice(4)] = el.checked ? 1 : 0; }
+      else if (/^c\d+$/.test(g)) { S.cgoals[k][+g.slice(1)].done = el.checked; }
+      else { S.gdone = S.gdone || {}; S.gdone[k] = S.gdone[k] || {}; S.gdone[k][g] = el.checked ? 1 : 0; }
+      var all = goals(pd(k)).every(function (x) { return x.done; }); save(all ? "Perfect day! +20 XP" : el.checked ? "Goal done" : "Saved"); again(); }; });
+    q("[data-gadd]", function (el) { el.onclick = function () { var k = el.dataset.gadd, inp = root.querySelector('[data-gnew="' + k + '"]'), t = (inp.value || "").trim(); if (!t) return; S.cgoals = S.cgoals || {}; (S.cgoals[k] = S.cgoals[k] || []).push({ t: t.slice(0, 140), done: false }); save("Goal added"); again(); }; });
+    q("[data-gnew]", function (el) { el.onkeydown = function (e) { if (e.key === "Enter") { var b = root.querySelector('[data-gadd="' + el.dataset.gnew + '"]'); if (b) b.click(); } }; });
+    q("[data-gdel]", function (el) { el.onclick = function () { var p = el.dataset.gdel.split("|"); S.cgoals[p[0]].splice(+p[1], 1); save("Goal removed"); again(); }; });
+    q("[data-rdone]", function (el) { el.onclick = function () { var i = +el.dataset.rdone; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = LIT.rows[i][0] === "C" ? 1 : 0; save("Paper read: +" + (PTS.read + (LIT.rows[i][0] === "C" ? PTS.core : 0)) + " XP"); again(); }; });
+    q("[data-quota]", function (el) { el.onchange = function () { S.daily = S.daily || {}; S.daily[el.dataset.quota] = +el.value; save("Daily reading target saved"); again(); }; });
+  }
+  /* ---------- Built-in AI coach (Vercel AI Gateway, no keys in the browser) ---------- */
+  var AI_URL = window.CC_AI_URL || "/api/ai", COACH_BUSY = false;
+  function md(s) { var lines = esc(s).split("\n"), out = "", list = null; function close() { if (list) { out += "</" + list + ">"; list = null; } }
+    function b(x) { return x.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>"); }
+    lines.forEach(function (l) { var t = l.trim(); if (/^#{1,4}\s+/.test(t)) { close(); out += "<h4>" + b(t.replace(/^#+\s+/, "")) + "</h4>"; } else if (/^[-*•]\s+/.test(t)) { if (list !== "ul") { close(); out += "<ul>"; list = "ul"; } out += "<li>" + b(t.replace(/^[-*•]\s+/, "")) + "</li>"; }
+      else if (/^\d+[.)]\s+/.test(t)) { if (list !== "ol") { close(); out += "<ol>"; list = "ol"; } out += "<li>" + b(t.replace(/^\d+[.)]\s+/, "")) + "</li>"; } else if (!t) close(); else { close(); out += "<p>" + b(t) + "</p>"; } }); close(); return out; }
+  function coachContext() {
+    var d = today(), n = new Date(), s = stats(), nn = nowNext(), st = curStep(d), L = [];
+    L.push("Now: " + n.toLocaleString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) + " (Accra).");
+    L.push("Current block: " + (nn.now.length ? nn.now.map(function (b) { return b.s + "–" + b.e + " " + brief(b, d).title; }).join("; ") : "free time") + ". Next: " + (nn.next ? nn.next.s + " " + brief(nn.next, d).title : "nothing else today") + ".");
+    L.push("\nTODAY'S TIMETABLE:"); plan(d).filter(function (b) { return majorIds().concat(["tasks", "wrap"]).indexOf(b.id) >= 0; }).forEach(function (b) { var x = brief(b, d); L.push("- " + x.time + " " + x.title + (isDone(d, b.id) ? " [DONE]" : "") + ". Goal: " + x.goal + (x.out ? " Output: " + x.out : "") + (note(d, b.id) ? " My notes: " + note(d, b.id).slice(0, 300) : "")); });
+    L.push("\nTODAY'S GOALS:"); goals(d).forEach(function (g) { L.push("- [" + (g.done ? "x" : " ") + "] " + g.t); });
+    if (LIT) { L.push("\nTODAY'S PAPERS:"); todaysPapers(d).forEach(function (i) { var r = LIT.rows[i]; L.push("- " + (litRead(i) === "Read" ? "[read] " : "") + r[4] + " — " + r[5] + ", " + r[6] + " " + r[3] + " (" + r[1] + ")"); }); }
+    if (st) { L.push("\nRESEARCH (Ghana carbon market trends, due 15 Jan 2027): current step " + st.n + " '" + st.task + "', due " + fd(st.due) + ", status " + stepStatus(st) + ". Deliverable: " + st.deliv + ". Covers: " + st.info + ". Sources: " + st.src + (st.notes ? ". Note: " + st.notes : "") + ".");
+      gapsAll().filter(function (g) { return gapStatus(g) !== "Closed" && g.pri === "High"; }).slice(0, 5).forEach(function (g) { L.push("- Open high-priority gap " + g.id + ": " + g.gap + " (how: " + (g.how || "") + ")"); }); }
+    L.push("Steps: " + D.steps.map(function (x) { return x.n + ". " + x.task + " (" + stepStatus(x) + ", due " + x.due + ")"; }).join("; "));
+    var dow = d.getDay(); if (SK[dow]) L.push("\nSKILLS PLAN (Mon data analysis, Tue financial analysis, Wed financial modelling, Thu business analysis, Fri public speaking; 19:00–19:45 until May 2027). Tonight: " + SK[dow].name + ", phase " + (phase(d) + 1) + " of 6: " + SK[dow].ph[phase(d)].t + ".");
+    L.push("\nPROGRESS: level " + s.level + " (" + s.title + "), " + s.xp + " XP, streak " + s.streak + " days, research " + Math.round(s.progress * 100) + "%, " + s.overdue + " overdue steps, " + s.read + " papers read, " + s.gapsOpen + " gaps open, " + s.week + " focus hours this week (goal " + S.goal + ").");
+    return L.join("\n").slice(0, 11000);
+  }
+  function coachHistory() { S.chat = S.chat || []; return S.chat; }
+  function ensureCoach() {
+    if (document.getElementById("ccCoach")) return;
+    if (!document.getElementById("briefcss")) document.head.insertAdjacentHTML("beforeend", BCSS);
+    var w = document.createElement("div"); w.id = "ccCoach";
+    w.innerHTML = '<button class="cfab" aria-label="Open the AI coach">✨ Coach</button><div class="cdraw" role="dialog" aria-label="AI coach" hidden><div class="chead"><b>✨ Carbon Clarity Coach</b><span class="small">knows your plan, goals, papers and progress</span><button class="lnk cclose" aria-label="Close">✕</button></div><div class="clog"></div>' +
+      '<div class="cchips"></div><form class="cform"><textarea rows="2" placeholder="Ask anything: brief me, explain a concept, quiz me, plan my evening…" maxlength="3000"></textarea><button class="btn pri">Send</button></form><div class="cfoot small"><button class="lnk cnew">New chat</button> · <a class="cext" target="_blank" rel="noopener" href="https://claude.ai/new">Open in Claude ↗</a></div></div>';
+    document.body.appendChild(w);
+    var fab = w.querySelector(".cfab"), dr = w.querySelector(".cdraw"), f = w.querySelector(".cform"), ta = f.querySelector("textarea");
+    fab.onclick = function () { dr.hidden = !dr.hidden; if (!dr.hidden) { drawLog(); ta.focus(); } };
+    w.querySelector(".cclose").onclick = function () { dr.hidden = true; };
+    w.querySelector(".cnew").onclick = function () { S.chat = []; save(); drawLog(); };
+    f.onsubmit = function (e) { e.preventDefault(); var t = ta.value.trim(); if (t) { ta.value = ""; sendCoach(t); } };
+    ta.onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.onsubmit(e); } };
+    var chips = [["Brief me for now", "Brief me for the session I'm in right now (or the next one): key ideas, a minute-by-minute plan and the output."], ["Plan my day", "Look at my timetable, goals and papers for today and give me a realistic plan with the order to do things."], ["Summarise today", "Summarise my day from my notes and ticks: what I achieved, what I learned, what is still open, and my top 3 for tomorrow."], ["Quiz me", "Quiz me with 3 short questions on what I'm learning this week (lesson, skill and research). Wait for my answers before marking."], ["Research next step", "What exactly should I do next on my Ghana carbon market research? Be specific about sources and the deliverable."], ["Motivate me", "I'm losing focus. Give me a short, honest pep talk tied to my real progress and one tiny next action."]];
+    var c = w.querySelector(".cchips"); chips.forEach(function (x) { var b = document.createElement("button"); b.className = "chip"; b.textContent = x[0]; b.onclick = function () { sendCoach(x[1]); }; c.appendChild(b); });
+  }
+  function drawLog() {
+    var lg = document.querySelector("#ccCoach .clog"); if (!lg) return; var H = coachHistory();
+    lg.innerHTML = H.length ? H.map(function (m) { return '<div class="cm ' + (m.role === "user" ? "me" : "ai") + '">' + (m.role === "user" ? esc(m.content) : md(m.content)) + "</div>"; }).join("") : '<div class="cm ai"><p>Hi Pout Chop. I can see today\'s timetable, your goals, your papers and your research progress. Ask me anything, or tap a button below.</p></div>';
+    lg.scrollTop = lg.scrollHeight;
+  }
+  function openCoach(prompt) { ensureCoach(); var dr = document.querySelector("#ccCoach .cdraw"); dr.hidden = false; drawLog(); if (prompt) sendCoach(prompt); }
+  function sendCoach(text) {
+    if (COACH_BUSY) return; ensureCoach(); var H = coachHistory(), lg = document.querySelector("#ccCoach .clog");
+    document.querySelector("#ccCoach .cdraw").hidden = false;
+    H.push({ role: "user", content: text.slice(0, 3000) }); drawLog();
+    lg.insertAdjacentHTML("beforeend", '<div class="cm ai think"><p>Thinking…</p></div>'); lg.scrollTop = lg.scrollHeight; COACH_BUSY = true;
+    var ext = document.querySelector("#ccCoach .cext"); if (ext) ext.href = claudeUrl(WHO + "\n\n" + text);
+    fetch(AI_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: H.slice(-12), context: coachContext() }) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
+      .then(function (j) { H.push({ role: "assistant", content: String(j.text || "").slice(0, 8000) }); if (H.length > 40) S.chat = H.slice(-40); save(); })
+      .catch(function (e) { var msg = e && e.error === "rate" ? "You've asked a lot in a short time. Wait a few minutes and try again." : "The coach couldn't answer just now" + (e && e.error ? " (" + e.error + ")" : "") + ". Try again in a moment, or use 'Open in Claude' below."; H.push({ role: "assistant", content: msg, err: 1 }); })
+      .then(function () { COACH_BUSY = false; S.chat = coachHistory().filter(function (m, i, a) { return !m.err || i === a.length - 1; }); drawLog(); });
+  }
+  function coachPage() {
+    page("tracker-ai", '<div class="card"><h2>Your built-in AI coach</h2><p>The coach reads your live timetable, today\'s goals and papers, your session notes, your research step and gaps, and your XP. It is tailored to Carbon Clarity, James Town and your Ghana carbon market research. Tap <b>✨ Coach</b> (bottom right) on any page, or start here.</p><div class="row"><button class="btn pri" data-coach="Brief me for the session I\'m in right now (or the next one).">Brief me now</button><button class="btn" data-coach="Plan my day realistically from my timetable, goals and papers.">Plan my day</button><button class="btn" data-coach="Write my weekly review from this week\'s progress and notes, then give three priorities for next week.">Weekly review</button></div><p class="hint" style="margin-top:10px">Your chat stays in this browser. The coach runs on the Carbon Clarity site through Vercel AI Gateway (Claude Haiku), so there\'s nothing to sign in to.</p></div>', "AI coach", "An AI that knows your day, your goals and your research.");
+    wireGoals(document, coachPage);
+  }
+  var CCSS = '<style id="coachcss">#ccCoach .cfab{position:fixed;right:16px;bottom:16px;z-index:60;border:0;border-radius:99px;padding:12px 18px;font-weight:700;font-size:15px;font-family:inherit;background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 20px rgba(0,0,0,.18);cursor:pointer}' +
+    '#ccCoach .cdraw{position:fixed;right:16px;bottom:72px;z-index:61;width:min(440px,calc(100vw - 32px));height:min(640px,calc(100vh - 100px));display:flex;flex-direction:column;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.22);overflow:hidden}#ccCoach .cdraw[hidden]{display:none}' +
+    '#ccCoach .chead{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--soft)}#ccCoach .chead .cclose{margin-left:auto}#ccCoach .clog{flex:1;overflow:auto;padding:12px 14px;display:grid;gap:10px;align-content:start}' +
+    '#ccCoach .cm{border-radius:12px;padding:9px 12px;font-size:14.5px;line-height:1.5;overflow-wrap:anywhere}#ccCoach .cm p{margin:0 0 6px}#ccCoach .cm ul,#ccCoach .cm ol{margin:0 0 6px;padding-left:20px}#ccCoach .cm h4{margin:6px 0 2px;font-size:15px}#ccCoach .cm.me{background:var(--soft);justify-self:end;max-width:88%;white-space:pre-wrap}#ccCoach .cm.ai{border:1px solid var(--line)}#ccCoach .think{opacity:.6}' +
+    '#ccCoach .cchips{display:flex;gap:6px;overflow-x:auto;padding:8px 12px 0}#ccCoach .chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:5px 10px;font-size:13px;font-weight:600;cursor:pointer}' +
+    '#ccCoach .cform{display:flex;gap:8px;padding:10px 12px}#ccCoach textarea{flex:1;font:inherit;font-size:14.5px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);resize:none}#ccCoach .cfoot{padding:0 14px 10px}' +
+    '.lnk{border:0;background:none;color:var(--muted);cursor:pointer;font:inherit;padding:0 4px}.glist{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px}.glist li{display:flex;align-items:flex-start;gap:6px;font-size:14.5px}.glist label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}.glist input{margin-top:4px}.glist li.ok span:first-of-type{text-decoration:line-through;color:var(--muted)}' +
+    '.gin{flex:1;min-width:180px;font:inherit;font-size:14px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink)}.dgoals,.dpap{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}.dpap select{font:inherit;font-size:13px;padding:2px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}</style>';
+  function fab() { if (!document.getElementById("coachcss")) document.head.insertAdjacentHTML("beforeend", CCSS); load(); if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; ensureCoach(); }).catch(function () {}); return; } ensureCoach(); }
+  function ensureLit(cb) { if (LIT) return cb(); fetch(BASE + "data/literature.json").then(function (r) { return r.json(); }).then(function (j) { LIT = j; cb(); }).catch(function () { LIT = { rows: [] }; cb(); }); }
 
   /* ---------- Revision page panel ---------- */
   function panel(el) {
@@ -624,7 +774,6 @@
       '<div class="kpis" style="margin-top:14px">' + kpi(Math.round(s.progress * 100) + "%", "research progress") + kpi(s.overdue, "overdue steps", s.overdue > 0) + kpi(s.read, "papers read") + kpi(s.gapsOpen, "gaps open", s.gapsOpen > 0) + "</div>" +
       (nx ? '<p style="margin-top:14px"><b>Next step:</b> Step ' + nx.n + ": " + esc(nx.task) + " · due " + fd(nx.due) + " " + flagPill(stepFlag(nx)) + "</p>" : "<p style=\"margin-top:14px\"><b>All research steps done.</b></p>") +
       "<h3 style=\"margin-top:16px\">Close a gap today</h3>" + (gs.length ? '<ul class="clean">' + gs.map(function (g) { return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)"><b>' + esc(g.gap) + '</b> ' + pill(g.pri, g.pri === "High") + '<div class="small">' + esc(g.how || "") + (g.where ? " · " + esc(g.where) : "") + '</div><div class="row" style="margin-top:6px"><button class="btn" data-pclose="' + esc(g.id) + '">Mark closed (+20 XP)</button></div></li>'; }).join("") + "</ul>" : '<p class="empty">No open gaps. Excellent.</p>') +
-      "<h3 style=\"margin-top:16px\">Read next</h3>" + (papers.length ? '<ul class="clean">' + papers.map(function (i) { var r = LIT.rows[i]; return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)"><a href="' + esc(r[10] || r[9]) + '" target="_blank" rel="noopener"><b>' + esc(r[4]) + '</b></a><div class="small">' + esc(r[5]) + " · " + r[3] + (r[2] === "G" ? " · Ghana" : "") + '</div><div class="row" style="margin-top:6px"><button class="btn" data-pread="' + i + '">Mark read (+10 XP)</button></div></li>'; }).join("") + "</ul>" : '<p class="empty">You have read every core paper.</p>') +
       (evs.length ? "<h3 style=\"margin-top:16px\">Verify a fact</h3><ul class=\"clean\">" + evs.map(function (e) { return '<li style="display:block;padding:10px 0;border-bottom:1px solid var(--line)">' + esc(e.claim) + ' <span class="pill">' + esc(evVer(e)) + '</span><div class="small">' + esc(e.check || "") + "</div></li>"; }).join("") + "</ul>" : "") +
       '<div class="row"><a class="btn pri" href="#tracker">Open research tracker</a><a class="btn" href="#tracker-focus">Log today\'s focus</a><a class="btn" href="#tracker-evidence">Evidence log</a></div></div>';
     h = css() + '<div class="card"><p class="eyebrow">Your day</p>' + nnHtml() + '</div>' + digest(today()) + h.slice(css().length) + videoCard(today(), true);
@@ -633,17 +782,20 @@
     Array.prototype.forEach.call(el.querySelectorAll("[data-pclose]"), function (b) { b.onclick = function () { S.gaps[b.dataset.pclose] = { status: "Closed" }; save("Gap closed: +20 XP"); panel(el); }; });
     Array.prototype.forEach.call(el.querySelectorAll("[data-pread]"), function (b) { b.onclick = function () { var i = b.dataset.pread; S.lit[i] = S.lit[i] || {}; S.lit[i].s = "Read"; S.lit[i].c = 1; save("Paper read: +10 XP"); panel(el); }; });
   }
-  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup };
+  var VIEWS = { "tracker": dashboard, "tracker-time": function () { timetable(0); }, "tracker-steps": steps, "tracker-evidence": function () { evidence(); }, "tracker-gaps": gaps, "tracker-lit": lit, "tracker-sites": function () { sites(); }, "tracker-dirs": dirs, "tracker-focus": focus, "tracker-reflect": reflect, "tracker-growth": growth, "tracker-backup": backup, "tracker-ai": coachPage };
   function show(id) {
     load();
     if (!D) { render('<div class="card"><p>Loading your research tracker…</p></div>', "tracker"); fetch(BASE + "data/tracker.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { D = j; show(id); }).catch(function () { render('<div class="card"><h1>Research tracker</h1><p>The tracker could not load. Check your connection and refresh the page.</p></div>', "tracker"); }); return; }
-    (VIEWS[id] || dashboard)();
+    ensureLit(function () { (VIEWS[id] || dashboard)(); });
   }
   function todayCard(el) {
     load();
     if (!D) { fetch(BASE + "data/tracker.json").then(function (r) { return r.json(); }).then(function (j) { D = j; todayCard(el); }).catch(function () {}); return; }
+    if (!LIT) { el.innerHTML = '<div class="card"><p class="hint">Loading your day…</p></div>'; ensureLit(function () { todayCard(el); }); return; }
     el.innerHTML = css() + '<div class="card"><p class="eyebrow">Your day · <a href="#tracker-time">timetable & session briefs</a></p>' + nnHtml() + "</div>" + digest(today());
     wireDigest(el, function () { todayCard(el); });
   }
-  window.CCTracker = { show: show, panel: panel, today: todayCard };
+  if (!window.__ccCoachClick) { window.__ccCoachClick = 1; document.addEventListener("click", function (e) { var t = e.target.closest && e.target.closest("[data-coach]"); if (t) { e.preventDefault(); openCoach(t.dataset.coach); } }); }
+  window.CCTracker = { show: show, panel: panel, today: todayCard, fab: fab, coach: openCoach };
+  try { fab(); } catch (e) {}
 })();
