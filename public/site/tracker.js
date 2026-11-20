@@ -616,23 +616,30 @@
     4: ["Ghana carbon market", "Clean cooking", "Forest, REDD+ and cocoa"], 5: ["Benefit sharing, equity and gender", "Clean cooking"], 6: ["Voluntary carbon market and integrity", "Climate finance"],
     7: ["Benefit sharing, equity and gender", "Clean cooking", "Forest, REDD+ and cocoa"], 8: [], 9: ["Voluntary carbon market and integrity"] };
   var TIERN = { C: "Core", S: "Supporting", H: "Background" };
+  var MKT = /carbon market|carbon credit|carbon offset|offsett?ing|article 6|itmo|paris agreement|carbon financ|redd|voluntary carbon|carbon pric|emissions? trading|cookstove|clean cooking|benefit.?shar|safeguard|mrv|verra|gold standard|integrity|additionality|corresponding adjustment|ndc/i;
+  var STEPKW = { 1: /carbon market|policy|framework|ndc/i, 2: /regulat|legal|law|institution|framework|governance|policy|epa/i, 3: /article 6|itmo|bilateral|corresponding adjustment|paris|internationally transferred|switzerland|singapore|sweden/i,
+    4: /project|registry|issuance|credits? (issued|volume)|cookstove|clean cooking|redd|cocoa|forest|sector/i, 5: /benefit.?shar|safeguard|equity|gender|communit|women|livelihood|consent/i, 6: /voluntary|private|developer|buyer|integrity|quality|over.?credit|corporate/i,
+    7: /stakeholder|interview|perception|communit|participat/i, 8: /market|trend|review|outlook/i, 9: /integrity|verification|quality|over.?credit/i };
+  function relevance(r, st) { var t = r[4] || ""; return (STEPKW[st] && STEPKW[st].test(t) ? 3 : 0) + (MKT.test(t) ? 2 : 0); }
   function quota(d) { var o = S.daily || {}, we = d.getDay() === 0 || d.getDay() === 6; return we ? (o.we != null ? +o.we : 1) : (o.wk != null ? +o.wk : 3); }
   function assigned() { var a = {}; Object.keys(S.rd || {}).forEach(function (k) { (S.rd[k] || []).forEach(function (i) { a[i] = k; }); }); return a; }
   function rankPapers(d, skip) {
     var st = curStep(d), th = STEPTHEMES[st ? st.n : 8] || [], tr = { C: 0, S: 1, H: 2 }, idx = [];
     LIT.rows.forEach(function (r, i) { if (!skip[i] && (litRead(i) === "To read" || litRead(i) === "Reading")) idx.push(i); });
-    idx.sort(function (a, b) { var A = LIT.rows[a], B = LIT.rows[b]; return (tr[A[0]] - tr[B[0]]) || ((th.indexOf(B[1]) >= 0) - (th.indexOf(A[1]) >= 0)) || ((B[2] === "G") - (A[2] === "G")) || (B[7] - A[7]); });
+    var sn = st ? st.n : 8, rel = {}; idx.forEach(function (i) { var r = LIT.rows[i]; rel[i] = relevance(r, sn) + (th.indexOf(r[1]) >= 0 ? 1 : 0); });
+    idx.sort(function (a, b) { var A = LIT.rows[a], B = LIT.rows[b]; return (tr[A[0]] - tr[B[0]]) || (rel[b] - rel[a]) || ((B[2] === "G") - (A[2] === "G")) || (B[7] - A[7]); });
     return idx;
   }
   function todaysPapers(d) {
     if (!LIT || !LIT.rows.length) return [];
     var k = dk(d), t = dk(today()), n = quota(d); S.rd = S.rd || {};
+    if (S.rdv !== 2) { S.rdv = 2; Object.keys(S.rd).forEach(function (x) { if (x >= t) S.rd[x] = S.rd[x].filter(function (i) { return litRead(i) === "Read"; }); }); }
     if (k < t) return S.rd[k] || [];
     var cur = (S.rd[k] || []).slice(), a = assigned();
-    if (k > t) { if (cur.length) return cur; var sk = {}; Object.keys(a).forEach(function (i) { sk[i] = 1; }); return rankPapers(d, sk).slice(0, n); }
+    if (k > t) { if (cur.length) return cur; var sk = {}; Object.keys(a).forEach(function (i) { if (a[i] >= t) sk[i] = 1; }); return rankPapers(d, sk).slice(0, n); }
     var keep = cur.filter(function (i) { return litRead(i) === "Read"; }), rest = cur.filter(function (i) { return litRead(i) !== "Read" && litRead(i) !== "Not relevant"; });
     var list = keep.concat(rest).slice(0, Math.max(n, keep.length));
-    if (list.length < n) { var sk2 = {}; Object.keys(a).forEach(function (i) { if (a[i] !== k || list.indexOf(+i) >= 0) sk2[i] = 1; }); list.forEach(function (i) { sk2[i] = 1; }); list = list.concat(rankPapers(d, sk2).slice(0, n - list.length)); }
+    if (list.length < n) { var sk2 = {}; Object.keys(a).forEach(function (i) { if (a[i] !== k && a[i] >= t) sk2[i] = 1; }); list.forEach(function (i) { sk2[i] = 1; }); list = list.concat(rankPapers(d, sk2).slice(0, n - list.length)); }
     if (JSON.stringify(list) !== JSON.stringify(cur)) { S.rd[k] = list; sj(KEY, S); }
     return list;
   }
