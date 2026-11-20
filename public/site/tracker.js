@@ -1598,7 +1598,16 @@
     ["Open kiln design licence", "Publish the design so any welder can build it, and train welders.", "Faster spread; a public good funders like.", "Read how another open hardware project licenses designs."],
     ["Women as data agents", "Pay 2 women to check sensors and weigh wood, as paid data agents.", "Jobs, trust and better data.", "Write the data agent's daily checklist."],
     ["Interim (early) credit issuance", "Use digital MRV so part of the credits can be issued early, as Gold Standard did in 2026.", "Money reaches women sooner.", "Read the Gold Standard dMRV pilot rules."],
-    ["Savings group link", "Pay carbon income into the women's existing susu or savings group.", "Builds on a trusted system.", "Ask if your processors' group has a susu."]
+    ["Savings group link", "Pay carbon income into the women's existing susu or savings group.", "Builds on a trusted system.", "Ask if your processors' group has a susu."],
+    ["Activity rights, not land rights", "Each woman earns from her own logged batches, whatever her land or residence status.", "Lets displaced, renting and migrant women earn; most carbon money in Africa flows through land.", "Write the one contract clause that gives her this right."],
+    ["Portable carbon wallet", "Her share goes to her own mobile money and follows her if she moves to another beach or settlement.", "Fits displaced and migrant processors; Carboneers already pays women directly in Ghana (CGAP 2026).", "Check which mobile money accounts need the least ID."],
+    ["Carbon passbook", "A susu-style card stamped weekly with bundles saved, credits and cedis, with a phone copy.", "Literacy through something women already trust; it travels with her.", "Sketch one passbook page."],
+    ["Carbon Mothers peer champions", "A one-day picture course with two pledged actions and a numbered certificate; each champion trains 10 others.", "Copies the Carbon Literacy Project (171,647 certified in 53 countries).", "Write the 6 parts of the one-day course."],
+    ["Floor price plus premium", "Her share never falls below a set cedi amount per tonne; a group premium is spent by vote.", "Fairtrade's climate standard uses minimum prices plus a premium.", "Pick a floor price and test it in your money model."],
+    ["Host and newcomer fund", "Split the 10% community fund between host and displaced projects.", "UNHCR's REP Fund shares benefits with refugees and hosts; it prevents envy.", "List one host and one newcomer project at your site."],
+    ["Light-touch sign-up", "Register with a photo, a phone number and two members who vouch for her when she has no ID.", "Displaced women often lose documents.", "Ask a mobile money agent what minimum ID they accept."],
+    ["One umbrella programme for Africa", "Register once and add each new landing site or settlement as a component.", "Low cost per site; scales to coastal West Africa, the great lakes and refugee settlements.", "Read how grouped projects or programmes of activities work."],
+    ["Glass-box price board", "Show the buyer, the price and every deduction down to her share.", "RMI recommends disclosing prices and buyers to communities.", "Mock up the board with sample numbers."]
   ];
   var SSFIX = [
     ["Name a CCP-eligible carbon method (not only AMS-II.G)", "The Integrity Council rejected AMS-II.G in March 2025. Point to VM0050 v2 (covers micro enterprises) or a Gold Standard metered route."],
@@ -1614,7 +1623,9 @@
     ["Add CSIR-FRI's 2026 oven study", "Show you know the current work and how SafeSmoke differs."],
     ["Add the Ghana mobile-money payment example", "CGAP 2026 on Carboneers paying women directly."],
     ["Add risks and mitigations", "Theft of sensors, low use, price of credits falls, women leave. One line each."],
-    ["Add how you'll measure success", "Targets: % wood saved, quiz scores, women paid, kilns in daily use."]
+    ["Add how you'll measure success", "Targets: % wood saved, quiz scores, women paid, kilns in daily use."],
+    ["Link SafeSmoke to displaced and host communities", "The challenge brief is about displaced and host communities: add coastal displacement in Ghana (Fuveme, Keta), migrant processors and the host/newcomer fund."],
+    ["Add the portable, activity-based benefit model", "Activity rights, a portable wallet, a floor price, an upfront payment. See your 'World-Class Ideas' doc."]
   ];
   function ssState() { S.ss = S.ss || {}; S.ss.log = S.ss.log || {}; S.ss.fix = S.ss.fix || {}; S.ss.idea = S.ss.idea || {}; S.ss.used = S.ss.used || {}; return S.ss; }
   function ssToday(d) { var th = SSTH[d.getDay()], t = th.tasks[weekIdx(d) % th.tasks.length], idx = (weekIdx(d) * 7 + d.getDay()) % SSIDEAS.length; return { th: th, task: t, idea: SSIDEAS[idx], ideaI: idx }; }
