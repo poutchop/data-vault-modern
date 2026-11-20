@@ -477,9 +477,87 @@
    "added": "2026-11-20",
    "status": "Upcoming",
    "priority": 3
+  },
+  {
+   "id": "kaad",
+   "country": "Germany",
+   "region": "Germany",
+   "type": "Scholarship",
+   "funded": "Fully funded",
+   "title": "KAAD scholarship for master's in Germany",
+   "provider": "KAAD (Catholic Academic Exchange Service)",
+   "city": "Any German university",
+   "grade": "No minimum grade stated; a relevant first degree and transcripts are assessed.",
+   "req": "Catholic, Christian or engaged in interreligious dialogue; recommendation from the KAAD partner committee in Ghana; German A2/B1 on arrival and B2 for studies; motivation letter, study plan, two references.",
+   "start": "2027/28",
+   "deadline": "2027-01-15",
+   "deadlineNote": "Rounds close 15 January and 15 June. Contact the KAAD partner committee in Ghana well before.",
+   "cost": "Fully funded",
+   "funding": "About €992/month (master's), tuition where charged, insurance, travel, German course",
+   "fit": "A strong match if you're a practising Christian: KAAD looks at commitment and development impact, not just grades. Pair it with a no-NC German master's such as THI or BTU.",
+   "link": "https://kaad.de/en/scholarships/",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "jjwbgsp",
+   "country": "Global",
+   "region": "Worldwide",
+   "type": "Scholarship",
+   "funded": "Fully funded",
+   "title": "Joint Japan/World Bank Graduate Scholarship (JJ/WBGSP)",
+   "provider": "World Bank and Government of Japan",
+   "city": "44 partner programmes worldwide",
+   "grade": "No GPA rule stated on the programme page; partner programmes do their own selection.",
+   "req": "3+ years of paid, full-time, development-related work since your bachelor's (within the last 6 years), currently in such a job, and unconditional admission to a partner programme. Check Ghana is on the eligible-country list.",
+   "start": "2027/28",
+   "deadline": "2027-02-26",
+   "deadlineNote": "Window 1: 18 January to 26 February 2027. Window 2: 29 March to 21 May 2027.",
+   "remindOn": "2027-01-10",
+   "cost": "Fully funded",
+   "funding": "Tuition, flights + US$600 travel allowance, monthly allowance, insurance",
+   "fit": "Possible if your Carbon Clarity and research work count as 3 years of paid development work. You need a partner programme admission first.",
+   "link": "https://worldbank.org/en/programs/scholarships/jj-wbgsp",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Upcoming",
+   "priority": 2
+  },
+  {
+   "id": "mcf",
+   "country": "Global",
+   "region": "Africa, Canada, UK, Europe and more",
+   "type": "Scholarship",
+   "funded": "Fully funded",
+   "title": "Mastercard Foundation Scholars Program (master's)",
+   "provider": "Mastercard Foundation with partner universities",
+   "city": "Partner universities",
+   "grade": "Set by each partner university (often competitive).",
+   "req": "Talented, service-oriented young Africans from under-represented backgrounds; apply through each partner university.",
+   "start": "2027/28",
+   "deadline": null,
+   "deadlineNote": "Each university has its own deadline (many September to January). See 'Where to apply' on the foundation's site.",
+   "cost": "Fully funded",
+   "funding": "Full scholarship",
+   "fit": "Your community work with James Town processors fits the 'service-oriented' focus; target partner universities whose grade rules you meet.",
+   "link": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Check",
+   "priority": 2
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-20-funders",
+   "date": "2026-11-20",
+   "level": "new",
+   "title": "Who funds African master's students: 11 funders checked",
+   "body": "5 worth applying to (Chevening, KAAD, JJ/WBGSP, Mastercard Foundation, Australia Awards) plus Erasmus Mundus, and 5 that don't fit a 2.3 or Ghana. KAAD closes 15 January.",
+   "link": "#tracker-opps"
+  },
   {
    "id": "a-2026-11-20-funded",
    "date": "2026-11-20",
@@ -509,7 +587,7 @@
    "id": "a-2026-11-20-welcome",
    "date": "2026-11-20",
    "level": "new",
-   "title": "21 opportunities found for you",
+   "title": "24 opportunities found for you",
    "body": "13 study routes that accept your 2.3 GPA, plus fully funded scholarships, fellowships and grants.",
    "link": "#tracker-opps"
   },
@@ -673,6 +751,107 @@
   {
    "name": "Yale Emerging Climate Leaders Fellowship",
    "why": "Not a grade issue: the 2027 round closed 30 July 2026 and it expects about 5 years of experience. Worth a try for 2028."
+  }
+ ],
+ "funders": [
+  {
+   "name": "Chevening (UK Government)",
+   "fit": "good",
+   "where": "UK, any university",
+   "what": "Fully funded 1-year master's: tuition, living allowance, flights.",
+   "rule": "Degree that qualifies you for a UK master's (a pre-master's or extended route can give you that) and 2,800 hours of work after graduating. No fixed degree class.",
+   "when": "Opens around August, closes around October.",
+   "link": "https://www.chevening.org/eligibility"
+  },
+  {
+   "name": "KAAD (Catholic Academic Exchange Service, Germany)",
+   "fit": "good",
+   "where": "Germany",
+   "what": "Monthly stipend (about €992 for master's), tuition where charged, insurance, travel, German course.",
+   "rule": "Catholic, Christian or active in interreligious dialogue; relevant first degree; recommendation from the KAAD partner committee in Ghana. No minimum grade stated. German B2 needed for study.",
+   "when": "Two rounds a year: 15 January and 15 June.",
+   "link": "https://kaad.de/en/scholarships/"
+  },
+  {
+   "name": "Joint Japan/World Bank Graduate Scholarship (JJ/WBGSP)",
+   "fit": "maybe",
+   "where": "44 partner master's programmes worldwide",
+   "what": "Tuition, flights, monthly allowance, insurance.",
+   "rule": "3+ years of paid development work after your bachelor's and a current development job; unconditional admission to a partner programme first. No GPA rule stated, but the partner programmes are selective. Check Ghana is on the eligible-country list.",
+   "when": "2027 windows: 18 Jan–26 Feb and 29 Mar–21 May.",
+   "link": "https://worldbank.org/en/programs/scholarships/jj-wbgsp"
+  },
+  {
+   "name": "Mastercard Foundation Scholars Program",
+   "fit": "maybe",
+   "where": "Partner universities in Africa, North America, Europe and the Middle East",
+   "what": "Full scholarships for talented young Africans from under-represented backgrounds.",
+   "rule": "Apply through each partner university; each sets its own grades and deadlines (often high).",
+   "when": "Varies by university; many open September to January.",
+   "link": "https://mastercardfdn.org/en/what-we-do/our-programs/mastercard-foundation-scholars-program/"
+  },
+  {
+   "name": "Australia Awards Africa (Australian Government)",
+   "fit": "maybe",
+   "where": "Australia",
+   "what": "Fully funded master's.",
+   "rule": "Ghanaians are eligible. The minimum grade isn't stated on the pages checked: check the brochure when the round opens.",
+   "when": "Next round opens 1 February 2027 (2028 intake).",
+   "link": "https://australiaawardsafrica.org/awards/types-of-awards/"
+  },
+  {
+   "name": "Erasmus Mundus Joint Masters (EU)",
+   "fit": "maybe",
+   "where": "2+ European countries",
+   "what": "Tuition, about €1,400 a month, travel.",
+   "rule": "Each programme sets its own bar. Many want 3.0–3.5 GPA; look for ones with no stated minimum that score experience or tests.",
+   "when": "Mostly December to February.",
+   "link": "https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en"
+  },
+  {
+   "name": "Commonwealth Scholarships (UK)",
+   "fit": "no",
+   "where": "UK",
+   "what": "Fully funded master's.",
+   "rule": "Requires at least an upper second-class (2:1) degree.",
+   "when": "Usually opens around September–October.",
+   "link": "https://cscuk.fcdo.gov.uk/"
+  },
+  {
+   "name": "Stipendium Hungaricum (Hungary)",
+   "fit": "no",
+   "where": "Hungary",
+   "what": "Tuition, stipend, housing.",
+   "rule": "Ghana's Scholarships Secretariat asks for a Second Class Upper for master's.",
+   "when": "Deadline mid-January.",
+   "link": "https://scholarships.gov.gh/opportunities/offer-of-scholarships-by-the-government-of-hungary-under-the-educational-exchange-programme-tenable-in-hungary"
+  },
+  {
+   "name": "Swedish Institute Scholarships for Global Professionals",
+   "fit": "no",
+   "where": "Sweden",
+   "what": "Tuition, SEK 12,000 a month, travel grant.",
+   "rule": "Ghana is not on the 2027 list of eligible citizenships.",
+   "when": "University applications by 15 January; SI application 8–24 February 2027.",
+   "link": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/"
+  },
+  {
+   "name": "DAAD Leadership for Africa (West and Central Africa)",
+   "fit": "no",
+   "where": "Germany",
+   "what": "Tuition-free master's with support.",
+   "rule": "Only for Cameroon, Senegal and Togo (citizens or refugees there).",
+   "when": "Last round: April–June 2025.",
+   "link": "https://daad.de/en/the-daad/what-we-do/sustainable-development/funding-programmes/funding-programmes-for-students-a-z/leadership-for-africa/scholarship-west-and-central-africa"
+  },
+  {
+   "name": "OPEC Fund Scholarship",
+   "fit": "no",
+   "where": "Any (development fields)",
+   "what": "Graduate study award.",
+   "rule": "Paused: \"restructuring its scholarship program and is not accepting applications.\"",
+   "when": "No current window.",
+   "link": "https://opecfund.org/what-we-do/special-initiatives/scholarship"
   }
  ]
 }
