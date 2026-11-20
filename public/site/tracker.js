@@ -986,7 +986,7 @@
   ];
   var WP = null, WPLOAD = false;
   function workplanTask() {
-    if (!WPLOAD) { WPLOAD = true; fetch("/api/tasks", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var T = j && j.tasks || []; T = T.filter(function (t) { return t.status !== "done" && t.title; }).sort(function (a, b) { return (a.status === "doing" ? -1 : 0) - (b.status === "doing" ? -1 : 0) || String(a.due || "9").localeCompare(String(b.due || "9")); }); WP = T[0] || null; if (WP && location.hash === "#today") todayView(); }).catch(function () {}); }
+    if (!WPLOAD) { WPLOAD = true; fetch("/api/tasks", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { var T = j && j.tasks || []; T = T.filter(function (t) { return t.status !== "done" && t.title; }).sort(function (a, b) { return (a.status === "doing" ? -1 : 0) - (b.status === "doing" ? -1 : 0) || String(a.due || "9").localeCompare(String(b.due || "9")); }); WP = T[0] || null; if (WP && (location.hash === "#today" || location.hash === "" || location.hash === "#")) todayView(); }).catch(function () {}); }
     return WP;
   }
   function missionFor(st) {
