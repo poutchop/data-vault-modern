@@ -1,0 +1,124 @@
+{
+ "updated": "2026-11-20",
+ "suggestion": {
+  "date": "2026-11-20",
+  "title": "Change the carbon method you name: AMS-II.G is no longer seen as high quality",
+  "why": "In March 2025 the Integrity Council (ICVCM) ruled that AMS-II.G does not meet its Core Carbon Principles, because it measures fuel use and stove use too weakly. Buyers now pay more for CCP-labelled credits. Your document says AMS-II.G covers your kilns. A reviewer who knows the market will see this as a weakness.",
+  "action": "Rewrite the last sentence of 'The opportunity' and part 2: say the sensors are designed to meet a CCP-eligible route, such as Verra VM0050 (its draft version 2 covers small and micro enterprises) or a Gold Standard metered approach. Keep AMS-II.G only as the 'minimum' method that already mentions ovens and dryers.",
+  "part": "Carbon method",
+  "source": "ICVCM",
+  "url": "https://icvcm.org/integrity-council-approves-three-cookstove-methodologies/"
+ },
+ "evidence": [
+  {
+   "id": "icvcm-2025-03",
+   "date": "2025-03-07",
+   "added": "2026-11-20",
+   "part": "Carbon method",
+   "title": "AMS-II.G ruled out of the high-quality (CCP) label",
+   "summary": "The Integrity Council approved Gold Standard's metered method, TPDDTEC v4.0 and Verra VM0050 v1.0, but rejected AMS-II.G and Gold Standard's simplified cookstove method for weak measurement of fuel use and stove use. CCP-labelled fNRB values will typically be below 0.5, against a market average of 0.86.",
+   "use": "Part 2 and 'The opportunity': point to a CCP-eligible method and use a conservative fNRB in any credit estimate.",
+   "source": "ICVCM",
+   "url": "https://icvcm.org/integrity-council-approves-three-cookstove-methodologies/"
+  },
+  {
+   "id": "vm0050-v2",
+   "date": "2026-07-09",
+   "added": "2026-11-20",
+   "part": "Carbon method",
+   "title": "Verra's VM0050 draft v2 covers small and micro enterprises",
+   "summary": "The draft version 2.0 (9 July 2026) applies to households, community kitchens, institutions and small and medium-sized enterprises, including micro enterprises. Biomass stoves need at least 25% thermal efficiency, must pass a durability protocol, carry a permanent unique ID, and the project must give incentives to retire the old stove.",
+   "use": "This is the strongest route for fish smokers as micro enterprises. Add 'unique kiln ID', 'efficiency test' and 'retire or retrofit the old Chorkor' to the kiln and sensor parts.",
+   "source": "Verra",
+   "url": "https://verra.org/documents/vm0050-energy-efficiency-and-fuel-switch-measures-in-cooking-devices/"
+  },
+  {
+   "id": "a64-cooking-2026-10",
+   "date": "2026-10-09",
+   "added": "2026-11-20",
+   "part": "Carbon method",
+   "title": "UN Article 6.4 mechanism adopts two clean-cooking methodologies",
+   "summary": "The Supervisory Body adopted its first two clean-cooking methodologies (efficient wood and charcoal stoves, and a wider switch to cleaner cooking) plus a tool for reversal risk. Both are described as household methods.",
+   "use": "Fish smoking is a business use, so ask Ghana's Carbon Market Office whether commercial kilns fit under Article 6.4 or need the VM0050 SME route.",
+   "source": "UNFCCC",
+   "url": "https://unfccc.int/news/clean-cooking-projects-gain-access-to-un-carbon-market"
+  },
+  {
+   "id": "gs-dmrv-2026-03",
+   "date": "2026-03-25",
+   "added": "2026-11-20",
+   "part": "Sensors and data",
+   "title": "First fully digital cookstove credits issued by Gold Standard",
+   "summary": "ATEC's eCook Bangladesh project had 1,667 tonnes approved under Gold Standard's digital MRV pilot. IoT SIMs on each stove sent signed, encrypted usage data, and 75% of credits were issued early on an interim track, before full verification.",
+   "use": "Part 2: design the SafeSmoke sensor kit so its data is signed and sent automatically. Early (interim) issuance could bring income to the women sooner.",
+   "source": "Gold Standard",
+   "url": "https://goldstandard.org/news/first-fully-digital-cookstove-carbon-credits-issued-publicly-traceable-on-hedera-guardian"
+  },
+  {
+   "id": "cgap-2026-07",
+   "date": "2026-07-01",
+   "added": "2026-11-20",
+   "part": "Benefit sharing",
+   "title": "Paying carbon income straight to women's mobile money",
+   "summary": "A CGAP Focus Note (July 2026) describes Carboneers' biochar project in Ghana paying carbon revenue into women's own mobile money accounts, which creates time-stamped records of who was paid. It recommends treating payment records as part of MRV, while noting they show participation, not empowerment.",
+   "use": "Part 4: cite this Ghana example for paying the 60% to her own wallet, and add a short survey on how women use the money.",
+   "source": "CGAP",
+   "url": "https://www.cgap.org/research/publication/financial-services-infrastructure-for-womens-empowerment-and-carbon-integrity"
+  },
+  {
+   "id": "csirfri-2026-09",
+   "date": "2026-09-11",
+   "added": "2026-11-20",
+   "part": "Kiln",
+   "title": "CSIR-FRI is testing three fish-smoking ovens in six communities",
+   "summary": "CSIR-FRI, with the University of Bergen and the Fisheries Commission, is comparing the Chorkor, a redesigned (2022) Ahotor and a cheap retrofitted Chorkor with a fat tray in Akosombo, Kpong, Ahwiam, Joma, Vodza and Saltpond-Ankaful. PAH results are not yet published.",
+   "use": "Your kiln must beat the cheap retrofit on cost per kg of wood saved. CSIR-FRI (Dr Amy Atter) is a natural design and PAH-testing partner.",
+   "source": "Ghana News Agency",
+   "url": "https://gna.org.gh/2026/09/csir-fri-pilot-tests-safer-fish-smoking-ovens-for-food-safety-climate-resilience/"
+  },
+  {
+   "id": "undp-2026-09",
+   "date": "2026-09-10",
+   "added": "2026-11-20",
+   "part": "Ghana market",
+   "title": "Ghana's carbon market: 91 projects, 11 authorised",
+   "summary": "UNDP reports 91 projects in Ghana's pipeline, 11 authorised for international transfer covering 12.7 million tonnes CO₂e, and 11,733 ITMOs delivered to Switzerland in 2025. New carbon market regulations are under legal review.",
+   "use": "Problem statement: update the market numbers and cite this source next to the Carbon Market Office report.",
+   "source": "UNDP Ghana",
+   "url": "https://www.undp.org/ghana/publications/making-carbon-market-work-all-ghanas-2025-2026-progress"
+  },
+  {
+   "id": "fnrb-swiss-2025",
+   "date": "2025-09-26",
+   "added": "2026-11-20",
+   "part": "Carbon method",
+   "title": "Ghana's first Article 6 cookstove deal cut its fNRB from about 80% to 30%",
+   "summary": "Reporting on the Swiss-financed rural cookstove project says Switzerland set the non-renewable biomass fraction at 30% after developers pushed for nearly 80%, cutting projected savings from 3.2 to 1.3 million tonnes. Partners declined to share stove numbers.",
+   "use": "Use 30% fNRB in your own estimate of credit income per woman, and promise open data: it's an integrity advantage.",
+   "source": "MyJoyOnline",
+   "url": "https://www.myjoyonline.com/the-swiss-financed-carbon-credit-project-in-ghana-partners-dont-want-to-talk-about"
+  },
+  {
+   "id": "senegal-biogas",
+   "date": "2025-10-31",
+   "added": "2026-11-20",
+   "part": "Innovation",
+   "title": "Senegal: 700 women fish processors use biogas from fish waste",
+   "summary": "In Guet Ndar, Saint-Louis, a women's group runs 6 biodigesters feeding 10 cooking platforms, plus composting, reporting about 252 t CO₂ and 12 t methane avoided a year and fertiliser sales.",
+   "use": "An idea for a later phase: turn fish waste into fuel or fertiliser at the landing site.",
+   "source": "Women and Gender Constituency",
+   "url": "https://womengenderclimate.org/fr/?p=1082"
+  },
+  {
+   "id": "cc-finance-2026-09",
+   "date": "2026-09-07",
+   "added": "2026-11-20",
+   "part": "Ghana market",
+   "title": "Carbon credits are Africa's biggest bet for clean cooking",
+   "summary": "AP reports that new policies across Africa have helped secure about $900 million in clean-cooking finance, with carbon credits the main engine, as long as buyers trust the credits.",
+   "use": "Opening of your pitch: the money exists, and trust (your measured data) is what unlocks it.",
+   "source": "AP via Mongabay",
+   "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
+  }
+ ]
+}
