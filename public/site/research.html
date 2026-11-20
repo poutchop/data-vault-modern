@@ -1,0 +1,146 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Carbon Clarity Research: Ghana's carbon market</title>
+<meta name="description" content="Research in progress on current trends in Ghana's carbon market, and what they mean for Carbon Clarity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#F3F6F2;--surface:#FFFFFF;--surface2:#E8EFEA;--fg:#14261F;--muted:#4F6159;--line:#CFDAD3;--forest:#15332B;--ember:#B8431A;--ember-bg:#F9E3D8;--mint:#0F7C72;--mint-bg:#DDF0EC;--gold:#8A6100;--gold-bg:#FBEFD2;
+--serif:'Fraunces',Georgia,serif;--sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0D1C17;--surface:#143028;--surface2:#1A3A31;--fg:#EAF2EE;--muted:#9FB6AC;--line:#2B4C42;--forest:#08130F;--ember:#F08A57;--ember-bg:#3A2418;--mint:#4FD6C8;--mint-bg:#123B36;--gold:#F2B134;--gold-bg:#3A2E12;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--mint)}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.12;margin:0;text-wrap:balance}
+h1{font-size:clamp(34px,6vw,58px)} h2{font-size:clamp(26px,4vw,38px)} h3{font-size:20px}
+p{margin:0}
+.top{margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));background:var(--forest);color:#fff;padding:12px max(16px,env(safe-area-inset-left,0px))}
+.top .w{max-width:1040px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.top nav{display:flex;flex-wrap:wrap;gap:6px 16px} .top a{color:#D9E8E1;text-decoration:none;font-weight:600;font-size:15px} .top a:hover{color:#fff;text-decoration:underline}
+.hero{margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));background:linear-gradient(160deg,var(--forest),#1E4A3E);color:#fff;padding:64px max(16px,env(safe-area-inset-left,0px)) 56px}
+.hero .w{max-width:1040px;margin:0 auto;display:grid;gap:18px}
+.eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#F08A57}
+.hero .lead{font-size:clamp(17px,2.3vw,20px);color:#D9E8E1;max-width:64ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:12px}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:14px 16px}
+.stat b{display:block;font-family:var(--serif);font-size:30px;line-height:1.1;color:#fff} .stat span{font-size:13.5px;color:#D9E8E1}
+.btn{display:inline-flex;align-items:center;gap:8px;background:#F08A57;color:#14261F;font-weight:700;text-decoration:none;border-radius:999px;padding:12px 20px;justify-self:start}
+.btn:hover{filter:brightness(1.05)}
+section{padding-block:56px;border-bottom:1px solid var(--line)}
+.sechead{display:grid;gap:10px;margin-bottom:28px;max-width:760px} .sechead .eyebrow{color:var(--ember)} .sechead p{color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.why{border-left:5px solid var(--ember);background:var(--ember-bg)}
+.why li{margin:6px 0}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.step{display:grid;grid-template-columns:36px 1fr auto auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.step .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:var(--surface2)}
+.step.done .n{background:var(--mint);color:#fff} .step.doing .n{background:var(--gold);color:#fff}
+.step .d{color:var(--muted);font-size:14px;white-space:nowrap}
+.chip{font-size:12.5px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.chip.done{background:var(--mint-bg);color:var(--mint)} .chip.doing{background:var(--gold-bg);color:var(--gold)} .chip.todo{background:var(--surface2);color:var(--muted)}
+.bar{height:10px;border-radius:999px;background:var(--surface2);overflow:hidden;margin:4px 0 18px} .bar i{display:block;height:100%;width:33%;background:linear-gradient(90deg,var(--mint),var(--gold))}
+@media (max-width:560px){.step{grid-template-columns:32px 1fr} .step .d,.step .chip{grid-column:2}}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15.5px} th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top} th{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.mix{display:flex;height:18px;border-radius:999px;overflow:hidden;margin:10px 0 8px} .mix i{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted)} .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--c)}
+.num{font-family:var(--serif);font-size:28px;font-weight:700}
+.list{margin:0;padding-left:20px} .list li{margin:6px 0}
+.dir{position:relative} .dir.top3{border-color:var(--ember)} .dir .tag{position:absolute;top:14px;right:14px;font-size:11.5px;font-weight:700;color:var(--ember);text-transform:uppercase;letter-spacing:.08em}
+.dir h3{padding-right:72px} .dir p{color:var(--muted);margin-top:6px;font-size:15.5px}
+.site a{font-weight:700;text-decoration:none} .site a:hover{text-decoration:underline} .site p{color:var(--muted);font-size:14.5px}
+.papers li{margin:10px 0} .papers .meta{display:block;color:var(--muted);font-size:14px}
+.note{font-size:14px;color:var(--muted)}
+footer{padding:32px 0 48px;color:var(--muted);font-size:14px}
+</style></head><body>
+<div class="top"><div class="w"><b>Carbon Clarity Research</b><nav><a href="index.html">Home</a><a href="workplan.html">Work plan</a><a href="learning.html">Learning</a><a href="focus.html">Focus Day</a><a href="pilot.html">Pilot design</a></nav></div></div>
+
+<header class="hero"><div class="w">
+  <p class="eyebrow">Research in progress · started 18 November 2026</p>
+  <h1>Ghana's carbon market: what is happening now</h1>
+  <p class="lead">Ghana is Africa's first country to authorise, issue, transfer and report Paris Agreement carbon credits. This research maps the rules, deals, projects and money, and asks who benefits, so Carbon Clarity's stove credits are built on solid ground.</p>
+  <div class="stats">
+    <div class="stat"><b>91</b><span>projects in Ghana's carbon pipeline</span></div>
+    <div class="stat"><b>11</b><span>projects authorised, about 12.7 MtCO<sub>2</sub>e</span></div>
+    <div class="stat"><b>58%</b><span>of the pipeline is clean cooking</span></div>
+    <div class="stat"><b>34,705</b><span>credits transferred to Switzerland (reported, being verified)</span></div>
+    <div class="stat"><b>$21.8m</b><span>REDD+ results-based payments in 2025</span></div>
+    <div class="stat"><b>1,499</b><span>papers (2024–2026) in the reading list</span></div>
+  </div>
+  <a class="btn" href="https://cdn.jsdelivr.net/gh/poutchop/data-vault-modern@research-page/public/site/files/Ghana_Carbon_Market_Research_Tracker.xlsx" download>⬇ Download the full research tracker (Excel)</a>
+</div></header>
+
+<main class="wrap">
+<section>
+  <div class="sechead"><p class="eyebrow">Why it matters</p><h2>What this means for Carbon Clarity</h2></div>
+  <div class="card why"><ul class="list">
+    <li><b>Clean cooking dominates.</b> Cookstove projects are 58% of Ghana's pipeline and supplied its first transferred credits, the same space as Carbon Clarity's fish-smoking stove.</li>
+    <li><b>Integrity is under scrutiny.</b> Global studies report over-crediting in cookstove methods, so audit-ready field data is a real advantage.</li>
+    <li><b>Benefit sharing is the open question.</b> How carbon revenue reaches communities and women is still unclear in Ghana, which is exactly the gap Carbon Clarity aims to close for fish smokers.</li>
+    <li><b>The rules are still being finalised.</b> The Carbon Market Regulations, 2026 are in draft, so the project should track them closely.</li>
+  </ul></div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Research plan</p><h2>Nine steps, 18 Nov 2026 – 15 Jan 2027</h2><p>Status as of 20 November 2026: 2 steps done, 2 in progress.</p></div>
+  <div class="bar" aria-hidden="true"><i></i></div>
+  <ol class="steps"><li class="step done"><span class="n">1</span><span class="t">Define scope and research questions</span><span class="d">Due 20 Nov</span><span class="chip done">Done</span></li><li class="step done"><span class="n">2</span><span class="t">Map the legal and institutional framework</span><span class="d">Due 24 Nov</span><span class="chip done">Done</span></li><li class="step doing"><span class="n">3</span><span class="t">Document the bilateral Article 6 agreements</span><span class="d">Due 27 Nov</span><span class="chip doing">In progress</span></li><li class="step doing"><span class="n">4</span><span class="t">Map projects, sectors and credit volumes</span><span class="d">Due 27 Nov</span><span class="chip doing">In progress</span></li><li class="step todo"><span class="n">5</span><span class="t">Examine benefit sharing and safeguards</span><span class="d">Due 4 Dec</span><span class="chip todo">Not started</span></li><li class="step todo"><span class="n">6</span><span class="t">Assess the voluntary market and private actors</span><span class="d">Due 11 Dec</span><span class="chip todo">Not started</span></li><li class="step todo"><span class="n">7</span><span class="t">Conduct stakeholder interviews</span><span class="d">Due 18 Dec</span><span class="chip todo">Not started</span></li><li class="step todo"><span class="n">8</span><span class="t">Analyse findings and write the report</span><span class="d">Due 8 Jan</span><span class="chip todo">Not started</span></li><li class="step todo"><span class="n">9</span><span class="t">Review, fact-check and finalise</span><span class="d">Due 15 Jan</span><span class="chip todo">Not started</span></li></ol>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Findings so far</p><h2>What we know</h2><p>Mainly from the Carbon Market Office's <a href="https://cmo.epa.gov.gh/wp-content/uploads/2026/09/Ghana_Carbon-Market-Annual-Progress-Report_August_2026_.pdf">Annual Progress Report (August 2026)</a>.</p></div>
+  <div class="grid2">
+    <div class="card"><h3>Rules and institutions</h3><ul class="list">
+      <li>The <b>Environmental Protection Act, 2025 (Act 1124)</b> names the EPA's Carbon Market Office as the national authority and creates a Carbon Market Committee and a mitigation fund.</li>
+      <li>The <b>Carbon Market Regulations, 2026</b> are still in draft with the Attorney-General.</li>
+      <li>The <b>Ghana Carbon Registry</b> is live and has recorded authorisations, issuances and a transfer.</li>
+      <li>Ghana's NDC targets a 64 MtCO<sub>2</sub>e cut by 2030.</li></ul></div>
+    <div class="card"><h3>Pipeline by type</h3>
+      <div class="mix" role="img" aria-label="Clean cooking 58%, nature-based 27%, renewable energy 8%, e-mobility 7%"><i style="width:58%;background:#B8431A"></i><i style="width:27%;background:#0F7C72"></i><i style="width:8%;background:#8A6100"></i><i style="width:7%;background:#7C8A85"></i></div>
+      <div class="legend"><span style="--c:#B8431A">Clean cooking 58%</span><span style="--c:#0F7C72">Nature-based 27%</span><span style="--c:#8A6100">Renewables 8%</span><span style="--c:#7C8A85">E-mobility 7%</span></div>
+      <p class="note" style="margin-top:12px">Estimated government revenue from credit sales: about <b>$66 million by 2030</b>.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>Article 6 partners</h3><div class="tablewrap"><table><thead><tr><th>Partner</th><th>Agreement</th><th>Status</th></tr></thead><tbody>
+    <tr><td><b>Switzerland</b></td><td>Agreement Nov 2020</td><td>Being implemented; ITMOs transferred</td></tr><tr><td><b>Sweden</b></td><td>Agreement May 2024</td><td>Signed</td></tr><tr><td><b>Singapore</b></td><td>Implementation agreement May 2024</td><td>Signed; 44 projects in its pipeline</td></tr><tr><td><b>South Korea</b></td><td>Signed Mar 2026</td><td>Awaiting ratification</td></tr><tr><td><b>Liechtenstein</b></td><td>Under negotiation</td><td>Signing targeted end 2026</td></tr>
+  </tbody></table></div></div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card"><h3>Trends</h3><ul class="list">
+      <li>From policy to real transactions: credits are being issued and transferred.</li>
+      <li>Regional leadership: Ghana is offering to lead an Africa-wide peer-learning programme.</li>
+      <li>More buyer countries: South Korea and Liechtenstein joining.</li>
+      <li>First formal accounting to the UN (corresponding adjustment) due December 2026.</li></ul></div>
+    <div class="card"><h3>Challenges</h3><ul class="list">
+      <li>Heavy reliance on cookstove projects.</li>
+      <li>Weak verification: verifiers averaged 2.25 out of 5.</li>
+      <li>Farmers poorly understand payments; low women's participation.</li>
+      <li>Funding gaps and regulations not yet passed.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Gaps to fill</p><h2>What we still need to find out</h2></div>
+  <div class="tablewrap card"><table><thead><tr><th>Question</th><th>Where to look</th></tr></thead><tbody>
+    <tr><td>Have the Carbon Market Regulations, 2026 been passed?</td><td>Parliament, EPA/CMO</td></tr><tr><td>Confirm the second ITMO transfer and the 34,705 total</td><td>CMO, KliK Foundation, UNFCCC</td></tr><tr><td>Verify Ghana&#x27;s first ART TREES (jurisdictional REDD+) credits</td><td>ART registry, Forestry Commission</td></tr><tr><td>How is ITMO revenue shared? (share of proceeds, levies)</td><td>Act 1124, draft regulations, CMO</td></tr><tr><td>How much of the $21.8m REDD+ payment reached cocoa farmers?</td><td>Forestry Commission, FCPF reports</td></tr><tr><td>Are Ghana&#x27;s cookstove credits over-credited?</td><td>Project documents, household surveys</td></tr>
+  </tbody></table></div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Research directions</p><h2>Questions worth answering</h2><p>The first three fit this project best.</p></div>
+  <div class="grid3"><div class="card dir top3"><span class='tag'>Top fit</span><h3>Who benefits from Ghana&#x27;s ITMO deals?</h3><p>How revenue is shared between government, developers and households, and whether women benefit.</p></div><div class="card dir top3"><span class='tag'>Top fit</span><h3>Integrity of cookstove credits</h3><p>Do crediting assumptions match real stove use and fuel savings?</p></div><div class="card dir top3"><span class='tag'>Top fit</span><h3>Carbon sovereignty</h3><p>How Ghana&#x27;s rules compare with Kenya and Nigeria.</p></div><div class="card dir"><h3>REDD+ in cocoa landscapes</h3><p>Community experience of results-based payments and jurisdictional credits.</p></div><div class="card dir"><h3>Gender and clean cooking</h3><p>Effects of carbon-financed stoves on women&#x27;s time, health and decisions.</p></div><div class="card dir"><h3>New project types</h3><p>Farmer adoption and payments in rice (AWD) and compost ITMO projects.</p></div><div class="card dir"><h3>Verification capacity</h3><p>Why verifiers scored 2.25/5, and whether digital MRV can help.</p></div><div class="card dir"><h3>Credit sales and the NDC</h3><p>Does exporting credits put Ghana&#x27;s own targets at risk?</p></div></div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Key sources</p><h2>Where the evidence lives</h2><p>All checked on 20 November 2026. The full list of 50 sites, with search strings, is in the tracker.</p></div>
+  <div class="grid3"><div class="card site"><a href="https://cmo.epa.gov.gh" target="_blank" rel="noopener">Ghana Carbon Market Office ↗</a><p>Official reports, authorisations, pipeline</p></div><div class="card site"><a href="https://unfccc.int/process-and-meetings/the-paris-agreement/article-6" target="_blank" rel="noopener">UNFCCC Article 6 ↗</a><p>Official Article 6 reporting</p></div><div class="card site"><a href="https://article6pipeline.unepccc.org" target="_blank" rel="noopener">UNEP-CCC Article 6 Pipeline ↗</a><p>Independent deal and project database</p></div><div class="card site"><a href="https://www.parliament.gh" target="_blank" rel="noopener">Parliament of Ghana ↗</a><p>Status of regulations and ratifications</p></div><div class="card site"><a href="https://fcghana.org" target="_blank" rel="noopener">Forestry Commission ↗</a><p>REDD+ programme and payments</p></div><div class="card site"><a href="https://www.forestcarbonpartnership.org" target="_blank" rel="noopener">Forest Carbon Partnership Facility ↗</a><p>Ghana REDD+ monitoring reports</p></div><div class="card site"><a href="https://www.undp.org/ghana" target="_blank" rel="noopener">UNDP Ghana ↗</a><p>Compost and rice ITMO projects</p></div><div class="card site"><a href="https://www.klik.ch" target="_blank" rel="noopener">KliK Foundation ↗</a><p>Swiss ITMO buyer</p></div><div class="card site"><a href="https://icvcm.org" target="_blank" rel="noopener">ICVCM ↗</a><p>Core Carbon Principles for credit quality</p></div><div class="card site"><a href="https://registry.goldstandard.org" target="_blank" rel="noopener">Gold Standard Registry ↗</a><p>Ghana cookstove projects</p></div><div class="card site"><a href="https://registry.verra.org" target="_blank" rel="noopener">Verra Registry ↗</a><p>Voluntary-market projects</p></div><div class="card site"><a href="https://gspp.berkeley.edu/berkeley-carbon-trading-project/offsets-database" target="_blank" rel="noopener">Berkeley Offsets Database ↗</a><p>All voluntary projects in one file</p></div><div class="card site"><a href="https://www.scopus.com" target="_blank" rel="noopener">Scopus ↗</a><p>Peer-reviewed literature (login)</p></div><div class="card site"><a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar ↗</a><p>Free search incl. theses</p></div><div class="card site"><a href="https://www.ajol.info" target="_blank" rel="noopener">African Journals Online ↗</a><p>African and Ghanaian journals</p></div><div class="card site"><a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex ↗</a><p>Open catalogue used for the reading list</p></div></div>
+</section>
+
+<section>
+  <div class="sechead"><p class="eyebrow">Reading list</p><h2>20 recent studies on Ghana</h2><p>Selected from 1,499 papers published 2024–2026 (OpenAlex). The full list is in the tracker.</p></div>
+  <ol class="papers card"><li><a href="https://doi.org/10.1017/s1355770x25100120" target="_blank" rel="noopener">The poverty and distributional impacts of carbon pricing on households: evidence from Ghana, Nigeria and Uganda</a><span class="meta">Sinem H. Ayhan et al. · 2025 · Environment and Development Economics</span></li><li><a href="https://doi.org/10.3390/f15081349" target="_blank" rel="noopener">Safeguarding Local Communities for REDD+ Implementation in Ghana</a><span class="meta">Jewel Andoh et al. · 2024 · Forests</span></li><li><a href="https://doi.org/10.1007/s00267-024-01978-2" target="_blank" rel="noopener">Actor Perceptions of the Governance Framework and Non-Carbon Benefits from the Ghana Cocoa Forest REDD+ Program: An Extended Q-Study of the Juabuso-Bia Hotspot Intervention Area</a><span class="meta">Frank Akowuge Dugasseh et al. · 2024 · Environmental Management</span></li><li><a href="https://doi.org/10.1016/j.ribaf.2025.103180" target="_blank" rel="noopener">Closing the clean cooking gap in Ghana and Kenya: Access trajectories, costs, and policy</a><span class="meta">Fateh Bélaïd &amp; Mohamad Issa Hejazi · 2025 · Research in International Business and Finance</span></li><li><a href="https://doi.org/10.30573/ks--2025-dp09" target="_blank" rel="noopener">Progress and Gaps in the Adoption of Clean Cooking Fuels in Africa – Policy Options for Ghana and Kenya</a><span class="meta">Fateh Bélaïd &amp; Mohamad Issa Hejazi · 2025</span></li><li><a href="https://doi.org/10.1016/j.forpol.2026.103801" target="_blank" rel="noopener">Institutionalizing REDD+ safeguards in Ghana: A reinforcement of power asymmetries and existing practices</a><span class="meta">Esther Wahabu et al. · 2026 · Forest Policy and Economics</span></li><li><a href="https://doi.org/10.3389/fenvs.2026.1864381" target="_blank" rel="noopener">Evaluating perceived process performance and outputs in designing a national collaborative REDD+ governance program in Ghana</a><span class="meta">Misharch Kwadwo Osei · 2026 · Frontiers in Environmental Science</span></li><li><a href="https://doi.org/10.1016/j.forpol.2026.103894" target="_blank" rel="noopener">Perceived injustice and resource exploitation as drivers of community apathy in REDD+ implementation in Ghana</a><span class="meta">Prince Owusu et al. · 2026 · Forest Policy and Economics</span></li><li><a href="https://doi.org/10.25501/soas.1094412" target="_blank" rel="noopener">Aligning Ghana’s Carbon Credit Regulation with International Climate Commitments: Legal Gaps and Institutional Imperatives</a><span class="meta">Patrick Akeba Atiawin &amp; Al-Amin Sharrif Abubakar · 2026 · SOAS Research Online (SOAS University of London)</span></li><li><a href="https://hull-repository.worktribe.com/file/5514651/1/Published%20report" target="_blank" rel="noopener">Embedding Governance and Accountability in Sustainable Forest Management: The Case of REDD+ Implementation in Ghana</a><span class="meta">Hadiza Sa&#x27;id et al. · 2025 · Repository@Hull (Worktribe) (University of Hull)</span></li><li><a href="https://doi.org/10.21217/w0a2kp47" target="_blank" rel="noopener">Envisioning ‘Just Transition’ to Clean Cooking Energy in Africa through the Paradigm of Integral Ecology: Perspectives from Uganda and Ghana</a><span class="meta">Augustine Bahemuka &amp; Queenstar Naa Atswei Ablorh · 2025 · Hekima/Hekima review</span></li><li><a href="https://doi.org/10.1007/s00267-024-02085-y" target="_blank" rel="noopener">Exploring System Context Contributing to Emerging REDD+ Collaborative Governance Regime in Ghana: Stakeholders Perceptions at the National Level</a><span class="meta">Misharch Kwadwo Osei · 2024 · Environmental Management</span></li><li><a href="https://doi.org/10.1016/j.jenvman.2025.125376" target="_blank" rel="noopener">Can Ghana&#x27;s Cocoa Forest REDD+ program achieve its intended goals of promoting sustainable cocoa production and enhancing carbon stocks?</a><span class="meta">Hannah Nyarko &amp; George Ashiagbor · 2025 · Journal of Environmental Management</span></li><li><a href="https://doi.org/10.1162/glep.a.10" target="_blank" rel="noopener">REDD+ and Extractivism: Navigating Sustainability in Ghana’s Cocoa Landscapes</a><span class="meta">Esther Wahabu · 2025 · Global Environmental Politics</span></li><li><a href="https://journals.iuiu.ac.ug/index.php/jombs/article/download/1437/979" target="_blank" rel="noopener">CLIMATE URGENCY, INSTITUTIONAL SEQUENCING AND CARBON SOVEREIGNTY: A COMPARATIVE STUDY OF GHANA, KENYA AND NIGERIA.</a><span class="meta">Austine Sadiq Okoh et al. · 2026 · Journal of Management and Business Sciences</span></li><li><a href="https://doi.org/10.1016/j.sciaf.2026.e03448" target="_blank" rel="noopener">Bamboo as a nature-based solution for sustainable energy and carbon offsetting in Ghana: opportunities, barriers, and policy pathways</a><span class="meta">Thelma Arko et al. · 2026 · Scientific African</span></li><li><a href="https://doi.org/10.4337/apjel.2024.01.04" target="_blank" rel="noopener">Taking stock of REDD+: a consideration of the experiences of Fiji and Ghana</a><span class="meta">Niamh Callinan · 2024 · Asia Pacific Journal of Environmental Law</span></li><li><a href="https://doi.org/10.1016/j.esd.2025.101727" target="_blank" rel="noopener">Clean cooking transition in Ghana: Challenges, opportunities, and strategic pathways for sustainable development</a><span class="meta">Sylvester Kosi Mawusi et al. · 2025 · Energy Sustainable Development/Energy for sustainable development</span></li><li><a href="https://doi.org/10.1007/978-981-97-3308-8_8" target="_blank" rel="noopener">Climate Finance and Investment in Africa: A Case Study of Ghana</a><span class="meta">Solomon Nborkan Nakouwo &amp; Dayong Zhang · 2024 · Climate Change and Energy Transition.</span></li><li><a href="https://doi.org/10.26437/ajar.v10i2.796" target="_blank" rel="noopener">Remittances and Household Adoption of Clean Cooking Energy in Ghana</a><span class="meta">Christian Kyeremeh &amp; James Dickson Fiagborlo · 2024 · African Journal Of Applied Research</span></li></ol>
+</section>
+</main>
+<footer class="wrap"><p>Sources: <a href="https://cmo.epa.gov.gh/wp-content/uploads/2026/09/Ghana_Carbon-Market-Annual-Progress-Report_August_2026_.pdf">Ghana Carbon Market Office, Annual Progress Report (Aug 2026)</a> · <a href="https://www.ghanabusinessnews.com/2026/11/16/ghana-offers-carbon-market-roadmap-to-african-countries/">Ghana Business News (16 Nov 2026)</a> · <a href="https://www.graphic.com.gh/news/general-news/ghana-news-ghanas-21m-forest-finance-success-offers-road-map-for-west-africa-forestry-commission.html">Graphic Online (9 Oct 2026)</a>. Figures marked as reported are still being verified. Work in progress; last updated 20 November 2026.</p>
+<p style="margin-top:8px"><a href="index.html">← Carbon Clarity home</a></p></footer>
+</body></html>
