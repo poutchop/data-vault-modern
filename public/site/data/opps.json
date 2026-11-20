@@ -1,142 +1,505 @@
 {
-  "updated": "2026-11-20",
-  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application.",
-  "items": [
-    {
-      "id": "lm-premasters", "country": "UK", "region": "London", "type": "Pre-master's", "title": "Pre-Master's Programme (leads to MSc Data Analytics, Project Management, MBA, International Business and more)",
-      "provider": "London Metropolitan University International Study Centre", "city": "London",
-      "grade": "No minimum grade stated: a 3-year degree in a relevant area, each applicant assessed individually.",
-      "req": "Academic IELTS 5.5 (no component below 5.5).",
-      "start": "January 2027 (1 or 2 terms) or May 2027 (1 term)", "deadline": null, "deadlineNote": "No fixed deadline published. Apply early for the January 2027 start.",
-      "cost": "£12,500 (1 term) or £14,000 (2 terms)", "funding": "Scholarships up to £2,500. London Met also gives eligible Ghanaian students an automatic £5,000 International Bright Futures discount on its courses.",
-      "fit": "The clearest London route for a 2.3: pass the pre-master's and progress to a London Met master's such as Data Analytics or Project Management.",
-      "link": "https://isc.londonmet.ac.uk/?p=32419", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 1
-    },
-    {
-      "id": "uwl-extended", "country": "UK", "region": "London", "type": "Extended master's", "title": "Extended Masters and Enhanced Extended Masters",
-      "provider": "University of West London", "city": "London (Ealing)",
-      "grade": "For applicants who do not meet the standard master's entry requirements; a bachelor's degree is required.",
-      "req": "IELTS 6.5 (Extended) or 6.0 (Enhanced Extended), at least 5.5 in each component.",
-      "start": "Extended: June, July or October. Enhanced Extended: September or February.", "deadline": null, "deadlineNote": "No deadline on the overview page; check each course page. February 2027 is the next Enhanced start.",
-      "cost": "On each course page", "funding": "UWL international scholarships and bursaries (see the fees and funding page).",
-      "fit": "A preparation stage of 10–14 weeks, then the regular master's. Built for people below the usual grade.",
-      "link": "https://uwl.ac.uk/extended-masters-courses", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 1
-    },
-    {
-      "id": "aru-london", "country": "UK", "region": "London", "type": "Master's / Pre-master's", "title": "Postgraduate courses (MBA, International Project Management, International Marketing) with holistic admission",
-      "provider": "ARU London (Anglia Ruskin University)", "city": "London",
-      "grade": "Most countries need a 2:2 or equivalent, but ARU London assesses applicants holistically (including relevant work experience), offers a Pre-Masters route, and welcomes mature applicants with relevant experience.",
-      "req": "English proficiency required (see the English requirements page). Check the Ghana entry on the international requirements page.",
-      "start": "January 2027, May 2027, September 2027", "deadline": null, "deadlineNote": "Intakes listed; confirm course-specific deadlines with admissions.",
-      "cost": "On each course page", "funding": "Check ARU London scholarships.",
-      "fit": "Worth an enquiry: ask whether your work experience can count alongside your 2.3, or go via their Pre-Masters.",
-      "link": "https://london.aru.ac.uk/admissions/entry-requirements-international", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 2
-    },
-    {
-      "id": "chevening", "country": "UK", "region": "UK-wide", "type": "Scholarship", "title": "Chevening Scholarships (fully funded UK master's)",
-      "provider": "UK Government (FCDO)", "city": "Any UK university",
-      "grade": "An undergraduate degree that qualifies you for a UK master's programme (so you need a university offer route, such as those above).",
-      "req": "At least 2,800 hours of work experience after graduating. You must apply to three eligible UK courses.",
-      "start": "September 2028 study (next cycle)", "deadline": null, "deadlineNote": "2027/28 applications are closed. The 2027/28 round opened in August 2026, so the next round is expected around August 2027: get ready now.",
-      "remindOn": "2027-07-15",
-      "cost": "Fully funded", "funding": "Tuition, living allowance, flights.",
-      "fit": "Competitive, but your Carbon Clarity work is the kind of leadership story Chevening looks for. Start building essays now.",
-      "link": "https://www.chevening.org/eligibility", "checked": "2026-11-20", "added": "2026-11-20", "status": "Upcoming", "priority": 2
-    },
-    {
-      "id": "ulster-ext-ib", "country": "UK", "region": "Outside London", "type": "Extended master's", "title": "MSc International Business (Extended)",
-      "provider": "Ulster University", "city": "Derry~Londonderry (Northern Ireland, not London)",
-      "grade": "Explicitly accepts a third class, pass or ordinary degree, or equivalent.",
-      "req": "Academic IELTS 6.0 (no band below 5.5). If below entry, a Graduate Certificate in Business route (50% average to progress).",
-      "start": "September 2027 or January 2028", "deadline": null, "deadlineNote": "2027/28 fees not yet announced; check the course page.",
-      "cost": "2027/28 fees to be announced", "funding": "Ulster international scholarships (check).",
-      "fit": "Outside London, but one of the few UK master's that names a third-class degree as acceptable.",
-      "link": "https://www.ulster.ac.uk/courses/202728/international-business-extended-45264", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 3
-    },
-    {
-      "id": "seneca-pme", "country": "Canada", "region": "Toronto", "type": "Graduate certificate", "title": "Graduate Certificate: Project Management – Environmental (PME)",
-      "provider": "Seneca Polytechnic", "city": "Toronto, Ontario",
-      "grade": "No GPA requirement listed.",
-      "req": "Degree or diploma in environmental studies, planning, science or related. With an unrelated diploma, 2 years of full-time industry-related experience may be considered (CV and references).",
-      "start": "January, May or September", "deadline": null, "deadlineNote": "Ontario college seats for international students fill early: apply 8–12 months before your start.",
-      "cost": "See Seneca's costs page", "funding": "Seneca international entrance scholarships (check).",
-      "fit": "Matches Carbon Clarity exactly: environmental projects plus project management, with no GPA cut-off.",
-      "link": "https://www.senecapolytechnic.ca/programs/fulltime/PME/admission-requirements.html", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 1
-    },
-    {
-      "id": "niagara-ema", "country": "Canada", "region": "Ontario", "type": "Graduate certificate", "title": "Environmental Management and Assessment (1-year graduate certificate)",
-      "provider": "Niagara College", "city": "Niagara-on-the-Lake, Ontario",
-      "grade": "No GPA requirement listed.",
-      "req": "Degree in a listed environmental or science field; with a degree in another field, send a cover letter and CV showing environmental work experience. English proof required.",
-      "start": "Fall (September)", "deadline": null, "deadlineNote": "Check intake status on ontariocolleges.ca and apply early.",
-      "cost": "About CA$21,489 for year 1 (international estimate)", "funding": "Niagara College international scholarships (check).",
-      "fit": "Your cookstove pilot and field data work are the environmental experience they ask for.",
-      "link": "https://www.niagaracollege.ca/environment/program/environmental-management/", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 2
-    },
-    {
-      "id": "ucw-mbaf", "country": "Canada", "region": "Vancouver", "type": "Foundation to master's", "title": "MBA Foundation (leads to the UCW MBA)",
-      "provider": "University Canada West", "city": "Vancouver, BC (also online)",
-      "grade": "Cumulative GPA of 2.33 or better (UCW uses a 4.33 scale). Your 2.3/4.0 is close: check how it converts (e.g., WES) before applying.",
-      "req": "IELTS 6.5 (6.0 writing) or equivalent. Three foundation courses; a B (3.0) average lets you continue into the MBA.",
-      "start": "Fall, Winter, Spring or Summer", "deadline": null, "deadlineNote": "Rolling intakes; see UCW dates and deadlines.",
-      "cost": "Use UCW's tuition calculator", "funding": "Check UCW scholarships.",
-      "fit": "A business route for your marketing, sales and venture work, if your GPA converts to 2.33+.",
-      "link": "https://ucanwest.ca/programs/preparatory/mba-foundation", "checked": "2026-11-20", "added": "2026-11-20", "status": "Check", "priority": 3
-    },
-    {
-      "id": "thi-smt", "country": "Germany", "region": "Bavaria", "type": "Master's", "title": "M.Sc. Sustainability Management and Technologies",
-      "provider": "Technische Hochschule Ingolstadt (THI)", "city": "Neuburg an der Donau",
-      "grade": "No NC and no minimum grade listed.",
-      "req": "Bachelor's in economics or a related programme (180 ECTS); missing credits can be covered by relevant work experience. English B2 (e.g., TOEFL iBT 71).",
-      "start": "Summer semester 2027 (March) or winter 2027/28 (October)", "deadline": "2027-02-28", "deadlineNote": "Summer semester: 28 February. Winter semester: 31 August.",
-      "cost": "Service fee €1,200 per semester for non-EU students", "funding": "Low fees; look at DAAD and Deutschlandstipendium later.",
-      "fit": "Sustainability management at a public university with low fees and no grade cut-off.",
-      "link": "https://www.mygermanuniversity.com/master/sustainability-management-and-technologies/3465", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 1
-    },
-    {
-      "id": "btu-erm", "country": "Germany", "region": "Brandenburg", "type": "Master's", "title": "M.Sc. Environmental and Resource Management",
-      "provider": "Brandenburg University of Technology (BTU) Cottbus-Senftenberg", "city": "Cottbus",
-      "grade": "No minimum grade stated on the How to Apply page.",
-      "req": "Relevant bachelor's (natural/environmental sciences, engineering, or socio-economics such as environmental economics). TOEFL iBT 79 or IELTS 6.0. Apply via uni-assist.",
-      "start": "Winter semester 2027/28 (October)", "deadline": "2027-05-15", "deadlineNote": "Expected date: last published deadline for visa-required applicants was 15 May. Confirm the 2027 date on the BTU page.",
-      "cost": "Public university: semester fee only (check amount)", "funding": "Look at DAAD EPOS and Deutschlandstipendium (competitive).",
-      "fit": "A well-known international environmental master's with no stated grade cut-off.",
-      "link": "https://www.b-tu.de/en/environment-ms/prospective-students/how-to-apply", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 1
-    },
-    {
-      "id": "schiller-sm", "country": "Germany", "region": "Heidelberg", "type": "Master's", "title": "MSc Sustainability Management (12 months)",
-      "provider": "Schiller International University", "city": "Heidelberg",
-      "grade": "No minimum GPA listed; no NC.",
-      "req": "Bachelor's in a related field; IELTS 6 or TOEFL iBT 67 or Duolingo 105; virtual interview.",
-      "start": "8 February 2027 or September 2027", "deadline": "2027-01-01", "deadlineNote": "Deadlines listed: 1 January (winter trimester), 1 May, 1 September.",
-      "cost": "€16,500 per year (or €8,250 with the maximum scholarship)", "funding": "Scholarships up to 50%.",
-      "fit": "Fast (12 months), English-taught, and the scholarship can halve the cost.",
-      "link": "https://www.schiller.edu/programs/master-of-science-in-sustainability-management/", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 2
-    },
-    {
-      "id": "bsbi", "country": "Germany", "region": "Berlin", "type": "Master's", "title": "Postgraduate programmes awarded with University of Roehampton London",
-      "provider": "Berlin School of Business and Innovation (BSBI)", "city": "Berlin",
-      "grade": "No minimum grade stated for Roehampton-awarded programmes: a 3-year bachelor's in a related discipline (or HND/Level 5 diploma with professional experience).",
-      "req": "Proof of English. Decision within about 10 working days.",
-      "start": "Several intakes a year (check)", "deadline": null, "deadlineNote": "Rolling admissions.",
-      "cost": "Check BSBI fees", "funding": "Check BSBI scholarships.",
-      "fit": "Study in Berlin for a London university degree, with no grade cut-off stated.",
-      "link": "https://www.berlinsbi.com/apply/postgraduate-application", "checked": "2026-11-20", "added": "2026-11-20", "status": "Open", "priority": 2
-    },
-    {
-      "id": "iu", "country": "Germany", "region": "Cologne", "type": "Master's", "title": "On-campus master's and MBAs",
-      "provider": "IU International University of Applied Sciences", "city": "Cologne (new students in 2026)",
-      "grade": "IU says: \"it's not your grades that count, but what you bring to the table.\" No minimum grade stated.",
-      "req": "Undergraduate degree with relevant ECTS; some programmes need work experience; IELTS, TOEFL or Cambridge.",
-      "start": "Multiple intakes", "deadline": null, "deadlineNote": "Rolling; confirm programme and campus with IU.",
-      "cost": "From about €4,150 per semester plus a one-off €1,500 campus fee (check current offer)", "funding": "IU scholarships (check).",
-      "fit": "Flexible admission and many start dates; good backup option.",
-      "link": "https://www.iu.de/intl/on-campus/english-university-in-berlin/", "checked": "2026-11-20", "added": "2026-11-20", "status": "Check", "priority": 3
-    }
+ "updated": "2026-11-20",
+ "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application.",
+ "items": [
+  {
+   "id": "lm-premasters",
+   "country": "UK",
+   "region": "London",
+   "type": "Pre-master's",
+   "title": "Pre-Master's Programme (leads to MSc Data Analytics, Project Management, MBA, International Business and more)",
+   "provider": "London Metropolitan University International Study Centre",
+   "city": "London",
+   "grade": "No minimum grade stated: a 3-year degree in a relevant area, each applicant assessed individually.",
+   "req": "Academic IELTS 5.5 (no component below 5.5).",
+   "start": "January 2027 (1 or 2 terms) or May 2027 (1 term)",
+   "deadline": null,
+   "deadlineNote": "No fixed deadline published. Apply early for the January 2027 start.",
+   "cost": "£12,500 (1 term) or £14,000 (2 terms)",
+   "funding": "Scholarships up to £2,500. London Met also gives eligible Ghanaian students an automatic £5,000 International Bright Futures discount on its courses.",
+   "fit": "The clearest London route for a 2.3: pass the pre-master's and progress to a London Met master's such as Data Analytics or Project Management.",
+   "link": "https://isc.londonmet.ac.uk/?p=32419",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "uwl-extended",
+   "country": "UK",
+   "region": "London",
+   "type": "Extended master's",
+   "title": "Extended Masters and Enhanced Extended Masters",
+   "provider": "University of West London",
+   "city": "London (Ealing)",
+   "grade": "For applicants who do not meet the standard master's entry requirements; a bachelor's degree is required.",
+   "req": "IELTS 6.5 (Extended) or 6.0 (Enhanced Extended), at least 5.5 in each component.",
+   "start": "Extended: June, July or October. Enhanced Extended: September or February.",
+   "deadline": null,
+   "deadlineNote": "No deadline on the overview page; check each course page. February 2027 is the next Enhanced start.",
+   "cost": "On each course page",
+   "funding": "UWL international scholarships and bursaries (see the fees and funding page).",
+   "fit": "A preparation stage of 10–14 weeks, then the regular master's. Built for people below the usual grade.",
+   "link": "https://uwl.ac.uk/extended-masters-courses",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "aru-london",
+   "country": "UK",
+   "region": "London",
+   "type": "Master's / Pre-master's",
+   "title": "Postgraduate courses (MBA, International Project Management, International Marketing) with holistic admission",
+   "provider": "ARU London (Anglia Ruskin University)",
+   "city": "London",
+   "grade": "Most countries need a 2:2 or equivalent, but ARU London assesses applicants holistically (including relevant work experience), offers a Pre-Masters route, and welcomes mature applicants with relevant experience.",
+   "req": "English proficiency required (see the English requirements page). Check the Ghana entry on the international requirements page.",
+   "start": "January 2027, May 2027, September 2027",
+   "deadline": null,
+   "deadlineNote": "Intakes listed; confirm course-specific deadlines with admissions.",
+   "cost": "On each course page",
+   "funding": "Check ARU London scholarships.",
+   "fit": "Worth an enquiry: ask whether your work experience can count alongside your 2.3, or go via their Pre-Masters.",
+   "link": "https://london.aru.ac.uk/admissions/entry-requirements-international",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 2
+  },
+  {
+   "id": "chevening",
+   "country": "UK",
+   "region": "UK-wide",
+   "type": "Scholarship",
+   "title": "Chevening Scholarships (fully funded UK master's)",
+   "provider": "UK Government (FCDO)",
+   "city": "Any UK university",
+   "grade": "An undergraduate degree that qualifies you for a UK master's programme (so you need a university offer route, such as those above).",
+   "req": "At least 2,800 hours of work experience after graduating. You must apply to three eligible UK courses.",
+   "start": "September 2028 study (next cycle)",
+   "deadline": null,
+   "deadlineNote": "2027/28 applications are closed. The 2027/28 round opened in August 2026, so the next round is expected around August 2027: get ready now.",
+   "remindOn": "2027-07-15",
+   "cost": "Fully funded",
+   "funding": "Tuition, living allowance, flights.",
+   "fit": "Competitive, but your Carbon Clarity work is the kind of leadership story Chevening looks for. Start building essays now.",
+   "link": "https://www.chevening.org/eligibility",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Upcoming",
+   "priority": 2
+  },
+  {
+   "id": "ulster-ext-ib",
+   "country": "UK",
+   "region": "Outside London",
+   "type": "Extended master's",
+   "title": "MSc International Business (Extended)",
+   "provider": "Ulster University",
+   "city": "Derry~Londonderry (Northern Ireland, not London)",
+   "grade": "Explicitly accepts a third class, pass or ordinary degree, or equivalent.",
+   "req": "Academic IELTS 6.0 (no band below 5.5). If below entry, a Graduate Certificate in Business route (50% average to progress).",
+   "start": "September 2027 or January 2028",
+   "deadline": null,
+   "deadlineNote": "2027/28 fees not yet announced; check the course page.",
+   "cost": "2027/28 fees to be announced",
+   "funding": "Ulster international scholarships (check).",
+   "fit": "Outside London, but one of the few UK master's that names a third-class degree as acceptable.",
+   "link": "https://www.ulster.ac.uk/courses/202728/international-business-extended-45264",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 3
+  },
+  {
+   "id": "seneca-pme",
+   "country": "Canada",
+   "region": "Toronto",
+   "type": "Graduate certificate",
+   "title": "Graduate Certificate: Project Management – Environmental (PME)",
+   "provider": "Seneca Polytechnic",
+   "city": "Toronto, Ontario",
+   "grade": "No GPA requirement listed.",
+   "req": "Degree or diploma in environmental studies, planning, science or related. With an unrelated diploma, 2 years of full-time industry-related experience may be considered (CV and references).",
+   "start": "January, May or September",
+   "deadline": null,
+   "deadlineNote": "Ontario college seats for international students fill early: apply 8–12 months before your start.",
+   "cost": "See Seneca's costs page",
+   "funding": "Seneca international entrance scholarships (check).",
+   "fit": "Matches Carbon Clarity exactly: environmental projects plus project management, with no GPA cut-off.",
+   "link": "https://www.senecapolytechnic.ca/programs/fulltime/PME/admission-requirements.html",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "niagara-ema",
+   "country": "Canada",
+   "region": "Ontario",
+   "type": "Graduate certificate",
+   "title": "Environmental Management and Assessment (1-year graduate certificate)",
+   "provider": "Niagara College",
+   "city": "Niagara-on-the-Lake, Ontario",
+   "grade": "No GPA requirement listed.",
+   "req": "Degree in a listed environmental or science field; with a degree in another field, send a cover letter and CV showing environmental work experience. English proof required.",
+   "start": "Fall (September)",
+   "deadline": null,
+   "deadlineNote": "Check intake status on ontariocolleges.ca and apply early.",
+   "cost": "About CA$21,489 for year 1 (international estimate)",
+   "funding": "Niagara College international scholarships (check).",
+   "fit": "Your cookstove pilot and field data work are the environmental experience they ask for.",
+   "link": "https://www.niagaracollege.ca/environment/program/environmental-management/",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 2
+  },
+  {
+   "id": "ucw-mbaf",
+   "country": "Canada",
+   "region": "Vancouver",
+   "type": "Foundation to master's",
+   "title": "MBA Foundation (leads to the UCW MBA)",
+   "provider": "University Canada West",
+   "city": "Vancouver, BC (also online)",
+   "grade": "Cumulative GPA of 2.33 or better (UCW uses a 4.33 scale). Your 2.3/4.0 is close: check how it converts (e.g., WES) before applying.",
+   "req": "IELTS 6.5 (6.0 writing) or equivalent. Three foundation courses; a B (3.0) average lets you continue into the MBA.",
+   "start": "Fall, Winter, Spring or Summer",
+   "deadline": null,
+   "deadlineNote": "Rolling intakes; see UCW dates and deadlines.",
+   "cost": "Use UCW's tuition calculator",
+   "funding": "Check UCW scholarships.",
+   "fit": "A business route for your marketing, sales and venture work, if your GPA converts to 2.33+.",
+   "link": "https://ucanwest.ca/programs/preparatory/mba-foundation",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Check",
+   "priority": 3
+  },
+  {
+   "id": "thi-smt",
+   "country": "Germany",
+   "region": "Bavaria",
+   "type": "Master's",
+   "title": "M.Sc. Sustainability Management and Technologies",
+   "provider": "Technische Hochschule Ingolstadt (THI)",
+   "city": "Neuburg an der Donau",
+   "grade": "No NC and no minimum grade listed.",
+   "req": "Bachelor's in economics or a related programme (180 ECTS); missing credits can be covered by relevant work experience. English B2 (e.g., TOEFL iBT 71).",
+   "start": "Summer semester 2027 (March) or winter 2027/28 (October)",
+   "deadline": "2027-02-28",
+   "deadlineNote": "Summer semester: 28 February. Winter semester: 31 August.",
+   "cost": "Service fee €1,200 per semester for non-EU students",
+   "funding": "Low fees; look at DAAD and Deutschlandstipendium later.",
+   "fit": "Sustainability management at a public university with low fees and no grade cut-off.",
+   "link": "https://www.mygermanuniversity.com/master/sustainability-management-and-technologies/3465",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "btu-erm",
+   "country": "Germany",
+   "region": "Brandenburg",
+   "type": "Master's",
+   "title": "M.Sc. Environmental and Resource Management",
+   "provider": "Brandenburg University of Technology (BTU) Cottbus-Senftenberg",
+   "city": "Cottbus",
+   "grade": "No minimum grade stated on the How to Apply page.",
+   "req": "Relevant bachelor's (natural/environmental sciences, engineering, or socio-economics such as environmental economics). TOEFL iBT 79 or IELTS 6.0. Apply via uni-assist.",
+   "start": "Winter semester 2027/28 (October)",
+   "deadline": "2027-05-15",
+   "deadlineNote": "Expected date: last published deadline for visa-required applicants was 15 May. Confirm the 2027 date on the BTU page.",
+   "cost": "Public university: semester fee only (check amount)",
+   "funding": "Look at DAAD EPOS and Deutschlandstipendium (competitive).",
+   "fit": "A well-known international environmental master's with no stated grade cut-off.",
+   "link": "https://www.b-tu.de/en/environment-ms/prospective-students/how-to-apply",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "schiller-sm",
+   "country": "Germany",
+   "region": "Heidelberg",
+   "type": "Master's",
+   "title": "MSc Sustainability Management (12 months)",
+   "provider": "Schiller International University",
+   "city": "Heidelberg",
+   "grade": "No minimum GPA listed; no NC.",
+   "req": "Bachelor's in a related field; IELTS 6 or TOEFL iBT 67 or Duolingo 105; virtual interview.",
+   "start": "8 February 2027 or September 2027",
+   "deadline": "2027-01-01",
+   "deadlineNote": "Deadlines listed: 1 January (winter trimester), 1 May, 1 September.",
+   "cost": "€16,500 per year (or €8,250 with the maximum scholarship)",
+   "funding": "Scholarships up to 50%.",
+   "fit": "Fast (12 months), English-taught, and the scholarship can halve the cost.",
+   "link": "https://www.schiller.edu/programs/master-of-science-in-sustainability-management/",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 2
+  },
+  {
+   "id": "bsbi",
+   "country": "Germany",
+   "region": "Berlin",
+   "type": "Master's",
+   "title": "Postgraduate programmes awarded with University of Roehampton London",
+   "provider": "Berlin School of Business and Innovation (BSBI)",
+   "city": "Berlin",
+   "grade": "No minimum grade stated for Roehampton-awarded programmes: a 3-year bachelor's in a related discipline (or HND/Level 5 diploma with professional experience).",
+   "req": "Proof of English. Decision within about 10 working days.",
+   "start": "Several intakes a year (check)",
+   "deadline": null,
+   "deadlineNote": "Rolling admissions.",
+   "cost": "Check BSBI fees",
+   "funding": "Check BSBI scholarships.",
+   "fit": "Study in Berlin for a London university degree, with no grade cut-off stated.",
+   "link": "https://www.berlinsbi.com/apply/postgraduate-application",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 2
+  },
+  {
+   "id": "iu",
+   "country": "Germany",
+   "region": "Cologne",
+   "type": "Master's",
+   "title": "On-campus master's and MBAs",
+   "provider": "IU International University of Applied Sciences",
+   "city": "Cologne (new students in 2026)",
+   "grade": "IU says: \"it's not your grades that count, but what you bring to the table.\" No minimum grade stated.",
+   "req": "Undergraduate degree with relevant ECTS; some programmes need work experience; IELTS, TOEFL or Cambridge.",
+   "start": "Multiple intakes",
+   "deadline": null,
+   "deadlineNote": "Rolling; confirm programme and campus with IU.",
+   "cost": "From about €4,150 per semester plus a one-off €1,500 campus fee (check current offer)",
+   "funding": "IU scholarships (check).",
+   "fit": "Flexible admission and many start dates; good backup option.",
+   "link": "https://www.iu.de/intl/on-campus/english-university-in-berlin/",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Check",
+   "priority": 3
+  },
+  {
+   "id": "acc-ylc",
+   "country": "Africa",
+   "region": "Africa / remote",
+   "type": "Leadership committee",
+   "source": "LinkedIn",
+   "title": "Young Leaders' Committee (15 members)",
+   "provider": "Africa Climate Collaborative",
+   "city": "Africa-wide",
+   "grade": "No degree grade required: open to researchers, entrepreneurs, practitioners, graduates and students.",
+   "req": "Aged 18–35 and from an African country. Apply online or through a nomination.",
+   "start": "2026–2027",
+   "deadline": "2026-12-04",
+   "deadlineNote": "4 December 2026, 23:59 GMT. Benefits (stipend or travel) aren't stated, so confirm in the application.",
+   "cost": "Free",
+   "funding": "Not stated",
+   "fit": "Your Carbon Clarity work and Ghana carbon market research are exactly what a young climate leaders' committee wants, and it builds your profile for scholarships.",
+   "link": "https://lnkd.in/dh9DpeMW",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  },
+  {
+   "id": "aycf",
+   "country": "Africa",
+   "region": "Africa",
+   "type": "Grant",
+   "source": "Web and LinkedIn",
+   "title": "Africa Youth Climate Fund: grants of $5,000, $10,000 or $20,000",
+   "provider": "Africa Youth Climate Fund (hosted by Green Africa Youth Organization)",
+   "city": "Africa (Ghana-based host)",
+   "grade": "No grade required. For youth-led organisations and groups in Africa (registered, registration underway, or informal through a fiscal sponsor).",
+   "req": "A youth-led climate or environment initiative with a practical local solution. Check the age rules for 'youth-led' in the call.",
+   "start": "2027",
+   "deadline": "2027-01-15",
+   "deadlineNote": "Applications opened 10 November 2026 and close 15 January 2027.",
+   "cost": "Free to apply",
+   "funding": "$5,000 / $10,000 / $20,000 grants",
+   "fit": "Could fund Carbon Clarity's next pilot step with the James Town processors, if Carbon Clarity counts as youth-led.",
+   "link": "https://aycf.org/funding/6cf80744-a907-406f-92e3-5e94ba46d008",
+   "checked": "2026-11-20",
+   "added": "2026-11-20",
+   "status": "Open",
+   "priority": 1
+  }
+ ],
+ "alerts": [
+  {
+   "id": "a-2026-11-20-linkedin",
+   "date": "2026-11-20",
+   "level": "new",
+   "title": "New: LinkedIn opportunities section",
+   "body": "One-tap LinkedIn searches (past week), pages to follow, and 2 verified open calls.",
+   "link": "#tracker-opps"
+  },
+  {
+   "id": "a-2026-11-20-aycf",
+   "date": "2026-11-20",
+   "level": "new",
+   "title": "Africa Youth Climate Fund: up to $20,000, closes 15 January",
+   "body": "Grants for youth-led climate initiatives in Africa. Could fund Carbon Clarity's next pilot step.",
+   "link": "#tracker-opps",
+   "opp": "aycf"
+  },
+  {
+   "id": "a-2026-11-20-welcome",
+   "date": "2026-11-20",
+   "level": "new",
+   "title": "15 opportunities found for you",
+   "body": "13 study routes that accept your 2.3 GPA (London, Canada, Germany) plus 2 open calls for young African climate leaders.",
+   "link": "#tracker-opps"
+  },
+  {
+   "id": "a-2026-11-20-thi",
+   "date": "2026-11-20",
+   "level": "urgent",
+   "title": "THI Sustainability Management: summer deadline 28 February",
+   "body": "No grade cut-off, low fees. Start your uni-assist file now.",
+   "link": "#tracker-opps",
+   "opp": "thi-smt"
+  },
+  {
+   "id": "a-2026-11-20-lm",
+   "date": "2026-11-20",
+   "level": "urgent",
+   "title": "London Met Pre-Master's starts January 2027",
+   "body": "No deadline is published, so apply as early as possible if you want January.",
+   "link": "#tracker-opps",
+   "opp": "lm-premasters"
+  }
+ ],
+ "linkedin": {
+  "note": "LinkedIn doesn't let other sites read its posts, so these buttons open LinkedIn itself, filtered to the past week. Tap 'Set alert' on any job search there to get LinkedIn's own emails too.",
+  "jobs": [
+   {
+    "label": "Carbon markets · Ghana",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=carbon+markets&f_TPR=r604800&location=Ghana"
+   },
+   {
+    "label": "Climate & sustainability · Ghana",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=climate+OR+sustainability&f_TPR=r604800&location=Ghana"
+   },
+   {
+    "label": "Carbon / MRV · Remote",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=carbon+MRV&f_TPR=r604800&location=Worldwide&f_WT=2"
+   },
+   {
+    "label": "Clean cooking & carbon",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=clean+cooking+carbon&f_TPR=r604800"
+   },
+   {
+    "label": "Climate internships",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=climate&f_TPR=r604800&f_JT=I"
+   },
+   {
+    "label": "Sustainability · London",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=sustainability+graduate&f_TPR=r604800&location=London%2C+England%2C+United+Kingdom"
+   },
+   {
+    "label": "Environmental · Canada",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=environmental+coordinator&f_TPR=r604800&location=Canada"
+   },
+   {
+    "label": "Sustainability (English) · Germany",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=sustainability+English&f_TPR=r604800&location=Germany"
+   },
+   {
+    "label": "Impact marketing · Remote",
+    "url": "https://www.linkedin.com/jobs/search/?keywords=marketing+climate&f_TPR=r604800&location=Worldwide&f_WT=2"
+   }
   ],
-  "alerts": [
-    { "id": "a-2026-11-20-welcome", "date": "2026-11-20", "level": "new", "title": "13 opportunities found for your 2.3 GPA", "body": "London, Canada and Germany routes that accept your grade, each checked on the official page. Open Opportunities to mark the ones you like.", "link": "#tracker-opps" },
-    { "id": "a-2026-11-20-thi", "date": "2026-11-20", "level": "urgent", "title": "THI Sustainability Management: summer deadline 28 February", "body": "No grade cut-off, low fees. Start your uni-assist file now.", "link": "#tracker-opps", "opp": "thi-smt" },
-    { "id": "a-2026-11-20-lm", "date": "2026-11-20", "level": "urgent", "title": "London Met Pre-Master's starts January 2027", "body": "No deadline is published, so apply as early as possible if you want January.", "link": "#tracker-opps", "opp": "lm-premasters" }
+  "posts": [
+   {
+    "label": "Fully funded master's for Africans",
+    "url": "https://www.linkedin.com/search/results/content/?keywords=fully+funded+masters+scholarship+Africa&datePosted=%22past-week%22&sortBy=%22date_posted%22"
+   },
+   {
+    "label": "Climate fellowships Africa",
+    "url": "https://www.linkedin.com/search/results/content/?keywords=climate+fellowship+Africa+apply&datePosted=%22past-week%22&sortBy=%22date_posted%22"
+   },
+   {
+    "label": "Ghana carbon market news",
+    "url": "https://www.linkedin.com/search/results/content/?keywords=Ghana+carbon+market&datePosted=%22past-week%22&sortBy=%22date_posted%22"
+   },
+   {
+    "label": "Germany master's scholarships",
+    "url": "https://www.linkedin.com/search/results/content/?keywords=Germany+masters+scholarship+international+students&datePosted=%22past-week%22&sortBy=%22date_posted%22"
+   },
+   {
+    "label": "Canada graduate opportunities",
+    "url": "https://www.linkedin.com/search/results/content/?keywords=Canada+postgraduate+scholarship+international+students&datePosted=%22past-week%22&sortBy=%22date_posted%22"
+   }
+  ],
+  "follow": [
+   {
+    "name": "Ghana Carbon Markets Office",
+    "why": "Official news on Article 6 deals and the carbon market (also feeds your research).",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Carbon+Markets+Office+Ghana"
+   },
+   {
+    "name": "Jobs in Carbon",
+    "why": "Posts new carbon-market roles every day.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Jobs+in+Carbon"
+   },
+   {
+    "name": "Clean Cooking Alliance",
+    "why": "Clean cooking jobs, funding calls and events.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Clean+Cooking+Alliance"
+   },
+   {
+    "name": "Sustainable Energy for All (SEforALL)",
+    "why": "Has hired carbon-market roles in Accra before.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Sustainable+Energy+for+All"
+   },
+   {
+    "name": "Green Africa Youth Organization (GAYO)",
+    "why": "Ghana-based; runs the Africa Youth Climate Fund.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Green+Africa+Youth+Organization"
+   },
+   {
+    "name": "Africa Climate Collaborative",
+    "why": "Young leaders' calls and climate funding news.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Africa+Climate+Collaborative"
+   },
+   {
+    "name": "Chevening Scholarships",
+    "why": "Announces when applications open (around August).",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Chevening+Scholarships"
+   },
+   {
+    "name": "DAAD",
+    "why": "German study and scholarship news.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=DAAD+German+Academic+Exchange+Service"
+   },
+   {
+    "name": "Opportunities for Africans",
+    "why": "Daily scholarships, fellowships and grants.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Opportunities+for+Africans"
+   },
+   {
+    "name": "Gold Standard and Verra",
+    "why": "Carbon-standard jobs and consultations.",
+    "url": "https://www.linkedin.com/search/results/companies/?keywords=Gold+Standard+Foundation"
+   }
+  ],
+  "tips": [
+   "Turn on 'Open to work' (visible to recruiters only) with titles like Carbon Markets Analyst, Sustainability Coordinator, MRV Officer.",
+   "Add Carbon Clarity and your Ghana carbon market research to your Featured section.",
+   "Post once a week about what you're learning: it doubles as public-speaking practice and builds your Yamale content skills.",
+   "Set LinkedIn job alerts from the searches above (daily)."
   ]
+ }
 }
