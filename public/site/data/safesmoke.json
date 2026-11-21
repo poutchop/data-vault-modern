@@ -1,15 +1,37 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "suggestion": {
-  "date": "2026-11-20",
-  "title": "Change the carbon method you name: AMS-II.G is no longer seen as high quality",
-  "why": "In March 2025 the Integrity Council (ICVCM) ruled that AMS-II.G does not meet its Core Carbon Principles, because it measures fuel use and stove use too weakly. Buyers now pay more for CCP-labelled credits. Your document says AMS-II.G covers your kilns. A reviewer who knows the market will see this as a weakness.",
-  "action": "Rewrite the last sentence of 'The opportunity' and part 2: say the sensors are designed to meet a CCP-eligible route, such as Verra VM0050 (its draft version 2 covers small and micro enterprises) or a Gold Standard metered approach. Keep AMS-II.G only as the 'minimum' method that already mentions ovens and dryers.",
-  "part": "Carbon method",
-  "source": "ICVCM",
-  "url": "https://icvcm.org/integrity-council-approves-three-cookstove-methodologies/"
+  "date": "2026-11-21",
+  "title": "Write the host-and-newcomer rule as one page, using UNHCR's mixed-committee model",
+  "why": "The challenge is about displaced and host communities, but your document names the host and newcomer fund without saying who decides or how money is split. UNHCR's 2025 energy report shows a written rule in practice: a Pakistan mini-grid gives 35% of its power free to refugee-run shops and is governed by a Power Committee of refugee, host and private-sector members. Its REP Fund carbon pilots in Uganda and Rwanda also target refugee and host households together.",
+  "action": "Add a half-page box 'Host and newcomer rule' under part 5: (1) who counts as a newcomer (migrant processors, erosion-displaced smokers from Fuveme/Keta, renters, commission smokers); (2) committee seats fixed in writing, e.g. host women, newcomer women, a renter/commission smoker, a youth member, with one non-voting kiln owner; (3) how the 10% community fund is split between host and newcomer projects and who signs off; (4) that every woman's 60% follows her logged batches, not her land or residence. Cite UNHCR as precedent.",
+  "part": "Displacement",
+  "source": "UNHCR, Annual Report 2025 on Sustainable Energy",
+  "url": "https://www.unhcr.org/sites/default/files/2026-05/2025-annual-report-on-sustainable-energy.pdf"
  },
  "evidence": [
+  {
+   "id": "unhcr-energy-2025",
+   "date": "2026-05-01",
+   "added": "2026-11-21",
+   "part": "Displacement",
+   "title": "UNHCR energy report: carbon pilots for refugee and host households, and a refugee-host revenue rule",
+   "summary": "UNHCR's Annual Report 2025 on Sustainable Energy (released May 2026) says its Refugee Environmental Protection Fund began pilots in 2025 in Bidibidi and Kyangwali (Uganda) and Kigeme (Rwanda), aiming at clean cooking for about 90,000 refugee and host households and an estimated USD 95 million in carbon revenue. A planned solar mini-grid in Pakistan gives 35% of its power free to refugee-run shops, bills host shops below the grid tariff, and is run by a Power Committee of refugee, host and private-sector members.",
+   "use": "Cite in the Displacement and Inclusion sections as UN precedent for a written refugee/newcomer-host split and a mixed committee; it backs your host and newcomer community fund and guaranteed seats.",
+   "source": "UNHCR",
+   "url": "https://www.unhcr.org/sites/default/files/2026-05/2025-annual-report-on-sustainable-energy.pdf"
+  },
+  {
+   "id": "cmw-sierraleone-2025-12",
+   "date": "2025-12-03",
+   "added": "2026-11-21",
+   "part": "Benefit sharing",
+   "title": "Sierra Leone mangrove project gives 200+ communities 40% of gross carbon revenue",
+   "summary": "Carbon Market Watch reports a benefit-sharing deal between Africa Conservation Initiative and more than 200 communities in Sittia Chiefdom: communities get 40% of gross revenue and co-run a joint company that manages the money. It argues shares of gross revenue beat profit-based shares, which push risk onto communities and invite creative accounting, and notes Article 6.2 sets no benefit-sharing rules.",
+   "use": "Your 60% is of 'net' carbon income: define net in one line (which costs may be deducted, with a cap) or show the women's share as a % of gross too, citing this as the model reviewers now expect.",
+   "source": "Carbon Market Watch",
+   "url": "https://carbonmarketwatch.org/2025/12/03/sierra-leone-carbon-market-project-demonstrates-more-equitable-benefit-sharing-is-possible/"
+  },
   {
    "id": "icvcm-2025-03",
    "date": "2025-03-07",
