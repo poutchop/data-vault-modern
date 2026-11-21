@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20",
+ "updated": "2026-11-21",
  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application. Fully funded scholarships are the hardest with a 2.3, because many set a 2:1 or 3.0+ minimum. The best fully funded routes are leadership fellowships (no grade needed), government awards that weigh experience, and Erasmus Mundus programmes with no stated minimum.",
  "items": [
   {
@@ -473,7 +473,7 @@
    "funding": "Programme costs covered; no stipend",
    "fit": "Ideal once you reach 5 years of experience: Carbon Clarity is exactly the kind of enterprise Acumen backs.",
    "link": "https://fellowship.acumenacademy.org/west-africa",
-   "checked": "2026-11-20",
+   "checked": "2026-11-21",
    "added": "2026-11-20",
    "status": "Upcoming",
    "priority": 3
@@ -574,6 +574,33 @@
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-21-obama",
+   "date": "2026-11-21",
+   "level": "urgent",
+   "title": "Obama Leaders Africa closes 4 December (13 days)",
+   "body": "The 2027–2028 Leaders Africa application closes on 4 December 2026. No degree or grade needed; 3+ years' experience in your issue area and age 24–45. Start the application now.",
+   "link": "https://www.obama.org/programs/leaders/africa/how-to-apply/",
+   "opp": "obama-leaders-africa"
+  },
+  {
+   "id": "a-2026-11-21-acc",
+   "date": "2026-11-21",
+   "level": "urgent",
+   "title": "Africa Climate Collaborative Young Leaders closes 4 December",
+   "body": "The Young Leaders' Committee application closes on 4 December 2026 (13 days). Carbon Clarity's clean-oven work with James Town processors fits well.",
+   "link": "https://lnkd.in/dh9DpeMW",
+   "opp": "acc-ylc"
+  },
+  {
+   "id": "a-2026-11-21-check",
+   "date": "2026-11-21",
+   "level": "info",
+   "title": "Daily check: no new open matches today",
+   "body": "Checked LinkedIn-listed carbon/MRV jobs in Ghana (BURN, UpEnergy, EY CCaSS: all closed), Acumen fellowships (no 2027 call yet), and Erasmus Mundus energy/environment masters. Ireland Fellows added to funders as not suitable (needs 3.0 GPA).",
+   "link": "https://carbon-clarity.vercel.app/learning.html#tracker-alerts",
+   "opp": null
+  },
   {
    "id": "a-2026-11-20-rotary",
    "date": "2026-11-20",
@@ -784,6 +811,10 @@
   {
    "name": "Yale Emerging Climate Leaders Fellowship",
    "why": "Not a grade issue: the 2027 round closed 30 July 2026 and it expects about 5 years of experience. Worth a try for 2028."
+  },
+  {
+   "name": "Ireland Fellows Programme (Ghana)",
+   "why": "Needs a 3.0/4.0 GPA (2:1); a 2:2 only with substantial relevant work experience. A 2.3 / third class does not meet the rule. Checked 2026-11-21."
   }
  ],
  "funders": [
@@ -894,6 +925,15 @@
    "rule": "Bachelor's + 3 years full-time peace or development experience; no GPA minimum stated.",
    "when": "2028-29 application opens February 2027.",
    "link": "https://www.rotary.org/get-involved/our-programs/peace-fellowships"
+  },
+  {
+   "name": "Ireland Fellows Programme – Africa (Irish Aid)",
+   "fit": "no",
+   "where": "Ireland",
+   "what": "Fully funded one-year master's in Ireland for early-to-mid-career professionals from listed African countries (Ghana is eligible).",
+   "rule": "Official page: bachelor's 'with a minimum grade point average of 3.0 (4.0 scale)', i.e. first class or second class upper; 'a second class honour Grade 2 may be accepted if the applicant has substantial directly relevant work experience'. A third class / 2.3 is below even that exception. Also 2+ years' relevant work and degree awarded 2015 or later.",
+   "when": "2027-28 call closed (reported deadline 26 July 2026); next call not yet announced.",
+   "link": "https://www.ireland.ie/en/ireland-fellows-programme/applying-for-the-ireland-fellows-programme/ireland-fellows-africa/"
   }
  ]
 }
