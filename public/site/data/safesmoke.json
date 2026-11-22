@@ -1,15 +1,48 @@
 {
- "updated": "2026-11-21",
+ "updated": "2026-11-22",
  "suggestion": {
-  "date": "2026-11-21",
-  "title": "Write the host-and-newcomer rule as one page, using UNHCR's mixed-committee model",
-  "why": "The challenge is about displaced and host communities, but your document names the host and newcomer fund without saying who decides or how money is split. UNHCR's 2025 energy report shows a written rule in practice: a Pakistan mini-grid gives 35% of its power free to refugee-run shops and is governed by a Power Committee of refugee, host and private-sector members. Its REP Fund carbon pilots in Uganda and Rwanda also target refugee and host households together.",
-  "action": "Add a half-page box 'Host and newcomer rule' under part 5: (1) who counts as a newcomer (migrant processors, erosion-displaced smokers from Fuveme/Keta, renters, commission smokers); (2) committee seats fixed in writing, e.g. host women, newcomer women, a renter/commission smoker, a youth member, with one non-voting kiln owner; (3) how the 10% community fund is split between host and newcomer projects and who signs off; (4) that every woman's 60% follows her logged batches, not her land or residence. Cite UNHCR as precedent.",
-  "part": "Displacement",
-  "source": "UNHCR, Annual Report 2025 on Sustainable Energy",
-  "url": "https://www.unhcr.org/sites/default/files/2026-05/2025-annual-report-on-sustainable-energy.pdf"
+  "date": "2026-11-22",
+  "title": "Add a 'teach-back' consent step and answer the refugee-carbon critique in one box",
+  "why": "A 2025 academic critique of UNHCR's refugee carbon pilots argues that participants often do not understand the carbon rights they sign over and that little money reaches them; reviewers of a displaced-and-host challenge will know this argument. Your literacy kit and 60% direct payment already answer it, but the document never says so, and consent is listed without a test that it was informed.",
+  "action": "Under part 3 (Carbon literacy), add a box 'Consent you can explain back': before sign-up each woman answers 3 of the 10 quiz questions in her own language (who owns the carbon rights to her activity, what share goes to her MoMo, how to leave or complain); she signs only after answering correctly, and the committee logs the pass rate weekly. Add one line that no one signs away rights to land, future generations or other income. Then add a 3-row table 'Critique and our answer': little cash reaches people → 60% by logged batch to her own wallet; over-crediting → measured kg wood/kg fish vs baseline; uninformed consent → teach-back step. Cite the paper.",
+  "part": "Carbon literacy",
+  "source": "Beuret, Fitzmaurice & Harvie, 'The mobilisation of refugee labour for carbon credits as maladaptive practice' (Race & Class, accepted 2025)",
+  "url": "https://repository.essex.ac.uk/42323/1/Beuret%20Fitzmaurice%20%20Harvie%20Carbon%20credits%20revised%205%20Nov%202025.pdf"
  },
  "evidence": [
+  {
+   "id": "gna-amcen-2026-11",
+   "date": "2026-11-16",
+   "added": "2026-11-22",
+   "part": "Ghana market",
+   "title": "Ghana offers Africa its Article 6 playbook after transferring 34,705 cookstove ITMOs",
+   "summary": "At the AMCEN meeting beside COP31 (Antalya), Environment Minister Dr Zanetor Agyeman-Rawlings said Ghana is the first African country to complete authorisation, issuance, transfer and reporting of ITMOs under Article 6, transferring 34,705 ITMOs to Switzerland from a rural cookstove project. She offered to lead an AMCEN-African Group of Negotiators peer-learning programme on registries, project approval and accounting; Ghana already hosted Rwanda, Uganda, Sierra Leone and Mozambique in 2025.",
+   "use": "Cite in 'Ghana market' and in your 'one umbrella programme across Africa' idea: Ghana is positioning itself as the Article 6 teacher for the continent, so SafeSmoke can pitch its rules and literacy kit as a Ghana-made template to share through that peer-learning channel.",
+   "source": "Ghana News Agency",
+   "url": "https://gna.org.gh/2026/11/ghana-offers-carbon-market-roadmap-to-african-countries/"
+  },
+  {
+   "id": "essex-repfund-critique-2025",
+   "date": "2025-11-05",
+   "added": "2026-11-22",
+   "part": "Displacement",
+   "title": "Academic critique: refugee carbon projects risk weak consent and little cash for refugees",
+   "summary": "Beuret, Fitzmaurice and Harvie (accepted in Race & Class) examine UNHCR's REP Fund pilots (Bidibidi, Kyangwali, Kigeme; about 90,000 households to get eco-stoves and fuels). By their own estimate the credits would cover only about 14% of current funding for the roughly 388,000 people at the pilot sites. They argue refugees' labour and stove use are the main input while only a small share of money reaches them, that many participants do not fully understand the carbon rights they sign over, and that cookstove credits may be overstated.",
+   "use": "Use in Displacement and Inclusion as the critique you answer head-on: show that SafeSmoke pays each woman directly by logged batch, uses measured (not assumed) wood savings, and obtains consent the woman can explain back.",
+   "source": "Beuret, Fitzmaurice & Harvie, University of Essex repository (accepted manuscript, Race & Class)",
+   "url": "https://repository.essex.ac.uk/42323/1/Beuret%20Fitzmaurice%20%20Harvie%20Carbon%20credits%20revised%205%20Nov%202025.pdf"
+  },
+  {
+   "id": "undp-liberia-coldroom-2026-03",
+   "date": "2026-03-13",
+   "added": "2026-11-22",
+   "part": "Innovation",
+   "title": "Liberia: 28-tonne solar cold room for a women fish processors' association",
+   "summary": "UNDP Liberia and the government commissioned a 28-metric-ton solar-powered prefab cold storage room in Robertsport on 12 March 2026 for the Robertsport City Women Association, certified by UNDP engineers and the fisheries authority NaFAA. It is community-owned and meant to cut post-harvest losses from spoilage; the release gives no loss figures.",
+   "use": "Cite under the spoilage problem as a West African precedent for a women-owned add-on; list solar cold storage as a phase-2 option the 10% community fund could co-finance for bumper seasons.",
+   "source": "UNDP Liberia",
+   "url": "https://www.undp.org/liberia/press-releases/prefab-solar-facility-sparks-hope-women-fisherfolks-robertsport"
+  },
   {
    "id": "unhcr-energy-2025",
    "date": "2026-05-01",
