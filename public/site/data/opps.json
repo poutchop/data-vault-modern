@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21",
+ "updated": "2026-11-22",
  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application. Fully funded scholarships are the hardest with a 2.3, because many set a 2:1 or 3.0+ minimum. The best fully funded routes are leadership fellowships (no grade needed), government awards that weigh experience, and Erasmus Mundus programmes with no stated minimum.",
  "items": [
   {
@@ -575,6 +575,24 @@
  ],
  "alerts": [
   {
+   "id": "a-2026-11-22-dec4",
+   "date": "2026-11-22",
+   "level": "urgent",
+   "title": "Two deadlines on 4 December (12 days)",
+   "body": "Obama Foundation Leaders Africa 2027–2028 and the Africa Climate Collaborative Young Leaders' Committee both close on 4 December 2026. Neither needs a degree grade. Finish and submit this week.",
+   "link": "https://www.obama.org/programs/leaders/africa/how-to-apply/",
+   "opp": "obama-leaders-africa"
+  },
+  {
+   "id": "a-2026-11-22-check",
+   "date": "2026-11-22",
+   "level": "info",
+   "title": "Daily check: no new open matches today",
+   "body": "Added Türkiye Bursları to funders as not suitable (official rule: 75% minimum for master's, under 30). BURN's Carbon Project Manager (Kumasi) and SEforALL's MRV developer role showed up on job boards, but neither could be confirmed open on the employer's site, so they weren't added. beVisioneers (Mercedes-Benz) fellowship appears limited to East/Southern African countries. Next deadlines: Schiller 1 Jan, GrEnFIn 7 Jan, KAAD and AYCF 15 Jan.",
+   "link": "https://carbon-clarity.vercel.app/learning.html#tracker-alerts",
+   "opp": null
+  },
+  {
    "id": "a-2026-11-21-obama",
    "date": "2026-11-21",
    "level": "urgent",
@@ -815,6 +833,10 @@
   {
    "name": "Ireland Fellows Programme (Ghana)",
    "why": "Needs a 3.0/4.0 GPA (2:1); a 2:2 only with substantial relevant work experience. A 2.3 / third class does not meet the rule. Checked 2026-11-21."
+  },
+  {
+   "name": "Türkiye Bursları (Turkish Government master's scholarship)",
+   "why": "Official minimum for master's is 75% academic achievement (and under age 30). A 2.3/4.0 CGPA falls below that."
   }
  ],
  "funders": [
@@ -934,6 +956,15 @@
    "rule": "Official page: bachelor's 'with a minimum grade point average of 3.0 (4.0 scale)', i.e. first class or second class upper; 'a second class honour Grade 2 may be accepted if the applicant has substantial directly relevant work experience'. A third class / 2.3 is below even that exception. Also 2+ years' relevant work and degree awarded 2015 or later.",
    "when": "2027-28 call closed (reported deadline 26 July 2026); next call not yet announced.",
    "link": "https://www.ireland.ie/en/ireland-fellows-programme/applying-for-the-ireland-fellows-programme/ireland-fellows-africa/"
+  },
+  {
+   "name": "Türkiye Bursları (Türkiye Scholarships, Turkish Government)",
+   "fit": "no",
+   "where": "Türkiye",
+   "what": "Fully funded master's in Türkiye with university placement, monthly stipend, tuition, health insurance, accommodation, a Turkish language course and a one-off flight ticket. Open to most nationalities, including Ghanaians.",
+   "rule": "Official criteria: minimum academic achievement 'For graduate candidates: 75%' and, for master's programmes, 'being under the age of 30'. A 2.3/4.0 CGPA is below the 75% bar, so not suitable unless your transcript converts to 75%+.",
+   "when": "General application period 10 January – 20 February (official calendar; the year isn't stated, so the 2027 call is expected in that window).",
+   "link": "https://turkiyeburslari.gov.tr/calendar"
   }
  ]
 }
