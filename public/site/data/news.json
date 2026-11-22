@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-21",
-  "headline": "COP31 spills into the weekend with fossil fuels cut from the draft deal, the Trump–Xi–Putin summit ends without breakthroughs, and Ghana gets new vaccine and DNA labs.",
+  "updated": "2026-11-22",
+  "headline": "COP31 runs into a second day of overtime on a text that leaves out fossil fuels as African negotiators voice disappointment, while Wall Street slides into a correction on AI fears.",
   "sections": [
     {
       "id": "world",
@@ -8,29 +8,21 @@
       "icon": "🌐",
       "items": [
         {
-          "title": "Trump, Xi and Putin meet in Shenzhen but agree little",
-          "summary": "The three leaders held a roughly 90-minute meeting on the sidelines of APEC in China, the first such three-way talks. Their joint statement backs more oil and gas output and says a nuclear war cannot be won, but analysts saw no breakthroughs; Putin said Russia would not negotiate on Ukraine after the strike on the Kerch bridge.",
-          "source": "CBS News",
-          "url": "https://www.cbsnews.com/news/trump-xi-putin-china-apec-summit/",
+          "title": "UN top court rules Myanmar committed genocide against the Rohingya",
+          "summary": "In a 9–6 decision on a case brought by The Gambia, the International Court of Justice found Myanmar responsible for genocide in northern Rakhine, the first time a state has been held responsible for genocide at the court. It ordered restitution, compensation and guarantees of non-repetition; Myanmar says its 2017 operation answered attacks on police posts.",
+          "source": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/19/un-top-court-finds-myanmar-killed-10000-rohingya-as-it-rules-on-genocide",
           "date": "2026-11-19",
-          "why": "A joint pledge to pump more oil and gas pulls against the climate goals that drive carbon-credit demand.",
-          "videoQuery": "Trump Xi Putin Shenzhen trilateral meeting"
+          "why": "A small West African country used international law to win a landmark case, a useful example for global-governance and policy studies.",
+          "videoQuery": "ICJ Myanmar genocide ruling Rohingya Gambia"
         },
         {
-          "title": "Four takeaways from the three-way summit",
-          "summary": "Analysts quoted by RFE/RL called it historic but thin on substance: the statement challenges the International Criminal Court, gives only a vague pledge on nuclear talks and does not mention the Iran war. China described the meeting as constructive, while some analysts saw Putin as the main winner.",
-          "source": "RFE/RL",
-          "url": "https://www.rferl.org/a/trump-xi-putin-summit-four-key-takeaways/33902100.html",
-          "date": "2026-11-19",
-          "videoQuery": "Trump Xi Putin summit analysis"
-        },
-        {
-          "title": "Ethiopia and Eritrea reported to mass troops on their border",
-          "summary": "Conflict monitors cited by Reuters say both armies have built up forces and exchanged fire near Badme in mid-November, though Reuters could not confirm the clashes. Eritrea dismissed Ethiopian claims as propaganda; Ethiopia did not comment.",
-          "source": "OkayAfrica (citing Reuters)",
-          "url": "https://www.okayafrica.com/today-in-africa-nov-18-2026-ethiopia-and-eritrea-reportedly-amass-forces-along-their-border-senegals-ruling-party-expels-president-faye/1442026",
-          "date": "2026-11-18",
-          "videoQuery": "Ethiopia Eritrea border tensions"
+          "title": "Ukraine and Russia trade blows over the Crimea bridge and record drone attacks",
+          "summary": "Ukraine struck the Kerch Strait bridge to Crimea for a second day, collapsing part of the road section; Crimea's Russian-installed governor said two people died and traffic was halted. Russia said it downed a record 1,441 Ukrainian drones in a day, and Kyiv says its strikes answer Russian attacks on its infrastructure.",
+          "source": "Reuters via Business Day",
+          "url": "https://www.businessday.co.za/world/europe/2026-11-17-russia-and-ukraine-trade-bridge-attacks-amid-rising-drone-strikes/",
+          "date": "2026-11-17",
+          "videoQuery": "Kerch bridge strike Crimea November 2026"
         }
       ]
     },
@@ -40,30 +32,39 @@
       "icon": "🌍",
       "items": [
         {
-          "title": "COP31 runs into overtime after fossil fuels vanish from the draft",
-          "summary": "Talks in Antalya missed their Friday finish as a shorter draft dropped every mention of oil, gas and coal and the $120bn adaptation-finance goal. The EU warned of a 'fossil summit', Panama threatened to object to any deal without fossil-fuel language, and the COP presidency said good progress had been made; a new draft was expected Saturday.",
-          "source": "AFP via Business Recorder",
-          "url": "https://www.brecorder.com/news/40450071/nations-row-over-fossil-fuels-as-cop31-goes-into-overtime",
-          "date": "2026-11-21",
-          "why": "Ghana's environment minister is in the room; the final text on finance and markets shapes demand for Ghana's Article 6 credits.",
-          "videoQuery": "COP31 Antalya final day fossil fuels"
+          "title": "COP31 goes into a second day of overtime",
+          "summary": "Summit president Murat Kurum said a text all parties could accept was ready for approval on Sunday, but the latest draft does not name fossil fuels, only alluding to the 2023 pledge to move away from them. It keeps the goal of electricity supplying 35% of final energy by 2035 and a call to speed up carbon capture, which some countries opposed.",
+          "source": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/22/fossil-fuel-impasse-pushes-cop31-climate-talks-into-second-day-of-overtime",
+          "date": "2026-11-22",
+          "why": "The final wording shapes how ambitious countries' climate targets, and so demand for carbon credits, will be.",
+          "videoQuery": "COP31 Antalya final day fossil fuels negotiations"
         },
         {
-          "title": "A coalition demands a stronger deal on the final day",
-          "summary": "France and Panama led countries including Côte d'Ivoire and Vanuatu in calling the draft not good enough, listing six priorities from a fossil-fuel transition to clean electrification and methane. The UN Secretary-General urged tripling adaptation finance by 2035 and a windfall tax on fossil-fuel firms.",
-          "source": "UN News",
-          "url": "https://news.un.org/en/story/2026/11/1168845",
-          "date": "2026-11-20",
-          "videoQuery": "COP31 Guterres adaptation finance"
+          "title": "African negotiators say COP31 outcomes fall short",
+          "summary": "The African Group of Negotiators told the closing plenary that texts on climate education and long-term finance did not reflect Africa's positions, and urged the presidency to build consensus rather than impose an outcome. It also challenged an assessment of the $100bn finance goal for leaning on just two sources.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/cop-31-africa-expresses-profound-disappointment-with-outcomes-questions-presidencys-handling-of-negotiations/",
+          "date": "2026-11-22",
+          "why": "Ghanaians lead parts of Africa's climate diplomacy, so these positions are useful context for your Article 6 research.",
+          "videoQuery": "African Group of Negotiators COP31 climate finance"
         },
         {
-          "title": "Electrification becomes COP31's headline pledge",
-          "summary": "Outside the negotiated text, a voluntary pledge aims to raise electricity's share of final energy to 35% by 2035, and philanthropies pledged over $480m for methane and other super-pollutants. Host Turkey says it has signed deals and plans worth over $26bn during the summit, including a preliminary $15bn renewables deal with China.",
+          "title": "Singapore signs its 14th Article 6 deal, with Zambia",
+          "summary": "Singapore signed a binding implementation agreement with Zambia days after one with Kenya, making four African partners alongside Ghana and Rwanda. Both new deals send 5% of proceeds to adaptation in the host country and cancel 2% of authorised credits at first issuance.",
+          "source": "Carbon Herald",
+          "url": "https://carbonherald.com/cop31-singapore-expands-carbon-market-ties-with-kenya-and-zambia-eyes-bangladesh/",
+          "date": "2026-11-19",
+          "why": "Ghana already has a Singapore deal; these terms show what buyers expect and who Ghanaian sellers now compete with.",
+          "videoQuery": "Singapore Article 6 carbon credit agreement Kenya Zambia"
+        },
+        {
+          "title": "Electrification package becomes COP31's main concrete result",
+          "summary": "The UN says more than 150 countries plus the EU, 37 cities and over 260 businesses back the COP31 electrification package, and host Türkiye says over $26bn in deals were agreed during the summit. Philanthropies also pledged more than $480m to cut methane and other super-pollutants.",
           "source": "Climate Action",
           "url": "https://www.climateaction.org/news/cop31-reaches-its-final-day-new-momentum-on-electrification-but-a-weakened",
           "date": "2026-11-20",
-          "why": "Clean electrification and clean heat are the space Carbon Clarity's ovens sit in.",
-          "videoQuery": "COP31 electrification pledge 35 by 35"
+          "why": "Electrifying cooking and heat is close to what Carbon Clarity does with fish smoking."
         }
       ]
     },
@@ -73,28 +74,35 @@
       "icon": "🇬🇭",
       "items": [
         {
-          "title": "Mahama opens DNA and vaccine labs at Noguchi",
-          "summary": "The President commissioned new human DNA testing facilities and a vaccine development laboratory at the Noguchi Memorial Institute in Accra. The institute's director said they will cut reliance on foreign labs and improve readiness for health emergencies.",
-          "source": "Adom Online",
-          "url": "https://www.adomonline.com/mahama-commissions-dna-testing-and-vaccine-development-laboratories-at-noguchi-institute/",
-          "date": "2026-11-18",
-          "videoQuery": "Noguchi vaccine laboratory Mahama"
+          "title": "Africa's own credit rating agency prepares its first scores",
+          "summary": "The African Union's new Africa Credit Rating Agency, based in Mauritius, expects its first sovereign ratings by the end of March and is talking to 15 governments. Supporters say global agencies overstate African risk, while Moody's says its data show similar default rates for equal ratings, and critics worry about conflicts of interest because governments pay for ratings.",
+          "source": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/21/can-africas-new-credit-rating-agency-change-how-the-continent-is-assessed",
+          "date": "2026-11-21",
+          "why": "Ratings set borrowing costs for countries and for the climate projects they host.",
+          "videoQuery": "Africa Credit Rating Agency AfCRA"
         },
         {
-          "title": "Senegal's ruling party expels the President",
-          "summary": "Pastef expelled President Bassirou Diomaye Faye and 31 others it called inactive members, deepening his split with Speaker Ousmane Sonko. Pastef holds 130 of 165 seats and Faye's new party has none, a standoff that could hold up the 2027 budget and IMF funding.",
-          "source": "Africanews",
-          "url": "https://www.africanews.com/2026/11/18/senegals-ruling-party-pastef-expels-countrys-president-and-31-others/",
-          "date": "2026-11-18",
-          "videoQuery": "Senegal Pastef expels President Faye"
+          "title": "€325m loan planned for water in Tamale, Damongo and Yendi",
+          "summary": "Minister Haruna Iddrisu said a €325m loan agreement for water systems in three northern cities will go before Parliament next week. It still needs parliamentary approval, and no timeline was given.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/haruna-iddrisu-announces-e325m-loan-plan-to-address-water-shortages-in-three-northern-cities/",
+          "date": "2026-11-21"
         },
         {
-          "title": "All 36 Nigerian states back state police",
-          "summary": "Every state assembly approved a constitutional amendment allowing state police forces; it now needs President Tinubu's assent and further laws. Supporters see it as a response to insecurity, while critics fear governors could misuse the forces.",
-          "source": "OkayAfrica (citing BBC)",
-          "url": "https://www.okayafrica.com/today-in-africa-nov-18-2026-ethiopia-and-eritrea-reportedly-amass-forces-along-their-border-senegals-ruling-party-expels-president-faye/1442026",
-          "date": "2026-11-18",
-          "videoQuery": "Nigeria state police amendment"
+          "title": "Mahama defends the ban on chiefs in party politics",
+          "summary": "Meeting the Oti Regional House of Chiefs, President Mahama backed the constitutional rule that bars chiefs from active party politics, citing a 2022 Supreme Court ruling. He said chiefs can still comment on policy and help local government through appointed seats.",
+          "source": "Citi Newsroom",
+          "url": "https://www.citinewsroom.com/2026/11/mahama-backs-constitutional-ban-on-chiefs-engaging-in-active-party-politics/",
+          "date": "2026-11-20"
+        },
+        {
+          "title": "Malawi's fuel shortage disrupts daily life",
+          "summary": "Drivers in Malawi face rationing of about 20 litres a day and overnight queues, with black-market prices far above pump prices. The energy ministry blames shortages of money, foreign exchange and transport, and says it is working to restore supply; a civil-society group's planned protests were postponed by police.",
+          "source": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/20/completely-messed-up-everything-malawis-fuel-crisis-causes-chaos",
+          "date": "2026-11-20",
+          "videoQuery": "Malawi fuel crisis queues"
         }
       ]
     },
@@ -104,29 +112,29 @@
       "icon": "📈",
       "items": [
         {
-          "title": "AI jitters keep shaking Wall Street",
-          "summary": "US stocks fell again on 17 November, with the Dow down about 850 points, as worries about AI valuations, high interest rates and Nvidia's leadership change weighed on markets. Nvidia's former CFO is interim CEO after Jensen Huang stepped down earlier in the month.",
-          "source": "AP via AJC",
-          "url": "https://www.ajc.com/news/2026/11/wall-street-shakes-again-as-nvidia-and-other-jittery-ai-stocks-swing-lower/",
-          "date": "2026-11-17",
-          "videoQuery": "Nvidia stocks AI sell-off November 2026"
+          "title": "Wall Street falls into a correction as the AI trade unravels",
+          "summary": "On Friday the S&P 500 dropped 3.7% and the Nasdaq 5.3%, leaving the S&P 500 and Dow more than 10% below their records after the S&P's seventh straight daily fall. Nvidia sank about 14% and newly listed Anthropic lost about 9%, as traders also priced in a likely US rate rise in December.",
+          "source": "Reuters via Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/wall-st-futures-slip-anthropic-104746137.html",
+          "date": "2026-11-20",
+          "why": "A global risk-off mood can make investors more cautious about funding start-ups, including climate ventures.",
+          "videoQuery": "stock market correction AI selloff Nvidia November 2026"
         },
         {
-          "title": "Nigeria turns fuel exporter, led by Dangote",
-          "summary": "UK data show refined-oil imports from Nigeria more than doubled in the year to June, and Nigeria became a net petrol exporter in April for the first time in decades. Much of the supply comes from the Dangote Refinery.",
-          "source": "OkayAfrica (citing Business Insider Africa)",
-          "url": "https://www.okayafrica.com/today-in-africa-nov-16-2026-five-eu-countries-plan-to-send-migrants-to-rwanda-nigeria-becomes-a-major-fuel-exporter/1441962",
+          "title": "US tightens rules on Chinese remote access to AI chips",
+          "summary": "A new US Commerce Department rule requires licences for data centres anywhere that rent large amounts of advanced computing to China-headquartered firms, and for chip exports to Indonesia, Malaysia, Singapore, Thailand and Brazil. Some analysts welcomed it as closing a loophole, while others warned it could hurt countries such as Malaysia.",
+          "source": "The Next Web",
+          "url": "https://thenextweb.com/news/us-remote-access-ai-chips-rule-china-singapore-malaysia",
           "date": "2026-11-16",
-          "why": "Shows how a big African industrial bet can flip a trade balance: a useful case for sales and study essays.",
-          "videoQuery": "Dangote refinery Nigeria fuel exports"
+          "videoQuery": "US rule remote access AI chips China data centers"
         },
         {
-          "title": "Mo Abudu launches a $50m African film fund",
-          "summary": "The Nigerian media entrepreneur's fund aims to finance about 35 African films over eight years, with first investments planned for early 2027.",
-          "source": "OkayAfrica (citing Semafor)",
-          "url": "https://www.okayafrica.com/today-in-africa-nov-17-2026-eu-keeps-aviation-bans-on-12-african-countries-naming-87-airlines-mo-abudu-launches-50m-afro-film-fund/1442009",
+          "title": "IEA: sub-Saharan Africa set to nearly double renewable capacity",
+          "summary": "The IEA's Renewables 2026 report expects the region to add over 120 GW of renewables between 2026 and 2031, more than 80% of it solar, with about two-thirds of new solar coming from homes, businesses and off-grid systems. It trimmed its utility-scale forecast because of financing and grid limits.",
+          "source": "The Guardian (Tanzania)",
+          "url": "https://ippmedia.co.tz/the-guardian/business/read/solar-to-expand-africas-renewable-energy-boom-2026-11-17-123955",
           "date": "2026-11-17",
-          "videoQuery": "Mo Abudu Afro Film Fund"
+          "why": "Distributed solar for small businesses is a growing market Carbon Clarity's processors could tap."
         }
       ]
     },
@@ -136,112 +144,109 @@
       "icon": "🔬",
       "items": [
         {
-          "title": "Compound burns fat without losing muscle in mice",
-          "summary": "A UC Berkeley team found an experimental compound raised energy use by up to 18% in mice, cutting fat while sparing muscle and working better alongside drugs like semaglutide. It has only been tested in animals so far.",
-          "source": "ScienceDaily (UC Berkeley)",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261118073918.htm",
-          "date": "2026-11-19",
-          "videoQuery": "TOFA fat burning compound study"
+          "title": "Moon dust turned into LEGO-like bricks",
+          "summary": "University of Arkansas researchers used lasers to fuse simulated lunar soil into interlocking bricks with no binder, a possible way to build on the Moon from local material. The bricks are still small, porous and not yet strong enough to bear loads.",
+          "source": "ScienceDaily",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261119194525.htm",
+          "date": "2026-11-20",
+          "videoQuery": "lunar regolith bricks laser 3D printing"
         },
         {
-          "title": "Fungal toxins found in all 212 plant-based foods tested",
-          "summary": "Researchers detected at least one mycotoxin in every UK vegan and vegetarian product they tested, though all levels were below EU guidelines. They say consumers need not worry but want monitoring rules for new plant-based foods.",
-          "source": "ScienceDaily (Cranfield University)",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261118073749.htm",
-          "date": "2026-11-19",
-          "why": "Mycotoxins are a known risk in stored and smoked foods too; food-safety evidence matters for smoked-fish buyers.",
-          "videoQuery": "mycotoxins plant based food study"
+          "title": "Precise light measurements for a key crystal could speed up internet hardware",
+          "summary": "A KAIST-led team with Caltech measured how barium titanate bends and absorbs light across a very wide range of wavelengths, filling a long-standing data gap. The results, in ACS Photonics, could help design faster optical communication devices.",
+          "source": "ScienceDaily",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261119194544.htm",
+          "date": "2026-11-20"
         },
         {
-          "title": "Africa CDC says DR Congo's Ebola outbreak is still not under control",
-          "summary": "Six months after it was declared, the outbreak has passed 11,200 infections and 5,500 deaths, with most new cases outside known contact lists. Africa CDC wants pledged funds released faster.",
-          "source": "OkayAfrica (citing Reuters)",
-          "url": "https://www.okayafrica.com/today-in-africa-nov-16-2026-five-eu-countries-plan-to-send-migrants-to-rwanda-nigeria-becomes-a-major-fuel-exporter/1441962",
-          "date": "2026-11-16",
-          "videoQuery": "Ebola DR Congo Africa CDC"
+          "title": "NASA fires a Moon-rocket engine for a full 200 seconds",
+          "summary": "A developmental RS-25 engine ran for its full planned duration at Stennis Space Center, giving data to improve flight engines for the Space Launch System. The work supports the Artemis IV mission planned for 2028.",
+          "source": "ScienceDaily (NASA)",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261120075551.htm",
+          "date": "2026-11-21",
+          "videoQuery": "NASA RS-25 engine test Stennis November 2026"
         }
       ]
     }
   ],
   "good": [
     {
-      "title": "Ghana named among BBC Travel's best places to visit in 2027",
-      "summary": "Ghana and Madagascar are the only African picks, with Ghana's 70th independence anniversary, Panafest and Cape Coast highlighted.",
-      "source": "MyJoyOnline",
-      "url": "https://www.myjoyonline.com/ghana-bbcs-20-best-places-to-travel/",
-      "date": "2026-11-20",
-      "videoQuery": "Ghana BBC best places to travel 2027"
+      "title": "Zambia locks in $60m for a 50 MW solar plant",
+      "summary": "Zambia signed an investment protection deal with a Malaysian-backed company for a 50 MW solar farm in Chilanga that has reached financial close, with about 300 construction jobs expected.",
+      "source": "SolarQuarter",
+      "url": "https://solarquarter.com/2026/11/19/zambia-secures-60-million-investment-for-50-mw-solar-project-in-chilanga",
+      "date": "2026-11-19"
     },
     {
-      "title": "Ghana's amputee team reaches the World Cup semi-finals",
-      "summary": "The Black Challenge beat the USA and Egypt to set up a semi-final against Turkey at the Amputee Football World Cup in Mexico.",
-      "source": "Ghanaian Times",
-      "url": "https://ghanaiantimes.com.gh/ghana-to-face-turkey-in-waff-amputee-football-world-cup-semi-final/",
-      "date": "2026-11-20",
-      "videoQuery": "Black Challenge amputee world cup 2026"
+      "title": "Ghana's Black Challenge beat the USA at the Amputee World Cup",
+      "summary": "Ghana's amputee football team beat the USA 3-1 in Mexico to reach the World Cup quarter-finals, and the Ghana News Agency reports they went on to reach the semi-finals.",
+      "source": "Graphic Online",
+      "url": "https://www.graphic.com.gh/sports/sports-news/mubarik-shines-as-black-challenge-stun-usa-3-1-to-reach-amputee-world-cup-quarter-final.html",
+      "date": "2026-11-19"
     },
     {
-      "title": "Africa's disaster early warnings now match the Americas",
-      "summary": "A UN and WMO report says Africa improved its early-warning systems more than any region; 70% of countries now report multi-hazard systems.",
-      "source": "OkayAfrica (citing WMO)",
-      "url": "https://www.okayafrica.com/today-in-africa-nov-12-2026-un-peacekeepers-and-south-sudan-accused-of-ignoring-warnings-before-deadly-attack-africas-early-disaster-warning-systems-now-match-the-americas/1441876",
-      "date": "2026-11-12"
+      "title": "Clean-water filters for 1.8 million Rwandans get carbon-credit backing",
+      "summary": "Singapore authorised its first project under its Rwanda carbon deal: 300,000 ceramic water filters expected to benefit about 1.8 million people and avoid around 780,000 tonnes of CO2 by 2030.",
+      "source": "Carbon Credits",
+      "url": "https://carboncredits.com/singapore-rwanda-carbon-project-bangladesh-article-6-deal/",
+      "date": "2026-11-16",
+      "why": "A close model for how a household-device project like clean ovens can earn Article 6 credits."
     },
     {
-      "title": "South Africa registers 2GW of new solar in one quarter",
-      "summary": "The energy regulator registered 139 new solar facilities totalling about 2,045MW in the quarter to September, spread across all nine provinces.",
-      "source": "PV Tech",
-      "url": "https://www.pv-tech.org/south-africa-registers-2gw-new-solar-pv-capacity-q3-2026/",
-      "date": "2026-11-11"
+      "title": "Over $480m pledged to cut methane",
+      "summary": "Philanthropic funders at COP31 pledged more than $480m to reduce methane and other short-lived super-pollutants, among the fastest ways to slow warming.",
+      "source": "Climate Action",
+      "url": "https://www.climateaction.org/news/cop31-reaches-its-final-day-new-momentum-on-electrification-but-a-weakened",
+      "date": "2026-11-20"
     },
     {
-      "title": "Benin gets financing for a 62MW solar portfolio",
-      "summary": "IFC and Proparco are lending €30m to Axian Energy for four plants that Proparco says equal almost a tenth of Benin's installed capacity.",
-      "source": "PV Tech",
-      "url": "https://www.pv-tech.org/axian-secures-financing-for-62mw-solar-pv-portfolio-in-benin/",
-      "date": "2026-11-02"
+      "title": "Africa's renewables set to nearly double by 2031",
+      "summary": "The IEA expects sub-Saharan Africa to add more than 120 GW of renewable power in six years, led by rooftop, business and off-grid solar.",
+      "source": "The Guardian (Tanzania)",
+      "url": "https://ippmedia.co.tz/the-guardian/business/read/solar-to-expand-africas-renewable-energy-boom-2026-11-17-123955",
+      "date": "2026-11-17"
     }
   ],
   "watch": [
-    "Whether COP31's final text restores fossil-fuel and adaptation-finance language",
-    "Article 6 deals signed at COP31 and what they mean for African sellers",
-    "AI stocks and Nvidia after its CEO change",
-    "Ethiopia–Eritrea border tensions",
-    "Senegal's political split and its 2027 budget"
+    "Whether COP31's final text is adopted, and if Africa's finance concerns are addressed",
+    "US stocks after the AI-led correction, and the Fed's December rate decision",
+    "New Article 6 deals from Singapore and others with African sellers",
+    "The Africa Credit Rating Agency's first sovereign ratings, due by March",
+    "Escalation around the Kerch bridge and long-range drone strikes"
   ],
   "quiz": [
     {
-      "q": "What share of final energy does COP31's voluntary electrification pledge target by 2035?",
+      "q": "By what vote did the International Court of Justice find Myanmar responsible for genocide against the Rohingya?",
       "options": [
-        "20%",
-        "35%",
-        "50%",
-        "75%"
+        "15-0",
+        "12-3",
+        "9-6",
+        "8-7"
       ],
-      "a": "35%",
-      "why": "The '35 by 35' pledge aims for electricity to supply 35% of final energy by 2035."
+      "a": "9-6",
+      "why": "The court ruled 9-6 in the case brought by The Gambia."
     },
     {
-      "q": "Which institute in Accra got new DNA and vaccine laboratories this week?",
+      "q": "Singapore's new Article 6 agreement with Zambia is its bilateral deal number…",
       "options": [
-        "KNUST Teaching Hospital",
-        "Noguchi Memorial Institute",
-        "Korle Bu Teaching Hospital",
-        "Ghana Atomic Energy Commission"
+        "6th",
+        "10th",
+        "12th",
+        "14th"
       ],
-      "a": "Noguchi Memorial Institute",
-      "why": "President Mahama commissioned the labs at the Noguchi Memorial Institute for Medical Research."
+      "a": "14th",
+      "why": "Zambia was the 14th, after Kenya (13th); Ghana and Rwanda are its other African partners."
     },
     {
-      "q": "Where did Trump, Xi and Putin hold their three-way meeting?",
+      "q": "Where is the African Union's new Africa Credit Rating Agency based?",
       "options": [
-        "Beijing",
-        "Shanghai",
-        "Shenzhen",
-        "Vladivostok"
+        "Accra, Ghana",
+        "Port Louis, Mauritius",
+        "Nairobi, Kenya",
+        "Addis Ababa, Ethiopia"
       ],
-      "a": "Shenzhen",
-      "why": "They met in Shenzhen on the sidelines of the APEC summit hosted by China."
+      "a": "Port Louis, Mauritius",
+      "why": "AfCRA is headquartered in Port Louis and expects first ratings by end of March."
     }
   ],
   "future": [
