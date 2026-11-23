@@ -1,15 +1,48 @@
 {
- "updated": "2026-11-22",
+ "updated": "2026-11-23",
  "suggestion": {
-  "date": "2026-11-22",
-  "title": "Add a 'teach-back' consent step and answer the refugee-carbon critique in one box",
-  "why": "A 2025 academic critique of UNHCR's refugee carbon pilots argues that participants often do not understand the carbon rights they sign over and that little money reaches them; reviewers of a displaced-and-host challenge will know this argument. Your literacy kit and 60% direct payment already answer it, but the document never says so, and consent is listed without a test that it was informed.",
-  "action": "Under part 3 (Carbon literacy), add a box 'Consent you can explain back': before sign-up each woman answers 3 of the 10 quiz questions in her own language (who owns the carbon rights to her activity, what share goes to her MoMo, how to leave or complain); she signs only after answering correctly, and the committee logs the pass rate weekly. Add one line that no one signs away rights to land, future generations or other income. Then add a 3-row table 'Critique and our answer': little cash reaches people → 60% by logged batch to her own wallet; over-crediting → measured kg wood/kg fish vs baseline; uninformed consent → teach-back step. Cite the paper.",
-  "part": "Carbon literacy",
-  "source": "Beuret, Fitzmaurice & Harvie, 'The mobilisation of refugee labour for carbon credits as maladaptive practice' (Race & Class, accepted 2025)",
-  "url": "https://repository.essex.ac.uk/42323/1/Beuret%20Fitzmaurice%20%20Harvie%20Carbon%20credits%20revised%205%20Nov%202025.pdf"
+  "date": "2026-11-23",
+  "title": "Rewrite part 2 as a 'D-SMART-ready' sensor spec, including how you handle bad readings",
+  "why": "Gold Standard adopted D-SMART in May 2026, its first rulebook for digital stove monitoring: logging scales, continuous temperature monitors that count cooking events, and a digital activity database. Your sensors already do these things, but the document describes them as gadgets, not as an MRV design a standard body recognises. D-SMART also fixes data rules, for example 'orphan' fuel readings must be counted as fuel use, not deleted, which is exactly what makes a kg wood per kg fish number credible to a verifier.",
+  "action": "In part 2, add a 4-row table 'Our sensors vs D-SMART': (1) chamber temperature sensor = continuous stove monitor, counts smoking batches per day; (2) connected scale = digital kitchen-performance-test scale, logs wood and fish weights; (3) WhatsApp/MoMo batch log = digital activity database, backed up; (4) data rules = wood logged with no batch is counted as fuel used, batches with no wood are flagged, nothing is deleted. Add one sentence: 'The pilot will check our scale capacity, resolution and logging interval against D-SMART v1.0 and report the 90/10 sample size the full programme would need.' Cite the tool.",
+  "part": "Sensors and data",
+  "source": "Gold Standard, D-SMART Methodology Tool v1.0 (5 May 2026)",
+  "url": "https://globalgoals.goldstandard.org/standards/407.6_V1.0_PAA_MT400-07_D-SMART.pdf"
  },
  "evidence": [
+  {
+   "id": "gs-dsmart-2026-05",
+   "date": "2026-05-05",
+   "added": "2026-11-23",
+   "part": "Sensors and data",
+   "title": "Gold Standard D-SMART: an official rulebook for digital stove and fuel monitoring",
+   "summary": "Gold Standard's new tool (v1.0, May 2026) sets rules for digital MRV of cooking and thermal projects: data-logging scales for digital kitchen performance tests, continuous stove monitors (temperature, infrared or current) that count cooking events per day, and a digital activity database. It asks for 90/10 precision with at least 50 units per stratum, keeps 'orphan' fuel readings (fuel logged with no cooking event) as fuel use rather than deleting them, and allows no claims if average use falls below 0.14 cooking events a day. Its end-user types include household, institutional and commercial.",
+   "use": "Part 2 (Sensors): map your temperature sensor and connected scale to D-SMART's three components so the measured kg wood per kg fish is described as 'designed to D-SMART rules', not a home-made metric.",
+   "source": "Gold Standard, Methodology Tool GS4GG PAA MT400-07 (D-SMART) v1.0, 5 May 2026",
+   "url": "https://globalgoals.goldstandard.org/standards/407.6_V1.0_PAA_MT400-07_D-SMART.pdf"
+  },
+  {
+   "id": "nefco-mcfa-2026-04",
+   "date": "2026-04-22",
+   "added": "2026-11-23",
+   "part": "Benefit sharing",
+   "title": "Nordic fund pays clean-cooking firms only for evidence of sustained use; 68% of buyers were women",
+   "summary": "Nefco's Modern Cooking Facility for Africa reports over EUR 34 million committed to 22 companies by end-2025, with results-based payments linked to evidence of sustained stove and fuel use over time, using regular customer payments as a proxy. Over 68% of services in 2025 were bought by women as primary customers; 178,000 people gained access across Kenya, Tanzania, Zambia and Zimbabwe since 2023.",
+   "use": "Benefit sharing: cite to justify paying the 60% share per logged batch (sustained use), not per kiln handed out, and to show funders already reward women-led uptake.",
+   "source": "Nefco, MCFA Annual Results Report 2025 (22 Apr 2026)",
+   "url": "https://www.nefco.int/news/mcfa-annual-results-report-2025-over-178000-people-in-sub-saharan-africa-have-gained-access-to-modern-cooking-solutions/"
+  },
+  {
+   "id": "wb-outcomebond-ghana-2025-12",
+   "date": "2025-12-05",
+   "added": "2026-11-23",
+   "part": "Ghana market",
+   "title": "World Bank USD 200m outcome bond pays upfront for Ghana clean cooking, repaid from Swiss ITMO sales",
+   "summary": "The World Bank's Clean Cooking Outcome Bond front-loads money to UpEnergy's Ghana projects, released against pre-agreed milestones; investors accept a lower fixed return plus a variable return tied to sales of Article 6 credits (ITMOs) to Switzerland's KliK Foundation. Standard Chartered (Sept 2026) says USD 30.5 million was raised for devices in Ghana, aiming at 415,000 devices and 1.8 million t CO2 avoided; the World Bank page says over 400,000 systems for 1.3 million people.",
+   "use": "Benefit-sharing section: cite as proof that 'upfront plus results' finance already works in Ghana's Article 6 market, and model SafeSmoke's pre-finance on milestone release (kilns built, baseline measured, batches logged).",
+   "source": "World Bank feature 'Cooking up Change' (5 Dec 2025); Standard Chartered (24 Sep 2026)",
+   "url": "https://www.worldbank.org/en/news/feature/2025/12/05/cooking-up-change-how-financial-innovation-can-help-transform-lives"
+  },
   {
    "id": "gna-amcen-2026-11",
    "date": "2026-11-16",
