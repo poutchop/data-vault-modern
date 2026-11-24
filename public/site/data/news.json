@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-23",
-  "headline": "COP31 ends in Antalya with no overall climate deal after a split over fossil fuels, as Russian missiles land in Poland and Ghana's Black Challenge become amputee football world champions.",
+  "updated": "2026-11-24",
+  "headline": "Wall Street stages a huge rebound as Nvidia brings back Jensen Huang, Ghana's banks say cheaper loans are coming after the 11% policy rate, and Article 6 carbon-market rules come through COP31 intact.",
   "sections": [
     {
       "id": "world",
@@ -8,28 +8,29 @@
       "icon": "🌐",
       "items": [
         {
-          "title": "Russian missiles and a drone come down inside Poland",
-          "summary": "Poland says two missiles and a jet-powered drone landed in its south-east during Russia's overnight attack on Ukraine on 20 November, with no injuries. PM Tusk called it a deliberate provocation and NATO's Rutte a grave violation; President Trump said Putin did it by mistake.",
-          "source": "Al Jazeera",
-          "url": "https://www.aljazeera.com/news/2026/11/21/russian-missiles-hit-poland-what-happened-and-could-nato-respond",
-          "date": "2026-11-21",
-          "videoQuery": "Russian missiles land in Poland November 2026"
+          "title": "Russian warship reported sunk at Libya's Benghazi port",
+          "summary": "Libya's eastern authorities say a Russian naval vessel sank at Benghazi after a suspected drone attack, with a commercial ship also hit and a few people slightly hurt. Zelensky said Ukraine was behind it; the Kremlin called a separate drone strike on a Russian cargo ship in the Baltic 'terrorist activity', and the UN mission in Libya wants an independent probe.",
+          "source": "Reuters / allAfrica",
+          "url": "https://www.reuters.com/world/europe/zelenskiy-says-ukraine-sank-russian-corvette-near-libyas-coast-hit-cargo-ship-2026-11-23/",
+          "date": "2026-11-23",
+          "why": "The Ukraine war is now spilling onto African soil and shipping routes.",
+          "videoQuery": "Russian warship sunk Benghazi Libya Ukraine drone"
         },
         {
-          "title": "Heavy Russian strikes follow Ukraine's hit on the Crimean Bridge",
-          "summary": "After a section of the Crimean Bridge collapsed in a Ukrainian strike, Russia launched hundreds of drones and over 100 missiles, and Kyiv Independent counted at least 2 dead and 83 injured on 21 November, mostly in Kryvyi Rih. Moscow calls the barrages retaliation; Kyiv says the bridge carried military supplies.",
-          "source": "Kyiv Independent",
-          "url": "https://kyivindependent.com/russian-attacks-kill-at-least-2-injure-83-across-ukraine-as-strikes-devastate-kryvyi-rih/",
-          "date": "2026-11-21",
-          "videoQuery": "Crimean bridge strike Russia retaliation Kryvyi Rih"
+          "title": "Deadly Russian strikes hit Ukraine's Kyiv region",
+          "summary": "Officials say a Russian attack on Dymer in the Kyiv region killed 11 people, with others missing after part of an apartment block was destroyed. Zelensky renewed calls for more US Patriot air-defence missiles.",
+          "source": "Reuters / POLITICO",
+          "url": "https://www.reuters.com/world/russian-attack-ukraines-dymer-kyiv-region-kills-11-official-says-2026-11-23/",
+          "date": "2026-11-23",
+          "videoQuery": "Dymer Kyiv region Russian strike apartment"
         },
         {
-          "title": "US floats NATO-style security guarantees for Ukraine",
-          "summary": "After a Berlin meeting of Ukraine's backers, Jared Kushner said Russia could accept Article 5-style guarantees and that Trump is open to them. Russia's deputy foreign minister called any quasi-membership unacceptable, and Zelensky said there is no shared understanding yet of what the guarantees mean.",
-          "source": "Al Jazeera",
-          "url": "https://www.aljazeera.com/news/2026/11/20/kushner-says-russia-ok-with-nato-like-security-pact-for-ukraine-is-it",
-          "date": "2026-11-20",
-          "videoQuery": "Kushner Ukraine security guarantees Article 5"
+          "title": "Trump to meet NATO chief Rutte on Wednesday",
+          "summary": "The White House says Trump and NATO Secretary General Mark Rutte will meet in Palm Beach, Florida, after Trump's talks with Putin and Xi last week drew criticism from European allies. European leaders and Zelensky want Europe included in any US-backed peace talks on Ukraine.",
+          "source": "Reuters via SRN News",
+          "url": "https://srnnews.com/trump-to-meet-nato-chief-mark-rutte-on-wednesday-white-house-says/",
+          "date": "2026-11-23",
+          "videoQuery": "Trump Rutte meeting Palm Beach NATO"
         }
       ]
     },
@@ -39,38 +40,38 @@
       "icon": "🌍",
       "items": [
         {
-          "title": "COP31 in Antalya ends with no overall deal",
-          "summary": "After two days of overtime, the longest UN climate summit on record closed on 22 November without adopting its main 'Antalya Pact' text, which left out any commitment to move away from fossil fuels. The EU formally objected; UN chief Guterres said he was deeply disappointed and that the science is unambiguous.",
-          "source": "UN News",
-          "url": "https://news.un.org/en/story/2026/11/1168855",
+          "title": "Reactions pour in after COP31 collapses",
+          "summary": "COP31 in Antalya is the first UN climate summit since Copenhagen in 2009 to end without an agreement. The EU and UK refused a text that did not mention fossil fuels, while Russia and Saudi Arabia resisted such wording; UN chief Guterres said he was deeply disappointed.",
+          "source": "Al Jazeera / Reuters",
+          "url": "https://www.aljazeera.com/news/2026/11/22/countries-react-after-cop31-climate-talks-end-in-collapse",
           "date": "2026-11-22",
-          "why": "No new global push this year: carbon markets and national action (like Ghana's Article 6 deals) carry more of the load.",
-          "videoQuery": "COP31 ends without agreement Antalya"
+          "videoQuery": "COP31 ends without deal reactions"
         },
         {
-          "title": "Ghana speaks for Africa: shortfalls, but no block on consensus",
-          "summary": "Speaking for the African Group, Ghana said the text fell short on climate finance, loss and damage and a just transition, but that Africa would not stand in the way. Panama and the Marshall Islands rejected the outcome, while Saudi Arabia, for Arab states, defended references to carbon capture.",
-          "source": "UN News",
-          "url": "https://news.un.org/en/story/2026/11/1168855",
+          "title": "Article 6 rulebook survives, with a review in 2028",
+          "summary": "Carbon Market Watch says the Article 6 rules came through COP31 unchanged despite industry pressure to loosen them, but a major review is due in 2028 and it expects the fight to resume at COP32. ClimateTrade notes 16 countries have joined a coalition to grow carbon markets, and Norway agreed to buy up to 12 million tonnes of credits from Indonesian solar projects.",
+          "source": "Carbon Market Watch / ClimateTrade",
+          "url": "https://carbonmarketwatch.org/2026/11/22/cmw-cop31-reaction-climate-focus-of-article-6-survives-fossil-fueled-market-lobby-for-now/",
           "date": "2026-11-22",
-          "why": "Ghana's voice in the African Group is a good case study for policy-focused master's applications."
+          "why": "The rules Ghana's Carbon Market Office uses for Article 6 deals stay stable for now: good for project planning.",
+          "videoQuery": "Article 6 carbon markets COP31 outcome"
         },
         {
-          "title": "What survived: carbon markets, adaptation and a road to Addis Ababa",
-          "summary": "Separate decisions on carbon markets, the Adaptation Fund, transparency and a just-transition work programme went through, and a finance road map on adaptation will report at COP32 in Addis Ababa. The text puts developing countries' needs at US$5.1–6.8 trillion through 2030 but sets no plan to deliver it.",
-          "source": "Down To Earth",
-          "url": "https://www.downtoearth.org.in/climate-change/cop31-ends-with-no-major-deal-divisions-over-fossil-fuels-and-climate-finance-deepen",
+          "title": "Adaptation Fund now fully under the Paris Agreement",
+          "summary": "COP31 completed the Adaptation Fund's move to serve only the Paris Agreement. It will get a mandatory 5% share of proceeds from the Article 6.4 crediting mechanism, plus voluntary money from Article 6.2 deals.",
+          "source": "Adaptation Fund",
+          "url": "https://www.adaptation-fund.org/cop31-completes-adaptation-funds-transition-to-serve-the-paris-agreement-exclusively-unlocking-new-carbon-market-revenue/",
           "date": "2026-11-22",
-          "why": "COP32 will be in Africa (Ethiopia) in 2027, a big stage for African carbon projects.",
-          "videoQuery": "COP32 Addis Ababa climate finance road map"
+          "why": "Every Article 6.4 credit sale now directly funds adaptation in poorer countries: a useful talking point with buyers."
         },
         {
-          "title": "US absent again; Panama says it won't be held hostage by oil producers",
-          "summary": "The United States sent no delegation for a second year. A France- and Panama-led coalition from Europe, Africa, Latin America and the Pacific rejected a draft that dropped earlier fossil-fuel phase-out language; current national plans point to just over 2.5°C of warming.",
-          "source": "CBS News",
-          "url": "https://www.cbsnews.com/news/un-cop31-climate-conference-ends-no-agreement-fossil-fuel-debate-standstill/",
-          "date": "2026-11-22",
-          "videoQuery": "COP31 fossil fuel debate no agreement"
+          "title": "IEA lifts Africa's renewables outlook by 54%",
+          "summary": "The IEA's Renewables 2026 report expects sub-Saharan Africa to add over 120 GW of renewable capacity from 2026 to 2031, nearly doubling what exists, with solar making up more than 80%. Distributed solar for homes, businesses and off-grid users is set to be almost two-thirds of new solar.",
+          "source": "The Guardian (Tanzania)",
+          "url": "https://ippmedia.co.tz/the-guardian/business/read/solar-to-expand-africas-renewable-energy-boom-2026-11-17-123955",
+          "date": "2026-11-17",
+          "why": "Distributed solar for productive use, like cold storage for fish, is where the growth is.",
+          "videoQuery": "IEA Renewables 2026 Africa solar"
         }
       ]
     },
@@ -80,35 +81,37 @@
       "icon": "🇬🇭",
       "items": [
         {
-          "title": "Mahama asks Minority to back the $10bn New Economy programme",
-          "summary": "President Mahama urged the opposition Minority to support the $10bn New Economy programme even if its success helps keep the NDC in power. Officials separately said two pharmaceutical hubs are planned under the plan.",
-          "source": "Citi Newsroom",
-          "url": "https://www.citinewsroom.com/2026/11/support-10bn-new-economy-programme-even-if-it-keeps-ndc-in-power-mahama-to-minority/",
-          "date": "2026-11-21",
-          "why": "Big public programmes create openings for suppliers, partners and green-industry pitches."
+          "title": "Banks say loans will get cheaper after BoG's rate cut",
+          "summary": "The Bank of Ghana cut its policy rate from 14% to 11% on 18 November, with inflation around 5.5–5.7%, well below its target band. The Ghana Association of Banks now expects lending rates to fall significantly, and says the Ghana Reference Rate could drop into single digits.",
+          "source": "MyJoyOnline / Graphic",
+          "url": "https://www.myjoyonline.com/lending-rates-set-for-significant-drop-after-bog-policy-rate-cut-association-of-banks/",
+          "date": "2026-11-24",
+          "why": "Cheaper credit could make financing ovens for processors more affordable.",
+          "videoQuery": "Bank of Ghana policy rate cut 11 percent"
         },
         {
-          "title": "Kisseman–Christian Village bridge in Accra to close for six months",
-          "summary": "The bridge will shut to traffic for reconstruction and raising under the Greater Accra Resilient and Integrated Development (GARID) project, aimed at reducing flooding.",
-          "source": "Citi Newsroom",
-          "url": "https://www.citinewsroom.com/2026/11/kisseman-christian-village-bridge-to-close-for-six-months-for-reconstruction-garid/",
-          "date": "2026-11-21",
-          "why": "Plan Accra trips around the closure."
+          "title": "Gold Fields pledges $7.5bn for Tarkwa as lease end nears",
+          "summary": "Gold Fields Ghana says it would invest $7.5bn in the Tarkwa mine over about 20 years if its leases, which expire in April 2027, are renewed. The company says 74% of every dollar the mine earns stays in Ghana.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/gold-fields-eyes-7-5bn-investment-in-tarkwa-mine-as-lease-expiry-looms/",
+          "date": "2026-11-24",
+          "videoQuery": "Gold Fields Tarkwa lease renewal Ghana"
         },
         {
-          "title": "Dozens missing after migrant boat capsizes off Senegal",
-          "summary": "A boat carrying an estimated 50–100 people overturned near Yenne, south of Dakar; four bodies were recovered. The IOM estimates at least 454 people have died or gone missing off the West African coast this year.",
-          "source": "allAfrica",
-          "url": "https://allafrica.com/stories/202611200223.html",
-          "date": "2026-11-20",
-          "videoQuery": "Senegal migrant boat capsizes Yenne"
+          "title": "Galamsey threatens Sunyani's water supply",
+          "summary": "The utilities regulator PURC warns that illegal mining on the upper Tano River has kept water turbidity high for three months at the Abesim treatment plant, raising treatment costs. It called for coordinated action and investment to expand the plant serving Bono and Ahafo.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/galamsey-threatens-sunyanis-water-supply-as-purc-raises-concerns-over-tano-river-pollution/",
+          "date": "2026-11-24",
+          "videoQuery": "galamsey Tano river Sunyani water"
         },
         {
-          "title": "Two in five African children live near armed conflict",
-          "summary": "Save the Children says about 260 million African children lived within 50 km of fighting in 2025, roughly 20% more than in 2024 and 44% of the world total.",
-          "source": "allAfrica",
-          "url": "https://allafrica.com/stories/202611200223.html",
-          "date": "2026-11-20"
+          "title": "Fighting in DR Congo hampers Ebola response",
+          "summary": "WHO chief Tedros has called for peace after heavy fighting near a hospital in Ituri province forced Ebola responders to shelter for more than a day. The outbreak, declared in May, is still not under control.",
+          "source": "Al Jazeera / UN News",
+          "url": "https://www.aljazeera.com/news/2026/11/23/who-chief-calls-for-peace-amid-heavy-fighting-in-ebola-hit-dr-congo-region",
+          "date": "2026-11-23",
+          "videoQuery": "Ebola Ituri DR Congo fighting WHO"
         }
       ]
     },
@@ -118,22 +121,22 @@
       "icon": "📈",
       "items": [
         {
-          "title": "Wall Street's longest losing streak since 2024",
-          "summary": "US stocks kept falling into Friday, with the Dow down about 1,100 points in one session, as worries about AI stocks and the chance of further US interest-rate rises hit markets. Asian shares came under pressure as the new week opened.",
-          "source": "AP via AJC",
-          "url": "https://www.ajc.com/news/2026/11/wall-street-tumbles-to-its-longest-losing-streak-since-2024-as-the-dow-drops-1100-points/",
-          "date": "2026-11-20",
-          "why": "Higher US rates usually mean tighter money for emerging markets like Ghana and pricier climate finance.",
-          "videoQuery": "Wall Street losing streak Dow drops 1100 points"
+          "title": "Nasdaq jumps 6.5% as Nvidia reinstates Jensen Huang",
+          "summary": "US stocks staged a huge rebound on Monday after Nvidia's board brought back Jensen Huang as CEO, less than two weeks after he resigned. Nvidia rose more than 31%, the Nasdaq gained 6.51% and the Dow added about 1,448 points, after a week in which the S&P 500 fell into a correction.",
+          "source": "Fox Business / Motley Fool",
+          "url": "https://www.foxbusiness.com/markets/stocks-november-23-2026",
+          "date": "2026-11-23",
+          "why": "Markets still price in a likely Fed rate hike in December, which affects global investor appetite for Africa.",
+          "videoQuery": "Nvidia Jensen Huang return stocks rally"
         },
         {
-          "title": "US-led group wins Kenya's Mrima Hill critical-minerals tender",
-          "summary": "Kenya picked Frontier Minerals, a US-led consortium, for the Mrima Hill niobium and rare-earths deposit, valued at about Ksh8 trillion (over $60bn), ahead of Chinese bidders. A rival has challenged the award, and the firm says it wants to refine locally.",
-          "source": "Capital FM Kenya",
-          "url": "https://capitalfm.africa/us-led-consortium-wins-kenyas-mrima-hill-mineral-tender/",
-          "date": "2026-11-19",
-          "why": "Shows the US–China race for African critical minerals and the push for local processing, as in Ghana's 2030 plans.",
-          "videoQuery": "Kenya Mrima Hill Frontier Minerals"
+          "title": "Africa's own credit rating agency targets first ratings by March",
+          "summary": "The African Union's new Africa Credit Rating Agency, based in Mauritius, is in talks with 15 governments and plans its first sovereign ratings by the end of March. Supporters say global agencies judge Africa too harshly; Moody's disputes that.",
+          "source": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/21/can-africas-new-credit-rating-agency-change-how-the-continent-is-assessed",
+          "date": "2026-11-21",
+          "why": "Credit ratings shape what Ghana, and Ghanaian projects, pay to borrow.",
+          "videoQuery": "Africa Credit Rating Agency AfCRA"
         }
       ]
     },
@@ -143,117 +146,111 @@
       "icon": "🔬",
       "items": [
         {
-          "title": "Voyager 1 is now one light-day from Earth",
-          "summary": "On 18 November NASA's Voyager 1 passed about 25.9 billion km from Earth, so its signal takes a full day to arrive. NASA has had no data from it since 14 November and engineers are investigating.",
-          "source": "NASA via ScienceDaily",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261120075554.htm",
-          "date": "2026-11-20",
-          "videoQuery": "Voyager 1 one light day"
+          "title": "Brains share one meaning code across 21 languages",
+          "summary": "MIT researchers used multilingual AI models to predict brain activity in speakers of 21 languages listening to the same story. A model trained only on French could even predict responses in Vietnamese speakers, pointing to a shared code for meaning.",
+          "source": "MIT News",
+          "url": "https://news.mit.edu/2026/many-languages-one-common-neural-code-1123",
+          "date": "2026-11-23",
+          "videoQuery": "MIT brain shared meaning across languages"
         },
         {
-          "title": "Alzheimer's risk gene works through the brain's cleanup cells",
-          "summary": "University of Virginia researchers found the CASS4 gene acts mainly in microglia, the immune cells that contain amyloid plaques; disrupting it in mice sped up plaque build-up and memory decline. Human effects are still untested.",
-          "source": "University of Virginia via ScienceDaily",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261120075600.htm",
-          "date": "2026-11-21"
+          "title": "Depression may be an early sign of Alzheimer's",
+          "summary": "In cognitively normal older adults, faster build-up of the protein tau in the brain went with faster rises in depressive symptoms, a study in the Journal of Neuroscience found. The authors say more work is needed before mood changes can be used to predict decline.",
+          "source": "ScienceDaily",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261121221134.htm",
+          "date": "2026-11-23"
         },
         {
-          "title": "Keto diet cut liver fat most in a small trial",
-          "summary": "In a 42-person trial, keto, Mediterranean and low-fat plant diets all led to about 10% weight loss, but liver fat fell 67% on keto versus 45% on the others. The study was small and short.",
-          "source": "Washington University via ScienceDaily",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261120070904.htm",
-          "date": "2026-11-20"
-        },
-        {
-          "title": "Einstein's relativity bends a textbook chemistry rule",
-          "summary": "Brown University chemists found that in a carbon–bismuth molecule, relativistic effects blur the usual split between sigma and pi bonds. The work, in Science, may matter for bismuth-based solar and quantum materials.",
-          "source": "Brown University via ScienceDaily",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261120075602.htm",
-          "date": "2026-11-21"
+          "title": "Weight-loss drugs could free up farmland worldwide",
+          "summary": "Modelling in Nature Communications suggests that if GLP-1 drugs cut how much people eat, up to 6.6 million deaths a year could be avoided by 2050 and about 32 million hectares of land could return to nature. The authors stress these are exploratory scenarios, not forecasts.",
+          "source": "News-Medical",
+          "url": "https://www.news-medical.net/news/20261122/GLP-1-weight-loss-drugs-could-change-far-more-than-waistlines-study-suggests.aspx",
+          "date": "2026-11-22"
         }
       ]
     }
   ],
   "good": [
     {
-      "title": "Ghana's Black Challenge are amputee football world champions",
-      "summary": "Ghana beat Morocco 1–0 in Mexico to win their first World Amputee Football World Cup, after knocking out holders Türkiye on penalties. Forward Mubarik Mohammed won the Golden Boot with seven goals.",
-      "source": "MyJoyOnline",
-      "url": "https://www.myjoyonline.com/black-challenge-conquer-the-world-as-ghana-beat-morocco-to-claim-historic-title/",
+      "title": "Ghana's Dawa gets a 100 MW solar plant",
+      "summary": "LMI Holdings has an $88.6m financing package, including IFC and other lenders, for a 100 MW solar plant at Dawa supplying more than 95 industrial tenants. It is the first phase of a planned 200 MW.",
+      "source": "TaiyangNews",
+      "url": "https://taiyangnews.info/markets/middle-east-africa-solar-pv-news-snippets-november-23-2026",
+      "date": "2026-11-23",
+      "why": "Clean power for Ghanaian industry: the same story as clean heat for fish processors.",
+      "videoQuery": "Dawa solar plant Ghana"
+    },
+    {
+      "title": "Kenya and DR Congo restore full diplomatic ties",
+      "summary": "After talks in the Republic of Congo, Kenya and DR Congo agreed to bring back ambassadors and restart their joint commission.",
+      "source": "allAfrica",
+      "url": "https://allafrica.com/stories/202611230153.html",
+      "date": "2026-11-23"
+    },
+    {
+      "title": "Tunisia funds solar plus battery storage",
+      "summary": "EBRD and the Climate Investment Funds are putting €50m into a 50 MW solar plant with a 10 MW battery at Beni Mhira in Tataouine.",
+      "source": "TaiyangNews",
+      "url": "https://taiyangnews.info/markets/middle-east-africa-solar-pv-news-snippets-november-23-2026",
+      "date": "2026-11-23"
+    },
+    {
+      "title": "Jonathan the 194-year-old tortoise reveals anti-ageing genes",
+      "summary": "Scientists studying Jonathan, the giant tortoise on St Helena, found 287 genetic variants linked to protection from ageing.",
+      "source": "ScienceDaily / University of Cambridge",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261121221130.htm",
       "date": "2026-11-22",
-      "videoQuery": "Black Challenge Ghana Amputee World Cup final Morocco"
+      "videoQuery": "Jonathan tortoise St Helena"
     },
     {
-      "title": "West Africa's first paediatric neuro-oncologist is Ghanaian",
-      "summary": "Dr Ernestina Schandorf of Korle Bu finished a St Jude fellowship; yearly admissions of children with brain tumours to her unit have risen from three to 17 and she set up a regular tumour board.",
-      "source": "MyJoyOnline",
-      "url": "https://www.myjoyonline.com/ghanaian-doctor-makes-history-as-west-africas-first-paediatric-neuro-oncologist/",
-      "date": "2026-11-22",
-      "why": "An overseas fellowship that built capacity at home: a model for study abroad plans."
-    },
-    {
-      "title": "Dak'Art Biennale opens with 54 African artists",
-      "summary": "Senegal's contemporary art biennale brings together 54 artists from 17 African countries around resilience and rebound, running until 19 December.",
-      "source": "Africanews",
-      "url": "https://www.africanews.com/2026/11/21/senegals-dakart-biennale-explores-themes-of-resilience-and-rebound/",
-      "date": "2026-11-21",
-      "videoQuery": "Dak'Art Biennale 2026"
-    },
-    {
-      "title": "AI spots bladder cancer signs up to five years early",
-      "summary": "A University of Plymouth model trained on about 70,000 Welsh health records caught 85% of bladder cancer cases and outperformed NHS referral rules, though it still needs testing elsewhere.",
-      "source": "University of Plymouth via ScienceDaily",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261120075604.htm",
-      "date": "2026-11-21"
-    },
-    {
-      "title": "New weight-loss drug halves knee pain for many patients",
-      "summary": "In phase 3 trials of over 1,000 people with knee osteoarthritis and obesity, about two-thirds on the top dose of retatrutide had their knee pain at least halved, versus 38% on placebo. The drug is not yet approved.",
-      "source": "Northwestern University via ScienceDaily",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261118065534.htm",
-      "date": "2026-11-19"
+      "title": "X-ray telescope opens its eyes after 8 years in space",
+      "summary": "The MIXS telescope on the European-Japanese BepiColombo mission to Mercury took its first images, of the Crab Nebula, with sharper resolution than in lab tests.",
+      "source": "ScienceDaily / University of Leicester",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261120075547.htm",
+      "date": "2026-11-20",
+      "videoQuery": "BepiColombo Mercury"
     }
   ],
   "watch": [
-    "Fallout from COP31's failure: whether countries and the COP32 host (Ethiopia) push carbon markets and finance harder in 2027",
-    "NATO's response to Russian missiles landing in Poland and the debate on Ukraine security guarantees",
-    "Wall Street's slide and whether the Fed raises rates in December",
-    "Legal challenge to Kenya's Mrima Hill award and the US–China race for African minerals",
-    "Parliament's handling of Ghana's $10bn New Economy programme"
+    "CAS ruling today on Senegal's appeal over the AFCON 2025 title awarded to Morocco",
+    "US October inflation data on Wednesday and whether the Fed hikes rates in December",
+    "Trump–Rutte meeting and whether Europe gets a seat in Ukraine peace talks",
+    "Gold Fields' Tarkwa lease talks before the April 2027 expiry",
+    "Pressure on Article 6 rules ahead of the 2028 review and COP32 in Ethiopia"
   ],
   "quiz": [
     {
-      "q": "Which country spoke for the African Group in COP31's closing session?",
+      "q": "What is the Bank of Ghana's new policy rate?",
       "options": [
-        "Nigeria",
-        "Ghana",
-        "Ethiopia",
-        "Kenya"
+        "14%",
+        "11%",
+        "9.5%",
+        "5.5%"
       ],
-      "a": "Ghana",
-      "why": "Ghana said the text fell short on finance and just transition but Africa would not block consensus."
+      "a": "11%",
+      "why": "The BoG cut its rate from 14% to 11% on 18 November."
     },
     {
-      "q": "Where will COP32 be held?",
+      "q": "COP31 was the first UN climate summit to end without agreement since which one?",
       "options": [
-        "Bonn, Germany",
-        "Antalya, Türkiye",
-        "Addis Ababa, Ethiopia",
-        "Belém, Brazil"
+        "Paris 2015",
+        "Glasgow 2021",
+        "Copenhagen 2009",
+        "Kyoto 1997"
       ],
-      "a": "Addis Ababa, Ethiopia",
-      "why": "The adaptation finance road map is due to report at COP32 in Addis Ababa."
+      "a": "Copenhagen 2009",
+      "why": "Al Jazeera and Reuters say no COP had failed to agree since Copenhagen."
     },
     {
-      "q": "Whom did Ghana's Black Challenge beat in the Amputee World Cup final?",
+      "q": "What share of Article 6.4 credit proceeds now goes to the Adaptation Fund?",
       "options": [
-        "Türkiye",
-        "Angola",
-        "Morocco",
-        "USA"
+        "2%",
+        "5%",
+        "10%",
+        "25%"
       ],
-      "a": "Morocco",
-      "why": "Ghana won 1–0 for their first world title."
+      "a": "5%",
+      "why": "COP31 confirmed a mandatory 5% share of proceeds for the Fund."
     }
   ],
   "future": [
