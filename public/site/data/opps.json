@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23",
+ "updated": "2026-11-24",
  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application. Fully funded scholarships are the hardest with a 2.3, because many set a 2:1 or 3.0+ minimum. The best fully funded routes are leadership fellowships (no grade needed), government awards that weigh experience, and Erasmus Mundus programmes with no stated minimum.",
  "items": [
   {
@@ -308,7 +308,7 @@
    "funding": "Not stated",
    "fit": "Your Carbon Clarity work and Ghana carbon market research are exactly what a young climate leaders' committee wants, and it builds your profile for scholarships.",
    "link": "https://lnkd.in/dh9DpeMW",
-   "checked": "2026-11-20",
+   "checked": "2026-11-24",
    "added": "2026-11-20",
    "status": "Open",
    "priority": 1,
@@ -356,7 +356,7 @@
    "funding": "Free for participants (stipends and travel not stated)",
    "fit": "Carbon Clarity (women processors, clean cooking, carbon finance) is a strong changemaking story. A top credential for later scholarship applications.",
    "link": "https://www.obama.org/programs/leaders/africa/how-to-apply/",
-   "checked": "2026-11-20",
+   "checked": "2026-11-24",
    "added": "2026-11-20",
    "status": "Open",
    "priority": 1
@@ -590,13 +590,72 @@
    "funding": "J-1 visa support, round-trip travel, monthly allowance for housing, meals and living expenses, accident and sickness coverage.",
    "fit": "Only if you are 27–39 and can show five years of community work: Carbon Clarity's work with James Town women fish processors (livelihoods, cleaner smoking) fits 'community prosperity' and entrepreneurship. Very tight: closes tomorrow.",
    "link": "https://www.irex.org/program/community-solutions-program-application-information",
-   "checked": "2026-11-23",
+   "checked": "2026-11-24",
    "added": "2026-11-23",
+   "status": "Open",
+   "priority": 2
+  },
+  {
+   "id": "jim-leech",
+   "country": "Canada",
+   "region": "Canada (fully virtual, for Africans)",
+   "type": "Fellowship",
+   "funded": "Free programme",
+   "title": "Jim Leech Mastercard Foundation Fellowship on Entrepreneurship (2027 cohort, 8 months, virtual)",
+   "provider": "Queen's University Dunin-Deshpande Innovation Centre with the Mastercard Foundation",
+   "city": "Online (Queen's University, Kingston, Ontario)",
+   "grade": "No grade requirement stated.",
+   "req": "For 'African students and recent graduates' of any post-secondary institution in Africa, any discipline. 'Recent graduate' is not defined, so email jimleechfellowship@queensu.ca to confirm you qualify before investing much time. At least 10 hours a week; English. Existing ventures or new ideas both welcome.",
+   "start": "January 2027 (Explore Jan–Feb, Ignite Mar–Apr, Launch and Fellowship May–Aug, graduation August)",
+   "deadline": "2026-12-01",
+   "deadlineNote": "The official page says 'Apply By December 1, 2026' (it also shows a 'notify me when applications launch' form, so confirm the form is accepting entries). Results late December.",
+   "cost": "Free",
+   "funding": "Up to 60 Fellows get a stipend (the page says $500 CAD in one place and USD 350 in another) and can pitch for prizes of up to $15,000 CAD and access seed funding.",
+   "fit": "Carbon Clarity is a real venture with a clear story (clean ovens, women processors, carbon credits), and a Canadian university and Mastercard Foundation link helps later Canada and MCF scholarship applications. Main risk: you may not count as a 'recent graduate'.",
+   "link": "https://www.queensu.ca/innovationcentre/programs/jim-leech-mastercard-foundation-fellowship-entrepreneurship",
+   "checked": "2026-11-24",
+   "added": "2026-11-24",
    "status": "Open",
    "priority": 2
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-24-new",
+   "date": "2026-11-24",
+   "level": "new",
+   "title": "New: Jim Leech Mastercard Foundation Fellowship (closes 1 Dec)",
+   "body": "Free 8-month virtual entrepreneurship fellowship from Queen's University (Canada) and the Mastercard Foundation for African students and recent graduates. Stipend for up to 60 Fellows, pitch prizes up to $15,000 CAD. No grade rule. 'Recent graduate' isn't defined, so email jimleechfellowship@queensu.ca to check.",
+   "link": "https://www.queensu.ca/innovationcentre/programs/jim-leech-mastercard-foundation-fellowship-entrepreneurship",
+   "opp": "jim-leech"
+  },
+  {
+   "id": "a-2026-11-24-jimleech",
+   "date": "2026-11-24",
+   "level": "urgent",
+   "title": "Jim Leech Fellowship closes 1 December (7 days)",
+   "body": "Apply by 1 December 2026 via the official page if you qualify as a recent graduate.",
+   "link": "https://www.queensu.ca/innovationcentre/programs/jim-leech-mastercard-foundation-fellowship-entrepreneurship",
+   "opp": "jim-leech"
+  },
+  {
+   "id": "a-2026-11-24-csp",
+   "date": "2026-11-24",
+   "level": "urgent",
+   "title": "Community Solutions Program closes tonight",
+   "body": "Deadline today, 24 Nov 2026, 11:59 p.m. US Eastern (about 4:59 a.m. 25 Nov in Accra). It will be marked closed tomorrow.",
+   "link": "https://www.irex.org/program/community-solutions-program-application-information",
+   "opp": "csp-2027"
+  },
+  {
+   "id": "a-2026-11-24-check",
+   "date": "2026-11-24",
+   "level": "info",
+   "title": "Daily check: 1 new fellowship",
+   "body": "Added the Jim Leech Mastercard Foundation Fellowship (closes 1 Dec). BURN's 'Carbon Project Manager – West Africa' (Kumasi) listing dates from May 2026 with no open posting found, so it was not added. Next deadlines: Jim Leech 1 Dec; Obama Leaders Africa and ACC Young Leaders 4 Dec; Schiller 1 Jan; GrEnFIn 7 Jan; KAAD and AYCF 15 Jan.",
+   "link": "https://carbon-clarity.vercel.app/learning.html#tracker-alerts",
+   "opp": null
+  },
   {
    "id": "a-2026-11-23-csp",
    "date": "2026-11-23",
