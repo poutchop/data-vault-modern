@@ -1,15 +1,37 @@
 {
- "updated": "2026-11-23",
+ "updated": "2026-11-24",
  "suggestion": {
-  "date": "2026-11-23",
-  "title": "Rewrite part 2 as a 'D-SMART-ready' sensor spec, including how you handle bad readings",
-  "why": "Gold Standard adopted D-SMART in May 2026, its first rulebook for digital stove monitoring: logging scales, continuous temperature monitors that count cooking events, and a digital activity database. Your sensors already do these things, but the document describes them as gadgets, not as an MRV design a standard body recognises. D-SMART also fixes data rules, for example 'orphan' fuel readings must be counted as fuel use, not deleted, which is exactly what makes a kg wood per kg fish number credible to a verifier.",
-  "action": "In part 2, add a 4-row table 'Our sensors vs D-SMART': (1) chamber temperature sensor = continuous stove monitor, counts smoking batches per day; (2) connected scale = digital kitchen-performance-test scale, logs wood and fish weights; (3) WhatsApp/MoMo batch log = digital activity database, backed up; (4) data rules = wood logged with no batch is counted as fuel used, batches with no wood are flagged, nothing is deleted. Add one sentence: 'The pilot will check our scale capacity, resolution and logging interval against D-SMART v1.0 and report the 90/10 sample size the full programme would need.' Cite the tool.",
-  "part": "Sensors and data",
-  "source": "Gold Standard, D-SMART Methodology Tool v1.0 (5 May 2026)",
-  "url": "https://globalgoals.goldstandard.org/standards/407.6_V1.0_PAA_MT400-07_D-SMART.pdf"
+  "date": "2026-11-24",
+  "title": "Turn 'independent grievance line' into a 3-rung grievance ladder that ends at the UN",
+  "why": "Your ideas list an independent grievance line but do not yet say who hears complaints, how fast, or what happens if the project itself is the problem. The Article 6.4 mechanism now has a grievance route that is free, open to anyone in the affected area at any time in the crediting period, and decided by three independent experts, but it works through forms and email, which most smokers at Chorkor or Keta cannot use. A ladder that starts with voice notes in Ga, Fante or Ewe and can escalate upwards shows funders and the challenge judges real transparency for vulnerable groups, including renters, commission smokers and newcomers.",
+  "action": "In the Inclusion section, add a box 'Grievance ladder' with three rungs: (1) Local: complaint by WhatsApp voice note, call or in person to a named women's committee member, in Ga/Fante/Ewe, free, answered within 7 days, logged in the open books (no names unless consent); (2) Independent: if not solved, or if the complaint is about the committee or project staff, it goes to a named person outside the project (for example a local NGO or paralegal), who reports within 30 days; (3) National/UN: if the programme is registered under Article 6.4, the project helps the woman file with the UN grievance process (no fee) and informs Ghana's Carbon Market Office. Add one line 'No reprisals: no one loses kiln access or payments for complaining', and add 'number of grievances raised and closed' to your pilot indicators. Put the 7- and 30-day targets in as proposals for the women's committee to confirm.",
+  "part": "Inclusion",
+  "source": "UNFCCC, Article 6.4 Appeals and Grievances: A Step-by-Step guide (2026)",
+  "url": "https://unfccc.int/node/655984"
  },
  "evidence": [
+  {
+   "id": "unfccc-a64-grievance-2026",
+   "date": "2026-03-01",
+   "added": "2026-11-24",
+   "part": "Inclusion",
+   "title": "UN Article 6.4 market now has a free, independent grievance route for affected people",
+   "summary": "The Paris Agreement Crediting Mechanism (Article 6.4) runs two complaint routes. The grievance route lets people and organisations in a project's affected area report harmful social, economic or environmental effects at any time during the crediting period, with no fee. Each case goes to a panel of three experts drawn from a roster of 30 selected in 2025. A separate appeal route against Supervisory Body decisions costs USD 30,000, waivable for vulnerable groups, and must be filed within 28 days (14 for issuance). Filing is by form and email, which is hard for women who do not read or use email. Date is approximate: the guide carries no date, and its files were uploaded in March 2026.",
+   "use": "Inclusion / 'independent grievance line': name the A6.4 grievance process as the top rung of your grievance ladder and show how your local line (voice notes, own language) feeds it, so complaints can reach the UN level.",
+   "source": "UNFCCC, Appeals and Grievances: A Step-by-Step guide (Article 6.4 mechanism), 2026",
+   "url": "https://unfccc.int/node/655984"
+  },
+  {
+   "id": "joy-ahotor-cost-2024-03",
+   "date": "2024-03-23",
+   "added": "2026-11-24",
+   "part": "Kiln",
+   "title": "Improved Ahotor oven costs GHS 10,000, yet fishmongers earn under GHS 100 a day; a reporter found almost no users",
+   "summary": "A Clean Air Reporting Project investigation found the Ahotor oven, sold in Ghana for more than seven years, priced at about GHS 10,000, while the women interviewed said they earn under GHS 100 a day. In Tema, Teshie-Nungua, James Town, Cape Coast and Elmina the reporter found no one using it; only one user turned up, in Sekondi-Takoradi, a fishmonger who nearly lost her sight to smoke. Women also complained the oven does not smoke fish the way they want. The Ministry of Fisheries said it was considering ways to help processors buy modern stoves. This is journalism, not a measured study.",
+   "use": "Kiln and financing section: cite the price-to-income gap (roughly 100 days of income) to justify pay-as-you-go or carbon pre-finance, and the 'does not smoke well' complaint to justify a taste and colour test in the pilot.",
+   "source": "Prince Owusu Asiedu, MyJoyOnline / Adom TV (Clean Air Reporting Project), 23 Mar 2024",
+   "url": "https://www.myjoyonline.com/clean-cookstoves-offer-benefits-but-many-fishmongers-cannot-afford-them/"
+  },
   {
    "id": "gs-dsmart-2026-05",
    "date": "2026-05-05",
