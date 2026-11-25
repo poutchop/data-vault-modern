@@ -1,6 +1,6 @@
 {
-  "updated": "2026-11-24",
-  "headline": "Wall Street stages a huge rebound as Nvidia brings back Jensen Huang, Ghana's banks say cheaper loans are coming after the 11% policy rate, and Article 6 carbon-market rules come through COP31 intact.",
+  "updated": "2026-11-25",
+  "headline": "Senegal gets its AFCON crown back at the sports court, Germany's president courts investors in Accra, and AI stocks slide again as the Nvidia rebound fades.",
   "sections": [
     {
       "id": "world",
@@ -8,29 +8,36 @@
       "icon": "🌐",
       "items": [
         {
-          "title": "Russian warship reported sunk at Libya's Benghazi port",
-          "summary": "Libya's eastern authorities say a Russian naval vessel sank at Benghazi after a suspected drone attack, with a commercial ship also hit and a few people slightly hurt. Zelensky said Ukraine was behind it; the Kremlin called a separate drone strike on a Russian cargo ship in the Baltic 'terrorist activity', and the UN mission in Libya wants an independent probe.",
-          "source": "Reuters / allAfrica",
-          "url": "https://www.reuters.com/world/europe/zelenskiy-says-ukraine-sank-russian-corvette-near-libyas-coast-hit-cargo-ship-2026-11-23/",
-          "date": "2026-11-23",
-          "why": "The Ukraine war is now spilling onto African soil and shipping routes.",
-          "videoQuery": "Russian warship sunk Benghazi Libya Ukraine drone"
+          "title": "Russian strike on Zaporizhzhia kills two, wounds 40",
+          "summary": "An overnight Russian attack on the Ukrainian city of Zaporizhzhia killed two people and injured 40, four of them children, according to the regional governor. Latvia's president said the war could reach a tipping point next year and argued Moscow is not serious about ending it.",
+          "source": "Reuters via Just Security",
+          "url": "https://www.justsecurity.org/165763/early-edition-november-24-2026/",
+          "date": "2026-11-24",
+          "videoQuery": "Zaporizhzhia Russian attack November 2026"
         },
         {
-          "title": "Deadly Russian strikes hit Ukraine's Kyiv region",
-          "summary": "Officials say a Russian attack on Dymer in the Kyiv region killed 11 people, with others missing after part of an apartment block was destroyed. Zelensky renewed calls for more US Patriot air-defence missiles.",
-          "source": "Reuters / POLITICO",
-          "url": "https://www.reuters.com/world/russian-attack-ukraines-dymer-kyiv-region-kills-11-official-says-2026-11-23/",
-          "date": "2026-11-23",
-          "videoQuery": "Dymer Kyiv region Russian strike apartment"
+          "title": "NATO says it will defend against threats in space",
+          "summary": "NATO chief Mark Rutte said the alliance will respond to space threats after reports that Russia is preparing a nuclear-armed satellite. The Kremlin dismissed the reports as hardly worth taking seriously.",
+          "source": "BBC via Just Security",
+          "url": "https://www.justsecurity.org/165763/early-edition-november-24-2026/",
+          "date": "2026-11-24",
+          "videoQuery": "Rutte NATO space threat Russia nuclear satellite"
         },
         {
-          "title": "Trump to meet NATO chief Rutte on Wednesday",
-          "summary": "The White House says Trump and NATO Secretary General Mark Rutte will meet in Palm Beach, Florida, after Trump's talks with Putin and Xi last week drew criticism from European allies. European leaders and Zelensky want Europe included in any US-backed peace talks on Ukraine.",
-          "source": "Reuters via SRN News",
-          "url": "https://srnnews.com/trump-to-meet-nato-chief-mark-rutte-on-wednesday-white-house-says/",
-          "date": "2026-11-23",
-          "videoQuery": "Trump Rutte meeting Palm Beach NATO"
+          "title": "Sudan: drones behind most civilian deaths this year, UN says",
+          "summary": "The UN human rights office counted at least 2,230 civilians killed in Sudan between January and October 2026, most of them in drone strikes and the majority in Kordofan. Sudan accuses Ethiopia of letting drones launch from its territory; Ethiopia denies backing the RSF.",
+          "source": "allAfrica / UN",
+          "url": "https://allafrica.com/stories/202611180005.html",
+          "date": "2026-11-18",
+          "videoQuery": "Sudan drone strikes civilians UN report"
+        },
+        {
+          "title": "Bangladesh's Hasina says she will return on 16 December",
+          "summary": "A spokesperson for former prime minister Sheikh Hasina, who was sentenced to death in absentia, said she plans to fly home on 16 December. Bangladesh's foreign minister responded that she would be brought back in handcuffs.",
+          "source": "BBC / Reuters via Just Security",
+          "url": "https://www.justsecurity.org/165763/early-edition-november-24-2026/",
+          "date": "2026-11-24",
+          "videoQuery": "Sheikh Hasina return Bangladesh December"
         }
       ]
     },
@@ -40,38 +47,39 @@
       "icon": "🌍",
       "items": [
         {
-          "title": "Reactions pour in after COP31 collapses",
-          "summary": "COP31 in Antalya is the first UN climate summit since Copenhagen in 2009 to end without an agreement. The EU and UK refused a text that did not mention fossil fuels, while Russia and Saudi Arabia resisted such wording; UN chief Guterres said he was deeply disappointed.",
-          "source": "Al Jazeera / Reuters",
-          "url": "https://www.aljazeera.com/news/2026/11/22/countries-react-after-cop31-climate-talks-end-in-collapse",
-          "date": "2026-11-22",
-          "videoQuery": "COP31 ends without deal reactions"
+          "title": "COP31 ends as the longest COP on record, with no cover deal",
+          "summary": "The Antalya talks closed about 50 hours late on 22 November without agreement on the 'Antalya pact' cover text, which the EU and UK rejected for not mentioning fossil fuels. Ghana said it could have supported it. Technical decisions on just transition, adaptation, finance and carbon markets were still adopted.",
+          "source": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/cop31-key-outcomes-agreed-at-the-un-climate-talks-in-antalya",
+          "date": "2026-11-23",
+          "why": "Ghana's own negotiating stance is on the record: useful context for your Article 6 research.",
+          "videoQuery": "COP31 Antalya outcome explained"
         },
         {
-          "title": "Article 6 rulebook survives, with a review in 2028",
-          "summary": "Carbon Market Watch says the Article 6 rules came through COP31 unchanged despite industry pressure to loosen them, but a major review is due in 2028 and it expects the fight to resume at COP32. ClimateTrade notes 16 countries have joined a coalition to grow carbon markets, and Norway agreed to buy up to 12 million tonnes of credits from Indonesian solar projects.",
+          "title": "Watchdog: Article 6 rules survived COP31, but 2028 review is the next fight",
+          "summary": "Carbon Market Watch says the carbon-market rulebook came through intact despite heavy industry lobbying, but warns the scheduled 2028 review could loosen it. A market-side analysis by ClimateTrade confirms the 6.2, 6.4 and 6.8 guidance was adopted and the 2028 review stays in place.",
           "source": "Carbon Market Watch / ClimateTrade",
           "url": "https://carbonmarketwatch.org/2026/11/22/cmw-cop31-reaction-climate-focus-of-article-6-survives-fossil-fueled-market-lobby-for-now/",
           "date": "2026-11-22",
-          "why": "The rules Ghana's Carbon Market Office uses for Article 6 deals stay stable for now: good for project planning.",
-          "videoQuery": "Article 6 carbon markets COP31 outcome"
+          "why": "The rules your cookstove-oven credits would trade under are stable for now; watch who pushes to change them before 2028.",
+          "videoQuery": "Article 6 carbon markets COP31"
         },
         {
-          "title": "Adaptation Fund now fully under the Paris Agreement",
-          "summary": "COP31 completed the Adaptation Fund's move to serve only the Paris Agreement. It will get a mandatory 5% share of proceeds from the Article 6.4 crediting mechanism, plus voluntary money from Article 6.2 deals.",
-          "source": "Adaptation Fund",
-          "url": "https://www.adaptation-fund.org/cop31-completes-adaptation-funds-transition-to-serve-the-paris-agreement-exclusively-unlocking-new-carbon-market-revenue/",
-          "date": "2026-11-22",
-          "why": "Every Article 6.4 credit sale now directly funds adaptation in poorer countries: a useful talking point with buyers."
+          "title": "Governments still split on the timing of the next IPCC report",
+          "summary": "Countries again failed to agree a timeline for the IPCC's seventh assessment: most want it ready for the 2028 global stocktake, while a smaller group including India, Saudi Arabia, Russia and Kenya argue for more time. The IPCC session resumes online on 1–3 December.",
+          "source": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/cited-24-november-2026-cop31-climate-science-fights-el-nino-a-public-health-emergency-ai-and-climate-disinformation",
+          "date": "2026-11-24",
+          "videoQuery": "IPCC AR7 timeline dispute"
         },
         {
-          "title": "IEA lifts Africa's renewables outlook by 54%",
-          "summary": "The IEA's Renewables 2026 report expects sub-Saharan Africa to add over 120 GW of renewable capacity from 2026 to 2031, nearly doubling what exists, with solar making up more than 80%. Distributed solar for homes, businesses and off-grid users is set to be almost two-thirds of new solar.",
-          "source": "The Guardian (Tanzania)",
-          "url": "https://ippmedia.co.tz/the-guardian/business/read/solar-to-expand-africas-renewable-energy-boom-2026-11-17-123955",
-          "date": "2026-11-17",
-          "why": "Distributed solar for productive use, like cold storage for fish, is where the growth is.",
-          "videoQuery": "IEA Renewables 2026 Africa solar"
+          "title": "Scientists urge WHO to treat El Niño as a health emergency",
+          "summary": "Two researchers called on the World Health Organization to declare this year's El Niño a public-health emergency, citing risks from heat, drought and disease. Carbon Brief also flagged a UNESCO finding that AI chatbots can drop climate facts when users push back.",
+          "source": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/cited-24-november-2026-cop31-climate-science-fights-el-nino-a-public-health-emergency-ai-and-climate-disinformation",
+          "date": "2026-11-24",
+          "why": "El Niño can shift West African rainfall and fish catches.",
+          "videoQuery": "El Nino 2026 health emergency"
         }
       ]
     },
@@ -81,37 +89,38 @@
       "icon": "🇬🇭",
       "items": [
         {
-          "title": "Banks say loans will get cheaper after BoG's rate cut",
-          "summary": "The Bank of Ghana cut its policy rate from 14% to 11% on 18 November, with inflation around 5.5–5.7%, well below its target band. The Ghana Association of Banks now expects lending rates to fall significantly, and says the Ghana Reference Rate could drop into single digits.",
-          "source": "MyJoyOnline / Graphic",
-          "url": "https://www.myjoyonline.com/lending-rates-set-for-significant-drop-after-bog-policy-rate-cut-association-of-banks/",
+          "title": "Germany's Steinmeier opens German-African Business Summit in Accra",
+          "summary": "President Steinmeier met President Mahama on 24 November, called Ghana a beacon of stability for investors, and said Ghana–Germany trade grew about 20% in 2025. Mahama asked German firms to invest in local processing of raw materials under the New Economy Programme.",
+          "source": "Citi Newsroom / GBC / dpa",
+          "url": "https://www.citinewsroom.com/2026/11/ghana-ideal-destination-for-foreign-investment-german-president/",
           "date": "2026-11-24",
-          "why": "Cheaper credit could make financing ovens for processors more affordable.",
-          "videoQuery": "Bank of Ghana policy rate cut 11 percent"
+          "why": "German climate and development funders are in town: a networking window for Carbon Clarity and Yamale.",
+          "videoQuery": "Steinmeier Accra German African Business Summit"
         },
         {
-          "title": "Gold Fields pledges $7.5bn for Tarkwa as lease end nears",
-          "summary": "Gold Fields Ghana says it would invest $7.5bn in the Tarkwa mine over about 20 years if its leases, which expire in April 2027, are renewed. The company says 74% of every dollar the mine earns stays in Ghana.",
-          "source": "MyJoyOnline",
-          "url": "https://www.myjoyonline.com/gold-fields-eyes-7-5bn-investment-in-tarkwa-mine-as-lease-expiry-looms/",
+          "title": "Sports court gives Senegal back the 2025 AFCON title",
+          "summary": "The Court of Arbitration for Sport upheld Senegal's appeal, reversing CAF's March decision that had handed Morocco the title after Senegal's walk-off during the final. Senegal had won that final 1-0; reports say Morocco may contest the ruling.",
+          "source": "Al Jazeera / Sky Sports",
+          "url": "https://www.aljazeera.com/sports/2026/11/24/senegal-reinstated-as-2025-africa-cup-of-nations-winners-over-morocco",
           "date": "2026-11-24",
-          "videoQuery": "Gold Fields Tarkwa lease renewal Ghana"
+          "videoQuery": "Senegal AFCON title CAS ruling"
         },
         {
-          "title": "Galamsey threatens Sunyani's water supply",
-          "summary": "The utilities regulator PURC warns that illegal mining on the upper Tano River has kept water turbidity high for three months at the Abesim treatment plant, raising treatment costs. It called for coordinated action and investment to expand the plant serving Bono and Ahafo.",
-          "source": "MyJoyOnline",
-          "url": "https://www.myjoyonline.com/galamsey-threatens-sunyanis-water-supply-as-purc-raises-concerns-over-tano-river-pollution/",
-          "date": "2026-11-24",
-          "videoQuery": "galamsey Tano river Sunyani water"
+          "title": "Cedi down 10.6% against the dollar this year, BoG data show",
+          "summary": "Bank of Ghana figures put the cedi's 2026 depreciation at 10.6% by November, up from 9.5% in September. Fitch Solutions expects it to average about GH¢12.40 per dollar in 2027.",
+          "source": "Citi Newsroom",
+          "url": "https://www.citinewsroom.com/2026/11/cedi-depreciation-reaches-10-6-in-november-bog-data/",
+          "date": "2026-11-18",
+          "why": "Credits are sold in dollars and euros: a weaker cedi raises their local value but also the cost of imported sensors.",
+          "videoQuery": "cedi depreciation Bank of Ghana 2026"
         },
         {
-          "title": "Fighting in DR Congo hampers Ebola response",
-          "summary": "WHO chief Tedros has called for peace after heavy fighting near a hospital in Ituri province forced Ebola responders to shelter for more than a day. The outbreak, declared in May, is still not under control.",
-          "source": "Al Jazeera / UN News",
-          "url": "https://www.aljazeera.com/news/2026/11/23/who-chief-calls-for-peace-amid-heavy-fighting-in-ebola-hit-dr-congo-region",
-          "date": "2026-11-23",
-          "videoQuery": "Ebola Ituri DR Congo fighting WHO"
+          "title": "DR Congo's Ebola outbreak still out of control after six months",
+          "summary": "Government data show more than 11,000 cases with nearly half of those infected dead, and Africa CDC says most new cases come from outside known contact lists. MSF says money pledged is not reaching frontline workers.",
+          "source": "Africanews (AP) / Al Jazeera",
+          "url": "https://www.africanews.com/amp/2026/11/16/congo-struggles-to-tame-ebola-outbreak-six-months-into-response",
+          "date": "2026-11-16",
+          "videoQuery": "DR Congo Ebola outbreak Africa CDC"
         }
       ]
     },
@@ -121,22 +130,29 @@
       "icon": "📈",
       "items": [
         {
-          "title": "Nasdaq jumps 6.5% as Nvidia reinstates Jensen Huang",
-          "summary": "US stocks staged a huge rebound on Monday after Nvidia's board brought back Jensen Huang as CEO, less than two weeks after he resigned. Nvidia rose more than 31%, the Nasdaq gained 6.51% and the Dow added about 1,448 points, after a week in which the S&P 500 fell into a correction.",
-          "source": "Fox Business / Motley Fool",
-          "url": "https://www.foxbusiness.com/markets/stocks-november-23-2026",
-          "date": "2026-11-23",
-          "why": "Markets still price in a likely Fed rate hike in December, which affects global investor appetite for Africa.",
-          "videoQuery": "Nvidia Jensen Huang return stocks rally"
+          "title": "AI stocks slide again as Nvidia's rally fades",
+          "summary": "The Nasdaq fell about 1.5% and Nvidia about 5.9% a day after its surge on Jensen Huang's return, while the Dow rose. Asian markets dropped sharply on Wednesday amid reports Washington is preparing findings that could lead to new tariffs on 16 trading partners.",
+          "source": "Reuters / ABC News",
+          "url": "https://www.investing.com/news/economy-news/stocks-retreat-as-ai-rebound-stumbles-tariff-threats-loom-5049529",
+          "date": "2026-11-25",
+          "videoQuery": "stock market AI selloff Nvidia November 2026"
         },
         {
-          "title": "Africa's own credit rating agency targets first ratings by March",
-          "summary": "The African Union's new Africa Credit Rating Agency, based in Mauritius, is in talks with 15 governments and plans its first sovereign ratings by the end of March. Supporters say global agencies judge Africa too harshly; Moody's disputes that.",
-          "source": "Al Jazeera",
-          "url": "https://www.aljazeera.com/news/2026/11/21/can-africas-new-credit-rating-agency-change-how-the-continent-is-assessed",
-          "date": "2026-11-21",
-          "why": "Credit ratings shape what Ghana, and Ghanaian projects, pay to borrow.",
-          "videoQuery": "Africa Credit Rating Agency AfCRA"
+          "title": "Anthropic shares slip below their IPO price",
+          "summary": "Anthropic fell 6.5% on Tuesday to below its $83 Nasdaq listing price, part of a wider sell-off in AI stocks. US consumer confidence, meanwhile, hit its highest level in nearly two years.",
+          "source": "Reuters / Fox News",
+          "url": "https://www.investing.com/news/economy-news/stocks-retreat-as-ai-rebound-stumbles-tariff-threats-loom-5049529",
+          "date": "2026-11-24",
+          "videoQuery": "Anthropic stock IPO price"
+        },
+        {
+          "title": "IEA: Africa's solar boom is going small-scale",
+          "summary": "The IEA says most of Africa's solar growth now comes from rooftop and small systems rather than big plants: the continent imported about 26 GW of panels in 2025 while only about 10 GW of installations were reported. Nigeria, Algeria, Kenya and Senegal each added over 1 GW last year.",
+          "source": "Premium Times via allAfrica",
+          "url": "https://allafrica.com/stories/202611200670.html",
+          "date": "2026-11-20",
+          "why": "Small solar for productive use is a growing market next to clean-heat ovens.",
+          "videoQuery": "IEA Africa solar boom small scale"
         }
       ]
     },
@@ -146,111 +162,106 @@
       "icon": "🔬",
       "items": [
         {
-          "title": "Brains share one meaning code across 21 languages",
-          "summary": "MIT researchers used multilingual AI models to predict brain activity in speakers of 21 languages listening to the same story. A model trained only on French could even predict responses in Vietnamese speakers, pointing to a shared code for meaning.",
-          "source": "MIT News",
-          "url": "https://news.mit.edu/2026/many-languages-one-common-neural-code-1123",
-          "date": "2026-11-23",
-          "videoQuery": "MIT brain shared meaning across languages"
+          "title": "Leukaemia can start growing 50 years before diagnosis",
+          "summary": "Using stored yearly blood samples, UCL and Cambridge scientists found that in two-thirds of acute myeloid leukaemia cases the first cancer-driving mutation appeared before age 20. Spotting a single dominant blood clone years ahead could one day help predict and prevent the disease.",
+          "source": "UCL / Nature",
+          "url": "https://www.ucl.ac.uk/news/2026/nov/scientists-trace-leukaemia-back-decades-diagnosis",
+          "date": "2026-11-13",
+          "videoQuery": "leukaemia traced decades before diagnosis"
         },
         {
-          "title": "Depression may be an early sign of Alzheimer's",
-          "summary": "In cognitively normal older adults, faster build-up of the protein tau in the brain went with faster rises in depressive symptoms, a study in the Journal of Neuroscience found. The authors say more work is needed before mood changes can be used to predict decline.",
-          "source": "ScienceDaily",
-          "url": "https://www.sciencedaily.com/releases/2026/11/261121221134.htm",
-          "date": "2026-11-23"
-        },
-        {
-          "title": "Weight-loss drugs could free up farmland worldwide",
-          "summary": "Modelling in Nature Communications suggests that if GLP-1 drugs cut how much people eat, up to 6.6 million deaths a year could be avoided by 2050 and about 32 million hectares of land could return to nature. The authors stress these are exploratory scenarios, not forecasts.",
-          "source": "News-Medical",
-          "url": "https://www.news-medical.net/news/20261122/GLP-1-weight-loss-drugs-could-change-far-more-than-waistlines-study-suggests.aspx",
-          "date": "2026-11-22"
+          "title": "Species down to their last 50 animals can recover, with help",
+          "summary": "A study of 141 birds and mammals found 61% of near-lost species that got direct conservation help reached 100 animals, against 2% of those left alone, where extinction was far more common. Removing threats like rats alongside breeding worked best.",
+          "source": "Mongabay",
+          "url": "https://news.mongabay.com/short-article/2026/11/species-down-to-the-last-50-animals-can-recover-but-rarely-without-help/",
+          "date": "2026-11-25",
+          "videoQuery": "endangered species recovery conservation study"
         }
       ]
     }
   ],
   "good": [
     {
-      "title": "Ghana's Dawa gets a 100 MW solar plant",
-      "summary": "LMI Holdings has an $88.6m financing package, including IFC and other lenders, for a 100 MW solar plant at Dawa supplying more than 95 industrial tenants. It is the first phase of a planned 200 MW.",
+      "title": "Angola starts building a 90 MW solar plant with batteries",
+      "summary": "Construction began in Cabinda on a 90 MWp solar plant with 25 MWh of storage, built by Egypt's Elsewedy, to serve more than 180,000 people.",
+      "source": "SolarQuarter",
+      "url": "https://solarquarter.com/2026/11/23/angola-begins-164-4-million-90-mwp-solar-project-with-25-mwh-battery-storage-in-cabinda/",
+      "date": "2026-11-23",
+      "videoQuery": "Cabinda solar plant Angola"
+    },
+    {
+      "title": "Tunisia gets its first utility-scale battery",
+      "summary": "EBRD and the Clean Technology Fund put €50m into Tunisia's first grid battery (10 MW/20 MWh), alongside a 50 MW solar plant in Tataouine.",
       "source": "TaiyangNews",
       "url": "https://taiyangnews.info/markets/middle-east-africa-solar-pv-news-snippets-november-23-2026",
       "date": "2026-11-23",
-      "why": "Clean power for Ghanaian industry: the same story as clean heat for fish processors.",
-      "videoQuery": "Dawa solar plant Ghana"
+      "videoQuery": "Tunisia battery storage solar EBRD"
     },
     {
-      "title": "Kenya and DR Congo restore full diplomatic ties",
-      "summary": "After talks in the Republic of Congo, Kenya and DR Congo agreed to bring back ambassadors and restart their joint commission.",
-      "source": "allAfrica",
-      "url": "https://allafrica.com/stories/202611230153.html",
-      "date": "2026-11-23"
+      "title": "Sierra Leone cuts maternal deaths",
+      "summary": "A national campaign has reached over 10,000 children who had never been vaccinated, and Gavi reports maternal deaths down 32%.",
+      "source": "Gavi",
+      "url": "https://www.gavi.org/vaccineswork/sierra-leone-races-drop-maternal-and-child-deaths-zero",
+      "date": "2026-11-21",
+      "videoQuery": "Sierra Leone maternal health vaccines"
     },
     {
-      "title": "Tunisia funds solar plus battery storage",
-      "summary": "EBRD and the Climate Investment Funds are putting €50m into a 50 MW solar plant with a 10 MW battery at Beni Mhira in Tataouine.",
-      "source": "TaiyangNews",
-      "url": "https://taiyangnews.info/markets/middle-east-africa-solar-pv-news-snippets-november-23-2026",
-      "date": "2026-11-23"
+      "title": "A rescued bird's big comeback",
+      "summary": "The Lord Howe woodhen, down to 23 birds in the 1970s, reached 1,638 by 2024 after rats were cleared from its island.",
+      "source": "Mongabay",
+      "url": "https://news.mongabay.com/short-article/2026/11/species-down-to-the-last-50-animals-can-recover-but-rarely-without-help/",
+      "date": "2026-11-25",
+      "videoQuery": "Lord Howe woodhen recovery"
     },
     {
-      "title": "Jonathan the 194-year-old tortoise reveals anti-ageing genes",
-      "summary": "Scientists studying Jonathan, the giant tortoise on St Helena, found 287 genetic variants linked to protection from ageing.",
-      "source": "ScienceDaily / University of Cambridge",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261121221130.htm",
-      "date": "2026-11-22",
-      "videoQuery": "Jonathan tortoise St Helena"
-    },
-    {
-      "title": "X-ray telescope opens its eyes after 8 years in space",
-      "summary": "The MIXS telescope on the European-Japanese BepiColombo mission to Mercury took its first images, of the Crab Nebula, with sharper resolution than in lab tests.",
-      "source": "ScienceDaily / University of Leicester",
-      "url": "https://www.sciencedaily.com/releases/2026/11/261120075547.htm",
-      "date": "2026-11-20",
-      "videoQuery": "BepiColombo Mercury"
+      "title": "Wild oysters bred again off Scotland",
+      "summary": "Conservationists bred native oysters at a Scottish site where they had been locally extinct for over a century, a UK first.",
+      "source": "The Guardian",
+      "url": "https://www.theguardian.com/environment/2026/nov/15/return-of-the-wild-oyster-conservationists-bring-shellfish-back-from-local-extinction-off-scottish-coast",
+      "date": "2026-11-15",
+      "videoQuery": "wild oyster restoration Scotland"
     }
   ],
   "watch": [
-    "CAS ruling today on Senegal's appeal over the AFCON 2025 title awarded to Morocco",
-    "US October inflation data on Wednesday and whether the Fed hikes rates in December",
-    "Trump–Rutte meeting and whether Europe gets a seat in Ukraine peace talks",
-    "Gold Fields' Tarkwa lease talks before the April 2027 expiry",
-    "Pressure on Article 6 rules ahead of the 2028 review and COP32 in Ethiopia"
+    "Whether Morocco challenges the CAS AFCON ruling at Switzerland's federal court",
+    "US tariff findings on 'excess capacity' in 16 trading partners and the AI-stock sell-off",
+    "IPCC online session on 1–3 December over the next report's timeline",
+    "Gambia's presidential election on 5 December",
+    "Who pushes to change Article 6 rules before the 2028 review"
   ],
   "quiz": [
     {
-      "q": "What is the Bank of Ghana's new policy rate?",
+      "q": "Which body restored Senegal as 2025 AFCON champions?",
       "options": [
-        "14%",
-        "11%",
-        "9.5%",
-        "5.5%"
+        "CAF Appeal Board",
+        "FIFA Council",
+        "Court of Arbitration for Sport",
+        "Swiss Federal Tribunal"
       ],
-      "a": "11%",
-      "why": "The BoG cut its rate from 14% to 11% on 18 November."
+      "a": "Court of Arbitration for Sport",
+      "why": "CAS upheld Senegal's appeal on 24 November, reversing CAF's March decision."
     },
     {
-      "q": "COP31 was the first UN climate summit to end without agreement since which one?",
+      "q": "By how much had the cedi depreciated against the dollar by November 2026, per BoG data?",
       "options": [
-        "Paris 2015",
-        "Glasgow 2021",
-        "Copenhagen 2009",
-        "Kyoto 1997"
+        "5.0%",
+        "9.2%",
+        "10.6%",
+        "14%"
       ],
-      "a": "Copenhagen 2009",
-      "why": "Al Jazeera and Reuters say no COP had failed to agree since Copenhagen."
+      "a": "10.6%",
+      "why": "BoG data show 10.6%, up from 9.5% in September."
     },
     {
-      "q": "What share of Article 6.4 credit proceeds now goes to the Adaptation Fund?",
+      "q": "In UCL/Cambridge research, in two-thirds of AML cases the first driver mutation appeared before what age?",
       "options": [
-        "2%",
-        "5%",
-        "10%",
-        "25%"
+        "10",
+        "20",
+        "40",
+        "60"
       ],
-      "a": "5%",
-      "why": "COP31 confirmed a mandatory 5% share of proceeds for the Fund."
+      "a": "20",
+      "why": "That is more than 50 years before the typical diagnosis."
     }
   ],
   "future": [
