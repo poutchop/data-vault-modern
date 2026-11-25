@@ -1,15 +1,37 @@
 {
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "suggestion": {
-  "date": "2026-11-24",
-  "title": "Turn 'independent grievance line' into a 3-rung grievance ladder that ends at the UN",
-  "why": "Your ideas list an independent grievance line but do not yet say who hears complaints, how fast, or what happens if the project itself is the problem. The Article 6.4 mechanism now has a grievance route that is free, open to anyone in the affected area at any time in the crediting period, and decided by three independent experts, but it works through forms and email, which most smokers at Chorkor or Keta cannot use. A ladder that starts with voice notes in Ga, Fante or Ewe and can escalate upwards shows funders and the challenge judges real transparency for vulnerable groups, including renters, commission smokers and newcomers.",
-  "action": "In the Inclusion section, add a box 'Grievance ladder' with three rungs: (1) Local: complaint by WhatsApp voice note, call or in person to a named women's committee member, in Ga/Fante/Ewe, free, answered within 7 days, logged in the open books (no names unless consent); (2) Independent: if not solved, or if the complaint is about the committee or project staff, it goes to a named person outside the project (for example a local NGO or paralegal), who reports within 30 days; (3) National/UN: if the programme is registered under Article 6.4, the project helps the woman file with the UN grievance process (no fee) and informs Ghana's Carbon Market Office. Add one line 'No reprisals: no one loses kiln access or payments for complaining', and add 'number of grievances raised and closed' to your pilot indicators. Put the 7- and 30-day targets in as proposals for the women's committee to confirm.",
-  "part": "Inclusion",
-  "source": "UNFCCC, Article 6.4 Appeals and Grievances: A Step-by-Step guide (2026)",
-  "url": "https://unfccc.int/node/655984"
+  "date": "2026-11-25",
+  "part": "Health and food safety",
+  "title": "Add a 'PAH test plan' to the pilot: same fish, same wood, two kilns, one lab",
+  "why": "Your document says women sell fish with PAHs above EU limits, but the pilot does not yet say how SafeSmoke will prove its fish is safer. A 2026 KNUST study found PAH4 in fish smoked with 14-year-old Keta mangrove wood reached 12.5 µg/kg, above the EU limit of 12.0, while younger wood stayed below it, so wood choice matters as well as the kiln. In Benin, the QualiSani indirect-heat kiln cut smoked-fish PAHs by about 99% (abstract figures), showing that a measured food-safety result is publishable and persuasive to funders and buyers.",
+  "action": "In the pilot plan, add a half-page 'PAH test plan': (1) at weeks 3 and 14, smoke matched batches of the same fish with the same wood on a traditional Chorkor and on the SafeSmoke kiln; (2) send at least 3 samples per kiln each round to the Ghana Standards Authority (or CSIR-FRI) for benzo[a]pyrene and PAH4, judged against the EU limits of 2.0 and 12.0 µg/kg; (3) add 'wood type and approximate age' as a field in the scale log, so you can show which fuels raise PAHs; (4) add a budget line for lab tests (get a quote this week, do not guess the cost); (5) add 'share of samples below the EU PAH4 limit' to your pilot indicators. Cite Boadu et al. 2026 and Iko Afé et al. 2026.",
+  "source": "Boadu et al., Scientific African 31, e03217 (2026)",
+  "url": "https://doi.org/10.1016/j.sciaf.2026.e03217"
  },
  "evidence": [
+  {
+   "id": "knust-mangrove-age-2026-01",
+   "date": "2026-01-29",
+   "added": "2026-11-25",
+   "part": "Health and food safety",
+   "title": "KNUST: fish smoked with older Keta mangrove wood breaks the EU PAH4 limit",
+   "summary": "KNUST researchers smoked Atlantic chub mackerel with red mangrove wood aged 8, 11 and 14 years, bought at Salo market in Keta, and tested PAHs at the Ghana Standards Authority. PAH4 rose with wood age: 3.63, 6.06 and 12.5 µg/kg, so only the 14-year wood exceeded the EU limit of 12.0 µg/kg. Benzo[a]pyrene stayed below 1.00 µg/kg. Cadmium exceeded EU limits in all samples. The study is small (six fish per group, one traditional oven), and the paper has some unit and limit inconsistencies, so treat it as a signal, not proof. The authors recommend restricting older wood and adopting indirect, low-emission smoking.",
+   "use": "In part 1 (flexible fuel) and part 2 (scale log), record wood type and rough age for each batch, and cite this study when you explain why SafeSmoke tests PAH4 against the EU 12.0 µg/kg limit.",
+   "source": "Boadu et al., Scientific African 31, e03217 (2026)",
+   "url": "https://doi.org/10.1016/j.sciaf.2026.e03217"
+  },
+  {
+   "id": "qualisani-benin-2026",
+   "date": "2026-09-01",
+   "added": "2026-11-25",
+   "part": "Kiln",
+   "title": "Benin: QualiSani indirect-heat kiln brings PAH exposure from smoked fish to safe levels",
+   "summary": "A Benin–Belgium team measured 15 PAHs in 46 samples of grilled pork, smoked fish and smoked-dried fish, and modelled exposure for 300 pork and 186 fish consumers with 10,000-run Monte Carlo simulations. The abstract reports PAH levels reduced by about 99% for smoked fish with the QualiSani kiln compared with traditional smoking. Margins of exposure were well above the EFSA 'low concern' level of 10,000, except for about 2% of high-end consumers. Full text is embargoed until January 2027.",
+   "use": "In part 1, cite QualiSani as a West African indirect-heat design with peer-reviewed PAH results, and use its consumer-risk method (margin of exposure) as the model for SafeSmoke's food-safety claim.",
+   "source": "Iko Afé et al., Regulatory Toxicology and Pharmacology 172, 106233 (2026)",
+   "url": "https://orbi.uliege.be/handle/2268/348408"
+  },
   {
    "id": "unfccc-a64-grievance-2026",
    "date": "2026-03-01",
