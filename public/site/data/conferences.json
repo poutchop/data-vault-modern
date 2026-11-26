@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "note": "Research conferences and calls for abstracts that fit SafeSmoke Carbon and Carbon Clarity: clean cooking and stoves, carbon markets and climate finance, fisheries and coastal communities, gender and just transitions. Checked on the official pages; dates can change, so confirm before submitting.",
  "items": [
   {
@@ -193,6 +193,48 @@
    "priority": 3,
    "added": "2026-11-25",
    "checked": "2026-11-25"
+  },
+  {
+   "id": "iea-clean-cooking-africa-2027",
+   "name": "Second Summit on Clean Cooking in Africa",
+   "organiser": "IEA, co-chaired by Kenya, Norway and the United States, with the African Union and AfDB",
+   "start": "2027-01-27",
+   "end": "2027-01-28",
+   "city": "Nairobi, Kenya",
+   "mode": "In person",
+   "kind": "Attend and network",
+   "deadline": null,
+   "deadlineNote": "The IEA says governments, institutions and companies have been invited; no public registration or call for proposals is published. Watch the IEA event page and ask partners (e.g. Clean Cooking Alliance, Ghana Energy Commission) about side events or livestream.",
+   "fee": "Not stated",
+   "support": "Not stated",
+   "fit": "The top policy and finance meeting for clean cooking in Africa (over USD 900 million in new commitments already). Directly relevant to SafeSmoke's kiln, cookstove carbon credits and finance for women processors.",
+   "angle": "Share a one-page brief: productive-use clean cooking (fish-smoking kilns) as a missing category in Africa's clean cooking finance, with sensor-verified wood savings.",
+   "link": "https://www.iea.org/news/leaders-at-cop31-seek-to-accelerate-clean-cooking-progress-in-africa-ahead-of-nairobi-summit",
+   "status": "Check",
+   "priority": 2,
+   "added": "2026-11-26",
+   "checked": "2026-11-26"
+  },
+  {
+   "id": "csae-2027",
+   "name": "CSAE Conference 2027: Economic Development in Africa",
+   "organiser": "Centre for the Study of African Economies, University of Oxford",
+   "start": "2027-03-21",
+   "end": "2027-03-23",
+   "city": "Oxford, UK",
+   "mode": "In person",
+   "kind": "Attend and network",
+   "deadline": "2027-02-21",
+   "deadlineNote": "The call for papers has closed. Registration is open: speaker deadline 4 January 2027, general deadline 21 February 2027.",
+   "fee": "Not stated on the conference page (registration via Cvent)",
+   "support": "Limited funding for African presenters living and working in Africa (presenters only; requires a pre-conference workshop in late 2026)",
+   "fit": "The leading meeting on African development economics; a place to meet economists working on energy, environment and markets in Ghana and West Africa. Note the 2028 call for papers for future work on Ghana's carbon market.",
+   "angle": "For a future call: who gains from Ghana's carbon credits? Benefit-sharing rules under the Carbon Market Office and effects on women fish processors.",
+   "link": "https://www.csae.ox.ac.uk/csae-conference-2027",
+   "status": "Open",
+   "priority": 3,
+   "added": "2026-11-26",
+   "checked": "2026-11-26"
   }
  ]
 }
