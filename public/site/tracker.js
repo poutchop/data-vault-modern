@@ -564,10 +564,11 @@
       (x.pts.length ? "\nKey points: " + x.pts.join(" ") : "") + (x.out ? "\nOutput I need: " + x.out : "") +
       "\n\nSummarise everything I need for this session in plain English: the 3 to 5 key ideas, a minute-by-minute plan, a worked example from James Town where it helps, common mistakes to avoid, and one question to check myself. Keep it under 350 words.";
   }
+  function copilotUrl(p) { return "https://copilot.microsoft.com/?q=" + encodeURIComponent(p.slice(0, 1800)); }
   function claudeUrl(p) { return "https://claude.ai/new?q=" + encodeURIComponent(p.slice(0, 1800)); }
   function aiBtns(p, small) {
     var c = small ? " small" : "";
-    return '<button class="btn pri' + c + '" data-coach="' + esc(p) + '">✨ Ask the coach</button><a class="btn' + c + '" target="_blank" rel="noopener" href="' + claudeUrl(p) + '">Open in Claude ↗</a>';
+    return '<button class="btn pri' + c + '" data-coach="' + esc(p) + '">✨ Ask the coach</button><a class="btn' + c + '" target="_blank" rel="noopener" href="' + copilotUrl(p) + '">Open in Copilot ↗</a><a class="btn' + c + '" target="_blank" rel="noopener" href="' + claudeUrl(p) + '">Open in Claude ↗</a>';
   }
   function briefHtml(x, d, opts) {
     opts = opts || {}; var key = dk(d) + "|" + x.id;
@@ -763,12 +764,13 @@
     if (!document.getElementById("briefcss")) document.head.insertAdjacentHTML("beforeend", BCSS);
     var w = document.createElement("div"); w.id = "ccCoach";
     w.innerHTML = '<button class="cfab" aria-label="Open the AI coach">✨ Coach</button><div class="cdraw" role="dialog" aria-label="AI coach" hidden><div class="chead"><b>✨ Carbon Clarity Coach</b><span class="small">knows your plan, goals, papers and progress</span><button class="lnk cclose" aria-label="Close">✕</button></div><div class="clog"></div>' +
-      '<div class="cchips"></div><form class="cform"><textarea rows="2" placeholder="Ask anything: brief me, explain a concept, quiz me, plan my evening…" maxlength="3000"></textarea><button class="btn pri">Send</button></form><div class="cfoot small"><button class="lnk cnew">New chat</button> · <a class="cext" target="_blank" rel="noopener" href="https://claude.ai/new">Open in Claude ↗</a></div></div>';
+      '<div class="cchips"></div><form class="cform"><textarea rows="2" placeholder="Ask anything: brief me, explain a concept, quiz me, plan my evening…" maxlength="3000"></textarea><button class="btn pri">Send</button></form><div class="cfoot small"><button class="lnk cnew">New chat</button> · <a class="cextm" target="_blank" rel="noopener" href="https://copilot.microsoft.com/">Open in Copilot ↗</a> · <a class="cext" target="_blank" rel="noopener" href="https://claude.ai/new">Open in Claude ↗</a> · <button class="lnk cctx" title="Copies your timetable, goals, papers and progress so Copilot or Claude can give tailored answers">📋 Copy my context</button></div></div>';
     document.body.appendChild(w);
     var fab = w.querySelector(".cfab"), dr = w.querySelector(".cdraw"), f = w.querySelector(".cform"), ta = f.querySelector("textarea");
     fab.onclick = function () { dr.hidden = !dr.hidden; var pd2 = document.querySelector("#ccPomo .pdraw"); if (pd2 && !dr.hidden) pd2.hidden = true; if (!dr.hidden) { drawLog(); ta.focus(); } };
     w.querySelector(".cclose").onclick = function () { dr.hidden = true; };
     w.querySelector(".cnew").onclick = function () { S.chat = []; save(); drawLog(); };
+    w.querySelector(".cctx").onclick = function () { var t = "Please act as my personal coach. Here is my live context (timetable, goals, papers, projects and progress) from my Carbon Clarity Learning platform. Use it to give tailored answers.\n\n" + coachContext() + (S.lastQ ? "\n\nMY QUESTION: " + S.lastQ : ""); copyText(t); toast("Context copied: paste it into Copilot or Claude"); };
     f.onsubmit = function (e) { e.preventDefault(); var t = ta.value.trim(); if (t) { ta.value = ""; sendCoach(t); } };
     ta.onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.onsubmit(e); } };
     var chips = [["Brief me for now", "Brief me for the session I'm in right now (or the next one): key ideas, a minute-by-minute plan and the output."], ["Plan my day", "Look at my timetable, goals and papers for today and give me a realistic plan with the order to do things."], ["Summarise today", "Summarise my day from my notes and ticks: what I achieved, what I learned, what is still open, and my top 3 for tomorrow."], ["Quiz me", "Quiz me with 3 short questions on what I'm learning this week (lesson, skill and research). Wait for my answers before marking."], ["Research next step", "What exactly should I do next on my Ghana carbon market research? Be specific about sources and the deliverable."], ["Motivate me", "I'm losing focus. Give me a short, honest pep talk tied to my real progress and one tiny next action."]];
@@ -785,11 +787,11 @@
     document.querySelector("#ccCoach .cdraw").hidden = false;
     H.push({ role: "user", content: text.slice(0, 3000) }); drawLog();
     lg.insertAdjacentHTML("beforeend", '<div class="cm ai think"><p>Thinking…</p></div>'); lg.scrollTop = lg.scrollHeight; COACH_BUSY = true;
-    var ext = document.querySelector("#ccCoach .cext"); if (ext) ext.href = claudeUrl(WHO + "\n\n" + text);
+    var ext = document.querySelector("#ccCoach .cext"); if (ext) ext.href = claudeUrl(WHO + "\n\n" + text); var extm = document.querySelector("#ccCoach .cextm"); if (extm) extm.href = copilotUrl(WHO + "\n\n" + text); S.lastQ = text;
     fetch(AI_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: H.slice(-12), context: coachContext() }) })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
       .then(function (j) { H.push({ role: "assistant", content: String(j.text || "").slice(0, 8000) }); if (H.length > 40) S.chat = H.slice(-40); save(); })
-      .catch(function (e) { var msg = e && e.error === "gateway_403" ? "The coach isn't switched on yet. **Free option, no card:** get a free Gemini API key at aistudio.google.com (Get API key), then in Vercel open your project → Settings → Environment Variables, add **GEMINI_API_KEY** with the key, and redeploy. Until then, tap **Open in Claude** below and your question opens there." : e && e.error === "gemini_429" ? "The free Gemini limit is used up for the moment. Wait a minute and try again, or tap **Open in Claude** below." : e && e.error === "gemini_key" ? "The Gemini key in Vercel isn't working. Check GEMINI_API_KEY in Vercel → Settings → Environment Variables (copy it again from aistudio.google.com), then redeploy." : e && e.error === "rate" ? "You've asked a lot in a short time. Wait a few minutes and try again." : "The coach couldn't answer just now" + (e && e.error ? " (" + e.error + ")" : "") + ". Try again in a moment, or use 'Open in Claude' below."; H.push({ role: "assistant", content: msg, err: 1 }); })
+      .catch(function (e) { var msg = e && e.error === "gateway_403" ? "The coach isn't switched on yet. **Free option, no card:** get a free Gemini API key at aistudio.google.com (Get API key), then in Vercel open your project → Settings → Environment Variables, add **GEMINI_API_KEY** with the key, and redeploy. Until then, tap **Open in Copilot** or **Open in Claude** below: both are free and your question opens there. For fully tailored answers, tap **📋 Copy my context** and paste it in first." : e && e.error === "gemini_429" ? "The free Gemini limit is used up for the moment. Wait a minute and try again, or tap **Open in Copilot** below." : e && e.error === "gemini_key" ? "The Gemini key in Vercel isn't working. Check GEMINI_API_KEY in Vercel → Settings → Environment Variables (copy it again from aistudio.google.com), then redeploy." : e && e.error === "rate" ? "You've asked a lot in a short time. Wait a few minutes and try again." : "The coach couldn't answer just now" + (e && e.error ? " (" + e.error + ")" : "") + ". Try again in a moment, or use 'Open in Claude' below."; H.push({ role: "assistant", content: msg, err: 1 }); })
       .then(function () { COACH_BUSY = false; S.chat = coachHistory().filter(function (m, i, a) { return !m.err || i === a.length - 1; }); drawLog(); });
   }
   function coachPage() {
