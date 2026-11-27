@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application. Fully funded scholarships are the hardest with a 2.3, because many set a 2:1 or 3.0+ minimum. The best fully funded routes are leadership fellowships (no grade needed), government awards that weigh experience, and Erasmus Mundus programmes with no stated minimum.",
  "items": [
   {
@@ -617,9 +617,59 @@
    "added": "2026-11-24",
    "status": "Open",
    "priority": 2
+  },
+  {
+   "id": "green-rise-wa",
+   "country": "Africa",
+   "region": "West Africa",
+   "type": "Fellowship",
+   "funded": "Free programme",
+   "title": "Green RISE West Africa Fellowship 2027 (Acumen Academy, for green/climate entrepreneurs)",
+   "provider": "Acumen Academy (with the Mastercard Foundation)",
+   "city": "West Africa (hybrid; Ghana eligible)",
+   "grade": "No degree or grade requirement stated.",
+   "req": "Official page: applicants must be based in Nigeria, Ghana, Liberia, Sierra Leone or The Gambia; a minimum of 5 years of professional experience; and a minimum of 5 full-time employees. Check whether Carbon Clarity/your role meets the 5-years and 5-employees rules before applying.",
+   "start": "April 2027 (Cohort 1) / June 2027 (Cohort 2); selection conference 17–20 February 2027",
+   "deadline": "2026-12-22",
+   "deadlineNote": "Official page: 'Applications close on 22 December, 2026.'",
+   "cost": "Free for selected fellows",
+   "funding": "Fully funded leadership programme (no stipend stated)",
+   "fit": "Strong topical match (clean ovens, women processors, carbon) but the 5-years-experience and 5-employee thresholds may rule you out; worth it only if you meet both.",
+   "link": "https://fellowship.acumenacademy.org/green-rise-west-africa-fellowship-2026",
+   "checked": "2026-11-27",
+   "added": "2026-11-27",
+   "status": "Open",
+   "priority": 2
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-27-greenrise",
+   "date": "2026-11-27",
+   "level": "urgent",
+   "title": "New: Green RISE West Africa Fellowship closes 22 December (25 days)",
+   "body": "Acumen Academy fellowship for green entrepreneurs in Ghana, Nigeria and nearby; no degree or grade rule. Needs 5+ years of experience and 5+ full-time employees, so check you qualify first.",
+   "link": "https://fellowship.acumenacademy.org/green-rise-west-africa-fellowship-2026",
+   "opp": "green-rise-wa"
+  },
+  {
+   "id": "a-2026-11-27-deadlines",
+   "date": "2026-11-27",
+   "level": "urgent",
+   "title": "Jim Leech Fellowship closes 1 December (4 days); Obama Leaders Africa and ACC Young Leaders close 4 December",
+   "body": "All three have no grade requirement. Submit this weekend if you plan to apply.",
+   "link": "https://www.queensu.ca/innovationcentre/programs/jim-leech-mastercard-foundation-fellowship-entrepreneurship",
+   "opp": "jim-leech"
+  },
+  {
+   "id": "a-2026-11-27-funder",
+   "date": "2026-11-27",
+   "level": "info",
+   "title": "Directory: Global Korea Scholarship added (not a fit)",
+   "body": "GKS requires CGPA 2.64/4.0 or top 20% of class, so it's listed as 'no' and on the excluded list.",
+   "link": "https://www.esteri.it/wp-content/uploads/2026/02/2026-GKS-G-Application-Guidelines-English.pdf",
+   "opp": null
+  },
   {
    "id": "a-2026-11-26-dec4",
    "date": "2026-11-26",
@@ -1008,6 +1058,10 @@
   {
    "name": "DENSYS 2.0 (Erasmus Mundus, Decentralised Smart Energy Systems)",
    "why": "Official application page: requirements 'may be assessed as not fulfilled if' the 'average grade (CGPA or equivalent) is lower than 3.0 / 4.0', and the degree must be a science/engineering bachelor's with applied thermodynamics, heat transfer and fluid mechanics. Marks count for up to 45 of 100 points. 2027 call closes 27 January 2027, 18:00 Paris time; a 2.3 CGPA is below the stated bar."
+  },
+  {
+   "name": "Global Korea Scholarship (GKS, Korea)",
+   "why": "2026 GKS-G guidelines require a CGPA of at least 2.64/4.0 (or 80%/top 20% of class); 2.3/4.0 falls below unless you can document a top-20% rank."
   }
  ],
  "funders": [
@@ -1163,6 +1217,15 @@
    "rule": "Ghana Scholarships Authority notice: 'Must be a Ghanaian citizen resident in Ghana' and 'Must satisfy the minimum admission requirements of the chosen Mauritian public HEI' (no minimum class of degree stated); postgraduate applicants submit an abridged research plan; MPhil/PhD under 40 on 1 January 2027. Check each university's master's entry rule for a third class.",
    "when": "The 2026/27 round closed 5 March 2026. The next round isn't published; going by last year, a call is expected around February 2027 (expected, not confirmed).",
    "link": "https://scholarships.gov.gh/opportunities/the-mauritius-africa-scholarship-scheme-20262027-academic-year"
+  },
+  {
+   "name": "Global Korea Scholarship (GKS, Korean Government / NIIED)",
+   "fit": "no",
+   "where": "South Korea (master's and PhD)",
+   "what": "Fully funded graduate scholarship (tuition, stipend, airfare, Korean language year). Ghana has an Embassy Track quota (7 in 2026) and University Track R-GKS places.",
+   "rule": "2026 guidelines: CGPA 'must be equal to or above 2.64/4.0' (or 80%+ on a 100-point scale, or 'ranked in the top 20% of one's class'). A 2.3/4.0 is below this unless your transcript shows top-20% class rank.",
+   "when": "2026 embassy-track applications ran in February 2026; the 2027 round is expected around February 2027 (expected, not confirmed).",
+   "link": "https://www.esteri.it/wp-content/uploads/2026/02/2026-GKS-G-Application-Guidelines-English.pdf"
   }
  ]
 }
