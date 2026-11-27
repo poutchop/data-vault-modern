@@ -298,6 +298,28 @@
    "priority": 3,
    "added": "2026-11-27",
    "checked": "2026-11-27"
+  },
+  {
+   "id": "aere-2027",
+   "name": "2027 AERE Summer Conference (Association of Environmental and Resource Economists)",
+   "organiser": "AERE",
+   "start": "2027-06-09",
+   "end": "2027-06-11",
+   "city": "Portland, Oregon, USA",
+   "mode": "In person",
+   "kind": "Call for abstracts",
+   "deadline": null,
+   "deadlineNote": "Abstract submissions open 1 December 2026 and close in early to mid-January 2027 (exact date to be announced). Registration opens mid-March.",
+   "fee": "Not stated; reduced fees for AERE members",
+   "support": "Not stated; graduate-student programming (ask info@aere.org about grants)",
+   "fit": "The main US environmental economics meeting: carbon markets, energy, development and environment. Good for your Ghana carbon market research and SafeSmoke's benefit-sharing design.",
+   "angle": "Who benefits from clean-cooking carbon credits? Evidence and benefit-sharing design from Ghana's fish-smoking sector.",
+   "link": "https://www.aere.org/summer-conference",
+   "status": "Upcoming",
+   "remindOn": "2026-12-01",
+   "priority": 2,
+   "added": "2026-11-27",
+   "checked": "2026-11-27"
   }
  ]
 }
