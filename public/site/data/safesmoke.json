@@ -1,15 +1,37 @@
 {
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "suggestion": {
-    "date": "2026-11-26",
-    "part": "Benefit sharing",
-    "title": "Add a 'guaranteed floor' to the 60% share: what every woman gets even if no credit sells",
-    "why": "Your 60/15/15/10 split only pays out when net carbon income exists, and the 17-week pilot produces no credits, so today a woman is promised a share of nothing. Climate Focus's 2025 guidance for household-energy carbon projects sets a minimum standard: users should get a guaranteed level of benefits regardless of the project's revenue or profit, and it notes that cash payments to users are rare. Pairing a fixed floor with your 60% results share turns your 'floor price plus premium, upfront plus results' idea into a concrete, fundable rule.",
-    "action": "In part 4, add a short 'Floor and premium' box: (1) Floor (upfront, not tied to credits): list exactly what each enrolled woman receives during the pilot and first crediting year, e.g. kiln use on agreed terms, CO alarm, training, and a fixed per-logged-batch payment, and name who funds it (grant or buyer pre-finance), leaving amounts blank until you have quotes; (2) Premium (results): the existing 60% of net carbon income by logged batches, paid to her own mobile money; (3) a rule that the floor is never clawed back if credits fail or prices fall; (4) one line that revenue and payouts are published on the open-books board each quarter, and complaints go to the grievance line. Cite Climate Focus 2025 as the standard you meet and exceed.",
-    "source": "Climate Focus, Benefit-sharing guidance for household energy carbon projects (Feb 2025)",
-    "url": "https://climatefocus.com/wp-content/uploads/2025/02/2025benefit-sharingguidanceforhouseholdenergycarbonprojectsoutput2.pdf"
+    "date": "2026-11-27",
+    "part": "Kiln",
+    "title": "Add a 'stacking check': log every batch on the old Chorkor too, and only count net wood saved",
+    "why": "In a 2026 Edinburgh study of mangrove-area projects in Sierra Leone and Guinea, improved fish-smoking ovens cut mangrove wood from about 7,084 kg to 420 kg per household per year, yet cookstove savings fell short because households kept using three-stone fires alongside the new stoves (adjusted usage only 44.5%). If a woman smokes half her catch on the SafeSmoke kiln and the rest on her old Chorkor, your per-batch kg-wood-per-kg-fish looks great while total wood barely falls. Verifiers and Article 6 buyers will ask exactly this, so measuring it now makes your savings claim credible.",
+    "action": "In part 2 and the pilot plan, add a 'Stacking check' box: (1) for each enrolled woman, record ALL batches for the 17 weeks, on the SafeSmoke kiln (sensor and scale) and on any traditional kiln (simple weekly self-report on the wood-bundles board, spot-checked by a Carbon Mother with the connected scale once a fortnight); (2) report two numbers: kg wood per kg fish on the new kiln, and total wood per woman per week before and during the pilot; (3) state the rule that carbon income and the 60% share are calculated on net wood saved per woman, not per-batch efficiency alone; (4) add one quiz question and one picture card explaining why old-kiln batches still count. Cite the Edinburgh 2026 study for the stacking risk and the oven savings.",
+    "source": "University of Edinburgh Business School (B-CCaS), Max Meyer (10 June 2026)",
+    "url": "https://bccas.business-school.ed.ac.uk/research/thought-leadership/blue-carbon-mangrove-conservation-carbon-markets-west-africa"
   },
   "evidence": [
+    {
+      "id": "edinburgh-mangrove-ovens-2026-06",
+      "date": "2026-06-10",
+      "added": "2026-11-27",
+      "part": "Kiln",
+      "title": "Sierra Leone and Guinea: improved fish-smoking ovens cut mangrove wood use 94% and give over half of a blue carbon project's reductions",
+      "summary": "An Edinburgh Business School MSc study, written by an author now working for the project developer West Africa Blue, traced real impacts of cookstoves, fish-smoking ovens and solar salt in mangrove areas of Sierra Leone and Guinea (field data May–June 2025). A traditional banda burned about 7,084 kg of mangrove wood per household per year against 420 kg for the improved oven, a stated 94% cut. Sierra Leone's ovens account for 8.4 MtCO2e over 30 years, over half of the total. Cookstoves underperformed because households kept using three-stone fires alongside them (adjusted usage 44.5% across 67 communities).",
+      "use": "Cite in part 1 and the Keta mangrove section as regional proof that fish-smoking ovens, not household stoves, drive the biggest wood savings, and use the 44.5% stacking finding to justify measuring whether women keep firing the old Chorkor.",
+      "source": "University of Edinburgh Business School (B-CCaS), Max Meyer, thought-leadership article (10 June 2026)",
+      "url": "https://bccas.business-school.ed.ac.uk/research/thought-leadership/blue-carbon-mangrove-conservation-carbon-markets-west-africa"
+    },
+    {
+      "id": "giz-gender-carbon-2025-10",
+      "date": "2025-10-01",
+      "added": "2026-11-27",
+      "part": "Carbon literacy",
+      "title": "GIZ/Climate Focus: carbon project outreach is often gender-blind, so invite women directly",
+      "summary": "A GIZ Article 6 Capacity Building study by Climate Focus finds no mandatory gender rules across the voluntary carbon market and notes that cookstove projects still lack gender indicators; only 44% of cookstove projects report SDG 5 (gender) contributions. It cites evidence that women know much less about local projects than men, partly because household heads are assumed to pass information on. It recommends inviting women directly, timing meetings around their work, transport and safety, and more training for women in carbon accounting. It also flags that changes in who controls money can trigger gender-based violence.",
+      "use": "Use in the carbon literacy section to justify direct invitations, market-day timing and Carbon Mothers training, and in part 4 to add a safeguard against household conflict over mobile-money payouts.",
+      "source": "GIZ Article 6 Capacity Building Programme / Climate Focus, Interlinkages between gender and carbon markets (October 2025)",
+      "url": "https://giz.de/sites/default/files/media/pkb-document/2025-10/giz2025-en-interlinkages-between-gender-and-carbon-markets.pdf"
+    },
     {
       "id": "climatefocus-benefitsharing-2025-02",
       "date": "2025-02-01",
