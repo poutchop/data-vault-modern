@@ -1,319 +1,305 @@
 {
- "updated": "2026-11-26",
- "headline": "Washington proposes tariffs on 14 economies, Gulf oil sites come under drone fire, and Asian chip stocks plunge as AI doubts return.",
- "sections": [
-  {
-   "id": "world",
-   "title": "World",
-   "icon": "🌐",
-   "items": [
+  "updated": "2026-11-27",
+  "headline": "Deadly drone strike in Kuwait and Gulf oil fears lift Brent near $97, Trump presses Putin on Europe, and Ghana becomes Africa's first country issued jurisdictional forest carbon credits.",
+  "sections": [
     {
-     "title": "US proposes new tariffs on 14 economies",
-     "summary": "The US Trade Representative proposed Section 301 tariffs on goods from 14 economies over industrial overcapacity, with Vietnam facing up to 35%, India up to 25%, China up to 20% and the EU 15%. These are proposals only; public comments are due by 5 January 2027.",
-     "source": "Reuters/AP via Just Security; StockTitan",
-     "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-25-2026",
-     "date": "2026-11-25",
-     "why": "Tariff shifts change trade routes and prices for exporters and importers, including in West Africa.",
-     "videoQuery": "USTR Section 301 tariffs 14 economies November 2026"
+      "id": "world",
+      "title": "World",
+      "icon": "🌐",
+      "items": [
+        {
+          "title": "Two Italians killed in drone attack on Kuwait site",
+          "summary": "Two Italian technicians working at an air-defence surveillance site in Kuwait died after debris fell during an attempt to intercept drones; a Kuwaiti and a Pakistani worker were wounded. Kuwait and Italy blamed Iran, while Iran's military denied carrying out any offensive operations and called the claims a cover for 'false flags'.",
+          "source": "Al Jazeera/Reuters; CNN",
+          "url": "https://www.aljazeera.com/news/2026/11/26/two-italians-killed-after-iranian-drones-strike-facility-says-kuwait",
+          "date": "2026-11-26",
+          "why": "Gulf attacks keep pushing up oil and shipping costs that feed into fuel prices in Ghana.",
+          "videoQuery": "Kuwait drone attack Italians killed"
+        },
+        {
+          "title": "Trump says he asked Putin to 'pull back' in Europe",
+          "summary": "President Trump said he pressed Vladimir Putin during recent talks in China to halt military aggression across Europe so a Russia-Ukraine deal could be reached, and said Putin wants a deal. Separately, US officials told NATO allies a review of US troop levels in Europe will miss its 1 December target.",
+          "source": "RFE/RL; News24",
+          "url": "https://www.rferl.org/a/trump-putin-europe-ukraine-russia-aggression/33906739.html",
+          "date": "2026-11-26",
+          "videoQuery": "Trump Putin pull back aggression Europe Rutte"
+        },
+        {
+          "title": "Houthi strikes and sea mines rattle Gulf oil routes",
+          "summary": "Yemen's Houthis said they attacked Saudi Arabia's Ras Tanura refinery; the Saudi-led coalition said it intercepted drones. Iran's Revolutionary Guards said two tankers hit mines and caught fire near Khasab while crossing the Strait of Hormuz.",
+          "source": "Reuters via GSM Global; The Nation (Thailand)",
+          "url": "https://www.nationthailand.com/news/world/40073981",
+          "date": "2026-11-26",
+          "videoQuery": "Ras Tanura Houthi attack tankers mines Hormuz"
+        }
+      ]
     },
     {
-     "title": "Houthi drones target Saudi oil refinery as Gulf tensions rise",
-     "summary": "Saudi-led coalition said it destroyed four drones over the Ras Tanura refinery area, a day after a Houthi drone hit Riyadh's tallest tower and injured at least 11 people. The Houthis threatened Red Sea ports after a coalition strike on Hodeidah; separately, Iran said tankers hit mines in the Strait of Hormuz.",
-     "source": "Al Jazeera, AFP and Reuters",
-     "url": "https://www.aljazeera.com/news/2026/11/25/saudi-led-coalition-intercepts-houthi-attacks-after-hodeidah-strike",
-     "date": "2026-11-25",
-     "why": "Attacks on Gulf oil routes push up fuel prices, which feed into Ghana's transport and food costs.",
-     "videoQuery": "Houthi drones Ras Tanura Riyadh tower"
+      "id": "climate",
+      "title": "Climate and carbon markets",
+      "icon": "🌍",
+      "items": [
+        {
+          "title": "Ghana issued 6.5 million forest carbon credits worth about $68m",
+          "summary": "Ghana became the first African country (third worldwide after Guyana and Costa Rica) to be issued jurisdictional REDD+ credits under the ART TREES standard. Buyers including the LEAF Coalition cover about 4 million tonnes at $10–13 a tonne, with roughly $43m expected around January 2027; government says it has not yet received proceeds.",
+          "source": "Graphic Online; Ghanaian Times",
+          "url": "https://www.graphic.com.gh/news/general-news/ghana-news-ghana-to-receive-68m-for-forest-carbon-credits-initial-43m-revenue-expected-in-jan.html",
+          "date": "2026-11-26",
+          "why": "A national price signal ($10–13/t) and a benefit-sharing test case right in your market.",
+          "videoQuery": "Ghana ART TREES forest carbon credits LEAF Coalition"
+        },
+        {
+          "title": "Article 6 rules survive COP31, but the fight moves to 2028",
+          "summary": "Carbon Market Watch says the Paris carbon-market rulebook came out of COP31 in Antalya without being weakened, but warns lobbying to loosen it grew and will intensify before the 2028 Article 6 review. It argues early Article 6.2 trades show flaws.",
+          "source": "Carbon Market Watch",
+          "url": "https://carbonmarketwatch.org/2026/11/22/cmw-cop31-reaction-climate-focus-of-article-6-survives-fossil-fueled-market-lobby-for-now/",
+          "date": "2026-11-22",
+          "why": "Directly relevant to your Article 6 research and Ghana's bilateral deals.",
+          "videoQuery": "COP31 Article 6 carbon markets outcome"
+        },
+        {
+          "title": "Fossil CO2 emissions set to dip slightly in 2026",
+          "summary": "The Global Carbon Project projects fossil CO2 falling about 0.4% to 38.2 billion tonnes in 2026, mainly because the Iran conflict cut oil use, but total emissions including land use hit a record 43.3 billion tonnes. The remaining budget for 1.5C is under four years of current emissions.",
+          "source": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+          "date": "2026-11-10",
+          "videoQuery": "Global Carbon Budget 2026"
+        }
+      ]
     },
     {
-     "title": "Israeli strike kills Hamas security chief and family in Gaza",
-     "summary": "An Israeli strike killed Hamas interior security chief Mohammad Abuelouf along with his wife and two children, according to the Hamas-run health ministry and medics. In Israel, opposition figure Gadi Eisenkot secured his first coalition partner ahead of elections.",
-     "source": "Reuters via Just Security; Al Jazeera",
-     "url": "https://www.justsecurity.org/165910/early-edition-november-25-2026/",
-     "date": "2026-11-25",
-     "videoQuery": "Gaza strike Hamas security chief November 2026"
+      "id": "africa",
+      "title": "Ghana and Africa",
+      "icon": "🇬🇭",
+      "items": [
+        {
+          "title": "Ghana to ban open burning of rubbish from January 2027",
+          "summary": "Environment Minister Dr Zanetor Agyeman-Rawlings said open burning of waste will be prohibited from January, alongside river restoration, air-quality rules and a planned styrofoam ban. She named 2027 the 'Year of Pollution Control' at a launch in Ho.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/open-burning-of-rubbish-to-be-prohibited-from-january-2027-environment-minister/",
+          "date": "2026-11-26",
+          "why": "A tougher air-quality stance strengthens the case for clean fish-smoking ovens in James Town.",
+          "videoQuery": "Ghana ban open burning 2027 Zanetor"
+        },
+        {
+          "title": "Black Challenge crowned amputee football world champions",
+          "summary": "Ghana's amputee team beat Morocco 1-0 in the final of the WAFF Amputee Football World Cup in Mexico and returned to a heroes' welcome in Accra, met by Sports Minister Kofi Adams, GFA President Kurt Okraku and Stonebwoy.",
+          "source": "MyJoyOnline",
+          "url": "https://www.myjoyonline.com/black-challenge-arrive-in-accra-to-heroes-welcome-after-historic-world-cup-triumph/",
+          "date": "2026-11-26",
+          "videoQuery": "Black Challenge Ghana amputee World Cup champions"
+        },
+        {
+          "title": "IEA: Africa's solar capacity could grow sixfold by 2035",
+          "summary": "The IEA's World Energy Outlook 2026 projects African solar rising from 39 GW in 2025 to about 234 GW by 2035, with energy investment up about 11% to $110bn in 2026. Africa still gets only about 3% of global energy investment despite its strong solar resources.",
+          "source": "GreenTechLead (IEA WEO 2026)",
+          "url": "https://greentechlead.com/renewable-energy/africa-solar-capacity-to-grow-sixfold-by-2035-as-energy-investment-reaches-110-billion-in-2026-iea-56680",
+          "date": "2026-11-19",
+          "why": "Solar drying and cold storage could pair with your ovens.",
+          "videoQuery": "IEA World Energy Outlook 2026 Africa solar"
+        }
+      ]
     },
     {
-     "title": "Bangladesh garment workers win a 36% minimum-wage rise",
-     "summary": "After weeks of protests, Bangladesh's wage board agreed to raise the garment sector's monthly minimum from 12,500 to 17,500 taka (about $136), taking effect in December. Workers had demanded 30,000 taka, so it is unclear whether protests will end.",
-     "source": "Al Jazeera and AFP",
-     "url": "https://www.aljazeera.com/news/2026/11/25/bangladesh-garment-workers-win-36-pay-rise-after-weeks-of-protest",
-     "date": "2026-11-25",
-     "videoQuery": "Bangladesh garment workers minimum wage protests 2026"
+      "id": "business",
+      "title": "Business and tech",
+      "icon": "📈",
+      "items": [
+        {
+          "title": "Asian markets bounce back after tech rout",
+          "summary": "Asian stocks rose on Friday after a bruising week for tech shares: Japan's Nikkei gained 0.7% and South Korea's Kospi 2.2%. Wall Street was shut for Thanksgiving, and traders are watching US tariff plans and the Federal Reserve's next move.",
+          "source": "Al Jazeera (AFP/AP)",
+          "url": "https://www.aljazeera.com/economy/2026/11/27/asian-stock-markets-rise-after-earlier-tech-rout",
+          "date": "2026-11-27",
+          "videoQuery": "Asian stocks rebound November 27 2026"
+        },
+        {
+          "title": "Brent oil climbs to $96.57 ahead of OPEC+ meeting",
+          "summary": "Brent settled at $96.57 a barrel on Thursday, up about 8% over three sessions, on Gulf supply fears. OPEC+ ministers meet on 29 November and sources expect output targets to stay unchanged at least through early 2027.",
+          "source": "Reuters via GSM Global; The Nation (Thailand)",
+          "url": "https://gsmglobalnews.com/article/d20261126-brent96571.html",
+          "date": "2026-11-26",
+          "why": "Higher oil prices raise fuel and transport costs in Ghana, but also boost Jubilee crude revenue.",
+          "videoQuery": "Brent oil price OPEC+ meeting November 2026"
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "title": "Science and health",
+      "icon": "🔬",
+      "items": [
+        {
+          "title": "Physicists hold a single antimatter particle for months",
+          "summary": "A Northwestern University team led by Gerald Gabrielse trapped a single positron, cooled it close to absolute zero and controlled its quantum energy levels. They plan to compare its magnetism with the electron's to test why the universe is made of matter.",
+          "source": "ScienceDaily (Northwestern, Physical Review Letters)",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261124055849.htm",
+          "date": "2026-11-25",
+          "videoQuery": "single positron quantum cyclotron Gabrielse"
+        },
+        {
+          "title": "Robotic knee surgery no better than standard surgery, big trial finds",
+          "summary": "The RACER-Knee trial of 339 UK patients, published in The Lancet, found robot-assisted knee replacement gave no meaningful benefit at one year over conventional surgery, while adding about 10 minutes and £950 per operation.",
+          "source": "ScienceDaily (University of Warwick, The Lancet)",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261124055904.htm",
+          "date": "2026-11-25",
+          "videoQuery": "RACER-Knee trial robotic knee replacement"
+        },
+        {
+          "title": "Earth's core may be leaking ancient carbon",
+          "summary": "A Columbia-led study in PNAS found unusually heavy carbon in Kilauea lava samples and suggests it may come from Earth's core, resembling carbon in early meteorites. The authors say more measurements are needed.",
+          "source": "ScienceDaily (Columbia Climate School, PNAS)",
+          "url": "https://www.sciencedaily.com/releases/2026/11/261123005336.htm",
+          "date": "2026-11-23",
+          "videoQuery": "Earth's core carbon leaking Kilauea study"
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "climate",
-   "title": "Climate and carbon markets",
-   "icon": "🌍",
-   "items": [
+  ],
+  "good": [
     {
-     "title": "Who is to blame for COP31's 'failure'?",
-     "summary": "A Carbon Brief media round-up says COP31 in Antalya overran by two days and the presidency's 'Antalya pact' cover decision was rejected by at least 32 countries, including the EU and UK. Many other decisions were adopted; most coverage blamed oil-producing states, while Chinese state media presented China as constructive.",
-     "source": "Carbon Brief",
-     "url": "https://carbonbrief.org/media-reaction-who-is-to-blame-for-cop31-failure",
-     "date": "2026-11-25",
-     "why": "Article 6 work continues regardless of the cover decision, so carbon market rules still matter for Ghana.",
-     "videoQuery": "COP31 Antalya ends without deal"
+      "title": "Ghana's amputee footballers are world champions",
+      "summary": "The Black Challenge beat Morocco 1-0 to win the WAFF Amputee Football World Cup, after beating Iraq, the USA, Egypt and Turkey on the way.",
+      "source": "MyJoyOnline",
+      "url": "https://www.myjoyonline.com/black-challenge-arrive-in-accra-to-heroes-welcome-after-historic-world-cup-triumph/",
+      "date": "2026-11-26"
     },
     {
-     "title": "Earth logs its most abnormally hot day on record",
-     "summary": "Preliminary Copernicus data show the global average temperature on 20 November was 2.12°C above pre-industrial levels, beating the previous daily record of 2.07°C from November 2023. The WMO expects the current El Niño to peak in December.",
-     "source": "ZME Science (Copernicus data); The Citizen (WMO)",
-     "url": "https://www.zmescience.com/ecology/climate/earth-just-had-its-most-abnormally-hot-day-ever-as-global-climate-talks-collapsed/",
-     "date": "2026-11-22",
-     "why": "El Niño years often bring heat and rainfall shifts to West Africa that affect fish catches and smoking.",
-     "videoQuery": "Copernicus record hot day El Nino November 2026"
+      "title": "Ghana's forests start earning carbon money",
+      "summary": "Ghana is the first African country issued jurisdictional forest credits under ART TREES, with buyers committed for about 4 million tonnes.",
+      "source": "Ghanaian Times",
+      "url": "https://ghanaiantimes.com.gh/historic-ghana-to-earn-68m-from-forest-credits-communities-farmers-traditional-authorities-to-receive-46/",
+      "date": "2026-11-24"
     },
     {
-     "title": "2026 likely to tie 2024 as the warmest year",
-     "summary": "Carbon Brief's analysis of six datasets puts 2026 at about 1.52°C above pre-industrial, with a 67% chance of beating 2024. It projects 2027 at about 1.74°C, with a 96% chance of setting a new record.",
-     "source": "Carbon Brief",
-     "url": "https://www.carbonbrief.org/state-of-the-climate-2026-likely-to-tie-with-2024-as-the-warmest-year-on-record",
-     "date": "2026-11-11",
-     "videoQuery": "2026 warmest year on record"
+      "title": "Clean tech is absorbing most new energy demand",
+      "summary": "A Nature Climate Change study cited by Carbon Brief says solar, wind and electric vehicles offset about 69% of the emissions growth that rising demand would have caused in 2026.",
+      "source": "Carbon Brief",
+      "url": "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+      "date": "2026-11-10"
     },
     {
-     "title": "Carbon Market Watch: Article 6 rules intact, but the 2028 review is the next fight",
-     "summary": "The NGO says the Article 6 rulebook survived COP31 unchanged, but warns that industry lobbying grew compared with COP30 and will target the major Article 6 review planned for 2028.",
-     "source": "Carbon Market Watch",
-     "url": "https://carbonmarketwatch.org/2026/11/22/cmw-cop31-reaction-climate-focus-of-article-6-survives-fossil-fueled-market-lobby-for-now/",
-     "date": "2026-11-22",
-     "why": "Directly relevant to your Article 6 research: integrity rules shape which Ghanaian credits buyers will trust."
+      "title": "More Africans getting electricity each year",
+      "summary": "The IEA projects new electricity connections in Africa rising from 24 million people a year in 2025 to 40 million a year before 2030.",
+      "source": "GreenTechLead (IEA WEO 2026)",
+      "url": "https://greentechlead.com/renewable-energy/africa-solar-capacity-to-grow-sixfold-by-2035-as-energy-investment-reaches-110-billion-in-2026-iea-56680",
+      "date": "2026-11-19"
+    },
+    {
+      "title": "Nature's land carbon sink hit a record",
+      "summary": "Land ecosystems absorbed about 13.3 billion tonnes of CO2 in 2025, the highest on record, according to the Global Carbon Budget.",
+      "source": "Carbon Brief",
+      "url": "https://www.carbonbrief.org/analysis-fossil-fuel-co2-emissions-set-to-dip-in-2026-as-iran-conflict-hits-oil-use",
+      "date": "2026-11-10"
     }
-   ]
-  },
-  {
-   "id": "africa",
-   "title": "Ghana and Africa",
-   "icon": "🇬🇭",
-   "items": [
+  ],
+  "watch": [
+    "OPEC+ meeting on 29 November and where oil prices go next",
+    "Gulf security: attacks on Kuwait, Saudi refineries and Hormuz shipping",
+    "US troop posture review in Europe and NATO foreign ministers' meeting",
+    "Ghana's first TREES credit payment (about $43m) expected around January",
+    "Ghana's open-burning ban and 'Year of Pollution Control' from January 2027"
+  ],
+  "quiz": [
     {
-     "title": "Mahama hands three new aircraft to the Ghana Air Force",
-     "summary": "President Mahama is due to hand over two Airbus helicopters (ACH175 and ACH160) and a Dassault Falcon 6X long-range jet at the Air Force Base in Accra on 26 November. The purchases were approved by Parliament in December 2025, according to the Ghana Armed Forces.",
-     "source": "GhanaWeb (Ghana Armed Forces release)",
-     "url": "https://www.ghanaweb.com/GhanaHomePage/NewsArchive/President-Mahama-to-hand-over-three-newly-acquired-aircraft-to-Ghana-Air-Force-2063003",
-     "date": "2026-11-25",
-     "videoQuery": "Ghana Air Force new aircraft Mahama"
+      "q": "How many verified forest carbon credits has Ghana been issued under ART TREES?",
+      "options": [
+        "650,000",
+        "2.5 million",
+        "6.5 million",
+        "43 million"
+      ],
+      "a": "6.5 million",
+      "why": "Ghana was issued 6.5 million tonnes of credits, worth about $68m in total."
     },
     {
-     "title": "Ghana to recruit 10,000 health workers",
-     "summary": "Health Minister Mintah Akandoh said the government will begin recruiting 10,000 health workers next week. Separately, the Cyber Security Authority warned Black Friday shoppers after online fraud losses reached GH¢1.7m.",
-     "source": "Citi Newsroom",
-     "url": "https://www.citinewsroom.com/2026/11/govt-to-recruit-10000-health-workers-next-week-akandoh/",
-     "date": "2026-11-24"
+      "q": "Whom did Ghana's Black Challenge beat in the amputee World Cup final?",
+      "options": [
+        "Turkey",
+        "Egypt",
+        "USA",
+        "Morocco"
+      ],
+      "a": "Morocco",
+      "why": "They won the final 1-0 in Mexico."
     },
     {
-     "title": "Tinubu pledges peace in Nigeria's northeast ahead of January vote",
-     "summary": "At a rally in Maiduguri, President Tinubu promised to restore peace to the insurgency-hit northeast as he seeks re-election on 16 January. He said more than 70 schoolchildren abducted in Borno this year are still held; analysts say security gains are not yet proven.",
-     "source": "Al Jazeera and Reuters",
-     "url": "https://www.aljazeera.com/news/2026/11/25/nigerias-tinubu-pledges-to-bring-peace-to-insurgency-hit-northeast-region",
-     "date": "2026-11-25",
-     "videoQuery": "Tinubu Maiduguri rally northeast peace"
-    },
-    {
-     "title": "DR Congo rebels halt advance on Bunia",
-     "summary": "The CRP rebel group led by Thomas Lubanga said it would stop its push toward Bunia in Ituri and withdraw from recently seized areas after heavy clashes with the army. The WHO said fighting near a hospital forced health workers out, disrupting the Ebola response.",
-     "source": "Al Jazeera and Anadolu",
-     "url": "https://www.aljazeera.com/news/2026/11/24/rebel-group-retreats-in-dr-congo-after-heavy-clashes-with-government-forces",
-     "date": "2026-11-24",
-     "videoQuery": "DR Congo CRP rebels Bunia Ituri"
+      "q": "At what price did Brent crude settle on 26 November?",
+      "options": [
+        "$84.84",
+        "$89.37",
+        "$96.57",
+        "$110.00"
+      ],
+      "a": "$96.57",
+      "why": "It rose about 8% over three sessions on Gulf supply fears."
     }
-   ]
-  },
-  {
-   "id": "business",
-   "title": "Business and tech",
-   "icon": "📈",
-   "items": [
+  ],
+  "future": [
     {
-     "title": "Asian chip stocks plunge as AI doubts return",
-     "summary": "South Korea's Kospi fell 6.2% and Taiwan's Taiex 4.8% as a rally sparked by Jensen Huang's return as Nvidia CEO reversed; Samsung and SK Hynix dropped around 10–11%. On Wall Street the Nasdaq recovered from a 4% morning drop to close slightly lower, with Nvidia down about 3.9%.",
-     "source": "Al Jazeera; StockTitan",
-     "url": "https://www.aljazeera.com/news/2026/11/25/asias-stock-markets-dive-as-doubts-to-swirl-over-ai-boom",
-     "date": "2026-11-25",
-     "videoQuery": "Asian markets plunge Nvidia AI stocks November 2026"
+      "title": "Clean cooking financed by carbon credits",
+      "why": "New government policies across Africa have helped secure about $900 million in new clean-cooking finance, with carbon credits as the main engine. The catch: it only lasts if buyers trust the credits.",
+      "fit": "This is Carbon Clarity's core. The winners will be projects with measured, audit-ready data.",
+      "step": "This month: map which Gold Standard metered-method requirements your pilot data already meets.",
+      "source": "AP via Mongabay",
+      "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
     },
     {
-     "title": "US growth revised up, but inflation heats up",
-     "summary": "The US economy grew at a 4.3% annual rate in the third quarter, revised up from 3.4%, while October PCE prices rose 3.8% from a year earlier (3.3% excluding food and energy). Markets increasingly expect a Federal Reserve rate rise in December.",
-     "source": "StockTitan (BEA data); SBS",
-     "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-25-2026",
-     "date": "2026-11-25",
-     "why": "Higher US rates tend to strengthen the dollar and put pressure on the cedi.",
-     "videoQuery": "US PCE inflation October 2026 GDP revision"
+      "title": "Digital MRV and high-integrity credit data",
+      "why": "Credit buyers increasingly pay only for credits they can verify. Sensor-based monitoring and clean data trails are becoming the difference between credits that sell and credits that don't.",
+      "fit": "Your Data Vault idea could become a service for other cookstove and agriculture projects in Ghana.",
+      "step": "Write a one-page description of the Data Vault as a service: who pays, what it proves.",
+      "source": "AP via Mongabay",
+      "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
     },
     {
-     "title": "Nvidia's credit rating put on watch",
-     "summary": "S&P Global Ratings placed Nvidia's AA credit rating on watch for a possible downgrade, days after its board reinstated Jensen Huang as CEO.",
-     "source": "StockTitan; Eurasia Business News",
-     "url": "https://eurasiabusinessnews.com/2026/11/25/stock-market-today-nov-25-2026-nasdaq-trims-losses-gold-price-falls-brent-oil-91/",
-     "date": "2026-11-25"
+      "title": "Clean heat for small industries",
+      "why": "RMI lists clean industrial heat among Africa's six emerging climate-tech opportunities. Fish smoking is exactly this: small-scale process heat.",
+      "fit": "Improved ovens for fish processors are a clean-heat business with income for women, not just a stove programme.",
+      "step": "Estimate the market: how many processors in Greater Accra and coastal Ghana, and how much wood they burn.",
+      "source": "RMI",
+      "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
+    },
+    {
+      "title": "Carbon removal from biomass: biochar",
+      "why": "RMI also highlights carbon dioxide removal that uses Africa's biomass and soils, a market where removal credits sell for far more than avoidance credits.",
+      "fit": "Waste biomass from smoking (husks, offcuts) could be turned into biochar: a second revenue stream.",
+      "step": "Read one biochar removal methodology and list what you'd need to measure.",
+      "source": "RMI",
+      "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
+    },
+    {
+      "title": "Energy-led climate tech is where African investment goes",
+      "why": "Africa's climate-tech startups raised $6.35bn from 2016 to 2025, now the continent's biggest venture sector, with energy taking about 65% of the money.",
+      "fit": "Pitch Carbon Clarity as energy plus livelihoods: efficient heat, solar drying or cold storage for fish.",
+      "step": "Add one slide to your pitch: 'Why energy investors should care about fish smoking'.",
+      "source": "Briter Intelligence via Tech Economy",
+      "url": "https://techeconomy.ng/africa-climatetech-funding-hits-6-35bn-as-sector-overtakes-fintech-in-venture-investment"
+    },
+    {
+      "title": "Article 6 advisory for Ghanaian projects",
+      "why": "Ghana is one of the first countries trading credits between governments under Article 6. Developers need people who understand authorisation, corresponding adjustments and the Carbon Market Office process.",
+      "fit": "Your Ghana carbon market research makes you one of those people: it can become consulting work or a job.",
+      "step": "Turn your Step 3 agreement table into a two-page brief you can share on LinkedIn.",
+      "source": "Your research page",
+      "url": "https://carbon-clarity.vercel.app/research.html"
+    },
+    {
+      "title": "Solar for productive use in Africa",
+      "why": "The IEA's World Energy Outlook 2026 projects Africa's solar capacity rising about sixfold to 234 GW by 2035 and electricity demand up 50%, yet the continent still gets only about 3% of global energy investment.",
+      "fit": "Solar-powered fish drying, cold storage or sensor power for processors could sit alongside Carbon Clarity ovens.",
+      "step": "Price a small solar cold-storage or dryer unit for one James Town processing group.",
+      "source": "IEA via GreenTechLead",
+      "url": "https://greentechlead.com/renewable-energy/africa-solar-capacity-to-grow-sixfold-by-2035-as-energy-investment-reaches-110-billion-in-2026-iea-56680"
+    },
+    {
+      "title": "Benefit-sharing services for jurisdictional carbon credits",
+      "why": "Ghana's first ART TREES credits (6.5 million tonnes, about $68m) come with a promise that communities, farmers and traditional authorities share the proceeds. Tracking who gets paid is becoming its own job.",
+      "fit": "Your data and community skills could support transparent payment tracking for forest and cookstove programmes.",
+      "step": "Read how Ghana's REDD+ benefit-sharing plan works and note what data it needs.",
+      "source": "Graphic Online",
+      "url": "https://www.graphic.com.gh/news/general-news/ghana-news-ghana-to-receive-68m-for-forest-carbon-credits-initial-43m-revenue-expected-in-jan.html"
     }
-   ]
-  },
-  {
-   "id": "science",
-   "title": "Science and health",
-   "icon": "🔬",
-   "items": [
-    {
-     "title": "Pakistan's first astronaut reaches China's space station",
-     "summary": "Muhammad Zeeshan Ali became the first Pakistani in orbit and the first foreign astronaut to board China's Tiangong station, after launching on Shenzhou-24 from Jiuquan. He is expected to stay 5 to 10 days.",
-     "source": "Al Jazeera and Reuters",
-     "url": "https://www.aljazeera.com/news/2026/11/25/pakistan-rejoices-as-countrys-first-astronaut-enters-orbit",
-     "date": "2026-11-25",
-     "why": "Shows how China is opening its space programme to partner countries in the Global South.",
-     "videoQuery": "Shenzhou-24 Pakistani astronaut Tiangong"
-    },
-    {
-     "title": "Euclid telescope finds its first new comet",
-     "summary": "ESA's Euclid space telescope, built to map dark matter and dark energy, has spotted its first previously unknown comet.",
-     "source": "ScienceDaily",
-     "url": "https://www.sciencedaily.com/releases/2026/11/261124055852.htm",
-     "date": "2026-11-25",
-     "videoQuery": "Euclid telescope comet discovery"
-    },
-    {
-     "title": "A hard-to-treat depression subtype identified",
-     "summary": "Researchers describe a subtype of severe depression, affecting about one in four people with the condition, that responds poorly to common antidepressants.",
-     "source": "ScienceDaily",
-     "url": "https://www.sciencedaily.com/releases/2026/11/261123005352.htm",
-     "date": "2026-11-24"
-    }
-   ]
-  }
- ],
- "good": [
-  {
-   "title": "Borno school enrolment nearly doubles",
-   "summary": "School enrolment in Nigeria's Borno State rose to about 1.42 million in 2025 from about 767,000 in 2017-18, state figures show, with 104 new schools built. Out-of-school children fell to roughly 800,000 from an estimated 2.2 million at the crisis peak.",
-   "source": "Al Jazeera",
-   "url": "https://www.aljazeera.com/news/2026/11/24/borno-school-enrolment-nearly-doubles-after-years-of-conflict",
-   "date": "2026-11-24"
-  },
-  {
-   "title": "100 MW solar plant to power Tema Free Zone factories",
-   "summary": "LMI Holdings secured $88.6 million, backed by IFC, IDA, EAAIF and Ninety One, for a 100 MWp solar plant at Dawa, Ghana. It is expected to produce about 129.5 GWh a year for more than 95 manufacturers in the Tema Free Zone.",
-   "source": "SolarQuarter; TaiyangNews",
-   "url": "https://solarquarter.com/2026/11/17/eaaif-ninety-one-ifc-and-ida-back-100-mwp-industrial-solar-project-in-ghana-with-usd-88-6-million-financing/",
-   "date": "2026-11-17",
-   "why": "Proof that solar for productive use is bankable in Ghana: a useful example for your pitches."
-  },
-  {
-   "title": "Zimbabwe's business solar pipeline tops 1.5 GW",
-   "summary": "Zimbabwe now has 251.4 MW of commercial and industrial solar running, with about 1.5 GW more under construction, in financing or in development, according to AFSIA data.",
-   "source": "TaiyangNews",
-   "url": "https://taiyangnews.info/markets/middle-east-africa-solar-pv-news-snippets-november-23-2026",
-   "date": "2026-11-23"
-  },
-  {
-   "title": "Bangladesh garment workers get a pay rise",
-   "summary": "Four million garment workers will see their monthly minimum wage rise 36% from December after weeks of protests.",
-   "source": "Al Jazeera and AFP",
-   "url": "https://www.aljazeera.com/news/2026/11/25/bangladesh-garment-workers-win-36-pay-rise-after-weeks-of-protest",
-   "date": "2026-11-25"
-  },
-  {
-   "title": "World energy efficiency improves faster",
-   "summary": "The IEA's Energy Efficiency 2026 report expects global energy intensity to improve by nearly 3% this year, up from about 2% in 2025.",
-   "source": "SustainabilityOnline (IEA)",
-   "url": "https://sustainabilityonline.net/news/sustainabilityonline-the-sustainability-brief-25-november-2026/",
-   "date": "2026-11-25"
-  }
- ],
- "watch": [
-  "Whether the US tariff proposals change before the 5 January comment deadline",
-  "Gulf shipping and oil prices as Houthi and Hormuz incidents continue",
-  "AI stock volatility and what it means for tech funding",
-  "El Niño peaking in December: heat and fishing impacts in West Africa",
-  "Preparations for the 2028 Article 6 review after COP31"
- ],
- "quiz": [
-  {
-   "q": "How much above pre-industrial levels was the global average temperature on 20 November, per preliminary Copernicus data?",
-   "options": [
-    "1.52°C",
-    "2.07°C",
-    "2.12°C",
-    "2.8°C"
-   ],
-   "a": "2.12°C",
-   "why": "It beat the previous daily record of 2.07°C set in November 2023."
-  },
-  {
-   "q": "Where will the 100 MWp Dawa solar plant send most of its power?",
-   "options": [
-    "Kumasi homes",
-    "Tema Free Zone manufacturers",
-    "Akosombo dam",
-    "Takoradi port"
-   ],
-   "a": "Tema Free Zone manufacturers",
-   "why": "It is designed to supply more than 95 manufacturers in the Tema Free Zone."
-  },
-  {
-   "q": "Which country's first astronaut became the first foreigner to board China's Tiangong station?",
-   "options": [
-    "Nigeria",
-    "Egypt",
-    "Pakistan",
-    "Brazil"
-   ],
-   "a": "Pakistan",
-   "why": "Muhammad Zeeshan Ali flew on Shenzhou-24."
-  }
- ],
- "future": [
-  {
-   "title": "Clean cooking financed by carbon credits",
-   "why": "New government policies across Africa have helped secure about $900 million in new clean-cooking finance, with carbon credits as the main engine. The catch: it only lasts if buyers trust the credits.",
-   "fit": "This is Carbon Clarity's core. The winners will be projects with measured, audit-ready data.",
-   "step": "This month: map which Gold Standard metered-method requirements your pilot data already meets.",
-   "source": "AP via Mongabay",
-   "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
-  },
-  {
-   "title": "Digital MRV and high-integrity credit data",
-   "why": "Credit buyers increasingly pay only for credits they can verify. Sensor-based monitoring and clean data trails are becoming the difference between credits that sell and credits that don't.",
-   "fit": "Your Data Vault idea could become a service for other cookstove and agriculture projects in Ghana.",
-   "step": "Write a one-page description of the Data Vault as a service: who pays, what it proves.",
-   "source": "AP via Mongabay",
-   "url": "https://news.mongabay.com/short-article/2026/09/carbon-credit-financing-emerges-as-africas-biggest-bet-for-expanding-clean-cooking/"
-  },
-  {
-   "title": "Clean heat for small industries",
-   "why": "RMI lists clean industrial heat among Africa's six emerging climate-tech opportunities. Fish smoking is exactly this: small-scale process heat.",
-   "fit": "Improved ovens for fish processors are a clean-heat business with income for women, not just a stove programme.",
-   "step": "Estimate the market: how many processors in Greater Accra and coastal Ghana, and how much wood they burn.",
-   "source": "RMI",
-   "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
-  },
-  {
-   "title": "Carbon removal from biomass: biochar",
-   "why": "RMI also highlights carbon dioxide removal that uses Africa's biomass and soils, a market where removal credits sell for far more than avoidance credits.",
-   "fit": "Waste biomass from smoking (husks, offcuts) could be turned into biochar: a second revenue stream.",
-   "step": "Read one biochar removal methodology and list what you'd need to measure.",
-   "source": "RMI",
-   "url": "https://rmi.org/resources/emergent-climate-tech-africa/"
-  },
-  {
-   "title": "Energy-led climate tech is where African investment goes",
-   "why": "Africa's climate-tech startups raised $6.35bn from 2016 to 2025, now the continent's biggest venture sector, with energy taking about 65% of the money.",
-   "fit": "Pitch Carbon Clarity as energy plus livelihoods: efficient heat, solar drying or cold storage for fish.",
-   "step": "Add one slide to your pitch: 'Why energy investors should care about fish smoking'.",
-   "source": "Briter Intelligence via Tech Economy",
-   "url": "https://techeconomy.ng/africa-climatetech-funding-hits-6-35bn-as-sector-overtakes-fintech-in-venture-investment"
-  },
-  {
-   "title": "Article 6 advisory for Ghanaian projects",
-   "why": "Ghana is one of the first countries trading credits between governments under Article 6. Developers need people who understand authorisation, corresponding adjustments and the Carbon Market Office process.",
-   "fit": "Your Ghana carbon market research makes you one of those people: it can become consulting work or a job.",
-   "step": "Turn your Step 3 agreement table into a two-page brief you can share on LinkedIn.",
-   "source": "Your research page",
-   "url": "https://carbon-clarity.vercel.app/research.html"
-  }
- ],
- "futureUpdated": "2026-11-20"
+  ],
+  "futureUpdated": "2026-11-27"
 }
