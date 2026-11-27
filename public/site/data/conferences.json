@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "note": "Research conferences and calls for abstracts that fit SafeSmoke Carbon and Carbon Clarity: clean cooking and stoves, carbon markets and climate finance, fisheries and coastal communities, gender and just transitions. Checked on the official pages; dates can change, so confirm before submitting.",
  "items": [
   {
@@ -235,6 +235,69 @@
    "priority": 3,
    "added": "2026-11-26",
    "checked": "2026-11-26"
+  },
+  {
+   "id": "afcfta-industrialisation-2027",
+   "name": "Conference on Advancing Africa's Industrialisation: Regional Value Chains for a Green and Resilient Future (AfCFTA Conference 2027)",
+   "organiser": "Nelson Mandela School of Public Governance, University of Cape Town",
+   "start": "2027-04-14",
+   "end": "2027-04-16",
+   "city": "Cape Town, South Africa",
+   "mode": "In person",
+   "kind": "Call for papers",
+   "deadline": "2027-01-31",
+   "deadlineNote": "Full papers, policy briefs, case studies or panel proposals by 31 January 2027. Contact: mapoulo.ntoane@uct.ac.za.",
+   "fee": "Not stated",
+   "support": "Not stated",
+   "fit": "African green industrialisation, climate finance and a 'Towards COP32' session. SafeSmoke is a green value-chain upgrade for fish processing, a strong policy-brief angle.",
+   "angle": "Greening Africa's fish value chain: cleaner kilns, measured fuel savings and carbon income for women processors (policy brief or case study).",
+   "link": "https://www.afronomicslaw.org/category/news-and-events/call-papers-conference-advancing-africas-industrialisation-building",
+   "status": "Open",
+   "priority": 2,
+   "added": "2026-11-27",
+   "checked": "2026-11-27"
+  },
+  {
+   "id": "egu-2027",
+   "name": "EGU General Assembly 2027 (European Geosciences Union)",
+   "organiser": "European Geosciences Union",
+   "start": "2027-04-04",
+   "end": "2027-04-09",
+   "city": "Vienna, Austria & online",
+   "mode": "Hybrid (in person and online)",
+   "kind": "Call for abstracts",
+   "deadline": null,
+   "deadlineNote": "The call for abstracts is open; check the exact abstract and financial-support deadlines on the EGU27 'Deadlines and milestones' page. Session ERE0.1 'Bridging the gap between climate risk and energy access' fits SafeSmoke.",
+   "fee": "Not stated here; EGU offers fee waivers and financial support (check eligibility)",
+   "support": "Financial support and waivers (check the EGU27 page)",
+   "fit": "Huge hybrid meeting with an online option. The energy-access and climate-risk session matches clean fish-smoking energy and measured savings.",
+   "angle": "Measuring energy access at the kiln: sensor evidence of fuel savings in Ghana's fish smoking.",
+   "link": "https://meetingorganizer.copernicus.org/EGU27/session/60039",
+   "status": "Check",
+   "priority": 2,
+   "added": "2026-11-27",
+   "checked": "2026-11-27"
+  },
+  {
+   "id": "emc-2027",
+   "name": "Environmental Markets Conference 2027",
+   "organiser": "Alliance for Environmental Markets and Investments (AEMI)",
+   "start": "2027-04-26",
+   "end": "2027-04-29",
+   "city": "Dallas, USA",
+   "mode": "In person",
+   "kind": "Posters and digital presentations",
+   "deadline": "2027-03-05",
+   "deadlineNote": "The main call has closed; digital presentations and posters are open until 5 March 2027.",
+   "fee": "Not stated; speaker discounts possible",
+   "support": "Financial assistance and awards page (check eligibility)",
+   "fit": "Has a 'Carbon Markets & Climate Solutions' track covering MRV, voluntary markets and climate finance. Good for networking with credit buyers, but travel to the USA is costly.",
+   "angle": "Poster: digital MRV and fair benefit sharing for small-scale clean-cooking credits in Ghana.",
+   "link": "https://environmentalmarketsconference.com/call-for-participation-2027/",
+   "status": "Open",
+   "priority": 3,
+   "added": "2026-11-27",
+   "checked": "2026-11-27"
   }
  ]
 }
