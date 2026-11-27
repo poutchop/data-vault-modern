@@ -81,12 +81,12 @@
    "start": "September 2028 study (next cycle)",
    "deadline": null,
    "deadlineNote": "2027/28 applications are closed. The 2027/28 round opened in August 2026, so the next round is expected around August 2027: get ready now.",
-   "remindOn": "2027-07-15",
+   "remindOn": "2027-08-01",
    "cost": "Fully funded",
    "funding": "Tuition, living allowance, flights.",
-   "fit": "Competitive, but your Carbon Clarity work is the kind of leadership story Chevening looks for. Start building essays now.",
+   "fit": "South Sudan is a Chevening country (South Sudanese can apply). 2027/28 round closed 6 October 2026; next round expected to open around August 2027. Chevening asks scholars to return to their country of citizenship (South Sudan) for at least two years after the award: check this fits your plans. South Sudan has no UK visa centre, but you can apply from Accra. Competitive, but your Carbon Clarity work is the kind of leadership story Chevening looks for. Start building essays now.",
    "link": "https://www.chevening.org/eligibility",
-   "checked": "2026-11-20",
+   "checked": "2026-11-27",
    "added": "2026-11-20",
    "status": "Upcoming",
    "priority": 2,
@@ -611,9 +611,9 @@
    "deadlineNote": "The official page says 'Apply By December 1, 2026' (it also shows a 'notify me when applications launch' form, so confirm the form is accepting entries). Results late December.",
    "cost": "Free",
    "funding": "Up to 60 Fellows get a stipend (the page says $500 CAD in one place and USD 350 in another) and can pitch for prizes of up to $15,000 CAD and access seed funding.",
-   "fit": "Carbon Clarity is a real venture with a clear story (clean ovens, women processors, carbon credits), and a Canadian university and Mastercard Foundation link helps later Canada and MCF scholarship applications. Main risk: you may not count as a 'recent graduate'.",
+   "fit": "Fully virtual (no visa needed), free, 8 months. Open to students and recent graduates of any post-secondary institution in Africa, so your Ghana degree should count; check the FAQ to confirm. Carbon Clarity is a real venture with a clear story (clean ovens, women processors, carbon credits), and a Canadian university and Mastercard Foundation link helps later Canada and MCF scholarship applications. Main risk: you may not count as a 'recent graduate'.",
    "link": "https://www.queensu.ca/innovationcentre/programs/jim-leech-mastercard-foundation-fellowship-entrepreneurship",
-   "checked": "2026-11-24",
+   "checked": "2026-11-27",
    "added": "2026-11-24",
    "status": "Open",
    "priority": 2
@@ -690,6 +690,15 @@
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-27-jimleech",
+   "date": "2026-11-27",
+   "level": "urgent",
+   "title": "Jim Leech Mastercard Fellowship (Canada, virtual) closes 1 December",
+   "body": "Free, fully online entrepreneurship fellowship from Queen's University. Fits Carbon Clarity and needs no visa.",
+   "link": "#tracker-opps",
+   "opp": "jim-leech"
+  },
   {
    "id": "a-2026-11-27-ssvisa",
    "date": "2026-11-27",
