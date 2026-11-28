@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "profile": "CGPA 2.3/4.0. On the University of Ghana scale 2.0–2.49 is a third-class degree; most UK master's ask for a 2:2 (second class lower, about 2.5+). So the best routes are: pre-master's or extended master's courses (UK), programmes that state no minimum grade or no NC (Germany), and graduate certificates or foundation routes (Canada). Your work experience (Carbon Clarity, research, Yamale marketing) strengthens every application. Fully funded scholarships are the hardest with a 2.3, because many set a 2:1 or 3.0+ minimum. The best fully funded routes are leadership fellowships (no grade needed), government awards that weigh experience, and Erasmus Mundus programmes with no stated minimum. Nationality: South Sudanese (South Sudan passport), living in Ghana. Check every opportunity accepts South Sudanese citizens and residents of Ghana, and that the host country issues visas to South Sudanese passport holders.",
  "items": [
   {
@@ -351,12 +351,12 @@
    "req": "Aged 24–45; citizen/resident of an African country; at least 3 years of relevant experience in your issue area; a leadership role in your changemaking work; English.",
    "start": "2027",
    "deadline": "2026-12-04",
-   "deadlineNote": "Announced deadline 4 December 2026 for the 2027–2028 cohort (the official page may still show last year's timeline: confirm when you apply).",
+   "deadlineNote": "Announced deadline 4 December 2026 (reported by opportunity sites). On 28 November the official page says 'Applications for 2027-2028 Leaders Africa are now open!' but shows no date: confirm in the Submittable application portal.",
    "cost": "Free",
    "funding": "Free for participants (stipends and travel not stated)",
-   "fit": "Carbon Clarity (women processors, clean cooking, carbon finance) is a strong changemaking story. A top credential for later scholarship applications.",
+   "fit": "⚠️ The official how-to-apply page says participants 'must be under no legal or regulatory restrictions that would limit their participation in virtual Foundation programming or travel to the U.S. for in-person programming (if any)'. With the US entry ban on South Sudanese passports (from 1 January 2026), check with the Foundation before applying whether this rules you out. Otherwise Carbon Clarity (women processors, clean cooking, carbon finance) is a strong changemaking story.",
    "link": "https://www.obama.org/programs/leaders/africa/how-to-apply/",
-   "checked": "2026-11-24",
+   "checked": "2026-11-28",
    "added": "2026-11-20",
    "status": "Open",
    "priority": 1
@@ -687,9 +687,67 @@
    "added": "2026-11-27",
    "status": "Upcoming",
    "priority": 3
+  },
+  {
+   "id": "southpole-intern-africa",
+   "country": "Africa",
+   "region": "Remote (listed under Kenya)",
+   "type": "Internship",
+   "title": "Intern for Policy and Strategy, for carbon projects in Africa",
+   "provider": "South Pole",
+   "city": "Fully remote (listed as Kenya)",
+   "grade": "No grade requirement stated.",
+   "req": "Official page: 'Recently graduated or about to graduate from university in Environmental Sciences, Engineering, Finance, Economics or related disciplines'; research and data analysis skills; excellent English. A master's and French are advantages, not requirements. Confirm whether remote applicants outside Kenya are accepted.",
+   "start": "Not stated",
+   "deadline": null,
+   "deadlineNote": "No closing date published; the application form is live on the careers page as of 28 November 2026.",
+   "cost": "Free to apply",
+   "funding": "Pay not stated",
+   "fit": "Direct match with your carbon-market research and SafeSmoke Carbon MRV work; South Pole is a major carbon project developer. 'Recently graduated' may be read strictly, so explain your timeline in the cover letter. Remote, so no visa needed.",
+   "link": "https://careers.southpole.com/jobs/5770724-intern-for-policy-and-strategy-for-carbon-projects-in-africa",
+   "checked": "2026-11-28",
+   "added": "2026-11-28",
+   "status": "Check",
+   "priority": 2
   }
  ],
  "alerts": [
+  {
+   "id": "a-2026-11-28-southpole",
+   "date": "2026-11-28",
+   "level": "new",
+   "title": "New: South Pole remote internship, policy and strategy for carbon projects in Africa",
+   "body": "Fully remote internship with a major carbon developer; for recent graduates in environment, economics, finance or related fields; no grade rule. No closing date published, so apply soon.",
+   "link": "https://careers.southpole.com/jobs/5770724-intern-for-policy-and-strategy-for-carbon-projects-in-africa",
+   "opp": "southpole-intern-africa"
+  },
+  {
+   "id": "a-2026-11-28-obama",
+   "date": "2026-11-28",
+   "level": "urgent",
+   "title": "Obama Leaders Africa: check the US-travel rule before 4 December",
+   "body": "The official page requires that participants have no legal restrictions on travel to the US for in-person sessions. Because of the US entry ban on South Sudanese passports, ask the Foundation whether you can still take part.",
+   "link": "https://www.obama.org/programs/leaders/africa/how-to-apply/",
+   "opp": "obama-leaders-africa"
+  },
+  {
+   "id": "a-2026-11-28-deadlines",
+   "date": "2026-11-28",
+   "level": "urgent",
+   "title": "Jim Leech Fellowship closes 1 December (3 days); ACC Young Leaders' Committee and Obama Leaders Africa close 4 December",
+   "body": "Green RISE West Africa closes 22 December. Schiller Heidelberg (1 Jan), GrEnFIn (7 Jan), KAAD and AYCF (15 Jan) follow.",
+   "link": "#tracker-opps",
+   "opp": "jim-leech"
+  },
+  {
+   "id": "a-2026-11-28-funder",
+   "date": "2026-11-28",
+   "level": "info",
+   "title": "Directory: VLIR-UOS (Belgium) added (not a fit)",
+   "body": "Fully funded Belgian master's scholarships, but only for nationals of a fixed country list that excludes South Sudan and Ghana.",
+   "link": "https://www.vliruos.be/get-funded/calls/icp-connect-2027-2028",
+   "opp": null
+  },
   {
    "id": "a-2026-11-27-jimleech",
    "date": "2026-11-27",
@@ -1135,6 +1193,14 @@
   {
    "name": "Global Korea Scholarship (GKS, Korea)",
    "why": "2026 GKS-G guidelines require a CGPA of at least 2.64/4.0 (or 80%/top 20% of class); 2.3/4.0 falls below unless you can document a top-20% rank."
+  },
+  {
+   "name": "VLIR-UOS ICP Connect scholarships (Belgium)",
+   "why": "Only for nationals and residents of the eligible-country list; South Sudan and Ghana are not on it."
+  },
+  {
+   "name": "beVisioneers: The Mercedes-Benz Fellowship 2027 (Africa)",
+   "why": "Open only to residents of Kenya, Rwanda, South Africa, Tanzania, Uganda and Zimbabwe, aged 18–28; Ghana and South Sudan not eligible."
   }
  ],
  "funders": [
@@ -1299,6 +1365,15 @@
    "rule": "2026 guidelines: CGPA 'must be equal to or above 2.64/4.0' (or 80%+ on a 100-point scale, or 'ranked in the top 20% of one's class'). A 2.3/4.0 is below this unless your transcript shows top-20% class rank.",
    "when": "2026 embassy-track applications ran in February 2026; the 2027 round is expected around February 2027 (expected, not confirmed).",
    "link": "https://www.esteri.it/wp-content/uploads/2026/02/2026-GKS-G-Application-Guidelines-English.pdf"
+  },
+  {
+   "name": "VLIR-UOS ICP Connect scholarships (Flemish/Belgian Government)",
+   "fit": "no",
+   "where": "Belgium (Flemish universities: Antwerp, Ghent, Leuven, Brussels, Hasselt)",
+   "what": "Fully funded master's scholarships (tuition, travel, insurance, living costs) for international master's programmes.",
+   "rule": "Candidates must be a national and resident of one of the listed eligible countries. The University of Antwerp's 2027/28 list (Benin, Bolivia, Burkina Faso, Burundi, Cameroon, Cuba, DR Congo, Ecuador, Ethiopia, Guinea, Indonesia, Kenya, Madagascar, Morocco, Mozambique, Niger, Peru, Philippines, Palestine, Senegal, South Africa, Tanzania, Uganda, Vietnam, Zimbabwe) includes neither South Sudan nor Ghana. Age limit 35 for initial master's. No grade rule stated.",
+   "when": "2027/28 call open; scholarship deadline reported as 28 February 2027 (programme deadlines vary).",
+   "link": "https://www.vliruos.be/get-funded/calls/icp-connect-2027-2028"
   }
  ]
 }
