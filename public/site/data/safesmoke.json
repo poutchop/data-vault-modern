@@ -1,15 +1,37 @@
 {
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "suggestion": {
-    "date": "2026-11-27",
-    "part": "Kiln",
-    "title": "Add a 'stacking check': log every batch on the old Chorkor too, and only count net wood saved",
-    "why": "In a 2026 Edinburgh study of mangrove-area projects in Sierra Leone and Guinea, improved fish-smoking ovens cut mangrove wood from about 7,084 kg to 420 kg per household per year, yet cookstove savings fell short because households kept using three-stone fires alongside the new stoves (adjusted usage only 44.5%). If a woman smokes half her catch on the SafeSmoke kiln and the rest on her old Chorkor, your per-batch kg-wood-per-kg-fish looks great while total wood barely falls. Verifiers and Article 6 buyers will ask exactly this, so measuring it now makes your savings claim credible.",
-    "action": "In part 2 and the pilot plan, add a 'Stacking check' box: (1) for each enrolled woman, record ALL batches for the 17 weeks, on the SafeSmoke kiln (sensor and scale) and on any traditional kiln (simple weekly self-report on the wood-bundles board, spot-checked by a Carbon Mother with the connected scale once a fortnight); (2) report two numbers: kg wood per kg fish on the new kiln, and total wood per woman per week before and during the pilot; (3) state the rule that carbon income and the 60% share are calculated on net wood saved per woman, not per-batch efficiency alone; (4) add one quiz question and one picture card explaining why old-kiln batches still count. Cite the Edinburgh 2026 study for the stacking risk and the oven savings.",
-    "source": "University of Edinburgh Business School (B-CCaS), Max Meyer (10 June 2026)",
-    "url": "https://bccas.business-school.ed.ac.uk/research/thought-leadership/blue-carbon-mangrove-conservation-carbon-markets-west-africa"
+    "date": "2026-11-28",
+    "part": "Inclusion",
+    "title": "Add a 'MoMo readiness check' to sign-up, with a route for women who have no wallet in their own name",
+    "why": "The 60% share only reaches women who hold a mobile-money account in their own name, and a 2026 Ghana study of a fuel-payment app found 95% of its mostly female sample owned a phone and 90% had used mobile money. That is high, but it means about 1 in 10 may be left out, likely the poorest, renters, commission smokers and newcomers. The same study found users preferred personal savings incentives over group features, which supports a personal carbon wallet with an optional savings lock.",
+    "action": "In part 5 (light-touch sign-up) and part 4, add a short box: (1) at sign-up, three yes/no questions: own phone? MoMo account in your own name? Ghana Card or other ID?; (2) for any 'no', a Carbon Mother helps open a wallet within two weeks, and her share is held in a named sub-account in the passbook until then, never paid to a husband or kiln owner; (3) an opt-in 'savings lock' so a woman can set part of each payout aside for fuel or kiln repairs; (4) report in the pilot results the % of women paid to their own wallet by week 4 and week 17, split by owner, renter, commission smoker and newcomer. Cite the CHAP GasPay brief for the 95%/90% figures and the savings preference.",
+    "source": "CHAP project policy brief, Gill-Wiehl, Jack, Jack and Asante (January 2026)",
+    "url": "https://bigd.bracu.ac.bd/wp-content/uploads/2026/02/GasPay-Policy-Brief-WEE-DiFine_V2.pdf"
   },
   "evidence": [
+    {
+      "id": "unhcr-repfund-ar-2025",
+      "date": "2026-03",
+      "added": "2026-11-28",
+      "part": "Displacement",
+      "title": "UNHCR REP Fund 2025 report: refugee and host clean-cooking pilots in Uganda and Rwanda, but benefit-sharing rules still to be set",
+      "summary": "UNHCR's Refugee Environmental Protection Fund, a USD 30 million blended-finance vehicle, launched pilots at COP30 in Uganda (Bidibidi, Kyangwali) and Rwanda (Kigeme), aiming to reach more than 41,000 refugee and host-community households with improved cooking (about 12,000 LPG stoves in Rwanda) and over 6,000 green jobs. No credits are issued yet; validation and registration are the 2026 priority, using TPDDTEC and the ICVCM Core Carbon Principles. Revenue is meant to fund maintenance, MRV and benefit sharing, but no split is given and the governance for sharing is still to be established. Its lessons: clear carbon rights, local ownership, and MRV built in from the start.",
+      "use": "Use in the Displacement and benefit-distribution sections to show the gap SafeSmoke fills: the leading refugee carbon fund has no published split yet, while your 60/15/15/10 rule is written and signed in the pilot.",
+      "source": "UNHCR, Refugee Environmental Protection Fund Annual Report 2025 (uploaded March 2026)",
+      "url": "https://www.unhcr.org/sites/default/files/2026-03/UNHCR_REP%20Fund%20Annual%20Report%202025.pdf"
+    },
+    {
+      "id": "chap-gaspay-ghana-2026-01",
+      "date": "2026-01",
+      "added": "2026-11-28",
+      "part": "Benefit sharing",
+      "title": "Ghana: 95% of mostly female users own a phone and 90% have used mobile money, and a pay-as-you-go fuel app shows what women want",
+      "summary": "A CHAP policy brief (Kintampo Health Research Centre, Columbia and UC researchers) on GasPay, a mobile-money app for buying LPG in small amounts. Seven focus groups and a 100-household survey in Accra, then a test with about 1,000 users in Techiman; an impact evaluation with about 1,800 people is under way. In the mostly female sample, 95% owned a mobile phone and 90% had used mobile money; 10% of people who had never used LPG bought some through the app. Users preferred savings incentives, micro-credit for refills and delivery, and liked group features less. Digital purchase records were said to build trust in household money talks.",
+      "use": "Cite in part 4 and the challenge's 'fair access' area as Ghana evidence that paying the 60% share to each woman's own mobile money is realistic, and use the preference for individual savings over group features to shape the carbon wallet and passbook.",
+      "source": "CHAP project policy brief, Gill-Wiehl, Jack, Jack and Asante, 'Digital Financial Services for LPG Use and Women's Economic Empowerment in Ghana' (January 2026), hosted by BIGD",
+      "url": "https://bigd.bracu.ac.bd/wp-content/uploads/2026/02/GasPay-Policy-Brief-WEE-DiFine_V2.pdf"
+    },
     {
       "id": "edinburgh-mangrove-ovens-2026-06",
       "date": "2026-06-10",
